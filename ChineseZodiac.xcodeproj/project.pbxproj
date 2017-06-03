@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A69F46D1EE3426C00A0176D /* ViewB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46B1EE3426C00A0176D /* ViewB.swift */; };
+		0A69F46E1EE3426C00A0176D /* ViewC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46C1EE3426C00A0176D /* ViewC.swift */; };
+		0A69F4701EE3428F00A0176D /* ViewD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46F1EE3428F00A0176D /* ViewD.swift */; };
 		0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */; };
-		0AD4E28F1EDDD22400A92F65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28E1EDDD22400A92F65 /* ViewController.swift */; };
+		0AD4E28F1EDDD22400A92F65 /* ViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28E1EDDD22400A92F65 /* ViewA.swift */; };
 		0AD4E2921EDDD22400A92F65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4E2901EDDD22400A92F65 /* Main.storyboard */; };
 		0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E2931EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld */; };
 		0AD4E2971EDDD22400A92F65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4E2961EDDD22400A92F65 /* Assets.xcassets */; };
@@ -16,9 +19,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A69F46B1EE3426C00A0176D /* ViewB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewB.swift; sourceTree = "<group>"; };
+		0A69F46C1EE3426C00A0176D /* ViewC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewC.swift; sourceTree = "<group>"; };
+		0A69F46F1EE3428F00A0176D /* ViewD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewD.swift; sourceTree = "<group>"; };
 		0AD4E2891EDDD22400A92F65 /* ChineseZodiac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseZodiac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0AD4E28E1EDDD22400A92F65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0AD4E28E1EDDD22400A92F65 /* ViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewA.swift; sourceTree = "<group>"; };
 		0AD4E2911EDDD22400A92F65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0AD4E2941EDDD22400A92F65 /* ChineseZodiac.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChineseZodiac.xcdatamodel; sourceTree = "<group>"; };
 		0AD4E2961EDDD22400A92F65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +43,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A69F4681EE341D400A0176D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0A69F4691EE341E500A0176D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0A69F46A1EE341F400A0176D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0AD4E28E1EDDD22400A92F65 /* ViewA.swift */,
+				0A69F46B1EE3426C00A0176D /* ViewB.swift */,
+				0A69F46C1EE3426C00A0176D /* ViewC.swift */,
+				0A69F46F1EE3428F00A0176D /* ViewD.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		0AD4E2801EDDD22400A92F65 = {
 			isa = PBXGroup;
 			children = (
@@ -56,8 +87,10 @@
 		0AD4E28B1EDDD22400A92F65 /* ChineseZodiac */ = {
 			isa = PBXGroup;
 			children = (
+				0A69F46A1EE341F400A0176D /* Controller */,
+				0A69F4691EE341E500A0176D /* View */,
+				0A69F4681EE341D400A0176D /* Model */,
 				0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */,
-				0AD4E28E1EDDD22400A92F65 /* ViewController.swift */,
 				0AD4E2901EDDD22400A92F65 /* Main.storyboard */,
 				0AD4E2961EDDD22400A92F65 /* Assets.xcassets */,
 				0AD4E2981EDDD22400A92F65 /* LaunchScreen.storyboard */,
@@ -140,9 +173,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD4E28F1EDDD22400A92F65 /* ViewController.swift in Sources */,
+				0AD4E28F1EDDD22400A92F65 /* ViewA.swift in Sources */,
+				0A69F4701EE3428F00A0176D /* ViewD.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
+				0A69F46E1EE3426C00A0176D /* ViewC.swift in Sources */,
 				0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */,
+				0A69F46D1EE3426C00A0176D /* ViewB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +344,7 @@
 				0AD4E2A01EDDD22400A92F65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
