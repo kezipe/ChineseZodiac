@@ -8,7 +8,7 @@
 
 import UIKit
 
-class viewD: UIViewController {
+class ViewD: UIViewController {
     //  https://www.timeanddate.com/calendar/about-chinese.html
     override func viewDidLoad() {
         super.viewDidLoad()

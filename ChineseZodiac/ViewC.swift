@@ -9,16 +9,18 @@
 import UIKit
 
 class ViewC: UIViewController {
-    //  https://www.timeanddate.com/calendar/about-chinese.html
+    
+    var birthdate: Date?
+    
+    @IBOutlet weak var dateLbl: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        dateLbl.isHidden = true
+        dateLbl.text = birthdate?.format()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 
 }
