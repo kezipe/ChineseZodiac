@@ -12,6 +12,7 @@ class ViewB: UIViewController {
     //  https://www.timeanddate.com/calendar/about-chinese.html
     
     var birthdate: Date!
+    var name = "Kevin"
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -19,6 +20,7 @@ class ViewB: UIViewController {
     
     @IBAction func dateSelected(_ sender: Any) {
         birthdate = datePicker.date
+        
     }
     
     override func viewDidLoad() {
@@ -32,6 +34,7 @@ class ViewB: UIViewController {
     }
     
     @IBAction func checkZodiacPressed(_ sender: Any) {
+
         performSegue(withIdentifier: "ViewC", sender: datePicker.date)
     }
     

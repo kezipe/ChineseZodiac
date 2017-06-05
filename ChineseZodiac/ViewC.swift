@@ -18,10 +18,9 @@ class ViewC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateLbl.isHidden = true
-        dateLbl.text = birthdate?.format()
+        dateLbl.text = birthdate?.format(calendarId: Calendar.current.identifier)
     }
 
-    
 
 }
 
