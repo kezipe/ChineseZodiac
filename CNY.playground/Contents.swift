@@ -18,7 +18,7 @@ let formatter = DateFormatter()
 formatter.dateStyle = .full
 formatter.timeStyle = .short
 formatter.calendar = chinese
-formatter.locale = Locale(identifier: "en_CA")
+formatter.locale = Locale(identifier: "zh_CN")
 let date = calendar.date(from: gBirthdayDateComponents)
 
 

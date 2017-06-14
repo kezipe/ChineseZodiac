@@ -352,6 +352,7 @@
                     <connections>
                         <outlet property="cDateLbl" destination="GLI-Bb-pqU" id="HMB-Wp-kYF"/>
                         <outlet property="dateLbl" destination="ant-vF-rYk" id="CYD-L2-y8a"/>
+                        <outlet property="zodiacSignLbl" destination="IuV-v5-lvo" id="BIO-xx-zuP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5l-qn-gzi" userLabel="First Responder" sceneMemberID="firstResponder"/>
