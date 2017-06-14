@@ -12,6 +12,8 @@ extension Date {
     func format(calendarId: Calendar.Identifier) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, YYYY"
+        dateFormatter.calendar = Calendar(identifier: calendarId)
+        print(calendarId)
         if calendarId == Calendar.Identifier.chinese {
             return dateFormatter.string(from: self.toChinese())
         } else {

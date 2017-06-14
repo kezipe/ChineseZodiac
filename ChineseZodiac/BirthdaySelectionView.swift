@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BirthdaySelectionView.swift
 //  ChineseZodiac
 //
 //  Created by Kevin on 2017-05-30.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewB: UIViewController {
+class BirthdaySelectionView: UIViewController {
     //  https://www.timeanddate.com/calendar/about-chinese.html
     
     var birthdate: Date!
@@ -16,31 +16,23 @@ class ViewB: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    
+    override func viewDidLoad() {
+        if ((self.view.window) != nil) { self.birthdate = datePicker.date }
+    }
     
     @IBAction func dateSelected(_ sender: Any) {
         birthdate = datePicker.date
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func checkZodiacPressed(_ sender: Any) {
 
-        performSegue(withIdentifier: "ViewC", sender: datePicker.date)
+        performSegue(withIdentifier: "ToZodiacSignView", sender: datePicker.date)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewC" {
-            if let destination = segue.destination as? ViewC {
+        if segue.identifier == "ToZodiacSignView" {
+            if let destination = segue.destination as? ZodiacSignView {
                 if let date = sender as? Date {
                     destination.birthdate = date
                 }
