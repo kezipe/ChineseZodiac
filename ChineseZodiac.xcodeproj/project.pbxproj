@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A69F46D1EE3426C00A0176D /* BirthdaySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */; };
 		0A69F46E1EE3426C00A0176D /* ZodiacSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46C1EE3426C00A0176D /* ZodiacSignView.swift */; };
-		0A69F4701EE3428F00A0176D /* ViewD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46F1EE3428F00A0176D /* ViewD.swift */; };
+		0A69F4701EE3428F00A0176D /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46F1EE3428F00A0176D /* TableView.swift */; };
 		0A69F4741EE34D8200A0176D /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F4731EE34D8200A0176D /* SegueFromLeft.swift */; };
 		0A7A55C41EE35E0F00BAA05B /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A55C21EE35E0F00BAA05B /* Person+CoreDataClass.swift */; };
 		0A7A55C51EE35E0F00BAA05B /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A55C31EE35E0F00BAA05B /* Person+CoreDataProperties.swift */; };
@@ -26,7 +26,7 @@
 /* Begin PBXFileReference section */
 		0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdaySelectionView.swift; sourceTree = "<group>"; };
 		0A69F46C1EE3426C00A0176D /* ZodiacSignView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZodiacSignView.swift; sourceTree = "<group>"; };
-		0A69F46F1EE3428F00A0176D /* ViewD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewD.swift; sourceTree = "<group>"; };
+		0A69F46F1EE3428F00A0176D /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		0A69F4731EE34D8200A0176D /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
 		0A7A55C21EE35E0F00BAA05B /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataClass.swift"; path = "../Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0A7A55C31EE35E0F00BAA05B /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 				0AD4E28E1EDDD22400A92F65 /* StartView.swift */,
 				0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */,
 				0A69F46C1EE3426C00A0176D /* ZodiacSignView.swift */,
-				0A69F46F1EE3428F00A0176D /* ViewD.swift */,
+				0A69F46F1EE3428F00A0176D /* TableView.swift */,
 				0A69F4731EE34D8200A0176D /* SegueFromLeft.swift */,
 			);
 			name = Controller;
@@ -199,7 +199,7 @@
 				0AD4E28F1EDDD22400A92F65 /* StartView.swift in Sources */,
 				0ACBF6FB1EE357B00075A523 /* CustomDateFormatter.swift in Sources */,
 				0A69F4741EE34D8200A0176D /* SegueFromLeft.swift in Sources */,
-				0A69F4701EE3428F00A0176D /* ViewD.swift in Sources */,
+				0A69F4701EE3428F00A0176D /* TableView.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
 				0A7A55C41EE35E0F00BAA05B /* Person+CoreDataClass.swift in Sources */,
 				0A7A55C51EE35E0F00BAA05B /* Person+CoreDataProperties.swift in Sources */,

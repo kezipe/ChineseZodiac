@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TableView.swift
 //  ChineseZodiac
 //
 //  Created by Kevin on 2017-05-30.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ViewD: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     

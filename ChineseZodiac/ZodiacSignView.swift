@@ -12,6 +12,7 @@ class ZodiacSignView: UIViewController {
     
     var birthdate: Date?
     
+    
     @IBOutlet weak var cDateLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var zodiacSignLbl: UILabel!
@@ -24,7 +25,7 @@ class ZodiacSignView: UIViewController {
             dateLbl.text = birthdayString
         }
         
-        if let cBirthdayString = birthdate?.getZodiac() {
+        if let cBirthdayString = birthdate?.getZodiacChar() {
             cDateLbl.text = cBirthdayString
         }
         
