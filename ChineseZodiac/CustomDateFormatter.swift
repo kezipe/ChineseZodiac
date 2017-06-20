@@ -31,14 +31,14 @@ extension Date {
     }
     
     func getZodiacChar() -> String {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .long
-            dateFormatter.timeStyle = .none
-            dateFormatter.locale = Locale(identifier: "zh_CN")
-            dateFormatter.calendar = Calendar(identifier: Calendar.Identifier.chinese)
-            let newFormattedDate = dateFormatter.string(from: self)
-            let zodiac = newFormattedDate.index(newFormattedDate.startIndex, offsetBy: 5)
-            return "\(newFormattedDate[zodiac])"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "zh_CN")
+        dateFormatter.calendar = Calendar(identifier: Calendar.Identifier.chinese)
+        let newFormattedDate = dateFormatter.string(from: self)
+        let zodiac = newFormattedDate.index(newFormattedDate.startIndex, offsetBy: 5)
+        return "\(newFormattedDate[zodiac])"
     }
     
     func getZodiac() -> String {

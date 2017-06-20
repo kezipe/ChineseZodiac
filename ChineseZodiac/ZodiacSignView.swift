@@ -11,16 +11,39 @@ import UIKit
 class ZodiacSignView: UIViewController {
     
     var birthdate: Date?
-    
+
     
     @IBOutlet weak var cDateLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var zodiacSignLbl: UILabel!
+    @IBAction func doneButtonPressed(_ sender: UIButton){
+        let person = Person(context: context)
+        
+        if birthdate == nil {
+        
+        } else {
+            person.name = "Kevin"
+            person.birthdate = self.birthdate! as NSDate
+            ad.saveContext()
+        }
+        
+
+    }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "ToTableView" {
+//            if let destination = segue.destination as? TableView {
+//                if let date = sender as? Date {
+//                    destination.birthdate = date
+//                }
+//            }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dateLbl.isHidden = false
+
         if let birthdayString = birthdate?.format(calendarId: Calendar.current.identifier) {
             dateLbl.text = birthdayString
         }

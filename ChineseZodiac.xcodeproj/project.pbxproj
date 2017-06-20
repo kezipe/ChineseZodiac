@@ -11,8 +11,6 @@
 		0A69F46E1EE3426C00A0176D /* ZodiacSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46C1EE3426C00A0176D /* ZodiacSignView.swift */; };
 		0A69F4701EE3428F00A0176D /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46F1EE3428F00A0176D /* TableView.swift */; };
 		0A69F4741EE34D8200A0176D /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F4731EE34D8200A0176D /* SegueFromLeft.swift */; };
-		0A7A55C41EE35E0F00BAA05B /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A55C21EE35E0F00BAA05B /* Person+CoreDataClass.swift */; };
-		0A7A55C51EE35E0F00BAA05B /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A55C31EE35E0F00BAA05B /* Person+CoreDataProperties.swift */; };
 		0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A55C71EE3628B00BAA05B /* PersonCell.swift */; };
 		0ACBF6FB1EE357B00075A523 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACBF6FA1EE357B00075A523 /* CustomDateFormatter.swift */; };
 		0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */; };
@@ -28,8 +26,6 @@
 		0A69F46C1EE3426C00A0176D /* ZodiacSignView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZodiacSignView.swift; sourceTree = "<group>"; };
 		0A69F46F1EE3428F00A0176D /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		0A69F4731EE34D8200A0176D /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
-		0A7A55C21EE35E0F00BAA05B /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataClass.swift"; path = "../Person+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0A7A55C31EE35E0F00BAA05B /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0A7A55C71EE3628B00BAA05B /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		0ACBF6FA1EE357B00075A523 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 		0AD4E2891EDDD22400A92F65 /* ChineseZodiac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseZodiac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,15 +49,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A69F4681EE341D400A0176D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0A7A55C21EE35E0F00BAA05B /* Person+CoreDataClass.swift */,
-				0A7A55C61EE35E2200BAA05B /* Generated */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		0A69F4691EE341E500A0176D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,14 +68,6 @@
 				0A69F4731EE34D8200A0176D /* SegueFromLeft.swift */,
 			);
 			name = Controller;
-			sourceTree = "<group>";
-		};
-		0A7A55C61EE35E2200BAA05B /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				0A7A55C31EE35E0F00BAA05B /* Person+CoreDataProperties.swift */,
-			);
-			name = Generated;
 			sourceTree = "<group>";
 		};
 		0AD4E2801EDDD22400A92F65 = {
@@ -112,7 +91,6 @@
 			children = (
 				0A69F46A1EE341F400A0176D /* Controller */,
 				0A69F4691EE341E500A0176D /* View */,
-				0A69F4681EE341D400A0176D /* Model */,
 				0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */,
 				0AD4E2901EDDD22400A92F65 /* Main.storyboard */,
 				0AD4E2961EDDD22400A92F65 /* Assets.xcassets */,
@@ -201,8 +179,6 @@
 				0A69F4741EE34D8200A0176D /* SegueFromLeft.swift in Sources */,
 				0A69F4701EE3428F00A0176D /* TableView.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
-				0A7A55C41EE35E0F00BAA05B /* Person+CoreDataClass.swift in Sources */,
-				0A7A55C51EE35E0F00BAA05B /* Person+CoreDataProperties.swift in Sources */,
 				0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */,
 				0A69F46E1EE3426C00A0176D /* ZodiacSignView.swift in Sources */,
 				0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */,
