@@ -37,16 +37,7 @@ extension Date {
         dateFormatter.locale = Locale(identifier: "zh_CN")
         dateFormatter.calendar = Calendar(identifier: Calendar.Identifier.chinese)
         let newFormattedDate = dateFormatter.string(from: self)
-        let numberCharacters = CharacterSet.decimalDigits
-        var index = 0
-        for c in newFormattedDate.characters.enumerated() {
-            let stringChar = String(c.element)
-            if stringChar.rangeOfCharacter(from:numberCharacters) == nil {
-                break
-            }
-            index += 1
-        }
-        let zodiac = newFormattedDate.index(newFormattedDate.startIndex, offsetBy: index + 1)
+        let zodiac = newFormattedDate.index(newFormattedDate.startIndex, offsetBy: 5)
         return "\(newFormattedDate[zodiac])"
     }
     

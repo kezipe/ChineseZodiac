@@ -175,6 +175,12 @@
                                 <date key="date" timeIntervalSinceReferenceDate="-213058147.81059498">
                                     <!--1994-04-02 01:10:52 +0000-->
                                 </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-31556976148">
+                                    <!--1001-01-01 05:17:32 +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="252423946800">
+                                    <!--9999-12-31 11:00:00 +0000-->
+                                </date>
                                 <connections>
                                     <action selector="dateSelected:" destination="5U2-q2-2lP" eventType="valueChanged" id="caG-89-mBs"/>
                                 </connections>
@@ -243,9 +249,8 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ant-vF-rYk">
-                                                <rect key="frame" x="58" y="-14" width="203" height="56"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ant-vF-rYk">
+                                                <rect key="frame" x="116" y="0.0" width="72.5" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -253,11 +258,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="ant-vF-rYk" firstAttribute="centerX" secondItem="xJM-8n-aRz" secondAttribute="centerX" id="Dcb-4t-Cz5"/>
                                             <constraint firstItem="5ef-Gc-VOf" firstAttribute="centerX" secondItem="xJM-8n-aRz" secondAttribute="centerX" id="Euj-47-bIK"/>
                                             <constraint firstItem="dFk-JU-F01" firstAttribute="leading" secondItem="xJM-8n-aRz" secondAttribute="leading" constant="60" id="WXU-lJ-9Fc"/>
                                             <constraint firstItem="5ef-Gc-VOf" firstAttribute="top" secondItem="xJM-8n-aRz" secondAttribute="top" constant="27" id="d11-VX-2F7"/>
                                             <constraint firstItem="dFk-JU-F01" firstAttribute="top" secondItem="5ef-Gc-VOf" secondAttribute="bottom" constant="19" id="eS0-8J-sEc"/>
                                             <constraint firstAttribute="trailing" secondItem="dFk-JU-F01" secondAttribute="trailing" constant="60" id="gSo-wn-7G5"/>
+                                            <constraint firstItem="ant-vF-rYk" firstAttribute="top" secondItem="xJM-8n-aRz" secondAttribute="top" id="qq7-tX-ru8"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="5sr-vL-ECE">
@@ -377,7 +384,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pf2-pd-85J" id="UHl-So-9Xy">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="76.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoe-Ke-XwN">
@@ -468,7 +475,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="183"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oV8-Ky-e5y" id="gtH-b2-IYg">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="183"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="182.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27b-Pl-dog">

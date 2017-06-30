@@ -1,8 +1,8 @@
 //
-//  CustomDateFormatter.swift
-//  ChineseZodiac
+//  main.swift
+//  ChineseZodiacTest
 //
-//  Created by Kevin on 2017-06-03.
+//  Created by Kevin on 2017-06-29.
 //  Copyright © 2017 Monorail Apps. All rights reserved.
 //
 
@@ -81,3 +81,11 @@ extension Date {
         }
     }
 }
+
+let calendar = Calendar.current
+var dateComp = DateComponents()
+dateComp.year = 10000
+dateComp.month = 1
+dateComp.day = 1
+let date = calendar.date(from: dateComp)!
+print(date.getZodiac())

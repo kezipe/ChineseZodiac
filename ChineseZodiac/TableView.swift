@@ -38,7 +38,6 @@ class TableView: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let person = persons[indexPath.row]
-        let birthdate = person.birthdate as Date?
         
         if let birthdate = person.birthdate as Date? {
             cell.textLabel?.text = birthdate.getZodiac()
