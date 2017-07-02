@@ -17,15 +17,7 @@ class ZodiacSignView: UIViewController {
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var zodiacSignLbl: UILabel!
     @IBAction func doneButtonPressed(_ sender: UIButton){
-        let person = Person(context: context)
-        
-        if birthdate == nil {
-        
-        } else {
-            person.name = "Kevin"
-            person.birthdate = self.birthdate! as NSDate
-            ad.saveContext()
-        }
+
         
 
     }

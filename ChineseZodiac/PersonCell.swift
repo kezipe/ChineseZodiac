@@ -9,14 +9,20 @@
 import UIKit
 
 class PersonCell: UITableViewCell {
-
+    
     @IBOutlet weak var personLbl: UILabel!
-
+    
     @IBOutlet weak var zodiacLbl: UILabel!
     
     @IBOutlet weak var zodiacImg: UIImageView!
     
-    func configureCell(person: Person) {
-        personLbl.text = person.name
+    func configureCell(person: Person) -> UITableViewCell {
+        print(person.name!)
+        if let name = person.name {
+            personLbl.text = name
+        }
+        let birthdate = person.birthdate! as Date
+        zodiacLbl.text = birthdate.getZodiac()
+        return self
     }
 }

@@ -9,8 +9,10 @@
 import UIKit
 import CoreData
 
-class TableView: UITableViewController {
+class TableView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var persons: [Person] = []
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,23 +37,19 @@ class TableView: UITableViewController {
     }
     
     // MARK: cellForRowAt
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = PersonCell()
         let person = persons[indexPath.row]
         
-        if let birthdate = person.birthdate as Date? {
-            cell.textLabel?.text = birthdate.getZodiac()
-        }
-        
-        return cell
+        return cell.configureCell(person: person)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return persons.count
     }
     
     // MARK: deleting
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let person = persons[indexPath.row]
             context.delete(person)
