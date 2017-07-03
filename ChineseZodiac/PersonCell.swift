@@ -16,13 +16,10 @@ class PersonCell: UITableViewCell {
     
     @IBOutlet weak var zodiacImg: UIImageView!
     
-    func configureCell(person: Person) -> UITableViewCell {
-        print(person.name!)
-        if let name = person.name {
-            personLbl.text = name
-        }
-        let birthdate = person.birthdate! as Date
-        zodiacLbl.text = birthdate.getZodiac()
-        return self
+    func configureCell(person: Person) {
+        personLbl.text = person.name
+        let zodiac = person.birthdate! as Date
+        zodiacLbl.text = zodiac.getZodiac()
+        
     }
 }

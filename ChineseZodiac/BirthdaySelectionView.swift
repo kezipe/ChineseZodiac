@@ -12,24 +12,25 @@ class BirthdaySelectionView: UIViewController {
     //  https://www.timeanddate.com/calendar/about-chinese.html
     
     var person = Person(context: context)
-    var birthdate: Date!
+//    var birthdate: Date!
 
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
-        if ((self.view.window) != nil) { self.birthdate = datePicker.date }
-
+        print(ad.persistentContainer.persistentStoreDescriptions.first?.url! ?? "")
+//        self.birthdate = datePicker.date
+        
     }
     
     @IBAction func dateSelected(_ sender: Any) {
-        birthdate = datePicker.date
+        self.birthdate = datePicker.date
     }
 
     
     @IBAction func checkZodiacPressed(_ sender: Any) {
-        person.name = "Kevin"
-        person.birthdate = birthdate! as NSDate
+        person.name = "John"
+        person.birthdate = self.birthdate! as NSDate
         ad.saveContext()
         performSegue(withIdentifier: "ToZodiacSignView", sender: datePicker.date)
     }
