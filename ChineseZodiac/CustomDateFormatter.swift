@@ -67,7 +67,7 @@ extension Date {
         case "午":
             return "Horse"
         case "未":
-            return "Ram"
+            return "Goat"
         case "申":
             return "Monkey"
         case "酉":
@@ -75,7 +75,7 @@ extension Date {
         case "戌":
             return "Dog"
         case "亥":
-            return "Pig/Boar"
+            return "Pig"
         default:
             return ""
         }

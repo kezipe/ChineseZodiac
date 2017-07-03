@@ -58,7 +58,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
             } catch {
                 print("Fetching Failed")
             }
-            
+            retrieveData()
             tableView.reloadData()
         }
     }
@@ -103,7 +103,6 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     func configureCell(cell: PersonCell, indexPath: NSIndexPath) {
         let person = controller.object(at: indexPath as IndexPath)
         cell.configureCell(person: person)
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

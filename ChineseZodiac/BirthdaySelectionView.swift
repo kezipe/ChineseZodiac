@@ -12,27 +12,29 @@ class BirthdaySelectionView: UIViewController {
     //  https://www.timeanddate.com/calendar/about-chinese.html
     
     var person = Person(context: context)
-//    var birthdate: Date!
 
     
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var nameField: UITextField!
     
     override func viewDidLoad() {
         print(ad.persistentContainer.persistentStoreDescriptions.first?.url! ?? "")
-//        self.birthdate = datePicker.date
         
     }
     
     @IBAction func dateSelected(_ sender: Any) {
-        self.birthdate = datePicker.date
     }
 
     
     @IBAction func checkZodiacPressed(_ sender: Any) {
-        person.name = "John"
-        person.birthdate = self.birthdate! as NSDate
-        ad.saveContext()
-        performSegue(withIdentifier: "ToZodiacSignView", sender: datePicker.date)
+        if nameField.text == "" {
+            print("Plesae enter a name")
+        } else {
+            person.birthdate = datePicker.date as NSDate
+            person.name = nameField.text
+            ad.saveContext()
+            performSegue(withIdentifier: "ToZodiacSignView", sender: datePicker.date)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

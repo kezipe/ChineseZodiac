@@ -14,31 +14,15 @@ class ZodiacSignView: UIViewController {
 
     
     @IBOutlet weak var cDateLbl: UILabel!
-    @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var zodiacSignLbl: UILabel!
+    @IBOutlet weak var zodiacImg: UIImageView!
     @IBAction func doneButtonPressed(_ sender: UIButton){
-
-        
-
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "ToTableView" {
-//            if let destination = segue.destination as? TableView {
-//                if let date = sender as? Date {
-//                    destination.birthdate = date
-//                }
-//            }
-//        }
-//    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateLbl.isHidden = false
 
-        if let birthdayString = birthdate?.format(calendarId: Calendar.current.identifier) {
-            dateLbl.text = birthdayString
-        }
         
         if let cBirthdayString = birthdate?.getZodiacChar() {
             cDateLbl.text = cBirthdayString
@@ -46,6 +30,7 @@ class ZodiacSignView: UIViewController {
         
         if let zodiacSign = birthdate?.getZodiac() {
             zodiacSignLbl.text = zodiacSign
+            zodiacImg.image = UIImage(named: "\(zodiacSign)")
         }
     }
     
