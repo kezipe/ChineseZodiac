@@ -9,11 +9,12 @@
 import Foundation
 
 extension Date {
-    func format(calendarId: Calendar.Identifier) -> String {
+    
+    
+    func format(calendarId: Calendar.Identifier, dateFormat: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, YYYY"
+        dateFormatter.dateFormat = dateFormat
         dateFormatter.calendar = Calendar(identifier: calendarId)
-        print(calendarId)
         if calendarId == Calendar.Identifier.chinese {
             return dateFormatter.string(from: self.toChinese())
         } else {
@@ -80,4 +81,122 @@ extension Date {
             return ""
         }
     }
+    
+    func getStemBranch() -> String {
+        let dateFormatter = DateFormatter()
+        let chinese = Calendar(identifier: Calendar.Identifier.chinese)
+        dateFormatter.calendar = chinese
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_CA")
+        dateFormatter.dateStyle = .long
+        let formattedDate = dateFormatter.string(from: self)
+        
+        // Isolate for Year and Stem Branch
+        let comma: Character = ","
+        let pos: Int?
+        if let idx = formattedDate.characters.index(of: comma) {
+            pos = formattedDate.characters.distance(from: formattedDate.startIndex, to: idx)
+        }
+        else {
+            print("Not found")
+            pos = 0
+        }
+        let index = formattedDate.index(formattedDate.startIndex, offsetBy: pos! + 2)
+        let yearWithStemBranch = formattedDate.substring(from: index)
+        
+        // Year with Stem Branch separated:
+        let leftBracket: Character = "("
+        let pos2: Int?
+        if let idx = yearWithStemBranch.characters.index(of: leftBracket) {
+            pos2 = yearWithStemBranch.characters.distance(from: formattedDate.startIndex, to: idx)
+        }
+        else {
+            print("Not found")
+            pos2 = 0
+        }
+        let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2!)
+        let stemBranchWithBrackets = yearWithStemBranch.substring(from: index2)
+        let range = stemBranchWithBrackets.index(stemBranchWithBrackets.startIndex, offsetBy: 1)..<stemBranchWithBrackets.index(stemBranchWithBrackets.endIndex, offsetBy: -1)
+        let stemBranch = stemBranchWithBrackets.substring(with: range)
+        
+        return stemBranch
+    }
+    
+    func formatChineseCalendarDate() -> String{
+        let dateFormatter = DateFormatter()
+        let chinese = Calendar(identifier: Calendar.Identifier.chinese)
+        dateFormatter.calendar = chinese
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_CA")
+        dateFormatter.dateStyle = .long
+        let formattedDate = dateFormatter.string(from: self)
+        
+        // Isolate for Year and Stem Branch
+        let comma: Character = ","
+        let pos: Int?
+        if let idx = formattedDate.characters.index(of: comma) {
+            pos = formattedDate.characters.distance(from: formattedDate.startIndex, to: idx)
+        }
+        else {
+            print("Not found")
+            pos = 0
+        }
+        let index = formattedDate.index(formattedDate.startIndex, offsetBy: pos! + 2)
+        let yearWithStemBranch = formattedDate.substring(from: index)
+        
+        // Year with Stem Branch separated:
+        let leftBracket: Character = "("
+        let pos2: Int?
+        if let idx = yearWithStemBranch.characters.index(of: leftBracket) {
+            pos2 = yearWithStemBranch.characters.distance(from: formattedDate.startIndex, to: idx)
+        }
+        else {
+            print("Not found")
+            pos2 = 0
+        }
+        let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2!)
+        let year = yearWithStemBranch.substring(to: index2)
+        
+        // Month and Day
+        let month = chinese.dateComponents([.month], from: self).month
+        let day = chinese.dateComponents([.day], from: self).day
+        return "Month \(month!) Day \(day!), \(year)"
+    }
+    
+    func getAhYear() -> Int {
+        let dateFormatter = DateFormatter()
+        let chinese = Calendar(identifier: Calendar.Identifier.chinese)
+        dateFormatter.calendar = chinese
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_CA")
+        dateFormatter.dateStyle = .long
+        let formattedDate = dateFormatter.string(from: self)
+        
+        // Isolate for Year and Stem Branch
+        let comma: Character = ","
+        let pos: Int?
+        if let idx = formattedDate.characters.index(of: comma) {
+            pos = formattedDate.characters.distance(from: formattedDate.startIndex, to: idx)
+        }
+        else {
+            print("Not found")
+            pos = 0
+        }
+        let index = formattedDate.index(formattedDate.startIndex, offsetBy: pos! + 2)
+        let yearWithStemBranch = formattedDate.substring(from: index)
+        
+        // Year with Stem Branch separated:
+        let leftBracket: Character = "("
+        let pos2: Int?
+        if let idx = yearWithStemBranch.characters.index(of: leftBracket) {
+            pos2 = yearWithStemBranch.characters.distance(from: formattedDate.startIndex, to: idx)
+        }
+        else {
+            print("Not found")
+            pos2 = 0
+        }
+        let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2!)
+        return Int(yearWithStemBranch.substring(to: index2))! + 2697
+    }
+    
 }

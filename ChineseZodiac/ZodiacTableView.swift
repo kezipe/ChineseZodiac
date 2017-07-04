@@ -119,6 +119,21 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         return 0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "DetailsVC", sender: persons[indexPath.row])
+    }
+    
+    // MARK: Prepare for segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailsVC" {
+            if let destination = segue.destination as? DetailsVC {
+                if let person = sender as? Person {
+                    destination.person = person
+                }
+            }
+        }
+    }
 
     
 }
