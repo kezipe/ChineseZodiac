@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BirthdaySelectionView: UIViewController {
+class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     //  https://www.timeanddate.com/calendar/about-chinese.html
     
     var person = Person(context: context)
@@ -18,8 +18,9 @@ class BirthdaySelectionView: UIViewController {
     @IBOutlet weak var nameField: UITextField!
     
     override func viewDidLoad() {
-        print(ad.persistentContainer.persistentStoreDescriptions.first?.url! ?? "")
-        
+//        print(ad.persistentContainer.persistentStoreDescriptions.first?.url! ?? "")
+        self.hideKeyboardWhenTappedAround()
+        self.nameField.delegate = self
     }
     
     @IBAction func dateSelected(_ sender: Any) {
@@ -46,6 +47,48 @@ class BirthdaySelectionView: UIViewController {
             }
         }
     }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameField {
+            textField.resignFirstResponder()
+            performSegue(withIdentifier: "ToZodiacSignView", sender: datePicker.date)
+            return false
+        }
+        return true
+    }
+    
+    func animateTextField(textField: UITextField, up: Bool)
+    {
+        let movementDistance:CGFloat = -130
+        let movementDuration: Double = 0.3
+        
+        var movement:CGFloat = 0
+        if up
+        {
+            movement = movementDistance
+        }
+        else
+        {
+            movement = -movementDistance
+        }
+        UIView.beginAnimations("animateTextField", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration)
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        self.animateTextField(textField: textField, up:true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+        self.animateTextField(textField: textField, up:false)
+    }
+    
     
 }
 

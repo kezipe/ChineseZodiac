@@ -9,7 +9,7 @@
 import Foundation
 
 extension Date {
-    
+
     
     func format(calendarId: Calendar.Identifier, dateFormat: String) -> String {
         let dateFormatter = DateFormatter()
@@ -198,5 +198,127 @@ extension Date {
         let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2!)
         return Int(yearWithStemBranch.substring(to: index2))! + 2697
     }
+    
+    func getCMonth() -> Int {
+        let dateFormatter = DateFormatter()
+        let chinese = Calendar(identifier: Calendar.Identifier.chinese)
+        dateFormatter.calendar = chinese
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_CA")
+        dateFormatter.dateStyle = .long
+        // Month
+        let month = chinese.dateComponents([.month], from: self).month
+        return Int(month!)
+    }
+    
+    func getCDay() -> Int {
+        let dateFormatter = DateFormatter()
+        let chinese = Calendar(identifier: Calendar.Identifier.chinese)
+        dateFormatter.calendar = chinese
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_CA")
+        dateFormatter.dateStyle = .long
+        // Month
+        let day = chinese.dateComponents([.day], from: self).day
+        return Int(day!)
+    }
+    
+    func getLunarMonth() -> String {
+        var lMonth: [Int: String] = [
+            1: "1st – 寅 (yin) Tiger",
+            2: "2nd – 卯 (mao) Rabbit",
+            3: "3rd – 辰 (chen) Dragon",
+            4: "4th – 巳 (si) Snake",
+            5: "5th – 午 (wu) Horse",
+            6: "6th – 未 (wei) Goat",
+            7: "7th – 申 (shen) Monkey",
+            8: "8th – 酉 (you) Rooster",
+            9: "9th – 戌 (xu) Dog",
+            10: "10th – 亥 (hai) Pig",
+            11: "11th – 子 (zi) Rat",
+            12: "12th – 丑 (chou) Ox"
+        ]
+        return lMonth[self.getCMonth()]!
+    }
+    
+    func getSolarTerm() -> String {
+        let dayLocationIsInitial = self.getCDay() < 15 ? true : false
+        
+        if dayLocationIsInitial {
+            switch self.getCMonth() {
+            case 11:
+                return "大雪 dàxuě"
+            case 12:
+                return "小寒 xiǎohán"
+            case 1:
+                return "立春 lìchūn"
+            case 2:
+                return "惊蛰 jīngzhé"
+            case 3:
+                return "清明 qīngmíng"
+            case 4:
+                return "立夏 lìxià"
+            case 5:
+                return "芒种 mángzhòng"
+            case 6:
+                return "小暑 xiǎoshǔ"
+            case 7:
+                return "立秋 lìqiū"
+            case 8:
+                return "白露 báilù"
+            case 9:
+                return "寒露 hánlù"
+            case 10:
+                return "立冬 lìdōng"
+            default:
+                return ""
+            }
+        } else {
+            switch self.getCMonth() {
+            case 11:
+                return "冬至 dōngzhì"
+            case 12:
+                return "大寒 dàhán"
+            case 1:
+                return "雨水 yǔshuǐ"
+            case 2:
+                return "春分 chūnfēn"
+            case 3:
+                return "谷雨 gǔyǔ"
+            case 4:
+                return "小满 xiǎomǎn"
+            case 5:
+                return "夏至 xiàzhì"
+            case 6:
+                return "大暑 dàshǔ"
+            case 7:
+                return "处暑 chǔshǔ"
+            case 8:
+                return "秋分 qiūfēn"
+            case 9:
+                return "霜降 shuāngjiàng"
+            case 10:
+                return "小雪 xiǎoxuě"
+            default:
+                return ""
+            }
+        }
+    }
+    
+    func getSeason() -> String {
+        let cMonth = self.getCMonth()
+
+        if cMonth < 4 {
+            return "Spring"
+        } else if cMonth > 4 && cMonth < 7 {
+            return "Summer"
+        } else if cMonth > 7 && cMonth < 10 {
+            return "Autumn"
+        } else {
+            return "Winter"
+        }
+    }
+    
+    
     
 }

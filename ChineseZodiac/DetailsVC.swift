@@ -10,6 +10,8 @@ import UIKit
 
 class DetailsVC: UIViewController {
     @IBOutlet weak var zodiacImg: UIImageView!
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var zodiacLbl: UILabel!
     
     @IBOutlet weak var birthdayLbl: UILabel!
     @IBOutlet weak var cBirthdayLbl: UILabel!
@@ -39,7 +41,9 @@ class DetailsVC: UIViewController {
             
             let birthdate = person.birthdate! as Date
             
-            // MARK: Image
+            // MARK: Image, name and zodiac
+            nameLbl.text = person.name
+            zodiacLbl.text = birthdate.getZodiac()
             zodiacImg.image = UIImage(named: birthdate.getZodiac())
             
             // MARK: Birthday
@@ -57,8 +61,12 @@ class DetailsVC: UIViewController {
             } else {
                 adYearLbl.text = "\(birthdate.getAhYear()) AH"
             }
-
-
+            // MARK: Lunar Month
+            lunarMonthLbl.text = birthdate.getLunarMonth()
+            // MARK: Season
+            seasonLbl.text = birthdate.getSeason()
+            // MARK: Solar Term
+            solarTermLbl.text = birthdate.getSolarTerm()
       
         }
     }
