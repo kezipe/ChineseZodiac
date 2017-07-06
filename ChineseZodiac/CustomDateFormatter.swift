@@ -322,3 +322,19 @@ extension Date {
     
     
 }
+
+extension Int {
+    func toMonthName() -> String {
+        let df = DateFormatter()
+        df.dateFormat = "MM"
+        return df.monthSymbols[self - 1]
+    }
+    
+    func toNumDaysInMonth(year: Int) -> Int {
+        let dateComponents = DateComponents(year: year, month: self)
+        let calendar = Calendar.current
+        let date = calendar.date(from: dateComponents)!
+        let range = calendar.range(of: .day, in: .month, for: date)!
+        return range.count
+    }
+}
