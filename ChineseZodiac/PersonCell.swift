@@ -26,7 +26,7 @@ class PersonCell: UITableViewCell {
         dateFormatter.dateFormat = "MMM d, yyyy"
         let birthdateString = dateFormatter.string(from: zodiac)
         birthdateLbl.text = birthdateString
-        zodiacImg.image = UIImage(named: "\(zodiac.getZodiac())")
+        zodiacImg.image = UIImage(named: "\(zodiac.getZodiac())_thumb")
     }
     
     override func layoutSubviews() {

@@ -26,6 +26,9 @@ class DetailsVC: UIViewController {
     
     @IBOutlet weak var navBar: UINavigationBar!
     
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
     var person: Person?
     
     override func viewDidLoad() {
@@ -76,6 +79,25 @@ class DetailsVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        if(self.isEditing) {
+            self.editButtonItem.title = "Done"
+            deleteButton.isHidden = false
+        } else {
+            self.editButtonItem.title = "Edit"
+            deleteButton.isHidden = true
+        }
+    }
+    
+    
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        if person != nil {
+            context.delete(person!)
+            ad.saveContext()
+        }
+        dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

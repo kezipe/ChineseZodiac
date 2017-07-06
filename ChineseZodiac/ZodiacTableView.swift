@@ -25,6 +25,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         retrieveData()
+        tableView.reloadData()
     }
     
     func retrieveData() {
