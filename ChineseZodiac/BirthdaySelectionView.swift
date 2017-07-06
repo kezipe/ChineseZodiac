@@ -11,7 +11,6 @@ import UIKit
 class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     //  https://www.timeanddate.com/calendar/about-chinese.html
     
-    var person = Person(context: context)
     enum DateComponentSelectionMode {
         case dayMode, monthMode, yearMode
     }
@@ -23,10 +22,11 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     var dayChanged = true
     var yearChanged = true
     let defaultFontColor = UIColor.init(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
-
-    var dateSelector: DateSelectorVC?
     
-
+    var dateSelector: DateSelectorVC?
+    var personToEdit: Person?
+    
+    
     @IBOutlet weak var monthLbl: UIButton!
     @IBOutlet weak var dayLbl: UIButton!
     @IBOutlet weak var yearLbl: UIButton!
@@ -70,8 +70,8 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
                 } else {
                     yearCheck = 2000
                 }
-//                print("Year which is about to be checked is \(String(describing:yearCheck!)))")
-//                print("Month which is about to be checked is \(String(describing:m)))")
+                //                print("Year which is about to be checked is \(String(describing:yearCheck!)))")
+                //                print("Month which is about to be checked is \(String(describing:m)))")
                 let numDaysInMonth = m.toNumDaysInMonth(year: yearCheck)
                 if d > numDaysInMonth {
                     day = numDaysInMonth
@@ -110,22 +110,40 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
-//        print(ad.persistentContainer.persistentStoreDescriptions.first?.url! ?? "")
-
+        //        print(ad.persistentContainer.persistentStoreDescriptions.first?.url! ?? "")
+        
         dateSelector = storyboard?.instantiateViewController(withIdentifier: "DateSelectorVC") as? DateSelectorVC
+        if personToEdit != nil {
+            loadPersonData()
+        }
         refreshUI()
         
         self.hideKeyboardWhenTappedAround()
         self.nameField.delegate = self
     }
     
-    @IBAction func dateSelected(_ sender: Any) {
+    func loadPersonData() {
+        if let person = personToEdit {
+            let df = DateFormatter()
+            let birthdate = person.birthdate! as Date
+            df.dateFormat = "yyyy"
+            dateSelector?.year = Int(df.string(from: birthdate))!
+            print("Loaded person's birth year: \(String(describing: dateSelector?.year))")
+            df.dateFormat = "M"
+            dateSelector?.month = Int(df.string(from: birthdate))!
+            print("Loaded person's birth month: \(String(describing: df.string(from: birthdate)))")
+            df.dateFormat = "d"
+            dateSelector?.day = Int(df.string(from: birthdate))!
+            print("Loaded person's birth day: \(String(describing: dateSelector?.day))")
+            nameField.text = person.name
+        }
     }
-
+    
+    
     
     @IBAction func checkZodiacPressed(_ sender: Any) {
         
-
+        
         guard monthLbl.title(for: UIControlState.normal) != "Month" else {
             monthLbl.setTitleColor(UIColor.red, for: UIControlState.normal)
             return
@@ -156,6 +174,12 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         if nameField.text == "" {
             print("Plesae enter a name")
         } else {
+            var person: Person!
+            if personToEdit != nil {
+                person = personToEdit
+            } else {
+                person = Person(context: context)
+            }
             dateComponents.calendar = Calendar.current
             person.birthdate = dateComponents.date as NSDate?
             person.name = nameField.text
@@ -163,11 +187,10 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             performSegue(withIdentifier: "ToZodiacSignView", sender: dateComponents.date)
         }
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameField {
             textField.resignFirstResponder()
-            doSegue()
             return false
         }
         return true

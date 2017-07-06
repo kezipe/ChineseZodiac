@@ -22,7 +22,8 @@ class DateSelectorVC: UIViewController {
     override func viewDidLoad() {
         pickerView.delegate = self
         pickerView.dataSource = self
-        
+        pickerView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 122.0/255, alpha: 1.0)
+        pickerView.tintColor = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,5 +138,16 @@ extension DateSelectorVC: PickerViewDelegate {
 //            print("DateSelector's self.year is \(self.year ?? 0)")
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func pickerView(_ pickerView: PickerView, styleForLabel label: UILabel, highlighted: Bool) {
+        label.textAlignment = .center
+        label.textColor = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
+        
+        if highlighted {
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 30)
+        } else {
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 20)
+        }
     }
 }

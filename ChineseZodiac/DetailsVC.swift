@@ -39,8 +39,6 @@ class DetailsVC: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy"
         if let person = person {
-            // MARK: Navigator Bar
-            navBar.topItem?.title = person.name
             
             let birthdate = person.birthdate! as Date
             
@@ -87,6 +85,21 @@ class DetailsVC: UIViewController {
         } else {
             self.editButtonItem.title = "Edit"
             deleteButton.isHidden = true
+        }
+    }
+    
+    
+    @IBAction func EditButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "EditPerson", sender: self.person)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditPerson" {
+            if let destination = segue.destination as? BirthdaySelectionView {
+                if let person = sender as? Person {
+                    destination.personToEdit = person
+                }
+            }
         }
     }
     
