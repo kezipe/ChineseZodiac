@@ -54,7 +54,7 @@ class DateSelectorVC: UIViewController {
             }
         case .yearMode:
             if !firstLoadedY {
-                row = 2001
+                row = 1999
                 firstLoadedY = true
             } else {
                 row = self.year! - 1

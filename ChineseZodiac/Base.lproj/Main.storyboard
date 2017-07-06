@@ -463,21 +463,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nee-6R-9xz">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="StA-2f-JHA"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Chinese Zodiac" id="NgU-Vi-wrF">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="q0v-FU-bjf">
-                                            <connections>
-                                                <segue destination="5U2-q2-2lP" kind="showDetail" identifier="AddPerson" action="showViewController:sender:" id="iH8-Z4-vrU"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GMi-xo-4pl">
                                 <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -557,15 +542,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chinese Zodiac" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIo-P8-5Sc">
+                                <rect key="frame" x="105" y="28" width="110.5" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.91317020940000004" green="0.62825867550000003" blue="0.2031076144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97680455450000003" green="0.82554711130000002" blue="0.25638583799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GMi-xo-4pl" secondAttribute="trailing" id="719-5F-lli"/>
-                            <constraint firstItem="nee-6R-9xz" firstAttribute="top" secondItem="7p6-R2-JfQ" secondAttribute="bottom" id="HZX-6p-FoR"/>
+                            <constraint firstItem="BIo-P8-5Sc" firstAttribute="top" secondItem="7p6-R2-JfQ" secondAttribute="bottom" constant="8" id="IEb-yi-dEU"/>
+                            <constraint firstItem="BIo-P8-5Sc" firstAttribute="centerX" secondItem="uPe-XF-rgX" secondAttribute="centerX" id="Wd5-wu-IK9"/>
                             <constraint firstItem="VdF-sy-ISc" firstAttribute="top" secondItem="GMi-xo-4pl" secondAttribute="bottom" id="XoN-OK-it3"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" id="hr4-Ao-9gQ"/>
-                            <constraint firstItem="nee-6R-9xz" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" id="ofC-nu-87M"/>
-                            <constraint firstAttribute="trailing" secondItem="nee-6R-9xz" secondAttribute="trailing" id="s4c-YC-le9"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="top" secondItem="7p6-R2-JfQ" secondAttribute="bottom" constant="40" id="sgj-k3-93u"/>
                         </constraints>
                     </view>
@@ -987,7 +977,4 @@
             <point key="canvasLocation" x="6082" y="887"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="iH8-Z4-vrU"/>
-    </inferredMetricsTieBreakers>
 </document>

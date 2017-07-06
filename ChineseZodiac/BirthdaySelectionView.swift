@@ -43,7 +43,6 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     
     @IBAction func daySelection(_ sender: Any) {
         dateSelector?.dateComponentsSelectionMode = DateComponentSelectionMode.dayMode
-        dayChanged = true
         present(dateSelector!, animated: true, completion: nil)
     }
     
@@ -83,6 +82,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             } else {
                 day = d
             }
+            dayChanged = true
         }
         
         if monthChanged {
