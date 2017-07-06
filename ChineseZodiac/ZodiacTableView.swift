@@ -48,21 +48,42 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: Cell Management
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let person = persons[indexPath.row]
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let kCellActionWidth: CGFloat = 40.0
+        let kCellHeight: CGFloat = 60
+        let whitespace = "  "
+        let deleteAction = UITableViewRowAction(style: .`default`, title: whitespace) { (action, indexPath) in
+            let person = self.persons[indexPath.row]
             context.delete(person)
             ad.saveContext()
             
             do {
-                persons = try context.fetch(Person.fetchRequest())
+                self.persons = try context.fetch(Person.fetchRequest())
             } catch {
                 print("Fetching Failed")
             }
-            retrieveData()
+            self.retrieveData()
             tableView.reloadData()
         }
+        
+        // create a color from patter image and set the color as a background color of action
+        let kActionImageSize: CGFloat = 34
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: kCellActionWidth, height: kCellHeight))
+        view.backgroundColor = UIColor(red: 249.0/255, green: 211.0/255, blue: 65.0/255, alpha: 1.0)
+        let imageView = UIImageView(frame: CGRect(x: (kCellActionWidth - kActionImageSize) / 2,
+                                                  y: (kCellHeight - kActionImageSize) / 2,
+                                                  width: 34,
+                                                  height: 34))
+        imageView.image = UIImage(named: "xSymbol")
+        view.addSubview(imageView)
+        let image = view.image()
+        
+        deleteAction.backgroundColor = UIColor(patternImage: image)
+        
+        return [deleteAction]
     }
+    
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
