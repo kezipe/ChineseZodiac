@@ -52,6 +52,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         present(dateSelector!, animated: true, completion: nil)
     }
     
+    
     func refreshUI() {
         
         if let m = dateSelector?.month {
@@ -139,6 +140,10 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     @IBAction func checkZodiacPressed(_ sender: Any) {

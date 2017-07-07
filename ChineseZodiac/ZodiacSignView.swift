@@ -16,9 +16,10 @@ class ZodiacSignView: UIViewController {
     @IBOutlet weak var cDateLbl: UILabel!
     @IBOutlet weak var zodiacSignLbl: UILabel!
     @IBOutlet weak var zodiacImg: UIImageView!
-    @IBAction func doneButtonPressed(_ sender: UIButton){
-    }
 
+    @IBAction func addPersonButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
