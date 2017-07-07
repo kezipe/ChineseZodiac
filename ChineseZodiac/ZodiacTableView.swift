@@ -15,6 +15,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     var controller: NSFetchedResultsController<Person>!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,20 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func retrieveData() {
         let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
-        let sortName = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [sortName]
+        let dateSort = NSSortDescriptor(key: "created", ascending: false)
+        let nameSort = NSSortDescriptor(key: "name", ascending: true)
+        let zodiacSort = NSSortDescriptor(key: "zodiac", ascending: true)
+        let birthdateSort = NSSortDescriptor(key: "birthdate", ascending: false)
+        
+        if segmentedControl.selectedSegmentIndex == 0 {
+            fetchRequest.sortDescriptors = [dateSort]
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            fetchRequest.sortDescriptors = [nameSort]
+        } else if segmentedControl.selectedSegmentIndex == 2 {
+            fetchRequest.sortDescriptors = [zodiacSort]
+        } else if segmentedControl.selectedSegmentIndex == 3 {
+            fetchRequest.sortDescriptors = [birthdateSort]
+        }
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -45,6 +58,12 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.controller = controller
         self.persons = controller.fetchedObjects!
     }
+    
+    @IBAction func segmentChange(_ sender: Any) {
+        retrieveData()
+        tableView.reloadData()
+    }
+    
     
     // MARK: Cell Management
     

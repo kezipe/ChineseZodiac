@@ -194,8 +194,10 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
                 person = Person(context: context)
             }
             dateComponents.calendar = Calendar.current
-            person.birthdate = dateComponents.date as NSDate?
+            let birthdate = dateComponents.date
+            person.birthdate = birthdate as NSDate?
             person.name = nameField.text
+            person.zodiac = birthdate!.getZodiacRank()
             ad.saveContext()
             performSegue(withIdentifier: "ToZodiacSignView", sender: dateComponents.date)
         }

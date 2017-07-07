@@ -540,7 +540,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GMi-xo-4pl">
-                                <rect key="frame" x="20" y="90" width="280" height="478"/>
+                                <rect key="frame" x="20" y="118" width="280" height="450"/>
                                 <color key="backgroundColor" red="0.97680455450000003" green="0.82554711130000002" blue="0.25638583799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.97680455450000003" green="0.82554711130000002" blue="0.25638583799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -696,19 +696,35 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Z7t-Yr-VwM">
+                                <rect key="frame" x="28.5" y="80" width="263" height="29"/>
+                                <segments>
+                                    <segment title="Date"/>
+                                    <segment title="Name"/>
+                                    <segment title="Zodiac"/>
+                                    <segment title="Birthday"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentChange:" destination="KRv-BZ-q6c" eventType="valueChanged" id="EXO-6H-n5A"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.82745098039215681" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GMi-xo-4pl" secondAttribute="trailing" constant="20" id="719-5F-lli"/>
                             <constraint firstItem="3ut-gW-dSM" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" constant="40" id="C2E-MC-mnc"/>
+                            <constraint firstItem="GMi-xo-4pl" firstAttribute="top" secondItem="Z7t-Yr-VwM" secondAttribute="bottom" constant="10" id="NuD-Nu-SOX"/>
+                            <constraint firstItem="Z7t-Yr-VwM" firstAttribute="top" secondItem="3ut-gW-dSM" secondAttribute="bottom" constant="10" id="P07-gV-pnO"/>
                             <constraint firstItem="VdF-sy-ISc" firstAttribute="top" secondItem="GMi-xo-4pl" secondAttribute="bottom" id="XoN-OK-it3"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" constant="20" id="hr4-Ao-9gQ"/>
                             <constraint firstAttribute="trailing" secondItem="3ut-gW-dSM" secondAttribute="trailing" constant="40" id="lGZ-hf-h8s"/>
-                            <constraint firstItem="GMi-xo-4pl" firstAttribute="top" secondItem="3ut-gW-dSM" secondAttribute="bottom" constant="20" id="uah-9Y-Fsx"/>
+                            <constraint firstItem="Z7t-Yr-VwM" firstAttribute="centerX" secondItem="uPe-XF-rgX" secondAttribute="centerX" id="q92-er-xVC"/>
                             <constraint firstItem="3ut-gW-dSM" firstAttribute="top" secondItem="uPe-XF-rgX" secondAttribute="top" constant="30" id="zGc-9H-6jL"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="segmentedControl" destination="Z7t-Yr-VwM" id="ezb-zP-RXi"/>
                         <outlet property="tableView" destination="GMi-xo-4pl" id="3CF-4T-j29"/>
                         <segue destination="uPM-9U-Kbk" kind="show" identifier="DetailsVC" action="showDetailViewController:sender:" id="vif-Ce-OAz"/>
                     </connections>
