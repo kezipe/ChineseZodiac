@@ -24,8 +24,6 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var solarTermLbl: UILabel!
     @IBOutlet weak var compatibilityLbl: UILabel!
     
-    @IBOutlet weak var navBar: UINavigationBar!
-    
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     

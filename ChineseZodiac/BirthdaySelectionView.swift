@@ -33,7 +33,6 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameLbl: UILabel!
     
-    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var nameField: UITextField!
     @IBAction func monthSelection(_ sender: Any) {
         dateSelector?.dateComponentsSelectionMode = DateComponentSelectionMode.monthMode
@@ -119,6 +118,8 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         }
         refreshUI()
         
+
+        
         self.hideKeyboardWhenTappedAround()
         self.nameField.delegate = self
     }
@@ -137,6 +138,12 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             dateSelector?.day = Int(df.string(from: birthdate))!
             print("Loaded person's birth day: \(String(describing: dateSelector?.day))")
             nameField.text = person.name
+            if person.name == "" || person.name == nil {
+                nameLbl.text = "Please select a birthday:"
+            } else {
+                nameLbl.text = "\(person.name ?? "")'s birthday:"
+            }
+            
         }
     }
     
@@ -178,6 +185,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     func doSegue() {
         if nameField.text == "" {
             print("Plesae enter a name")
+            nameField.becomeFirstResponder()
         } else {
             var person: Person!
             if personToEdit != nil {
@@ -222,6 +230,14 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         UIView.commitAnimations()
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.text != "" {
+            nameLbl.text = "\(textField.text ?? "")'s birthday:"
+        } else {
+            nameLbl.text = "birthday:"
+        }
+        return true
+    }
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
