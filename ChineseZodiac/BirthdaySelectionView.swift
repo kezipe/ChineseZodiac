@@ -230,13 +230,13 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         UIView.commitAnimations()
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField.text != "" {
-            nameLbl.text = "\(textField.text ?? "")'s birthday:"
+
+    @IBAction func nameFieldEditingChanged(_ sender: Any) {
+        if nameField.text != "" {
+            nameLbl.text = "\(nameField.text ?? "")'s birthday:"
         } else {
-            nameLbl.text = "birthday:"
+            nameLbl.text = "Please choose a name"
         }
-        return true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField)

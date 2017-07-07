@@ -141,6 +141,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="nameFieldEditingChanged:" destination="5U2-q2-2lP" eventType="editingChanged" id="AIB-1v-V06"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
