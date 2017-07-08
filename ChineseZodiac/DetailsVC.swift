@@ -66,6 +66,7 @@ class DetailsVC: UIViewController {
             seasonLbl.text = birthdate.getSeason()
             // MARK: Solar Term
             solarTermLbl.text = birthdate.getSolarTerm()
+            fixedElementLbl.text = birthdate.getFixedElement()
       
         }
     }

@@ -278,58 +278,58 @@ extension Date {
         if dayLocationIsInitial {
             switch self.getCMonth() {
             case 11:
-                return "大雪 dàxuě"
+                return "daxue (大雪)"
             case 12:
-                return "小寒 xiǎohán"
+                return "xiaohan (小寒)"
             case 1:
-                return "立春 lìchūn"
+                return "lichun (立春)"
             case 2:
-                return "惊蛰 jīngzhé"
+                return "jingzhe (惊蛰)"
             case 3:
-                return "清明 qīngmíng"
+                return "qingming (清明)"
             case 4:
-                return "立夏 lìxià"
+                return "lixia (立夏)"
             case 5:
-                return "芒种 mángzhòng"
+                return "mangzhong (芒种)"
             case 6:
-                return "小暑 xiǎoshǔ"
+                return "xiaoshu (小暑)"
             case 7:
-                return "立秋 lìqiū"
+                return "liqiu (立秋)"
             case 8:
-                return "白露 báilù"
+                return "bailu (白露)"
             case 9:
-                return "寒露 hánlù"
+                return "hanlu (寒露)"
             case 10:
-                return "立冬 lìdōng"
+                return "lidong (立冬)"
             default:
                 return ""
             }
         } else {
             switch self.getCMonth() {
             case 11:
-                return "冬至 dōngzhì"
+                return "dongzhi (冬至)"
             case 12:
-                return "大寒 dàhán"
+                return "dahan (大寒)"
             case 1:
-                return "雨水 yǔshuǐ"
+                return "yushui (雨水)"
             case 2:
-                return "春分 chūnfēn"
+                return "chunfen (春分)"
             case 3:
-                return "谷雨 gǔyǔ"
+                return "guyu (谷雨)"
             case 4:
-                return "小满 xiǎomǎn"
+                return "xiaoman (小满)"
             case 5:
-                return "夏至 xiàzhì"
+                return "xiazhi (夏至)"
             case 6:
-                return "大暑 dàshǔ"
+                return "dashu (大暑)"
             case 7:
-                return "处暑 chǔshǔ"
+                return "chushu (处暑)"
             case 8:
-                return "秋分 qiūfēn"
+                return "qiufen (秋分)"
             case 9:
-                return "霜降 shuāngjiàng"
+                return "shuangjiang (霜降)"
             case 10:
-                return "小雪 xiǎoxuě"
+                return "xiaoxue (小雪)"
             default:
                 return ""
             }
@@ -350,6 +350,24 @@ extension Date {
         }
     }
     
+    func getFixedElement() -> String {
+        let cMonth = self.getCMonth()
+        
+        switch cMonth {
+        case 3, 6, 9, 12:
+            return "Earth"
+        case 1, 2:
+            return "Wood"
+        case 4, 5:
+            return "Fire"
+        case 7, 8:
+            return "Metal"
+        case 10, 11:
+            return "Water"
+        default:
+            return "No Fixed Element"
+        }
+    }
     
     
 }
