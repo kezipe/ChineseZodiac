@@ -153,55 +153,58 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00v-Zx-TMZ">
                                         <rect key="frame" x="20" y="220" width="280" height="110"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My birthday is" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMi-kM-nZM">
-                                                <rect key="frame" x="86" y="20" width="108" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="V0S-P1-H1J">
-                                                <rect key="frame" x="63.5" y="50.5" width="153" height="46"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pH8-Lb-1MQ">
+                                                <rect key="frame" x="50" y="19.5" width="180" height="71.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vAf-ur-Jwv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="38" height="46"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="28"/>
-                                                        <state key="normal" title="Mo">
-                                                            <color key="titleColor" red="0.91317020940000004" green="0.62825867550000003" blue="0.2031076144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="monthSelection:" destination="5U2-q2-2lP" eventType="touchUpInside" id="9z5-sj-vsx"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWD-NB-ogF">
-                                                        <rect key="frame" x="48" y="0.0" width="32" height="46"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="28"/>
-                                                        <state key="normal" title="31">
-                                                            <color key="titleColor" red="0.91317020940000004" green="0.62825867550000003" blue="0.2031076144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="daySelection:" destination="5U2-q2-2lP" eventType="touchUpInside" id="m0R-7g-sTX"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YhV-MG-EtY">
-                                                        <rect key="frame" x="90" y="0.0" width="63" height="46"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="28"/>
-                                                        <state key="normal" title="2017">
-                                                            <color key="titleColor" red="0.9137254901960784" green="0.62745098039215685" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="yearSelection:" destination="5U2-q2-2lP" eventType="touchUpInside" id="uMw-aL-pNh"/>
-                                                        </connections>
-                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to select a birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMi-kM-nZM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="180" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="V0S-P1-H1J">
+                                                        <rect key="frame" x="13.5" y="25.5" width="153" height="46"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vAf-ur-Jwv">
+                                                                <rect key="frame" x="0.0" y="0.0" width="38" height="46"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="28"/>
+                                                                <state key="normal" title="Mo">
+                                                                    <color key="titleColor" red="0.91317020940000004" green="0.62825867550000003" blue="0.2031076144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="monthSelection:" destination="5U2-q2-2lP" eventType="touchUpInside" id="9z5-sj-vsx"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWD-NB-ogF">
+                                                                <rect key="frame" x="48" y="0.0" width="32" height="46"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="28"/>
+                                                                <state key="normal" title="31">
+                                                                    <color key="titleColor" red="0.91317020940000004" green="0.62825867550000003" blue="0.2031076144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="daySelection:" destination="5U2-q2-2lP" eventType="touchUpInside" id="m0R-7g-sTX"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YhV-MG-EtY">
+                                                                <rect key="frame" x="90" y="0.0" width="63" height="46"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="28"/>
+                                                                <state key="normal" title="2017">
+                                                                    <color key="titleColor" red="0.9137254901960784" green="0.62745098039215685" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="yearSelection:" destination="5U2-q2-2lP" eventType="touchUpInside" id="uMw-aL-pNh"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="V0S-P1-H1J" firstAttribute="centerX" secondItem="00v-Zx-TMZ" secondAttribute="centerX" id="Ane-hu-Gul"/>
+                                            <constraint firstItem="pH8-Lb-1MQ" firstAttribute="centerY" secondItem="00v-Zx-TMZ" secondAttribute="centerY" id="4qk-4e-NmQ"/>
                                             <constraint firstAttribute="height" constant="110" id="RwU-E0-k1o"/>
-                                            <constraint firstItem="CMi-kM-nZM" firstAttribute="centerX" secondItem="00v-Zx-TMZ" secondAttribute="centerX" id="ZFt-VA-TVO"/>
-                                            <constraint firstItem="CMi-kM-nZM" firstAttribute="top" secondItem="00v-Zx-TMZ" secondAttribute="top" constant="20" id="ayB-47-Wkl"/>
-                                            <constraint firstItem="V0S-P1-H1J" firstAttribute="top" secondItem="CMi-kM-nZM" secondAttribute="bottom" constant="10" id="qed-am-xmB"/>
+                                            <constraint firstItem="pH8-Lb-1MQ" firstAttribute="centerX" secondItem="00v-Zx-TMZ" secondAttribute="centerX" id="dP9-x3-l7Y"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -301,15 +304,23 @@
                                             </view>
                                         </subviews>
                                     </stackView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose a name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrs-SD-tse">
+                                        <rect key="frame" x="131.5" y="399" width="117" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="0.91317020940000004" green="0.62825867550000003" blue="0.2031076144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97680455450000003" green="0.82554711126111113" blue="0.25638583799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="00v-Zx-TMZ" secondAttribute="trailing" constant="20" id="0jY-5J-eIn"/>
                                     <constraint firstItem="00v-Zx-TMZ" firstAttribute="leading" secondItem="yw2-la-ch9" secondAttribute="leading" constant="20" id="1v9-U2-O6t"/>
                                     <constraint firstItem="jQ1-hM-u47" firstAttribute="leading" secondItem="yw2-la-ch9" secondAttribute="leading" constant="20" id="A1w-uh-TFn"/>
+                                    <constraint firstItem="zrs-SD-tse" firstAttribute="centerX" secondItem="FgJ-yc-nzK" secondAttribute="centerX" id="MD9-W5-7Ax"/>
                                     <constraint firstItem="00v-Zx-TMZ" firstAttribute="centerX" secondItem="yw2-la-ch9" secondAttribute="centerX" id="S3Q-0S-cF2"/>
                                     <constraint firstAttribute="trailing" secondItem="jQ1-hM-u47" secondAttribute="trailing" constant="20" id="Xtc-mv-fq4"/>
                                     <constraint firstAttribute="bottom" secondItem="jQ1-hM-u47" secondAttribute="bottom" constant="20" id="bqx-2L-9OO"/>
+                                    <constraint firstItem="zrs-SD-tse" firstAttribute="top" secondItem="ZYd-Mu-sjK" secondAttribute="bottom" constant="1" id="mfU-Pl-AIn"/>
                                     <constraint firstItem="ZYd-Mu-sjK" firstAttribute="centerX" secondItem="yw2-la-ch9" secondAttribute="centerX" id="qPu-vm-H91"/>
                                     <constraint firstItem="jQ1-hM-u47" firstAttribute="top" secondItem="ZYd-Mu-sjK" secondAttribute="bottom" constant="50" id="qZn-eW-DCJ"/>
                                     <constraint firstItem="00v-Zx-TMZ" firstAttribute="top" secondItem="yw2-la-ch9" secondAttribute="top" constant="220" id="rfA-RB-QZJ"/>
@@ -329,6 +340,7 @@
                         <outlet property="monthLbl" destination="vAf-ur-Jwv" id="7rn-As-iG1"/>
                         <outlet property="nameField" destination="FgJ-yc-nzK" id="h79-ZV-YBA"/>
                         <outlet property="nameLbl" destination="CMi-kM-nZM" id="YvD-0y-P2r"/>
+                        <outlet property="nameWarningLbl" destination="zrs-SD-tse" id="bxj-h5-gca"/>
                         <outlet property="yearLbl" destination="YhV-MG-EtY" id="fHq-Sr-b30"/>
                         <segue destination="N17-Kh-jex" kind="show" identifier="ToZodiacSignView" action="showDetailViewController:sender:" id="hZS-8q-aIJ"/>
                     </connections>
@@ -521,11 +533,12 @@
                         <outlet property="cDateLbl" destination="GLI-Bb-pqU" id="HMB-Wp-kYF"/>
                         <outlet property="zodiacImg" destination="dFk-JU-F01" id="Zpz-Cw-hNO"/>
                         <outlet property="zodiacSignLbl" destination="IuV-v5-lvo" id="BIO-xx-zuP"/>
+                        <segue destination="5U2-q2-2lP" kind="showDetail" identifier="AddOneMore" id="tXM-3t-qoK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5l-qn-gzi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7200" y="74"/>
+            <point key="canvasLocation" x="7074" y="124"/>
         </scene>
         <!--Zodiac Table View-->
         <scene sceneID="hJT-a1-GRK">
@@ -540,7 +553,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GMi-xo-4pl">
-                                <rect key="frame" x="20" y="118" width="280" height="450"/>
+                                <rect key="frame" x="20" y="118" width="280" height="446"/>
                                 <color key="backgroundColor" red="0.97680455450000003" green="0.82554711130000002" blue="0.25638583799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.97680455450000003" green="0.82554711130000002" blue="0.25638583799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -635,9 +648,6 @@
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iaf-Xx-sE1">
                                                             <rect key="frame" x="0.0" y="0.0" width="280" height="55.5"/>
-                                                            <connections>
-                                                                <segue destination="5U2-q2-2lP" kind="custom" customClass="SegueFromRight" customModule="ChineseZodiac" customModuleProvider="target" id="qfL-IO-i79"/>
-                                                            </connections>
                                                         </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddSymbol2" translatesAutoresizingMaskIntoConstraints="NO" id="cvq-IW-mDz">
                                                             <rect key="frame" x="121" y="9" width="37" height="37"/>
@@ -676,23 +686,37 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ut-gW-dSM">
-                                <rect key="frame" x="40" y="30" width="240" height="40"/>
+                                <rect key="frame" x="20" y="30" width="280" height="40"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chinese Zodiac" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIo-P8-5Sc">
-                                        <rect key="frame" x="64" y="9" width="110.5" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chinese Zodiac" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIo-P8-5Sc">
+                                        <rect key="frame" x="84" y="10" width="110.5" height="20"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.9137254901960784" green="0.62745098039215685" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEo-4j-HkG">
+                                        <rect key="frame" x="245" y="5" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Bua-1J-7ho"/>
+                                            <constraint firstAttribute="width" constant="30" id="J9t-gr-KnF"/>
+                                        </constraints>
+                                        <state key="normal" image="AddSymbol2"/>
+                                        <connections>
+                                            <segue destination="5U2-q2-2lP" kind="show" id="nh8-Sh-8VW"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="DEo-4j-HkG" firstAttribute="centerY" secondItem="3ut-gW-dSM" secondAttribute="centerY" id="A1V-Fj-x6f"/>
+                                    <constraint firstItem="BIo-P8-5Sc" firstAttribute="centerY" secondItem="3ut-gW-dSM" secondAttribute="centerY" id="Z3Q-bJ-B1W"/>
                                     <constraint firstAttribute="height" constant="40" id="b1w-vI-Fdo"/>
+                                    <constraint firstItem="BIo-P8-5Sc" firstAttribute="centerX" secondItem="3ut-gW-dSM" secondAttribute="centerX" id="ish-1M-h7v"/>
+                                    <constraint firstAttribute="trailing" secondItem="DEo-4j-HkG" secondAttribute="trailing" constant="5" id="sO0-cG-ud9"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
-                                        <integer key="value" value="10"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -713,12 +737,12 @@
                         <color key="backgroundColor" red="0.97647058823529409" green="0.82745098039215681" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GMi-xo-4pl" secondAttribute="trailing" constant="20" id="719-5F-lli"/>
-                            <constraint firstItem="3ut-gW-dSM" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" constant="40" id="C2E-MC-mnc"/>
+                            <constraint firstItem="3ut-gW-dSM" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" constant="20" id="C2E-MC-mnc"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="top" secondItem="Z7t-Yr-VwM" secondAttribute="bottom" constant="10" id="NuD-Nu-SOX"/>
                             <constraint firstItem="Z7t-Yr-VwM" firstAttribute="top" secondItem="3ut-gW-dSM" secondAttribute="bottom" constant="10" id="P07-gV-pnO"/>
-                            <constraint firstItem="VdF-sy-ISc" firstAttribute="top" secondItem="GMi-xo-4pl" secondAttribute="bottom" id="XoN-OK-it3"/>
+                            <constraint firstItem="VdF-sy-ISc" firstAttribute="top" secondItem="GMi-xo-4pl" secondAttribute="bottom" constant="4" id="XoN-OK-it3"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" constant="20" id="hr4-Ao-9gQ"/>
-                            <constraint firstAttribute="trailing" secondItem="3ut-gW-dSM" secondAttribute="trailing" constant="40" id="lGZ-hf-h8s"/>
+                            <constraint firstAttribute="trailing" secondItem="3ut-gW-dSM" secondAttribute="trailing" constant="20" id="lGZ-hf-h8s"/>
                             <constraint firstItem="Z7t-Yr-VwM" firstAttribute="centerX" secondItem="uPe-XF-rgX" secondAttribute="centerX" id="q92-er-xVC"/>
                             <constraint firstItem="3ut-gW-dSM" firstAttribute="top" secondItem="uPe-XF-rgX" secondAttribute="top" constant="30" id="zGc-9H-6jL"/>
                         </constraints>
@@ -1063,11 +1087,10 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M27-zB-ZpP">
-                                        <rect key="frame" x="40" y="30" width="240" height="40"/>
+                                        <rect key="frame" x="20" y="30" width="280" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chinese Zodiac" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GET-yf-5aY">
-                                                <rect key="frame" x="64" y="9" width="110.5" height="20"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chinese Zodiac" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GET-yf-5aY">
+                                                <rect key="frame" x="85" y="10" width="110.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" red="0.91317020940000004" green="0.62825867550000003" blue="0.2031076144" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1075,19 +1098,21 @@
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstItem="GET-yf-5aY" firstAttribute="centerY" secondItem="M27-zB-ZpP" secondAttribute="centerY" id="KwU-7y-Kpg"/>
+                                            <constraint firstItem="GET-yf-5aY" firstAttribute="centerX" secondItem="M27-zB-ZpP" secondAttribute="centerX" id="LB6-LV-vpp"/>
                                             <constraint firstAttribute="height" constant="40" id="Rf8-PL-KQ6"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
-                                                <integer key="value" value="10"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97680455450000003" green="0.82554711130000002" blue="0.25638583799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="M27-zB-ZpP" secondAttribute="trailing" constant="40" id="8eu-HY-o9Z"/>
-                                    <constraint firstItem="M27-zB-ZpP" firstAttribute="leading" secondItem="lOC-NV-5p4" secondAttribute="leading" constant="40" id="BjA-lB-wZc"/>
+                                    <constraint firstAttribute="trailing" secondItem="M27-zB-ZpP" secondAttribute="trailing" constant="20" id="8eu-HY-o9Z"/>
+                                    <constraint firstItem="M27-zB-ZpP" firstAttribute="leading" secondItem="lOC-NV-5p4" secondAttribute="leading" constant="20" id="BjA-lB-wZc"/>
                                     <constraint firstItem="A82-x0-xso" firstAttribute="leading" secondItem="lOC-NV-5p4" secondAttribute="leading" constant="20" id="Jva-P1-1Da"/>
                                     <constraint firstAttribute="trailing" secondItem="A82-x0-xso" secondAttribute="trailing" constant="20" id="WvB-fc-o4C"/>
                                     <constraint firstAttribute="bottom" secondItem="A82-x0-xso" secondAttribute="bottom" constant="20" id="Xta-zT-Bn9"/>
@@ -1166,6 +1191,6 @@
         <image name="rightSymbol" width="78" height="78"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gHg-VV-9Mj"/>
+        <segue reference="tXM-3t-qoK"/>
     </inferredMetricsTieBreakers>
 </document>

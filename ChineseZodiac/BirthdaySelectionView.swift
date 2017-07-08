@@ -30,6 +30,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var monthLbl: UIButton!
     @IBOutlet weak var dayLbl: UIButton!
     @IBOutlet weak var yearLbl: UIButton!
+    @IBOutlet weak var nameWarningLbl: UILabel!
     
     @IBOutlet weak var nameLbl: UILabel!
     
@@ -139,7 +140,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             print("Loaded person's birth day: \(String(describing: dateSelector?.day))")
             nameField.text = person.name
             if person.name == "" || person.name == nil {
-                nameLbl.text = "Please select a birthday:"
+                nameLbl.text = "Tap to select a birthday:"
             } else {
                 nameLbl.text = "\(person.name ?? "")'s birthday:"
             }
@@ -185,6 +186,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     func doSegue() {
         if nameField.text == "" {
             print("Plesae enter a name")
+            nameWarningLbl.isHidden = false
             nameField.becomeFirstResponder()
         } else {
             var person: Person!
@@ -199,6 +201,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             person.name = nameField.text
             person.zodiac = birthdate!.getZodiacRank()
             ad.saveContext()
+            
             performSegue(withIdentifier: "ToZodiacSignView", sender: dateComponents.date)
         }
     }
@@ -235,9 +238,10 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
 
     @IBAction func nameFieldEditingChanged(_ sender: Any) {
         if nameField.text != "" {
+            nameWarningLbl.isHidden = true
             nameLbl.text = "\(nameField.text ?? "")'s birthday:"
         } else {
-            nameLbl.text = "Please choose a name"
+            nameWarningLbl.isHidden = false
         }
     }
     

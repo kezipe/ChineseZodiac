@@ -136,14 +136,10 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: Table View Stuff
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == persons.endIndex {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewPerson")
-            return cell!
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTable", for: indexPath) as! PersonCell
-            configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTable", for: indexPath) as! PersonCell
+        configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
+        return cell
+        
     }
     
     func configureCell(cell: PersonCell, indexPath: NSIndexPath) {
@@ -161,7 +157,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = controller.sections {
             let sectionInfo = sections[section]
-            return sectionInfo.numberOfObjects + 1
+            return sectionInfo.numberOfObjects
         }
         return 0
     }
