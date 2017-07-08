@@ -16,6 +16,9 @@
 		0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46F1EE3428F00A0176D /* ZodiacTableView.swift */; };
 		0A69F4741EE34D8200A0176D /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F4731EE34D8200A0176D /* SegueFromLeft.swift */; };
 		0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A55C71EE3628B00BAA05B /* PersonCell.swift */; };
+		0A8D2AD61F118F63007B8D64 /* PersonColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD51F118F63007B8D64 /* PersonColCell.swift */; };
+		0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD71F119117007B8D64 /* MatchVC.swift */; };
+		0A8D2ADA1F119856007B8D64 /* PopoverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD91F119856007B8D64 /* PopoverVC.swift */; };
 		0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */; };
 		0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACBF6FA1EE357B00075A523 /* Extensions.swift */; };
 		0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */; };
@@ -36,6 +39,9 @@
 		0A69F46F1EE3428F00A0176D /* ZodiacTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZodiacTableView.swift; sourceTree = "<group>"; };
 		0A69F4731EE34D8200A0176D /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
 		0A7A55C71EE3628B00BAA05B /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		0A8D2AD51F118F63007B8D64 /* PersonColCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonColCell.swift; sourceTree = "<group>"; };
+		0A8D2AD71F119117007B8D64 /* MatchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchVC.swift; sourceTree = "<group>"; };
+		0A8D2AD91F119856007B8D64 /* PopoverVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverVC.swift; sourceTree = "<group>"; };
 		0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		0ACBF6FA1EE357B00075A523 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0AD4E2891EDDD22400A92F65 /* ChineseZodiac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseZodiac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +73,7 @@
 				0A7A55C71EE3628B00BAA05B /* PersonCell.swift */,
 				0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */,
 				0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */,
+				0A8D2AD51F118F63007B8D64 /* PersonColCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -81,6 +88,8 @@
 				0A69F4731EE34D8200A0176D /* SegueFromLeft.swift */,
 				0A14631F1F0B55440043AA46 /* DetailsVC.swift */,
 				0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */,
+				0A8D2AD71F119117007B8D64 /* MatchVC.swift */,
+				0A8D2AD91F119856007B8D64 /* PopoverVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -198,10 +207,13 @@
 				0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */,
 				0A69F46E1EE3426C00A0176D /* ZodiacSignView.swift in Sources */,
 				0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */,
+				0A8D2AD61F118F63007B8D64 /* PersonColCell.swift in Sources */,
 				0A1463241F0C8A5F0043AA46 /* PickerView.swift in Sources */,
+				0A8D2ADA1F119856007B8D64 /* PopoverVC.swift in Sources */,
 				0A69F46D1EE3426C00A0176D /* BirthdaySelectionView.swift in Sources */,
 				0A1463221F0C4B770043AA46 /* UIViewControllerExtension.swift in Sources */,
 				0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */,
+				0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */,
 				0A10DA7C1F0C945C00ED645A /* DateSelectorVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

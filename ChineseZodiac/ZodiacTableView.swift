@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIPopoverPresentationControllerDelegate {
     
     var persons = [Person]()
     var controller: NSFetchedResultsController<Person>!
@@ -166,7 +166,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
         performSegue(withIdentifier: "DetailsVC", sender: persons[indexPath.row])
     }
     
-    // MARK: Prepare for segue
+    // MARK: Prepare for segue and Popover
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsVC" {
             if let destination = segue.destination as? DetailsVC {
@@ -174,9 +174,26 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
                     destination.person = person
                 }
             }
+        } else if segue.identifier == "showPopover" {
+            if let destination = segue.destination as? PopoverVC {
+                if let persons = sender as? [Person] {
+                    destination.persons = persons
+                }
+                destination.popoverPresentationController?.delegate = self
+            }
         }
     }
     
+    // MARK: Handling Popover
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "showPopover", sender: self.persons)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        // return UIModalPresentationStyle.FullScreen
+        return UIModalPresentationStyle.none
+    }
     
 }
 
