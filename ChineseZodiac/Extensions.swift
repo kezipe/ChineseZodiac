@@ -51,66 +51,15 @@ extension Date {
         return "\(newFormattedDate[zodiac])"
     }
     
-    func getZodiacRank() -> Int16 {
-        switch self.getZodiacChar() {
-        case "子":
-            return 1
-        case "丑":
-            return 2
-        case "寅":
-            return 3
-        case "卯":
-            return 4
-        case "辰":
-            return 5
-        case "巳":
-            return 6
-        case "午":
-            return 7
-        case "未":
-            return 8
-        case "申":
-            return 9
-        case "酉":
-            return 10
-        case "戌":
-            return 11
-        case "亥":
-            return 12
-        default:
-            return 0
-        }
+    func getZodiacRank() -> Int {
+        let zodiacRank = ["子":1, "丑":2,"寅":3, "卯":4,"辰":5, "巳":6,"午":7, "未":8,"申":9, "酉":10,"戌":11, "亥":12]
+        return zodiacRank[self.getZodiacChar()]!
     }
     
     func getZodiac() -> String {
-        switch self.getZodiacChar() {
-        case "子":
-            return "Rat"
-        case "丑":
-            return "Ox"
-        case "寅":
-            return "Tiger"
-        case "卯":
-            return "Rabbit"
-        case "辰":
-            return "Dragon"
-        case "巳":
-            return "Snake"
-        case "午":
-            return "Horse"
-        case "未":
-            return "Goat"
-        case "申":
-            return "Monkey"
-        case "酉":
-            return "Rooster"
-        case "戌":
-            return "Dog"
-        case "亥":
-            return "Pig"
-        default:
-            return ""
-        }
+        let zodiacCharToZodiac = ["子":"Rat", "丑":"Ox", "寅":"Tiger", "卯":"Rabbit", "辰":"Dragon", "巳":"Snake",
+                                  "午":"Horse", "未":"Goat", "申":"Monkey", "酉":"Rooster", "戌":"Dog", "亥":"Pig"]
+        return zodiacCharToZodiac[self.getZodiacChar()]!
     }
     
     func getStemBranch() -> String {
@@ -276,69 +225,18 @@ extension Date {
         let dayLocationIsInitial = self.getCDay() < 15 ? true : false
         
         if dayLocationIsInitial {
-            switch self.getCMonth() {
-            case 11:
-                return "daxue (大雪)"
-            case 12:
-                return "xiaohan (小寒)"
-            case 1:
-                return "lichun (立春)"
-            case 2:
-                return "jingzhe (惊蛰)"
-            case 3:
-                return "qingming (清明)"
-            case 4:
-                return "lixia (立夏)"
-            case 5:
-                return "mangzhong (芒种)"
-            case 6:
-                return "xiaoshu (小暑)"
-            case 7:
-                return "liqiu (立秋)"
-            case 8:
-                return "bailu (白露)"
-            case 9:
-                return "hanlu (寒露)"
-            case 10:
-                return "lidong (立冬)"
-            default:
-                return ""
-            }
+            let solarTerm = [11:"daxue (大雪)", 12:"xiaohan (小寒)", 1:"lichun (立春)", 2:"jingzhe (惊蛰)", 3:"qingming (清明)", 4:"lixia (立夏)",
+                             5:"mangzhong (芒种)", 6:"xiaoshu (小暑)", 7:"liqiu (立秋)", 8:"bailu (白露)", 9:"hanlu (寒露)", 10:"lidong (立冬)"]
+            return solarTerm[self.getCMonth()]!
         } else {
-            switch self.getCMonth() {
-            case 11:
-                return "dongzhi (冬至)"
-            case 12:
-                return "dahan (大寒)"
-            case 1:
-                return "yushui (雨水)"
-            case 2:
-                return "chunfen (春分)"
-            case 3:
-                return "guyu (谷雨)"
-            case 4:
-                return "xiaoman (小满)"
-            case 5:
-                return "xiazhi (夏至)"
-            case 6:
-                return "dashu (大暑)"
-            case 7:
-                return "chushu (处暑)"
-            case 8:
-                return "qiufen (秋分)"
-            case 9:
-                return "shuangjiang (霜降)"
-            case 10:
-                return "xiaoxue (小雪)"
-            default:
-                return ""
-            }
+            let solarTerm = [11:"dongzhi (冬至)", 12:"dahan (大寒)", 1:"yushui (雨水)", 2:"chunfen (春分)", 3:"guyu (谷雨)", 4:"xiaoman (小满)",
+                             5:"xiazhi (夏至)", 6:"dashu (大暑)", 7:"chushu (处暑)", 8:"qiufen (秋分)", 9:"shuangjiang (霜降)", 10:"xiaoxue (小雪)"]
+            return solarTerm[self.getCMonth()]!
         }
     }
     
     func getSeason() -> String {
         let cMonth = self.getCMonth()
-
         if cMonth < 4 {
             return "Spring"
         } else if cMonth > 4 && cMonth < 7 {
@@ -385,5 +283,28 @@ extension Int {
         let date = calendar.date(from: dateComponents)!
         let range = calendar.range(of: .day, in: .month, for: date)!
         return range.count
+    }
+}
+
+extension DetailsVC {
+    func match(person1: Int, person2: Int) -> Int {
+        let match = [[2,6,2,6,6,3,1,4,5,1,5,5],
+                     [6,2,1,5,1,6,1,1,2,6,5,4],
+                     [2,1,1,2,6,1,6,3,1,5,5,6],
+                     [6,5,2,2,2,1,2,6,6,1,6,6],
+                     [6,1,6,2,3,6,2,1,5,5,1,3],
+                     [3,6,1,1,6,1,3,1,3,6,2,1],
+                     [1,1,6,2,2,3,1,6,2,1,2,5],
+                     [4,1,3,6,1,1,6,5,5,2,1,6],
+                     [5,6,1,6,5,3,2,5,3,2,5,1],
+                     [1,6,5,1,5,6,1,2,2,1,1,2],
+                     [5,2,5,6,1,2,2,1,5,1,2,5],
+                     [5,4,6,6,3,1,5,6,1,2,5,3]]
+        return match[person1 - 1][person2 - 1]
+    }
+    
+    func getZodiac(fromIndex: Int) -> String {
+        let zodiac = [1:"Rat", 2:"Ox", 3:"Tiger", 4:"Rabbit", 5:"Dragon", 6:"Snake", 7:"Horse", 8:"Goat", 9:"Monkey", 10:"Rooster", 11:"Dog", 12:"Pig"]
+        return zodiac[fromIndex]!
     }
 }

@@ -67,7 +67,17 @@ class DetailsVC: UIViewController {
             // MARK: Solar Term
             solarTermLbl.text = birthdate.getSolarTerm()
             fixedElementLbl.text = birthdate.getFixedElement()
-      
+            var compatibility = ""
+            let zodiacRank = Int(person.zodiac)
+            for i in 1...12 {
+                let bestZodiacForSelf = self.match(person1: zodiacRank, person2: i)
+                if bestZodiacForSelf == 6 {
+                    compatibility += "\(self.getZodiac(fromIndex: i)), "
+                }
+            }
+            let last2Chars = compatibility.index(compatibility.endIndex, offsetBy: -2)
+            compatibility.removeSubrange(last2Chars..<compatibility.endIndex)
+            compatibilityLbl.text = compatibility
         }
     }
 

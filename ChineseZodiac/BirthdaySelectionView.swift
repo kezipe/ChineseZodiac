@@ -199,7 +199,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             let birthdate = dateComponents.date
             person.birthdate = birthdate as NSDate?
             person.name = nameField.text
-            person.zodiac = birthdate!.getZodiacRank()
+            person.zodiac = Int16(birthdate!.getZodiacRank())
             ad.saveContext()
             
             performSegue(withIdentifier: "ToZodiacSignView", sender: dateComponents.date)
