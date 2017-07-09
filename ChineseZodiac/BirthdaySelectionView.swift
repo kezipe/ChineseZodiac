@@ -111,6 +111,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         //        print(ad.persistentContainer.persistentStoreDescriptions.first?.url! ?? "")
         
         dateSelector = storyboard?.instantiateViewController(withIdentifier: "DateSelectorVC") as? DateSelectorVC
@@ -139,8 +140,11 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             dateSelector?.day = Int(df.string(from: birthdate))!
             print("Loaded person's birth day: \(String(describing: dateSelector?.day))")
             nameField.text = person.name
+            
             if person.name == "" || person.name == nil {
                 nameLbl.text = "Tap to select a birthday:"
+            } else if (person.name?.characters.count)! > 16 {
+                nameLbl.text = "Birthday:"
             } else {
                 nameLbl.text = "\(person.name ?? "")'s birthday:"
             }
@@ -239,9 +243,14 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     @IBAction func nameFieldEditingChanged(_ sender: Any) {
         if nameField.text != "" {
             nameWarningLbl.isHidden = true
-            nameLbl.text = "\(nameField.text ?? "")'s birthday:"
+            if (nameField.text?.characters.count)! > 16 {
+                nameLbl.text = "Birthday:"
+            } else {
+                nameLbl.text = "\(nameField.text ?? "")'s birthday:"
+            }
         } else {
             nameWarningLbl.isHidden = false
+            nameLbl.text = ""
         }
     }
     

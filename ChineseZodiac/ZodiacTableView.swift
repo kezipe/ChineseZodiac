@@ -179,6 +179,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
                 if let persons = sender as? [Person] {
                     destination.persons = persons
                 }
+                destination.popoverPresentationController?.backgroundColor = UIColor(red: 249.0/255, green: 211.0/255, blue: 65.0/255, alpha: 0.5)
                 destination.popoverPresentationController?.delegate = self
             }
         }
@@ -194,6 +195,5 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
         // return UIModalPresentationStyle.FullScreen
         return UIModalPresentationStyle.none
     }
-    
 }
 

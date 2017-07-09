@@ -41,14 +41,14 @@ class DateSelectorVC: UIViewController {
         switch dateComponentsSelectionMode! {
         case .monthMode:
             if !firstLoadedM {
-                row = 4
+                row = 0
                 firstLoadedM = true
             } else {
                 row = self.month! - 1
             }
         case .dayMode:
             if !firstLoadedD {
-                row = 4
+                row = 0
                 firstLoadedD = true
             } else {
                 row = self.day! - 1
