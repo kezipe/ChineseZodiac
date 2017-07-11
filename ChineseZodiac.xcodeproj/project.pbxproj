@@ -27,6 +27,7 @@
 		0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E2931EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld */; };
 		0AD4E2971EDDD22400A92F65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4E2961EDDD22400A92F65 /* Assets.xcassets */; };
 		0AD4E29A1EDDD22400A92F65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4E2981EDDD22400A92F65 /* LaunchScreen.storyboard */; };
+		0AEF81F31F1511DE00A510AB /* SSCheckMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF81F21F1511DE00A510AB /* SSCheckMark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		0AD4E2961EDDD22400A92F65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AD4E2991EDDD22400A92F65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AD4E29B1EDDD22400A92F65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AEF81F21F1511DE00A510AB /* SSCheckMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSCheckMark.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */,
 				0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */,
 				0A8D2AD51F118F63007B8D64 /* PersonColCell.swift */,
+				0AEF81F21F1511DE00A510AB /* SSCheckMark.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				0A69F4741EE34D8200A0176D /* SegueFromLeft.swift in Sources */,
 				0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */,
 				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,
+				0AEF81F31F1511DE00A510AB /* SSCheckMark.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
 				0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */,
 				0A69F46E1EE3426C00A0176D /* ZodiacSignView.swift in Sources */,

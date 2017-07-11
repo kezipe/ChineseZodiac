@@ -12,7 +12,8 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     @IBOutlet weak var collectionView: UICollectionView!
 
     var persons: [Person]!
-    
+    var selectedPersons: [Person]!
+    var selected = false
 
     
     override func viewDidLoad() {
@@ -25,11 +26,19 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonColCell", for: indexPath) as! PersonColCell
         cell.configureCell(person: persons[indexPath.row])
+        cell.checkMarkView.checked = selected
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return persons.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selected = !selected
+        print("\(selected ? "Seleted" : "Deselected")")
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonColCell", for: indexPath) as! PersonColCell
+//        cell.selectCell()
     }
 
 
