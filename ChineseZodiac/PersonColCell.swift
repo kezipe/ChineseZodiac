@@ -8,32 +8,35 @@
 
 import UIKit
 
+protocol PersonColCellDelegate {
+    func toggleSelectionOfButton(forCell: PersonColCell)
+}
+
 class PersonColCell: UICollectionViewCell {
     @IBOutlet weak var zodiacImg: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var checkMarkImg: UIImageView!
     
-    var checkMarkView: SSCheckMark!
+    var button: UIButton!
+    var delegate: PersonColCellDelegate? = nil
+    var person: Person?
 
+    
     func configureCell(person: Person) {
+        self.person = person
         nameLbl.text = person.name
         let birthday = person.birthdate! as Date
         zodiacImg.image = UIImage(named: "\(birthday.getZodiac())_thumb")
-        checkMarkView = SSCheckMark(frame: CGRect(x: frame.width - 40, y: 10, width: 35, height: 35))
-        checkMarkView.backgroundColor = UIColor.clear
-        print("checkMarkView initialized")
-        self.addSubview(checkMarkView)
-    }
-    
-    func selectCell() {
-        checkMarkImg.isHidden = false
-    }
-    
-    func deselectCell() {
-        checkMarkImg.isHidden = true
+        button = UIButton(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.width))
+        button.backgroundColor = UIColor.clear
+        button.clipsToBounds = true
+        button.addTarget(self, action: #selector(toggleSelection), for: .touchUpInside)
+        contentView.addSubview(button)
     }
     
     func toggleSelection() {
-        checkMarkImg.isHidden = !checkMarkImg.isHidden
+        print("toggling visibility")
+        delegate?.toggleSelectionOfButton(forCell: self)
     }
+
 }

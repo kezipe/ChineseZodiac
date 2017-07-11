@@ -12,7 +12,7 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     @IBOutlet weak var collectionView: UICollectionView!
 
     var persons: [Person]!
-    var selectedPersons: [Person]!
+    var selectedPersons: Set<Person> = []
     var selected = false
 
     
@@ -26,7 +26,7 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonColCell", for: indexPath) as! PersonColCell
         cell.configureCell(person: persons[indexPath.row])
-        cell.checkMarkView.checked = selected
+        cell.delegate = self
         return cell
     }
     
@@ -35,11 +35,23 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selected = !selected
-        print("\(selected ? "Seleted" : "Deselected")")
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonColCell", for: indexPath) as! PersonColCell
-//        cell.selectCell()
+   
     }
 
 
+}
+
+extension MatchVC: PersonColCellDelegate {
+    
+    func toggleSelectionOfButton(forCell: PersonColCell) {
+        forCell.checkMarkImg.isHidden = !forCell.checkMarkImg.isHidden
+        if selectedPersons.contains(forCell.person!) {
+            selectedPersons.remove(forCell.person!)
+        } else {
+            selectedPersons.insert(forCell.person!)
+        }
+        for p in selectedPersons {
+            print("\(p.name ?? "Error at \(p)")")
+        }
+    }
 }
