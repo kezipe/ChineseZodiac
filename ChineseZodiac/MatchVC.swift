@@ -13,7 +13,6 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
 
     var persons: [Person]!
     var selectedPersons: Set<Person> = []
-    var selected = false
 
     
     override func viewDidLoad() {
@@ -33,10 +32,6 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return persons.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-   
-    }
 
 
 }
@@ -44,11 +39,14 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
 extension MatchVC: PersonColCellDelegate {
     
     func toggleSelectionOfButton(forCell: PersonColCell) {
-        forCell.checkMarkImg.isHidden = !forCell.checkMarkImg.isHidden
-        if selectedPersons.contains(forCell.person!) {
-            selectedPersons.remove(forCell.person!)
-        } else {
-            selectedPersons.insert(forCell.person!)
+        if let person = forCell.person {
+            if selectedPersons.contains(person) {
+                selectedPersons.remove(person)
+                forCell.checkMarkImg.isHidden = true
+            } else {
+                selectedPersons.insert(person)
+                forCell.checkMarkImg.isHidden = false
+            }
         }
         for p in selectedPersons {
             print("\(p.name ?? "Error at \(p)")")
