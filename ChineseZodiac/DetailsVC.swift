@@ -70,9 +70,9 @@ class DetailsVC: UIViewController {
             var compatibility = ""
             let zodiacRank = Int(person.zodiac)
             for i in 1...12 {
-                let bestZodiacForSelf = self.match(person1: zodiacRank, person2: i)
+                let bestZodiacForSelf = Helper.match(person1: zodiacRank, person2: i)
                 if bestZodiacForSelf == 6 {
-                    compatibility += "\(self.getZodiac(fromIndex: i)), "
+                    compatibility += "\(Helper.getZodiac(fromIndex: i)), "
                 }
             }
             let last2Chars = compatibility.index(compatibility.endIndex, offsetBy: -2)
@@ -121,14 +121,5 @@ class DetailsVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

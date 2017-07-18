@@ -10,10 +10,10 @@ import UIKit
 
 class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     var persons: [Person]!
     var selectedPersons: Set<Person> = []
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,35 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return persons.count
     }
-
-
+    
+    @IBAction func matchButtonPressed(_ sender: Any) {
+        let sender: Any!
+        if selectedPersons.isEmpty {
+            sender = persons
+        }
+        else {
+            sender = Array(self.selectedPersons)
+        }
+        performSegue(withIdentifier: "MatchResultVCSegue", sender: sender)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MatchResultVCSegue" {
+            if let destination = segue.destination as? MatchResultVC {
+                if let sender = sender as? [Person] {
+                    destination.persons = sender
+                    destination.everyOne = self.persons!
+                }
+            }
+        }
+    }
+    
+    
+    
 }
 
 extension MatchVC: PersonColCellDelegate {

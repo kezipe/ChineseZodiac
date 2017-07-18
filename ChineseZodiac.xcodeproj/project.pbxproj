@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0192D41F1E4B1C00172FE5 /* MatchResultLonerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0192D31F1E4B1C00172FE5 /* MatchResultLonerCell.swift */; };
+		0A0BA11F1F1C0AEA005D4567 /* MatchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */; };
+		0A0BA1211F1C0B3F005D4567 /* MatchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */; };
+		0A0BA1231F1C0DE5005D4567 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1221F1C0DE5005D4567 /* Helper.swift */; };
+		0A0BA1261F1C118F005D4567 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1251F1C118F005D4567 /* Match.swift */; };
 		0A10DA7C1F0C945C00ED645A /* DateSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */; };
 		0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14631F1F0B55440043AA46 /* DetailsVC.swift */; };
 		0A1463221F0C4B770043AA46 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */; };
@@ -27,10 +32,14 @@
 		0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E2931EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld */; };
 		0AD4E2971EDDD22400A92F65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4E2961EDDD22400A92F65 /* Assets.xcassets */; };
 		0AD4E29A1EDDD22400A92F65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4E2981EDDD22400A92F65 /* LaunchScreen.storyboard */; };
-		0AEF81F31F1511DE00A510AB /* SSCheckMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF81F21F1511DE00A510AB /* SSCheckMark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A0192D31F1E4B1C00172FE5 /* MatchResultLonerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResultLonerCell.swift; sourceTree = "<group>"; };
+		0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResultVC.swift; sourceTree = "<group>"; };
+		0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResultCell.swift; sourceTree = "<group>"; };
+		0A0BA1221F1C0DE5005D4567 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		0A0BA1251F1C118F005D4567 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectorVC.swift; sourceTree = "<group>"; };
 		0A14631F1F0B55440043AA46 /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -53,7 +62,6 @@
 		0AD4E2961EDDD22400A92F65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AD4E2991EDDD22400A92F65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AD4E29B1EDDD22400A92F65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AEF81F21F1511DE00A510AB /* SSCheckMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSCheckMark.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A0BA1271F1C1193005D4567 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A0BA1251F1C118F005D4567 /* Match.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		0A69F4691EE341E500A0176D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +92,8 @@
 				0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */,
 				0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */,
 				0A8D2AD51F118F63007B8D64 /* PersonColCell.swift */,
-				0AEF81F21F1511DE00A510AB /* SSCheckMark.swift */,
+				0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */,
+				0A0192D31F1E4B1C00172FE5 /* MatchResultLonerCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -93,6 +110,8 @@
 				0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */,
 				0A8D2AD71F119117007B8D64 /* MatchVC.swift */,
 				0A8D2AD91F119856007B8D64 /* PopoverVC.swift */,
+				0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */,
+				0A0BA1221F1C0DE5005D4567 /* Helper.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -118,6 +137,7 @@
 			children = (
 				0A69F46A1EE341F400A0176D /* Controller */,
 				0A69F4691EE341E500A0176D /* View */,
+				0A0BA1271F1C1193005D4567 /* Model */,
 				0AD4E2901EDDD22400A92F65 /* Main.storyboard */,
 				0AD4E2961EDDD22400A92F65 /* Assets.xcassets */,
 				0AD4E2981EDDD22400A92F65 /* LaunchScreen.storyboard */,
@@ -206,10 +226,13 @@
 				0A69F4741EE34D8200A0176D /* SegueFromLeft.swift in Sources */,
 				0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */,
 				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,
-				0AEF81F31F1511DE00A510AB /* SSCheckMark.swift in Sources */,
+				0A0192D41F1E4B1C00172FE5 /* MatchResultLonerCell.swift in Sources */,
+				0A0BA1231F1C0DE5005D4567 /* Helper.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
 				0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */,
+				0A0BA1211F1C0B3F005D4567 /* MatchResultCell.swift in Sources */,
 				0A69F46E1EE3426C00A0176D /* ZodiacSignView.swift in Sources */,
+				0A0BA11F1F1C0AEA005D4567 /* MatchResultVC.swift in Sources */,
 				0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */,
 				0A8D2AD61F118F63007B8D64 /* PersonColCell.swift in Sources */,
 				0A1463241F0C8A5F0043AA46 /* PickerView.swift in Sources */,
@@ -217,6 +240,7 @@
 				0A69F46D1EE3426C00A0176D /* BirthdaySelectionView.swift in Sources */,
 				0A1463221F0C4B770043AA46 /* UIViewControllerExtension.swift in Sources */,
 				0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */,
+				0A0BA1261F1C118F005D4567 /* Match.swift in Sources */,
 				0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */,
 				0A10DA7C1F0C945C00ED645A /* DateSelectorVC.swift in Sources */,
 			);
@@ -345,8 +369,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3WM87N8XYQ;
 				INFOPLIST_FILE = ChineseZodiac/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.monorailapps.ChineseZodiac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MonorailApps.ChineseZodiac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -358,8 +383,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3WM87N8XYQ;
 				INFOPLIST_FILE = ChineseZodiac/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.monorailapps.ChineseZodiac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MonorailApps.ChineseZodiac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

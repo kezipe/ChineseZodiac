@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension Date {
-    func format(calendarId: Calendar.Identifier) -> String {
+public extension Date {
+    public func format(calendarId: Calendar.Identifier) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, YYYY"
         dateFormatter.calendar = Calendar(identifier: calendarId)
@@ -21,7 +21,7 @@ extension Date {
         }
     }
     
-    func toChinese() -> Date {
+    public func toChinese() -> Date {
         let chinese = Calendar(identifier: Calendar.Identifier.chinese)
         var dateComponents = DateComponents()
         dateComponents.year = chinese.component(.year, from: self)
@@ -30,7 +30,7 @@ extension Date {
         return chinese.date(from: dateComponents)!
     }
     
-    func getZodiacChar() -> String {
+    public func getZodiacChar() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
@@ -41,7 +41,7 @@ extension Date {
         return "\(newFormattedDate[zodiac])"
     }
     
-    func getZodiac() -> String {
+    public func getZodiac() -> String {
         switch self.getZodiacChar() {
         case "子":
             return "Rat"
