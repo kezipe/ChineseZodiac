@@ -15,10 +15,6 @@ class DateSelectorVC: UIViewController {
 
     var dateComponentsSelectionMode: BirthdaySelectionView.DateComponentSelectionMode?
     
-    var firstLoadedM = false
-    var firstLoadedD = false
-    var firstLoadedY = false
-    
     override func viewDidLoad() {
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -33,30 +29,24 @@ class DateSelectorVC: UIViewController {
     
     
     func updateUI() {
-//        print("Day has \(firstLoadedD ? "" : "not ")been loaded.")
-//        print("Month has \(firstLoadedD ? "" : "not ")been loaded.")
-//        print("Year has \(firstLoadedD ? "" : "not ")been loaded.")
         let row: Int!
         print("DateSelector's self.month is \(String(describing: self.month))")
         switch dateComponentsSelectionMode! {
         case .monthMode:
-            if !firstLoadedM {
+            if month == nil {
                 row = 0
-                firstLoadedM = true
             } else {
                 row = self.month! - 1
             }
         case .dayMode:
-            if !firstLoadedD {
+            if day == nil {
                 row = 0
-                firstLoadedD = true
             } else {
                 row = self.day! - 1
             }
         case .yearMode:
-            if !firstLoadedY {
+            if year == nil {
                 row = 1999
-                firstLoadedY = true
             } else {
                 row = self.year! - 1
             }
