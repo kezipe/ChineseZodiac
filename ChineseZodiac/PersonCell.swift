@@ -14,7 +14,6 @@ class PersonCell: UITableViewCell {
     
     @IBOutlet weak var zodiacLbl: UILabel!
     
-    @IBOutlet weak var birthdateLbl: UILabel!
     
     @IBOutlet weak var zodiacImg: UIImageView!
     
@@ -22,10 +21,6 @@ class PersonCell: UITableViewCell {
         personLbl.text = person.name
         let zodiac = person.birthdate! as Date
         zodiacLbl.text = zodiac.getZodiac()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy"
-        let birthdateString = dateFormatter.string(from: zodiac)
-        birthdateLbl.text = birthdateString
         zodiacImg.image = UIImage(named: "\(zodiac.getZodiac())_thumb")
     }
 }

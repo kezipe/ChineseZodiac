@@ -19,18 +19,14 @@ class Match {
     
     init(persons: [Person]) {
         self.persons = persons
-        personZodiacs = [Person]()
-        
-        for p in self.persons! {
-            personZodiacs.append(p)
-        }
+        personZodiacs = persons
         
         if personZodiacs.count % 2 != 0 {
             print(personZodiacs.count % 2)
             let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context)
             let p = Person.init(entity: entityDescription!, insertInto: nil)
             p.zodiac = 13
-            p.name = ":("
+            p.name = ""
             personZodiacs.append(p)
         }
         
@@ -54,8 +50,15 @@ class Match {
                 }
             }
         }
+
+        var perfectMatches = [[Person]]()
+        var complimentary = [[Person]]()
+        var goodFriend = [[Person]]()
+        var gmoe = [[Person]]()
+        var average = [[Person]]()
+        var poor = [[Person]]()
         
-        var pairings = [[Person]]()
+        
         for i in stride(from: 0, to: pairingPersons.count - 1, by: 2) {
             print("Person has \(pairingPersons[i].zodiac)")
             print("Person has \(pairingPersons[i + 1].zodiac)")
@@ -64,11 +67,25 @@ class Match {
             } else if pairingPersons[i + 1].zodiac == 13 {
                 loner = pairingPersons[i]
             } else {
-                pairings.append([pairingPersons[i], pairingPersons[i + 1]])
+                switch Helper.match(person1: Int(pairingPersons[i].zodiac), person2: Int(pairingPersons[i + 1].zodiac)) {
+                case 6:
+                    perfectMatches.append([pairingPersons[i], pairingPersons[i + 1]])
+                case 5:
+                    complimentary.append([pairingPersons[i], pairingPersons[i + 1]])
+                case 4:
+                    gmoe.append([pairingPersons[i], pairingPersons[i + 1]])
+                case 3:
+                    goodFriend.append([pairingPersons[i], pairingPersons[i + 1]])
+                case 2:
+                    average.append([pairingPersons[i], pairingPersons[i + 1]])
+                case 1:
+                    poor.append([pairingPersons[i], pairingPersons[i + 1]])
+                default:
+                    break
+                }
             }
         }
-        
-        matches = pairings
+        matches = perfectMatches + complimentary + goodFriend + gmoe + average + poor
     }
     
     

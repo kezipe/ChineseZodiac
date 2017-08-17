@@ -24,6 +24,8 @@ class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             self.loner = loner
 //            print("Loner is \(self.loner!.name ?? "No Loner")")
         }
+        
+        
 
         tableView.delegate = self
         tableView.dataSource = self
