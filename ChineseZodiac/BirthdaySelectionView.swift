@@ -154,7 +154,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "BackHome", sender: nil)
     }
     
     
