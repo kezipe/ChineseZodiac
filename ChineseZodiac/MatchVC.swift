@@ -38,11 +38,13 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         if selectedPersons.isEmpty {
             sender = persons
         }
-        else {
+        else if self.selectedPersons.count <= 10 {
             sender = Array(self.selectedPersons)
+        } else {
+            displayMessage("Please choose 10 or less persons to match")
+            return
         }
         performSegue(withIdentifier: "MatchResultVCSegue", sender: sender)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,6 +61,24 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     
+    func displayMessage(_ msg: String) {
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        let label = UILabel(frame: CGRect(x: screenWidth / 2, y: screenHeight - 120 - 21, width: 300, height: 21))
+        label.center = CGPoint(x: screenWidth / 2, y: screenHeight - 120 - 21)
+        label.textAlignment = .center
+        let attrMessage = NSMutableAttributedString(
+            string: msg,
+            attributes: [NSFontAttributeName:UIFont(
+                name: "Helvetica-Bold",
+                size: 12.0)!])
+        attrMessage.addAttribute(NSForegroundColorAttributeName,
+                                 value: Helper.color3,
+                                 range: NSRange(location: 0, length: msg.characters.count))
+        label.attributedText = attrMessage
+        self.view.addSubview(label)
+    }
     
     
 }
@@ -73,23 +93,7 @@ extension MatchVC: PersonColCellDelegate {
             } else {
 //                print("Selected Persons Count (before) = \(String(describing:self.selectedPersons.count))")
                 if self.selectedPersons.count >= 10 {
-                    let screenSize = UIScreen.main.bounds
-                    let screenWidth = screenSize.width
-                    let screenHeight = screenSize.height
-                    let label = UILabel(frame: CGRect(x: screenWidth / 2, y: screenHeight - 120 - 21, width: 300, height: 21))
-                    label.center = CGPoint(x: screenWidth / 2, y: screenHeight - 120 - 21)
-                    label.textAlignment = .center
-                    let message = "You must choose 10 or less persons to match"
-                    let attrMessage = NSMutableAttributedString(
-                        string: message,
-                        attributes: [NSFontAttributeName:UIFont(
-                            name: "Helvetica-Bold",
-                            size: 12.0)!])
-                    attrMessage.addAttribute(NSForegroundColorAttributeName,
-                                             value: Helper.color3,
-                                             range: NSRange(location: 0, length: message.characters.count))
-                    label.attributedText = attrMessage
-                    self.view.addSubview(label)
+                    displayMessage("You must choose 10 or less persons to match")
                 } else {
                     selectedPersons.insert(person)
                     forCell.checkMarkImg.isHidden = false
