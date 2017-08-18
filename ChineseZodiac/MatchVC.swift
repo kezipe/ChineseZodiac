@@ -71,8 +71,30 @@ extension MatchVC: PersonColCellDelegate {
                 selectedPersons.remove(person)
                 forCell.checkMarkImg.isHidden = true
             } else {
-                selectedPersons.insert(person)
-                forCell.checkMarkImg.isHidden = false
+//                print("Selected Persons Count (before) = \(String(describing:self.selectedPersons.count))")
+                if self.selectedPersons.count >= 10 {
+                    let screenSize = UIScreen.main.bounds
+                    let screenWidth = screenSize.width
+                    let screenHeight = screenSize.height
+                    let label = UILabel(frame: CGRect(x: screenWidth / 2, y: screenHeight - 120 - 21, width: 300, height: 21))
+                    label.center = CGPoint(x: screenWidth / 2, y: screenHeight - 120 - 21)
+                    label.textAlignment = .center
+                    let message = "You must choose 10 or less persons to match"
+                    let attrMessage = NSMutableAttributedString(
+                        string: message,
+                        attributes: [NSFontAttributeName:UIFont(
+                            name: "Helvetica-Bold",
+                            size: 12.0)!])
+                    attrMessage.addAttribute(NSForegroundColorAttributeName,
+                                             value: Helper.color3,
+                                             range: NSRange(location: 0, length: message.characters.count))
+                    label.attributedText = attrMessage
+                    self.view.addSubview(label)
+                } else {
+                    selectedPersons.insert(person)
+                    forCell.checkMarkImg.isHidden = false
+                }
+//                print("Selected Persons Count (after) = \(String(describing:self.selectedPersons.count))")
             }
         }
         for p in selectedPersons {

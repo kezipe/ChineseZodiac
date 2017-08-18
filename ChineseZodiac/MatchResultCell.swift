@@ -32,6 +32,17 @@ class MatchResultCell: UITableViewCell {
         
         person2Zodiac.image = UIImage(named: "\(Helper.getZodiac(fromIndex: p2Zodiac))")
         person2Name.text = pair[1].name
+        
+        layer.cornerRadius = 8.0
+        
+        guard score == 6 else {
+            return
+        }
+        layer.borderWidth = 2.0
+        layer.borderColor = Helper.color2.cgColor
+        matchScoreLbl.textColor = Helper.color2
+        
+        
     }
 
 }

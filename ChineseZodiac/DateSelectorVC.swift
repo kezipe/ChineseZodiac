@@ -18,8 +18,8 @@ class DateSelectorVC: UIViewController {
     override func viewDidLoad() {
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 122.0/255, alpha: 1.0)
-        pickerView.tintColor = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
+        pickerView.backgroundColor = Helper.color
+        pickerView.tintColor = Helper.color2
     }
     
     override func viewWillAppear(_ animated: Bool) {
