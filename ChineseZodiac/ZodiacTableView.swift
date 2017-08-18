@@ -166,6 +166,19 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
         performSegue(withIdentifier: "DetailsVC", sender: persons[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.layer.backgroundColor = Helper.color4.cgColor
+        cell?.layer.cornerRadius = 8.0
+    }
+
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.layer.backgroundColor = Helper.color5.cgColor
+        cell?.layer.cornerRadius = 8.0
+    }
+    
     // MARK: Prepare for segue and Popover
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsVC" {
@@ -195,5 +208,5 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
         // return UIModalPresentationStyle.FullScreen
         return UIModalPresentationStyle.none
     }
+    
 }
-

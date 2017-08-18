@@ -12,6 +12,8 @@ class Helper {
     static let color = UIColor(red: 1.0, green: 1.0, blue: 122.0/255, alpha: 1.0)
     static let color2 = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
     static let color3 = UIColor(red: 216.0/255, green: 149.0/255, blue: 49.0/255, alpha: 1.0)
+    static let color4 = UIColor(red: 255.0/255, green: 255.0/255, blue: 155.0/255, alpha: 1.0)
+    static let color5 = UIColor(red: 255.0/255, green: 255.0/255, blue: 102.0/255, alpha: 1.0)
     
     static func match(person1: Int, person2: Int) -> Int {
         let match = [[2,6,2,6,6,3,1,4,5,1,5,5,0],
