@@ -23,5 +23,8 @@ class PopoverVC: UIViewController {
         present(matchVC!, animated: true, completion: nil)
     }
 
+    @IBAction func ToBirthdaySelectionButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "ToBirthdaySelectionSegue", sender: nil)
+    }
 
 }

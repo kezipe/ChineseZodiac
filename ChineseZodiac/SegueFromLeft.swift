@@ -1,14 +1,23 @@
+//
+//  SegueFromLeft.swift
+//  ChineseZodiac
+//
+//  Created by Kevin on 2017-08-18.
+//  Copyright © 2017 Monorail Apps. All rights reserved.
+//
+
 import UIKit
 
-class SegueFromRight: UIStoryboardSegue
+class SegueFromLeft: UIStoryboardSegue
 {
     override func perform()
     {
         let src = self.source
         let dst = self.destination
+
         
         src.view.superview?.insertSubview(dst.view, aboveSubview: src.view)
-        dst.view.transform = CGAffineTransform(translationX: src.view.frame.size.width, y: 0)
+        dst.view.transform = CGAffineTransform(translationX: -src.view.frame.size.width, y: 0)
         
         UIView.animate(withDuration: 0.25,
                        delay: 0.0,
