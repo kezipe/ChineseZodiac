@@ -28,7 +28,24 @@ class MatchResultCell: UITableViewCell {
         person1Zodiac.image = UIImage(named: "\(Helper.getZodiac(fromIndex: p1Zodiac))")
         person1Name.text = pair[0].name
         
-        matchScoreLbl.text = match[score]
+        let compatibility = match[score]
+        
+        var matchScoreLblTextSize: CGFloat
+        
+        switch score {
+        case 6:
+            matchScoreLblTextSize = 15.0
+        case 5:
+            matchScoreLblTextSize = 9.0
+        case 4, 3:
+            matchScoreLblTextSize = 12.0
+        default:
+            matchScoreLblTextSize = 13.0
+        }
+
+        let attrCompatibility = NSAttributedString(string: compatibility!, attributes: [NSFontAttributeName:UIFont.systemFont(ofSize: matchScoreLblTextSize)])
+        
+        matchScoreLbl.attributedText = attrCompatibility
         
         person2Zodiac.image = UIImage(named: "\(Helper.getZodiac(fromIndex: p2Zodiac))")
         person2Name.text = pair[1].name

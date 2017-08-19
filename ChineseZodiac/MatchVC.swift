@@ -35,15 +35,21 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     @IBAction func matchButtonPressed(_ sender: Any) {
         let sender: Any!
+    
         if selectedPersons.isEmpty {
-            sender = persons
-        }
-        else if self.selectedPersons.count <= 10 {
+            if persons.count <= 10 {
+                sender = persons
+            } else {
+                displayMessage("Please choose 10 or less persons to match")
+                return
+            }
+        } else if self.selectedPersons.count <= 10 {
             sender = Array(self.selectedPersons)
         } else {
             displayMessage("Please choose 10 or less persons to match")
             return
         }
+
         performSegue(withIdentifier: "MatchResultVCSegue", sender: sender)
     }
     
@@ -65,19 +71,25 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        let label = UILabel(frame: CGRect(x: screenWidth / 2, y: screenHeight - 120 - 21, width: 300, height: 21))
+        let label = UILabel(frame: CGRect(x: screenWidth / 2, y: screenHeight - 120 - 21, width: 280, height: 20))
         label.center = CGPoint(x: screenWidth / 2, y: screenHeight - 120 - 21)
         label.textAlignment = .center
+        label.layer.cornerRadius = 10
+        label.layer.backgroundColor = Helper.color2.cgColor
+        
         let attrMessage = NSMutableAttributedString(
             string: msg,
             attributes: [NSFontAttributeName:UIFont(
                 name: "Helvetica-Bold",
                 size: 12.0)!])
         attrMessage.addAttribute(NSForegroundColorAttributeName,
-                                 value: Helper.color3,
+                                 value: Helper.color5,
                                  range: NSRange(location: 0, length: msg.characters.count))
         label.attributedText = attrMessage
         self.view.addSubview(label)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            label.removeFromSuperview()
+        }
     }
     
     
