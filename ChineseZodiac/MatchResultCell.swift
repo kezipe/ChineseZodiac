@@ -56,8 +56,8 @@ class MatchResultCell: UITableViewCell {
             return
         }
         layer.borderWidth = 2.0
-        layer.borderColor = Helper.color2.cgColor
-        matchScoreLbl.textColor = Helper.color2
+        layer.borderColor = Helper.colorRed.cgColor
+        matchScoreLbl.textColor = Helper.colorRed
         
         
     }

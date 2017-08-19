@@ -75,7 +75,7 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         label.center = CGPoint(x: screenWidth / 2, y: screenHeight - 120 - 21)
         label.textAlignment = .center
         label.layer.cornerRadius = 10
-        label.layer.backgroundColor = Helper.color2.cgColor
+        label.layer.backgroundColor = Helper.colorLightGreen.cgColor
         
         let attrMessage = NSMutableAttributedString(
             string: msg,
@@ -83,7 +83,7 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
                 name: "Helvetica-Bold",
                 size: 12.0)!])
         attrMessage.addAttribute(NSForegroundColorAttributeName,
-                                 value: Helper.color5,
+                                 value: Helper.colorGreen,
                                  range: NSRange(location: 0, length: msg.characters.count))
         label.attributedText = attrMessage
         self.view.addSubview(label)
