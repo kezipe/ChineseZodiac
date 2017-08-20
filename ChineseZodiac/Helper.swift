@@ -17,6 +17,7 @@ class Helper {
     static let color6 = UIColor(red: 249.0/255, green: 211.0/255, blue: 65.0/255, alpha: 1.0) // light mango color
     
     static let colorBlack = UIColor(red: 0, green: 16.0/255, blue: 25.0/255, alpha: 1.0)
+    static let colorBlue = UIColor(red: 69.0/255, green: 114.0/255, blue: 139.0/255, alpha: 1.0)
     static let colorRed = UIColor(red: 1.0, green: 54.0/255, blue: 97.0/255, alpha: 1.0)
     static let colorYellow = UIColor(red: 1.0, green: 221.0/255, blue: 53.0/255, alpha: 1.0)
     static let colorGreen = UIColor(red: 6/255, green: 201.0/255, blue: 155.0/255, alpha: 1.0)

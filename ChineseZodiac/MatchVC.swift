@@ -76,6 +76,8 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         label.textAlignment = .center
         label.layer.cornerRadius = 10
         label.layer.backgroundColor = Helper.colorLightGreen.cgColor
+        label.layer.borderColor = Helper.colorBlue.cgColor
+        label.layer.borderWidth = 1.0
         
         let attrMessage = NSMutableAttributedString(
             string: msg,
