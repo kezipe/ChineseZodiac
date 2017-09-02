@@ -89,7 +89,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
         // create a color from patter image and set the color as a background color of action
         let kActionImageSize: CGFloat = 34
         let view = UIView(frame: CGRect(x: 0, y: 0, width: kCellActionWidth, height: kCellHeight))
-        view.backgroundColor = UIColor(red: 249.0/255, green: 211.0/255, blue: 65.0/255, alpha: 1.0)
+        view.backgroundColor = Helper.colorGreen
         let imageView = UIImageView(frame: CGRect(x: (kCellActionWidth - kActionImageSize) / 2,
                                                   y: (kCellHeight - kActionImageSize) / 2,
                                                   width: 34,
@@ -184,7 +184,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
                 if let persons = sender as? [Person] {
                     destination.persons = persons
                 }
-                destination.popoverPresentationController?.backgroundColor = UIColor(red: 249.0/255, green: 211.0/255, blue: 65.0/255, alpha: 0.5)
+                destination.popoverPresentationController?.backgroundColor = Helper.colorGreen
                 destination.popoverPresentationController?.delegate = self
             }
         }
