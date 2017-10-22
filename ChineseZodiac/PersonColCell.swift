@@ -34,7 +34,7 @@ class PersonColCell: UICollectionViewCell {
         contentView.addSubview(button)
     }
     
-    func toggleSelection() {
+    @objc func toggleSelection() {
         print("PersonColCellDelegate: Toggling visibility of checkmark")
         delegate?.toggleSelectionOfButton(forCell: self)
     }
