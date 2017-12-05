@@ -22,7 +22,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     var dayChanged = true
     var yearChanged = true
     let defaultFontColor = UIColor.init(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
-    
+
     var dateSelector: DateSelectorVC?
     var personToEdit: Person?
     

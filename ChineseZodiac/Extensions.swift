@@ -82,7 +82,7 @@ extension Date {
             pos = 0
         }
         let index = formattedDate.index(formattedDate.startIndex, offsetBy: pos! + 2)
-        let yearWithStemBranch = formattedDate.substring(from: index)
+        let yearWithStemBranch = formattedDate[index...]
         
         // Year with Stem Branch separated:
         let leftBracket: Character = "("
@@ -95,11 +95,11 @@ extension Date {
             pos2 = 0
         }
         let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2!)
-        let stemBranchWithBrackets = yearWithStemBranch.substring(from: index2)
+        let stemBranchWithBrackets = yearWithStemBranch[index2...]
         let range = stemBranchWithBrackets.index(stemBranchWithBrackets.startIndex, offsetBy: 1)..<stemBranchWithBrackets.index(stemBranchWithBrackets.endIndex, offsetBy: -1)
-        let stemBranch = stemBranchWithBrackets.substring(with: range)
+        let stemBranch = stemBranchWithBrackets[range]
         
-        return stemBranch
+        return String(stemBranch)
     }
     
     func formatChineseCalendarDate() -> String{
@@ -122,7 +122,7 @@ extension Date {
             pos = 0
         }
         let index = formattedDate.index(formattedDate.startIndex, offsetBy: pos! + 2)
-        let yearWithStemBranch = formattedDate.substring(from: index)
+        let yearWithStemBranch = formattedDate[index...]
         
         // Year with Stem Branch separated:
         let leftBracket: Character = "("
@@ -135,7 +135,7 @@ extension Date {
             pos2 = 0
         }
         let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2!)
-        let year = yearWithStemBranch.substring(to: index2)
+        let year = yearWithStemBranch[...index2]
         
         // Month and Day
         let month = chinese.dateComponents([.month], from: self).month
@@ -163,7 +163,7 @@ extension Date {
             pos = 0
         }
         let index = formattedDate.index(formattedDate.startIndex, offsetBy: pos! + 2)
-        let yearWithStemBranch = formattedDate.substring(from: index)
+        let yearWithStemBranch = formattedDate[...index]
         
         // Year with Stem Branch separated:
         let leftBracket: Character = "("
@@ -176,7 +176,7 @@ extension Date {
             pos2 = 0
         }
         let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2!)
-        return Int(yearWithStemBranch.substring(to: index2))! + 2697
+        return Int(yearWithStemBranch[...index2])! + 2697
     }
     
     func getCMonth() -> Int {
