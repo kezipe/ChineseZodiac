@@ -19,7 +19,7 @@ class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        match = Match(persons: persons!)
+        match = Match(personsArray: persons!)
         if let loner = match.loner {
             self.loner = loner
 //            print("Loner is \(self.loner!.name ?? "No Loner")")

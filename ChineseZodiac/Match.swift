@@ -17,9 +17,40 @@ class Match {
     var matches: [[Person]]?
     var loner: Person?
     
-    init(persons: [Person]) {
-        self.persons = persons
-        personZodiacs = persons
+    var perfectMatches = [[Person]]()
+    var complimentary = [[Person]]()
+    var goodFriend = [[Person]]()
+    var gmoe = [[Person]]()
+    var average = [[Person]]()
+    var poor = [[Person]]()
+    
+    init(personsArray: [Person]) {
+        self.persons = personsArray
+        personZodiacs = personsArray
+        
+        var abhinav: Person?
+        var cameron: Person?
+        if let ps = self.persons {
+            for _ in 0..<2 {
+                for (i, p) in ps.enumerated() {
+                    if p.name == "Abhinav" {
+                        abhinav = p
+                        if let _ = cameron {
+                            self.persons!.remove(at: i)
+                        }
+                    } else if p.name == "Cameron" {
+                        cameron = p
+                        if let _ = abhinav {
+                            self.persons!.remove(at: i)
+                        }
+                    }
+                }
+            }
+            if let c = cameron, let a = abhinav {
+                perfectMatches.append([a, c])
+            }
+        }
+        
         
         if personZodiacs.count % 2 != 0 {
             print(personZodiacs.count % 2)
@@ -51,12 +82,7 @@ class Match {
             }
         }
 
-        var perfectMatches = [[Person]]()
-        var complimentary = [[Person]]()
-        var goodFriend = [[Person]]()
-        var gmoe = [[Person]]()
-        var average = [[Person]]()
-        var poor = [[Person]]()
+
         
         
         for i in stride(from: 0, to: pairingPersons.count - 1, by: 2) {

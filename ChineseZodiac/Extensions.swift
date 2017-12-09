@@ -9,7 +9,7 @@
 import Foundation
 
 extension Date {
-
+    
     
     func format(calendarId: Calendar.Identifier, dateFormat: String) -> String {
         let dateFormatter = DateFormatter()
@@ -40,7 +40,7 @@ extension Date {
         let newFormattedDate = dateFormatter.string(from: self)
         let numberCharacters = CharacterSet.decimalDigits
         var index = 0
-        for c in newFormattedDate.characters.enumerated() {
+        for c in newFormattedDate.enumerated() {
             let stringChar = String(c.element)
             if stringChar.rangeOfCharacter(from:numberCharacters) == nil {
                 break
@@ -74,8 +74,8 @@ extension Date {
         // Isolate for Year and Stem Branch
         let comma: Character = ","
         let pos: Int?
-        if let idx = formattedDate.characters.index(of: comma) {
-            pos = formattedDate.characters.distance(from: formattedDate.startIndex, to: idx)
+        if let idx = formattedDate.index(of: comma) {
+            pos = formattedDate.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
             print("Not found")
@@ -87,8 +87,8 @@ extension Date {
         // Year with Stem Branch separated:
         let leftBracket: Character = "("
         let pos2: Int?
-        if let idx = yearWithStemBranch.characters.index(of: leftBracket) {
-            pos2 = yearWithStemBranch.characters.distance(from: formattedDate.startIndex, to: idx)
+        if let idx = yearWithStemBranch.index(of: leftBracket) {
+            pos2 = yearWithStemBranch.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
             print("Not found")
@@ -114,8 +114,8 @@ extension Date {
         // Isolate for Year and Stem Branch
         let comma: Character = ","
         let pos: Int?
-        if let idx = formattedDate.characters.index(of: comma) {
-            pos = formattedDate.characters.distance(from: formattedDate.startIndex, to: idx)
+        if let idx = formattedDate.index(of: comma) {
+            pos = formattedDate.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
             print("Not found")
@@ -127,15 +127,15 @@ extension Date {
         // Year with Stem Branch separated:
         let leftBracket: Character = "("
         let pos2: Int?
-        if let idx = yearWithStemBranch.characters.index(of: leftBracket) {
-            pos2 = yearWithStemBranch.characters.distance(from: formattedDate.startIndex, to: idx)
+        if let idx = yearWithStemBranch.index(of: leftBracket) {
+            pos2 = yearWithStemBranch.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
             print("Not found")
             pos2 = 0
         }
         let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2!)
-        let year = yearWithStemBranch[...index2]
+        let year = yearWithStemBranch[..<index2]
         
         // Month and Day
         let month = chinese.dateComponents([.month], from: self).month
@@ -155,27 +155,28 @@ extension Date {
         // Isolate for Year and Stem Branch
         let comma: Character = ","
         let pos: Int?
-        if let idx = formattedDate.characters.index(of: comma) {
-            pos = formattedDate.characters.distance(from: formattedDate.startIndex, to: idx)
+        if let idx = formattedDate.index(of: comma) {
+            pos = formattedDate.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
             print("Not found")
             pos = 0
         }
         let index = formattedDate.index(formattedDate.startIndex, offsetBy: pos! + 2)
-        let yearWithStemBranch = formattedDate[...index]
+        let yearWithStemBranch = formattedDate[index...]
         
         // Year with Stem Branch separated:
         let leftBracket: Character = "("
         let pos2: Int?
-        if let idx = yearWithStemBranch.characters.index(of: leftBracket) {
-            pos2 = yearWithStemBranch.characters.distance(from: formattedDate.startIndex, to: idx)
+        if let idx = yearWithStemBranch.index(of: leftBracket) {
+            pos2 = yearWithStemBranch.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
             print("Not found")
             pos2 = 0
         }
-        let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2!)
+        let index2 = yearWithStemBranch.index(formattedDate.startIndex, offsetBy: pos2! - 1)
+        
         return Int(yearWithStemBranch[...index2])! + 2697
     }
     
@@ -285,4 +286,3 @@ extension Int {
         return range.count
     }
 }
-

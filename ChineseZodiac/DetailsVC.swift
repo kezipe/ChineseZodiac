@@ -58,7 +58,7 @@ class DetailsVC: UIViewController {
             if birthdate.getAhYear() > 1 {
                 adYearLbl.text = "\(birthdate.getAhYear()) AH"
             } else {
-                adYearLbl.text = "\(birthdate.getAhYear()) AH"
+                adYearLbl.text = "\(birthdate.getAhYear()) BH"
             }
             // MARK: Lunar Month
             lunarMonthLbl.text = birthdate.getLunarMonth()

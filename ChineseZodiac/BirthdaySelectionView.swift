@@ -26,15 +26,13 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     var dateSelector: DateSelectorVC?
     var personToEdit: Person?
     
-    
     @IBOutlet weak var monthLbl: UIButton!
     @IBOutlet weak var dayLbl: UIButton!
     @IBOutlet weak var yearLbl: UIButton!
     @IBOutlet weak var nameWarningLbl: UILabel!
-    
     @IBOutlet weak var nameLbl: UILabel!
-    
     @IBOutlet weak var nameField: UITextField!
+    
     @IBAction func monthSelection(_ sender: Any) {
         dateSelector?.dateComponentsSelectionMode = DateComponentSelectionMode.monthMode
         monthChanged = true
@@ -143,7 +141,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             
             if person.name == "" || person.name == nil {
                 nameLbl.text = "Tap to select a birthday:"
-            } else if (person.name?.characters.count)! > 16 {
+            } else if (person.name?.count)! > 16 {
                 nameLbl.text = "Birthday:"
             } else {
                 nameLbl.text = "\(person.name ?? "")'s birthday:"
@@ -200,10 +198,11 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
                 person = Person(context: context)
             }
             dateComponents.calendar = Calendar.current
-            let birthdate = dateComponents.date
-            person.birthdate = birthdate as NSDate?
-            person.name = nameField.text
-            person.zodiac = Int16(birthdate!.getZodiacRank())
+            if let birthdate = dateComponents.date {
+                person.birthdate = birthdate
+                person.name = nameField.text
+                person.zodiac = Int16(birthdate.getZodiacRank())
+            }
             ad.saveContext()
             
             performSegue(withIdentifier: "ToZodiacSignView", sender: dateComponents.date)
@@ -243,7 +242,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     @IBAction func nameFieldEditingChanged(_ sender: Any) {
         if nameField.text != "" {
             nameWarningLbl.isHidden = true
-            if (nameField.text?.characters.count)! > 16 {
+            if (nameField.text?.count)! > 16 {
                 nameLbl.text = "Birthday:"
             } else {
                 nameLbl.text = "\(nameField.text ?? "")'s birthday:"
