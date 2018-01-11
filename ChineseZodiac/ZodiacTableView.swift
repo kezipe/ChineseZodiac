@@ -64,15 +64,44 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.reloadData()
     }
     
-    
     // MARK: Cell Management
     
+    // iOS 11+
+    @available(iOS 11.0, *)
+    func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+        
+        let person = self.persons[indexPath.row]
+        
+        let action = UIContextualAction(style: .destructive, title: " ") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            context.delete(person)
+            ad.saveContext()
+            
+            do {
+                self.persons = try context.fetch(Person.fetchRequest())
+            } catch {
+                print("Fetching Failed")
+            }
+            self.retrieveData()
+            self.tableView.reloadData()
+        }
+        action.image = #imageLiteral(resourceName: "xSymbolW")
+        action.backgroundColor = Helper.colorGreen
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = self.contextualDeleteAction(forRowAtIndexPath: indexPath)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfig
+    }
+    // iOS 10 or lower
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let kCellActionWidth: CGFloat = 40.0
         let kCellHeight: CGFloat = 60
-        let whitespace = "  "
-        let deleteAction = UITableViewRowAction(style: .`default`, title: whitespace) { (action, indexPath) in
+        let whitespace = " "
+        let deleteAction = UITableViewRowAction(style: .default, title: whitespace) { (action, indexPath) in
             let person = self.persons[indexPath.row]
             context.delete(person)
             ad.saveContext()

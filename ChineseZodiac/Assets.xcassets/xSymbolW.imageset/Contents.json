@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "xSymbol.png",
+      "filename" : "xSymbolW.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "xSymbol-1.png",
+      "filename" : "xSymbolW-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "xSymbol-2.png",
+      "filename" : "xSymbolW-2.png",
       "scale" : "3x"
     }
   ],
