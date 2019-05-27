@@ -57,8 +57,9 @@ class DateSelectorVC: UIViewController {
 }
 
 extension DateSelectorVC: PickerViewDataSource {
-    
-    func pickerView(_ pickerView: PickerView, titleForRow row: Int, index: Int) -> String {
+    func pickerView(_ pickerView: PickerView, titleForRow row: Int) -> String {
+        let index = row
+        
         switch dateComponentsSelectionMode! {
         case .monthMode:
             return (index + 1).toMonthName()
@@ -80,7 +81,6 @@ extension DateSelectorVC: PickerViewDataSource {
         case .yearMode:
             return "\(index + 1)"
         }
-        
     }
     
     
@@ -112,8 +112,8 @@ extension DateSelectorVC: PickerViewDelegate {
         return 50.0
     }
     
-    func pickerView(_ pickerView: PickerView, didTapRow row: Int, index: Int) {
-        handleSelection(index: index)
+    func pickerView(_ pickerView: PickerView, didTapRow row: Int) {
+        handleSelection(index: row)
     }
     
     func handleSelection(index: Int) {
