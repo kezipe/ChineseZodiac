@@ -14,25 +14,31 @@ class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     var persons: [Person]?
     var everyOne: [Person]?
-    var match: Match!
+    var match: Match?
     var loner: Person?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        match = Match(personsArray: persons!)
-        if let loner = match.loner {
-            self.loner = loner
-//            print("Loner is \(self.loner!.name ?? "No Loner")")
-        }
-        
-        
-
+        matchUp()
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
+    func matchUp() {
+        DispatchQueue.global(qos: .background).async {
+            let match = Match(personsArray: self.persons!)
+            self.loner = match.loner
+            self.match = match
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let match = match else { return UITableViewCell() }
+        
 //        print("Now configuring \(indexPath.row) and self.loner != nil is \(self.loner != nil) and indexPath.row == persons!.count / 2 + 1 is \(indexPath.row == persons!.count / 2)")
         if self.loner != nil && indexPath.row == persons!.count / 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MatchResultLonerCell") as! MatchResultLonerCell
@@ -46,10 +52,12 @@ class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return match == nil ? 0 : 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard match != nil else { return 0 }
+        
         if self.loner != nil {
 //            print("numberOfRowsInSection = \(persons!.count / 2 + 1)")
             return persons!.count / 2 + 1
@@ -59,14 +67,7 @@ class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     @IBAction func backButtonPresed(_ sender: Any) {
-        performSegue(withIdentifier: "BackToCollectionView", sender: self.everyOne!)
+        navigationController?.popViewController(animated: true)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? MatchVC {
-            destination.persons = sender as! [Person]
-        }
-    }
-    
     
 }

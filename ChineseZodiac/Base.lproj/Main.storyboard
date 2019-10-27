@@ -1211,8 +1211,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3d-Ty-j6i">
                                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
                                                                 <connections>
-                                                                    <action selector="matchButtonPressed:" destination="BAa-Rx-O3S" eventType="touchUpInside" id="ZQp-Nz-Nse"/>
-                                                                    <segue destination="bcz-he-C1J" kind="show" id="O7b-2f-Xce"/>
+                                                                    <segue destination="bcz-he-C1J" kind="show" identifier="MatchResultVCSegue" id="1aW-gU-T5p"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -1629,6 +1628,6 @@
         <image name="rightSymbol" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gHg-VV-9Mj"/>
+        <segue reference="iMb-S3-W40"/>
     </inferredMetricsTieBreakers>
 </document>

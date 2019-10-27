@@ -11,7 +11,7 @@ import UIKit
 class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var persons = PersonDao.retrieveData(sortBy: .name).fetchedObjects!
+    var persons: [Person]?
     var selectedPersons: Set<Person> = []
     
     
@@ -21,7 +21,21 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         collectionView.dataSource = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.global(qos: .background).async {
+            let persons = PersonDao.retrieveData(sortBy: .name).fetchedObjects!
+            if persons != self.persons {
+                DispatchQueue.main.async {
+                    self.persons = persons
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let persons = self.persons else { return UICollectionViewCell() }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonColCell", for: indexPath) as! PersonColCell
         cell.configureCell(person: persons[indexPath.row])
         cell.delegate = self
@@ -29,34 +43,33 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return persons.count
-    }
-    
-    @IBAction func matchButtonPressed(_ sender: Any) {
-        let sender: Any!
-    
-        if selectedPersons.isEmpty {
-            if persons.count <= 10 {
-                sender = persons
-            } else {
-                displayMessage("Please choose 10 or less persons to match")
-                return
-            }
-        } else if self.selectedPersons.count <= 10 {
-            sender = Array(self.selectedPersons)
+        if let personsCount = persons?.count {
+            return personsCount
         } else {
-            displayMessage("Please choose 10 or less persons to match")
-            return
+            return 0
         }
-
-        performSegue(withIdentifier: "MatchResultVCSegue", sender: sender)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MatchResultVCSegue" {
+            guard let personsCount = persons?.count else { return }
+            
+            let sender: Any!
+        
+            if selectedPersons.isEmpty {
+                if personsCount <= 10 {
+                    sender = persons
+                } else {
+                    displayMessage("Please choose 10 or less persons to match")
+                    return
+                }
+            } else if self.selectedPersons.count <= 10 {
+                sender = Array(self.selectedPersons)
+            } else {
+                displayMessage("Please choose 10 or less persons to match")
+                return
+            }
+            
             if let destination = segue.destination as? MatchResultVC {
                 if let sender = sender as? [Person] {
                     destination.persons = sender
@@ -92,8 +105,6 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             label.removeFromSuperview()
         }
     }
-    
-    
 }
 
 extension MatchVC: PersonColCellDelegate {
