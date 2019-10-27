@@ -521,7 +521,6 @@
                                             <outlet property="personLbl" destination="zTe-NN-UHE" id="Cq3-LD-DxM"/>
                                             <outlet property="zodiacImg" destination="8Zj-rw-bw6" id="pM5-Zy-OQe"/>
                                             <outlet property="zodiacLbl" destination="M5H-p5-Rff" id="VyK-gg-DPH"/>
-                                            <segue destination="uPM-9U-Kbk" kind="show" identifier="showDetailsVC" id="zVC-3l-1b5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -611,6 +610,7 @@
                     <connections>
                         <outlet property="segmentedControl" destination="Z7t-Yr-VwM" id="ezb-zP-RXi"/>
                         <outlet property="tableView" destination="GMi-xo-4pl" id="3CF-4T-j29"/>
+                        <segue destination="uPM-9U-Kbk" kind="show" identifier="showDetailsVC" id="Uh5-zp-J77"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfb-LO-tcc" userLabel="First Responder" sceneMemberID="firstResponder"/>
