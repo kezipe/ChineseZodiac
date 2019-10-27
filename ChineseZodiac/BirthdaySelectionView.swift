@@ -8,8 +8,16 @@
 
 import UIKit
 
-enum DateComponentSelectionMode: String {
-    case day = "Day", month = "Month", year = "Year"
+enum DateComponentSelectionMode: Int {
+    case month, day, year
+    
+    func convertToString() -> String {
+        switch self {
+        case .day: return "Day"
+        case .month: return "Month"
+        case .year: return "Year"
+        }
+    }
 }
 
 class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
@@ -24,7 +32,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
                 label.setTitle("\(newValue)", for: .normal)
             }
         } else {
-            label.setTitle(mode.rawValue, for: .normal)
+            label.setTitle(mode.convertToString(), for: .normal)
             label.setTitleColor(defaultFontColor, for: .normal)
         }
     }
@@ -42,18 +50,8 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var nameField: UITextField!
     
-    @IBAction func monthSelection(_ sender: Any) {
-        dateSelector.dateComponentsSelectionMode = DateComponentSelectionMode.month
-        present(dateSelector, animated: true, completion: nil)
-    }
-    
-    @IBAction func daySelection(_ sender: Any) {
-        dateSelector.dateComponentsSelectionMode = DateComponentSelectionMode.day
-        present(dateSelector, animated: true, completion: nil)
-    }
-    
-    @IBAction func yearSelection(_ sender: Any) {
-        dateSelector.dateComponentsSelectionMode = DateComponentSelectionMode.year
+    @IBAction func dateComponentSelected(_ sender: UIButton) {
+        dateSelector.dateComponentsSelectionMode = DateComponentSelectionMode(rawValue: sender.tag)
         present(dateSelector, animated: true, completion: nil)
     }
     
@@ -64,19 +62,13 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         dateSelector = storyboard?.instantiateViewController(withIdentifier: "DateSelectorVC") as? DateSelectorVC
         dateSelector.dateComponents = dateComponents
         dateSelector.delegate = self
-        if personToEdit != nil {
-            loadPersonData()
-        } else {
-            updateLabel(dayLbl, newValue: nil, mode: .day)
-            updateLabel(monthLbl, newValue: nil, mode: .month)
-            updateLabel(yearLbl, newValue: nil, mode: .year)
-        }
+        loadData()
 
         self.hideKeyboardWhenTappedAround()
         self.nameField.delegate = self
     }
     
-    func loadPersonData() {
+    func loadData() {
         if let person = personToEdit {
             let df = DateFormatter()
             let birthdate = person.birthdate! as Date
@@ -97,6 +89,10 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             }
             dateSelector.dateComponents = dateComponents
         }
+        
+        updateLabel(dayLbl, newValue: dateComponents.day, mode: .day)
+        updateLabel(monthLbl, newValue: dateComponents.month, mode: .month)
+        updateLabel(yearLbl, newValue: dateComponents.year, mode: .year)
     }
     
     
@@ -106,8 +102,6 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func checkZodiacPressed(_ sender: Any) {
-        
-        
         guard monthLbl.title(for: UIControlState.normal) != "Month" else {
             monthLbl.setTitleColor(UIColor.red, for: UIControlState.normal)
             return

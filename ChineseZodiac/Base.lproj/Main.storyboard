@@ -37,7 +37,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                                 <connections>
-                                                    <action selector="nameFieldEditingChanged:" destination="5U2-q2-2lP" eventType="editingChanged" id="AIB-1v-V06"/>
+                                                    <action selector="nameFieldEditingChanged:" destination="5U2-q2-2lP" eventType="editingChanged" id="IfA-gk-jLC"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -67,27 +67,27 @@
                                                                     <color key="titleColor" red="0.27198781529999999" green="0.44606001709999998" blue="0.54397563059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="monthSelection:" destination="5U2-q2-2lP" eventType="touchUpInside" id="9z5-sj-vsx"/>
+                                                                    <action selector="dateComponentSelected:" destination="5U2-q2-2lP" eventType="touchUpInside" id="TM9-8F-hcu"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWD-NB-ogF">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWD-NB-ogF">
                                                                 <rect key="frame" x="48" y="0.0" width="32" height="46"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="28"/>
                                                                 <state key="normal" title="31">
                                                                     <color key="titleColor" red="0.27198781529999999" green="0.44606001709999998" blue="0.54397563059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="daySelection:" destination="5U2-q2-2lP" eventType="touchUpInside" id="m0R-7g-sTX"/>
+                                                                    <action selector="dateComponentSelected:" destination="5U2-q2-2lP" eventType="touchUpInside" id="IZI-xm-5db"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YhV-MG-EtY">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YhV-MG-EtY">
                                                                 <rect key="frame" x="90" y="0.0" width="63" height="46"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="28"/>
                                                                 <state key="normal" title="2017">
                                                                     <color key="titleColor" red="0.27198781529999999" green="0.44606001709999998" blue="0.54397563059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="yearSelection:" destination="5U2-q2-2lP" eventType="touchUpInside" id="uMw-aL-pNh"/>
+                                                                    <action selector="dateComponentSelected:" destination="5U2-q2-2lP" eventType="touchUpInside" id="tmi-LO-VSb"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -888,7 +888,6 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWg-mr-C5E">
                                                                 <rect key="frame" x="0.0" y="0.0" width="154" height="100"/>
                                                                 <connections>
-                                                                    <action selector="backButtonPressed:" destination="5U2-q2-2lP" eventType="touchUpInside" id="akf-aa-MSn"/>
                                                                     <action selector="cancelButtonPressed:" destination="uPM-9U-Kbk" eventType="touchUpInside" id="p3A-7Y-TTC"/>
                                                                 </connections>
                                                             </button>
@@ -934,7 +933,6 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="154" height="100"/>
                                                                 <connections>
                                                                     <action selector="EditButtonPressed:" destination="uPM-9U-Kbk" eventType="touchUpInside" id="SHB-K3-mBG"/>
-                                                                    <action selector="checkZodiacPressed:" destination="5U2-q2-2lP" eventType="touchUpInside" id="Cec-Hv-YgA"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -1171,9 +1169,6 @@
                                                             </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvM-iv-X9v">
                                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
-                                                                <connections>
-                                                                    <action selector="backButtonPressed:" destination="5U2-q2-2lP" eventType="touchUpInside" id="3Xj-bE-NPx"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.27198781529999999" green="0.44606001709999998" blue="0.54397563059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1216,7 +1211,6 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3d-Ty-j6i">
                                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
                                                                 <connections>
-                                                                    <action selector="checkZodiacPressed:" destination="5U2-q2-2lP" eventType="touchUpInside" id="CJW-1J-B4g"/>
                                                                     <action selector="matchButtonPressed:" destination="BAa-Rx-O3S" eventType="touchUpInside" id="ZQp-Nz-Nse"/>
                                                                     <segue destination="bcz-he-C1J" kind="show" id="O7b-2f-Xce"/>
                                                                 </connections>
@@ -1486,7 +1480,6 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
                                                                 <connections>
                                                                     <action selector="backButtonPresed:" destination="bcz-he-C1J" eventType="touchUpInside" id="tLe-qH-4SE"/>
-                                                                    <action selector="backButtonPressed:" destination="5U2-q2-2lP" eventType="touchUpInside" id="8nY-k8-faV"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -1529,9 +1522,6 @@
                                                             </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLs-6G-lPu">
                                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
-                                                                <connections>
-                                                                    <action selector="checkZodiacPressed:" destination="5U2-q2-2lP" eventType="touchUpInside" id="FKk-wZ-m06"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.27198781529999999" green="0.44606001709999998" blue="0.54397563059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1639,6 +1629,6 @@
         <image name="rightSymbol" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iMb-S3-W40"/>
+        <segue reference="gHg-VV-9Mj"/>
     </inferredMetricsTieBreakers>
 </document>
