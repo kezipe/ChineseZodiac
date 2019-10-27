@@ -8,22 +8,46 @@
 
 import UIKit
 
+enum DateComponentSelectionMode: String {
+    case day = "Day", month = "Month", year = "Year"
+}
+
 class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     //  https://www.timeanddate.com/calendar/about-chinese.html
     
-    enum DateComponentSelectionMode {
-        case dayMode, monthMode, yearMode
+    var month: Int? = nil {
+        didSet {
+            updateLabel(monthLbl, newValue: month, mode: .month)
+        }
     }
-    var month: Int? = nil
-    var day:Int? = nil
-    var year: Int? = nil
+    var day: Int? = nil {
+        didSet {
+            updateLabel(dayLbl, newValue: day, mode: .day)
+        }
+    }
+    var year: Int? = nil {
+        didSet {
+            updateLabel(yearLbl, newValue: year, mode: .year)
+        }
+    }
+    
+    func updateLabel(_ label: UIButton, newValue: Int?, mode: DateComponentSelectionMode) {
+        if let newValue = newValue {
+            if mode == .month {
+                label.setTitle(newValue.toMonthName(), for: .normal)
+            } else {
+                label.setTitle("\(newValue)", for: .normal)
+            }
+        } else {
+            label.setTitle(mode.rawValue, for: .normal)
+            label.setTitleColor(defaultFontColor, for: .normal)
+        }
+    }
+    
     var dateComponents = DateComponents()
-    var monthChanged = true
-    var dayChanged = true
-    var yearChanged = true
     let defaultFontColor = UIColor.init(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
-
-    var dateSelector: DateSelectorVC?
+    
+    var dateSelector: DateSelectorVC!
     var personToEdit: Person?
     
     @IBOutlet weak var monthLbl: UIButton!
@@ -34,78 +58,18 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameField: UITextField!
     
     @IBAction func monthSelection(_ sender: Any) {
-        dateSelector?.dateComponentsSelectionMode = DateComponentSelectionMode.monthMode
-        monthChanged = true
-        present(dateSelector!, animated: true, completion: nil)
+        dateSelector.dateComponentsSelectionMode = DateComponentSelectionMode.month
+        present(dateSelector, animated: true, completion: nil)
     }
     
     @IBAction func daySelection(_ sender: Any) {
-        dateSelector?.dateComponentsSelectionMode = DateComponentSelectionMode.dayMode
-        present(dateSelector!, animated: true, completion: nil)
+        dateSelector.dateComponentsSelectionMode = DateComponentSelectionMode.day
+        present(dateSelector, animated: true, completion: nil)
     }
     
     @IBAction func yearSelection(_ sender: Any) {
-        dateSelector?.dateComponentsSelectionMode = DateComponentSelectionMode.yearMode
-        yearChanged = true
-        present(dateSelector!, animated: true, completion: nil)
-    }
-    
-    
-    func refreshUI() {
-        
-        if let m = dateSelector?.month {
-            month = m
-        }
-        
-        if let y = dateSelector?.year {
-            year = y
-        }
-        
-        if let d = dateSelector?.day {
-            if let m = month {
-                let yearCheck: Int!
-                if let y = year {
-                    yearCheck = y
-                } else {
-                    yearCheck = 2000
-                }
-                //                print("Year which is about to be checked is \(String(describing:yearCheck!)))")
-                //                print("Month which is about to be checked is \(String(describing:m)))")
-                let numDaysInMonth = m.toNumDaysInMonth(year: yearCheck)
-                if d > numDaysInMonth {
-                    day = numDaysInMonth
-                    dateSelector?.day = numDaysInMonth
-                } else {
-                    day = d
-                }
-            } else {
-                day = d
-            }
-            dayChanged = true
-        }
-        
-        if monthChanged {
-            dateComponents.month = month == nil ? nil : month!
-            monthLbl.setTitle("\(String(describing: month == nil ? "Month" : month!.toMonthName()))", for: UIControlState.normal)
-            monthLbl.setTitleColor(defaultFontColor, for: UIControlState.normal)
-            monthChanged = false
-        }
-        if dayChanged {
-            dateComponents.day = day == nil ? nil : day!
-            dayLbl.setTitle("\(day == nil ? "Day" : String(describing: (day!))),", for: UIControlState.normal)
-            dayLbl.setTitleColor(defaultFontColor, for: UIControlState.normal)
-            dayChanged = false
-        }
-        if yearChanged {
-            dateComponents.year = year == nil ? nil : year!
-            yearLbl.setTitle("\(year == nil ? "Year" : String(describing: year!))", for: UIControlState.normal)
-            yearLbl.setTitleColor(defaultFontColor, for: UIControlState.normal)
-            yearChanged = false
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        refreshUI()
+        dateSelector.dateComponentsSelectionMode = DateComponentSelectionMode.year
+        present(dateSelector, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -113,13 +77,15 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         //        print(ad.persistentContainer.persistentStoreDescriptions.first?.url! ?? "")
         
         dateSelector = storyboard?.instantiateViewController(withIdentifier: "DateSelectorVC") as? DateSelectorVC
+        dateSelector.delegate = self
         if personToEdit != nil {
             loadPersonData()
+        } else {
+            updateLabel(dayLbl, newValue: nil, mode: .day)
+            updateLabel(monthLbl, newValue: nil, mode: .month)
+            updateLabel(yearLbl, newValue: nil, mode: .year)
         }
-        refreshUI()
-        
 
-        
         self.hideKeyboardWhenTappedAround()
         self.nameField.delegate = self
     }
@@ -146,13 +112,12 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             } else {
                 nameLbl.text = "\(person.name ?? "")'s birthday:"
             }
-            
         }
     }
     
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "BackHome", sender: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     
@@ -238,7 +203,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         UIView.commitAnimations()
     }
     
-
+    
     @IBAction func nameFieldEditingChanged(_ sender: Any) {
         if nameField.text != "" {
             nameWarningLbl.isHidden = true
@@ -266,3 +231,32 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     
 }
 
+
+extension BirthdaySelectionView: PickerViewDelegate {
+    func pickerViewHeightForRows(_ pickerView: PickerView) -> CGFloat {
+        return 50.0
+    }
+    
+    func pickerView(_ pickerView: PickerView, didTapRow row: Int) {
+        switch dateSelector.dateComponentsSelectionMode! {
+        case .month:
+            self.month = row + 1
+        case .day:
+            self.day = row + 1
+        case .year:
+            self.year = row + 1
+        }
+        dateSelector.dismiss(animated: true, completion: nil)
+    }
+    
+    func pickerView(_ pickerView: PickerView, styleForLabel label: UILabel, highlighted: Bool) {
+        label.textAlignment = .center
+        label.textColor = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
+        
+        if highlighted {
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 30)
+        } else {
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 20)
+        }
+    }
+}

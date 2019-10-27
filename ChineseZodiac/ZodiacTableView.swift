@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIPopoverPresentationControllerDelegate {
+class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
     
     var persons = [Person]()
     var controller: NSFetchedResultsController<Person>!
@@ -30,33 +30,9 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func retrieveData() {
-        let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
-        let dateSort = NSSortDescriptor(key: "created", ascending: false)
-        let nameSort = NSSortDescriptor(key: "name", ascending: true)
-        let zodiacSort = NSSortDescriptor(key: "zodiac", ascending: true)
-        let birthdateSort = NSSortDescriptor(key: "birthdate", ascending: false)
-        
-        if segmentedControl.selectedSegmentIndex == 0 {
-            fetchRequest.sortDescriptors = [dateSort]
-        } else if segmentedControl.selectedSegmentIndex == 1 {
-            fetchRequest.sortDescriptors = [nameSort]
-        } else if segmentedControl.selectedSegmentIndex == 2 {
-            fetchRequest.sortDescriptors = [zodiacSort]
-        } else if segmentedControl.selectedSegmentIndex == 3 {
-            fetchRequest.sortDescriptors = [birthdateSort]
-        }
-        
-        let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try controller.performFetch()
-        } catch {
-            let error = error as NSError
-            print("\(error)")
-        }
-        
-        self.controller = controller
-        self.persons = controller.fetchedObjects!
+        let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)
+        controller = PersonDao.retrieveData(sortBy: sortBy!)
+        persons = controller.fetchedObjects!
     }
     
     @IBAction func segmentChange(_ sender: Any) {
@@ -133,34 +109,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case.insert:
-            if let indexPath = newIndexPath {
-                tableView.insertRows(at: [indexPath], with: .fade)
-            }
-            break
-        case.delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            break
-        case.update:
-            if let indexPath = indexPath {
-                let cell = tableView.cellForRow(at: indexPath) as! PersonCell
-                configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
-            }
-        case.move:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            if let indexPath = newIndexPath {
-                tableView.insertRows(at: [indexPath], with: .fade)
-            }
-            break
-        }
-        
-    }
+
     
     // MARK: Table View Stuff
     
@@ -192,7 +141,7 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "DetailsVC", sender: persons[indexPath.row])
+        performSegue(withIdentifier: "showDetailsVC", sender: persons[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
@@ -202,32 +151,45 @@ class ZodiacTableView: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     // MARK: Prepare for segue and Popover
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsVC" {
+        if segue.identifier == "showDetailsVC" {
             if let destination = segue.destination as? DetailsVC {
                 if let person = sender as? Person {
                     destination.person = person
                 }
             }
-        } else if segue.identifier == "showPopover" {
-            if let destination = segue.destination as? PopoverVC {
-                if let persons = sender as? [Person] {
-                    destination.persons = persons
-                }
-                destination.popoverPresentationController?.backgroundColor = Helper.colorGreen
-                destination.popoverPresentationController?.delegate = self
-            }
         }
     }
     
-    // MARK: Handling Popover
-    
-    @IBAction func addButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "showPopover", sender: self.persons)
+}
+
+
+extension ZodiacTableView: NSFetchedResultsControllerDelegate {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case.insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .fade)
+            }
+            break
+        case.delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            break
+        case.update:
+            if let indexPath = indexPath {
+                let cell = tableView.cellForRow(at: indexPath) as! PersonCell
+                configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
+            }
+        case.move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .fade)
+            }
+            break
+        }
+        
     }
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        // return UIModalPresentationStyle.FullScreen
-        return UIModalPresentationStyle.none
-    }
-    
 }

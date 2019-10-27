@@ -18,15 +18,11 @@ class ZodiacSignView: UIViewController {
     @IBOutlet weak var zodiacImg: UIImageView!
 
     @IBAction func addPersonButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "AddOneMore", sender: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddOneMore" {
-            if let destination = segue.destination as? BirthdaySelectionView {
-                destination.personToEdit = nil
-            }
-        }
+        navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {

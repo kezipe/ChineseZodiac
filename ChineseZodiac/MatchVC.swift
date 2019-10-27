@@ -11,7 +11,7 @@ import UIKit
 class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var persons: [Person]!
+    var persons = PersonDao.retrieveData(sortBy: .name).fetchedObjects!
     var selectedPersons: Set<Person> = []
     
     
@@ -19,7 +19,6 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -61,7 +60,7 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             if let destination = segue.destination as? MatchResultVC {
                 if let sender = sender as? [Person] {
                     destination.persons = sender
-                    destination.everyOne = self.persons!
+                    destination.everyOne = self.persons
                 }
             }
         }
@@ -86,7 +85,7 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
                 size: 12.0)!])
         attrMessage.addAttribute(NSAttributedStringKey.foregroundColor,
                                  value: Helper.colorGreen,
-                                 range: NSRange(location: 0, length: msg.characters.count))
+                                 range: NSRange(location: 0, length: msg.count))
         label.attributedText = attrMessage
         self.view.addSubview(label)
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

@@ -83,7 +83,7 @@ class DetailsVC: UIViewController {
 
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -110,15 +110,6 @@ class DetailsVC: UIViewController {
                 }
             }
         }
-    }
-    
-    
-    @IBAction func deleteButtonPressed(_ sender: Any) {
-        if person != nil {
-            context.delete(person!)
-            ad.saveContext()
-        }
-        dismiss(animated: true, completion: nil)
     }
 
 
