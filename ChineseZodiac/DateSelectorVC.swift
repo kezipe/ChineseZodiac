@@ -11,8 +11,8 @@ import UIKit
 class DateSelectorVC: UIViewController {
     @IBOutlet weak var pickerView: PickerView!
 
-    var day: Int?, month: Int?, year: Int?
     var delegate: PickerViewDelegate!
+    var dateComponents: DateComponents!
 
     var dateComponentsSelectionMode: DateComponentSelectionMode?
     
@@ -33,26 +33,26 @@ class DateSelectorVC: UIViewController {
         let row: Int!
         switch dateComponentsSelectionMode! {
         case .month:
-            if month == nil {
-                row = 0
+            if let month = dateComponents.month {
+                row = month - 1
             } else {
-                row = self.month! - 1
+                row = 0
             }
         case .day:
-            if day == nil {
-                row = 0
+            if let day = dateComponents.day {
+                row = day - 1
             } else {
-                row = self.day! - 1
+                row = 0
             }
         case .year:
-            if year == nil {
-                row = 1999
+            if let year = dateComponents.year {
+                row = year - 1
             } else {
-                row = self.year! - 1
+                row = 1999
             }
         }
-        pickerView.selectRow(row, animated: false)
         pickerView.reloadPickerView()
+        pickerView.selectRow(row, animated: false)
     }
 }
 
@@ -65,13 +65,13 @@ extension DateSelectorVC: PickerViewDataSource {
             return (index + 1).toMonthName()
         case .day:
             let month: Int!
-            if let months = self.month {
+            if let months = dateComponents.month {
                 month = months
             } else {
                 month = 1
             }
             let yearCheck: Int!
-            if let years = self.year {
+            if let years = dateComponents.year {
                 yearCheck = years
             } else {
                 yearCheck = 2000
@@ -89,9 +89,9 @@ extension DateSelectorVC: PickerViewDataSource {
         case .month:
             return 12
         case .day:
-            if let months = self.month {
+            if let months = dateComponents.month {
                 let yearCheck: Int!
-                if let years = self.year {
+                if let years = dateComponents.year {
                     yearCheck = years
                 } else {
                     yearCheck = 2000

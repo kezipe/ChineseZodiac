@@ -380,6 +380,9 @@
                                                             </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhy-Gf-s0t">
                                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
+                                                                <connections>
+                                                                    <action selector="backToZodiacTableView:" destination="N17-Kh-jex" eventType="touchUpInside" id="b2Y-zQ-83R"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.27198781529999999" green="0.44606001709999998" blue="0.54397563059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

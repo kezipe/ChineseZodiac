@@ -15,21 +15,6 @@ enum DateComponentSelectionMode: String {
 class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     //  https://www.timeanddate.com/calendar/about-chinese.html
     
-    var month: Int? = nil {
-        didSet {
-            updateLabel(monthLbl, newValue: month, mode: .month)
-        }
-    }
-    var day: Int? = nil {
-        didSet {
-            updateLabel(dayLbl, newValue: day, mode: .day)
-        }
-    }
-    var year: Int? = nil {
-        didSet {
-            updateLabel(yearLbl, newValue: year, mode: .year)
-        }
-    }
     
     func updateLabel(_ label: UIButton, newValue: Int?, mode: DateComponentSelectionMode) {
         if let newValue = newValue {
@@ -77,6 +62,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
         //        print(ad.persistentContainer.persistentStoreDescriptions.first?.url! ?? "")
         
         dateSelector = storyboard?.instantiateViewController(withIdentifier: "DateSelectorVC") as? DateSelectorVC
+        dateSelector.dateComponents = dateComponents
         dateSelector.delegate = self
         if personToEdit != nil {
             loadPersonData()
@@ -95,14 +81,11 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             let df = DateFormatter()
             let birthdate = person.birthdate! as Date
             df.dateFormat = "yyyy"
-            dateSelector?.year = Int(df.string(from: birthdate))!
-            print("Loaded person's birth year: \(String(describing: dateSelector?.year))")
+            dateComponents.year = Int(df.string(from: birthdate))!
             df.dateFormat = "M"
-            dateSelector?.month = Int(df.string(from: birthdate))!
-            print("Loaded person's birth month: \(String(describing: df.string(from: birthdate)))")
+            dateComponents.month = Int(df.string(from: birthdate))!
             df.dateFormat = "d"
-            dateSelector?.day = Int(df.string(from: birthdate))!
-            print("Loaded person's birth day: \(String(describing: dateSelector?.day))")
+            dateComponents.day = Int(df.string(from: birthdate))!
             nameField.text = person.name
             
             if person.name == "" || person.name == nil {
@@ -112,6 +95,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
             } else {
                 nameLbl.text = "\(person.name ?? "")'s birthday:"
             }
+            dateSelector.dateComponents = dateComponents
         }
     }
     
@@ -240,12 +224,16 @@ extension BirthdaySelectionView: PickerViewDelegate {
     func pickerView(_ pickerView: PickerView, didTapRow row: Int) {
         switch dateSelector.dateComponentsSelectionMode! {
         case .month:
-            self.month = row + 1
+            dateComponents.month = row + 1
+            updateLabel(monthLbl, newValue: dateComponents.month, mode: .month)
         case .day:
-            self.day = row + 1
+            dateComponents.day = row + 1
+            updateLabel(dayLbl, newValue: dateComponents.day, mode: .day)
         case .year:
-            self.year = row + 1
+            dateComponents.year = row + 1
+            updateLabel(yearLbl, newValue: dateComponents.year, mode: .year)
         }
+        dateSelector.dateComponents = dateComponents
         dateSelector.dismiss(animated: true, completion: nil)
     }
     

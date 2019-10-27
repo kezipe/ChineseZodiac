@@ -18,16 +18,15 @@ class ZodiacSignView: UIViewController {
     @IBOutlet weak var zodiacImg: UIImageView!
 
     @IBAction func addPersonButtonPressed(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         navigationController?.popViewController(animated: true)
+    }
+
+    @IBAction func backToZodiacTableView(_ sender: Any) {
+        navigationController?.popToRootViewController(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         if let cBirthdayString = birthdate?.getZodiacChar() {
             cDateLbl.text = cBirthdayString
