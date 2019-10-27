@@ -13,7 +13,6 @@ class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var tableView: UITableView!
     
     var persons: [Person]?
-    var everyOne: [Person]?
     var match: Match?
     var loner: Person?
     

@@ -13,7 +13,13 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     var persons: [Person]?
     var selectedPersons: Set<Person> = []
-    
+    var validSelection: Bool {
+        if let persons = persons {
+            return selectedPersons.isEmpty && persons.count <= 10 || selectedPersons.count <= 10 && !selectedPersons.isEmpty
+        } else {
+            return false
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,31 +58,27 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MatchResultVCSegue" {
-            guard let personsCount = persons?.count else { return }
-            
-            let sender: Any!
-        
-            if selectedPersons.isEmpty {
-                if personsCount <= 10 {
-                    sender = persons
-                } else {
-                    displayMessage("Please choose 10 or less persons to match")
-                    return
-                }
-            } else if self.selectedPersons.count <= 10 {
-                sender = Array(self.selectedPersons)
-            } else {
-                displayMessage("Please choose 10 or less persons to match")
-                return
-            }
-            
             if let destination = segue.destination as? MatchResultVC {
-                if let sender = sender as? [Person] {
-                    destination.persons = sender
-                    destination.everyOne = self.persons
+                if validSelection {
+                    if selectedPersons.isEmpty {
+                        destination.persons = persons!
+                    } else {
+                        destination.persons = Array(selectedPersons)
+                    }
                 }
             }
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "MatchResultVCSegue" {
+            if !validSelection {
+                displayMessage("Please choose 10 or less persons to match")
+                return false
+            }
+            return true
+        }
+        return false
     }
     
     func displayMessage(_ msg: String) {
@@ -115,14 +117,12 @@ extension MatchVC: PersonColCellDelegate {
                 selectedPersons.remove(person)
                 forCell.checkMarkImg.isHidden = true
             } else {
-//                print("Selected Persons Count (before) = \(String(describing:self.selectedPersons.count))")
                 if self.selectedPersons.count >= 10 {
                     displayMessage("You must choose 10 or less persons to match")
                 } else {
                     selectedPersons.insert(person)
                     forCell.checkMarkImg.isHidden = false
                 }
-//                print("Selected Persons Count (after) = \(String(describing:self.selectedPersons.count))")
             }
         }
         for p in selectedPersons {

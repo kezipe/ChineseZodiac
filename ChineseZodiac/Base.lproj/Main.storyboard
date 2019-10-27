@@ -1167,7 +1167,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3d-Ty-j6i">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
                                                         <connections>
-                                                            <segue destination="bcz-he-C1J" kind="show" identifier="MatchResultVCSegue" id="1aW-gU-T5p"/>
+                                                            <segue destination="bcz-he-C1J" kind="show" identifier="MatchResultVCSegue" id="XA5-f0-z2Y"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -1477,13 +1477,11 @@
             </objects>
             <point key="canvasLocation" x="8329" y="1292"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--List-->
         <scene sceneID="jSS-Be-OdB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="tyP-Cg-82u" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" selectedImage="rightSymbol" systemItem="favorites" id="88U-U1-6oH">
-                        <inset key="imageInsets" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="List" image="Tab Bar Icon 0 Wide" selectedImage="Tab Bar Icon 0 Wide" id="88U-U1-6oH"/>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rqm-sk-KGi">
@@ -1521,7 +1519,7 @@
         <scene sceneID="9Lc-be-xFa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="tdg-Yw-f2J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Match" id="xny-e2-iUb"/>
+                    <tabBarItem key="tabBarItem" title="Match" image="Tab Bar Icon 1 Wide" selectedImage="Tab Bar Icon 1 Wide" id="xny-e2-iUb"/>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="f0g-NA-dRm">
@@ -1538,6 +1536,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Tab Bar Icon 0 Wide" width="31" height="31"/>
+        <image name="Tab Bar Icon 1 Wide" width="31" height="31"/>
         <image name="addSymbol" width="78" height="78"/>
         <image name="checkMark" width="22" height="22"/>
         <image name="editSymbol" width="82" height="82"/>
