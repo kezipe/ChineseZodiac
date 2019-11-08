@@ -102,16 +102,16 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func checkZodiacPressed(_ sender: Any) {
-        guard monthLbl.title(for: UIControlState.normal) != "Month" else {
-            monthLbl.setTitleColor(UIColor.red, for: UIControlState.normal)
+        guard monthLbl.title(for: UIControl.State.normal) != "Month" else {
+            monthLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
             return
         }
-        guard dayLbl.title(for: UIControlState.normal) != "Day," else {
-            dayLbl.setTitleColor(UIColor.red, for: UIControlState.normal)
+        guard dayLbl.title(for: UIControl.State.normal) != "Day," else {
+            dayLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
             return
         }
-        guard yearLbl.title(for: UIControlState.normal) != "Year" else {
-            yearLbl.setTitleColor(UIColor.red, for: UIControlState.normal)
+        guard yearLbl.title(for: UIControl.State.normal) != "Year" else {
+            yearLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
             return
         }
         doSegue()

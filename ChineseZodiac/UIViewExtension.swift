@@ -23,7 +23,7 @@ extension UIView {
     fileprivate func whitespaceString(font: UIFont = UIFont.systemFont(ofSize: 15), width: CGFloat) -> String {
         let kPadding: CGFloat = 20
         let mutable = NSMutableString(string: "")
-        let attribute = [NSAttributedStringKey.font: font]
+        let attribute = [NSAttributedString.Key.font: font]
         while mutable.size(withAttributes: attribute).width < width - (2 * kPadding) {
             mutable.append(" ")
         }

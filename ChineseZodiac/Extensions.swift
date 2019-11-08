@@ -74,7 +74,7 @@ extension Date {
         // Isolate for Year and Stem Branch
         let comma: Character = ","
         let pos: Int?
-        if let idx = formattedDate.index(of: comma) {
+        if let idx = formattedDate.firstIndex(of: comma) {
             pos = formattedDate.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
@@ -87,7 +87,7 @@ extension Date {
         // Year with Stem Branch separated:
         let leftBracket: Character = "("
         let pos2: Int?
-        if let idx = yearWithStemBranch.index(of: leftBracket) {
+        if let idx = yearWithStemBranch.firstIndex(of: leftBracket) {
             pos2 = yearWithStemBranch.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
@@ -114,7 +114,7 @@ extension Date {
         // Isolate for Year and Stem Branch
         let comma: Character = ","
         let pos: Int?
-        if let idx = formattedDate.index(of: comma) {
+        if let idx = formattedDate.firstIndex(of: comma) {
             pos = formattedDate.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
@@ -127,7 +127,7 @@ extension Date {
         // Year with Stem Branch separated:
         let leftBracket: Character = "("
         let pos2: Int?
-        if let idx = yearWithStemBranch.index(of: leftBracket) {
+        if let idx = yearWithStemBranch.firstIndex(of: leftBracket) {
             pos2 = yearWithStemBranch.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
@@ -155,7 +155,7 @@ extension Date {
         // Isolate for Year and Stem Branch
         let comma: Character = ","
         let pos: Int?
-        if let idx = formattedDate.index(of: comma) {
+        if let idx = formattedDate.firstIndex(of: comma) {
             pos = formattedDate.distance(from: formattedDate.startIndex, to: idx)
         }
         else {
@@ -168,7 +168,7 @@ extension Date {
         // Year with Stem Branch separated:
         let leftBracket: Character = "("
         let pos2: Int?
-        if let idx = yearWithStemBranch.index(of: leftBracket) {
+        if let idx = yearWithStemBranch.firstIndex(of: leftBracket) {
             pos2 = yearWithStemBranch.distance(from: formattedDate.startIndex, to: idx)
         }
         else {

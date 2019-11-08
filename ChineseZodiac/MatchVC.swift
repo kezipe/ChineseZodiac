@@ -95,10 +95,10 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         
         let attrMessage = NSMutableAttributedString(
             string: msg,
-            attributes: [NSAttributedStringKey.font:UIFont(
+            attributes: [NSAttributedString.Key.font:UIFont(
                 name: "Helvetica-Bold",
                 size: 12.0)!])
-        attrMessage.addAttribute(NSAttributedStringKey.foregroundColor,
+        attrMessage.addAttribute(NSAttributedString.Key.foregroundColor,
                                  value: Helper.colorGreen,
                                  range: NSRange(location: 0, length: msg.count))
         label.attributedText = attrMessage

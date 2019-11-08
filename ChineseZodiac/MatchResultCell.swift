@@ -43,7 +43,7 @@ class MatchResultCell: UITableViewCell {
             matchScoreLblTextSize = 13.0
         }
 
-        let attrCompatibility = NSAttributedString(string: compatibility!, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: matchScoreLblTextSize)])
+        let attrCompatibility = NSAttributedString(string: compatibility!, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: matchScoreLblTextSize)])
         
         matchScoreLbl.attributedText = attrCompatibility
         

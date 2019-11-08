@@ -71,7 +71,7 @@ class Match {
             }
             matchScores.append(tempScore)
         }
-        let bestResultIndex = matchScores.index(of: matchScores.max()!)!
+        let bestResultIndex = matchScores.firstIndex(of: matchScores.max()!)!
         let pairing = matchResultsInteger![bestResultIndex]
         var pairingPersons = [Person]()
         for i in 0..<pairing.count {
