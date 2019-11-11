@@ -11,6 +11,10 @@ import UIKit
 class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var matchStackView: UIStackView!
+    @IBOutlet weak var matchButtonText: UILabel!
+    @IBOutlet weak var matchButtonImg: UIImageView!
+    
     var persons: [Person]?
     var selectedPersons: Set<Person> = []
     var validSelection: Bool {
@@ -82,29 +86,25 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func displayMessage(_ msg: String) {
-        let screenSize = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        let screenHeight = screenSize.height
-        let label = UILabel(frame: CGRect(x: screenWidth / 2, y: screenHeight - 120 - 21, width: 280, height: 20))
-        label.center = CGPoint(x: screenWidth / 2, y: screenHeight - 120 - 21)
-        label.textAlignment = .center
-        label.layer.cornerRadius = 10
-        label.layer.backgroundColor = Helper.colorLightGreen.cgColor
-        label.layer.borderColor = Helper.colorBlue.cgColor
-        label.layer.borderWidth = 1.0
+        matchButtonImg.isHidden = true
         
         let attrMessage = NSMutableAttributedString(
             string: msg,
             attributes: [NSAttributedString.Key.font:UIFont(
                 name: "Helvetica-Bold",
-                size: 12.0)!])
+                size: 15.0)!])
         attrMessage.addAttribute(NSAttributedString.Key.foregroundColor,
-                                 value: Helper.colorGreen,
+                                 value: UIColor.white,
                                  range: NSRange(location: 0, length: msg.count))
-        label.attributedText = attrMessage
-        self.view.addSubview(label)
+        matchButtonText.attributedText = attrMessage
+        matchStackView.bounds = matchStackView.bounds.offsetBy(dx: 0, dy: 5)
+
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            label.removeFromSuperview()
+            self.matchStackView.bounds = self.matchStackView.bounds.offsetBy(dx: 0, dy: -5)
+            self.matchButtonText.attributedText = nil
+            self.matchButtonText.text = "Match"
+            self.matchButtonImg.isHidden = false
         }
     }
 }
@@ -124,9 +124,6 @@ extension MatchVC: PersonColCellDelegate {
                     forCell.checkMarkImg.isHidden = false
                 }
             }
-        }
-        for p in selectedPersons {
-            print("\(p.name ?? "Error at \(p)")")
         }
     }
 }

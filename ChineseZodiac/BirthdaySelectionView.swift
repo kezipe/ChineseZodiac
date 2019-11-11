@@ -130,7 +130,6 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     
     func doSegue() {
         if nameField.text == "" {
-            print("Plesae enter a name")
             nameWarningLbl.isHidden = false
             nameField.becomeFirstResponder()
         } else {

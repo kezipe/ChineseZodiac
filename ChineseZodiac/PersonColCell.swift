@@ -35,7 +35,6 @@ class PersonColCell: UICollectionViewCell {
     }
     
     @objc func toggleSelection() {
-        print("PersonColCellDelegate: Toggling visibility of checkmark")
         delegate?.toggleSelectionOfButton(forCell: self)
     }
 

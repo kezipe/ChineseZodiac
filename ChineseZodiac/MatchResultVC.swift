@@ -58,7 +58,6 @@ class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         guard match != nil else { return 0 }
         
         if self.loner != nil {
-//            print("numberOfRowsInSection = \(persons!.count / 2 + 1)")
             return persons!.count / 2 + 1
         } else {
             return persons!.count / 2

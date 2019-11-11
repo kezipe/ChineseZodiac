@@ -27,33 +27,9 @@ class Match {
     init(personsArray: [Person]) {
         self.persons = personsArray
         personZodiacs = personsArray
-        
-//        var abhinav: Person?
-//        var cameron: Person?
-//        if let ps = self.persons {
-//            for _ in 0..<2 {
-//                for (i, p) in ps.enumerated() {
-//                    if p.name == "Abhinav" {
-//                        abhinav = p
-//                        if let _ = cameron {
-//                            self.persons!.remove(at: i)
-//                        }
-//                    } else if p.name == "Cameron" {
-//                        cameron = p
-//                        if let _ = abhinav {
-//                            self.persons!.remove(at: i)
-//                        }
-//                    }
-//                }
-//            }
-//            if let c = cameron, let a = abhinav {
-//                perfectMatches.append([a, c])
-//            }
-//        }
-        
+    
         
         if personZodiacs.count % 2 != 0 {
-            print(personZodiacs.count % 2)
             let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context)
             let p = Person.init(entity: entityDescription!, insertInto: nil)
             p.zodiac = 13
@@ -86,8 +62,6 @@ class Match {
         
         
         for i in stride(from: 0, to: pairingPersons.count - 1, by: 2) {
-            print("Person has \(pairingPersons[i].zodiac)")
-            print("Person has \(pairingPersons[i + 1].zodiac)")
             if pairingPersons[i].zodiac == 13 {
                 loner = pairingPersons[i + 1]
             } else if pairingPersons[i + 1].zodiac == 13 {
