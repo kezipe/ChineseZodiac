@@ -205,7 +205,7 @@ extension Date {
     }
     
     func getLunarMonth() -> String {
-        var lMonth: [Int: String] = [
+        let lMonth: [Int: String] = [
             1: "1st – 寅 (yin) Tiger",
             2: "2nd – 卯 (mao) Rabbit",
             3: "3rd – 辰 (chen) Dragon",

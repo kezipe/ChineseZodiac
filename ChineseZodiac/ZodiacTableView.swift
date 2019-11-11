@@ -189,6 +189,8 @@ extension ZodiacTableView: NSFetchedResultsControllerDelegate {
                 tableView.insertRows(at: [indexPath], with: .fade)
             }
             break
+        @unknown default:
+            fatalError()
         }
         
     }
