@@ -26,7 +26,6 @@
 		0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */; };
 		0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACBF6FA1EE357B00075A523 /* Extensions.swift */; };
 		0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */; };
-		0AD4E28F1EDDD22400A92F65 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28E1EDDD22400A92F65 /* StartView.swift */; };
 		0AD4E2921EDDD22400A92F65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4E2901EDDD22400A92F65 /* Main.storyboard */; };
 		0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E2931EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld */; };
 		0AD4E2971EDDD22400A92F65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4E2961EDDD22400A92F65 /* Assets.xcassets */; };
@@ -54,7 +53,6 @@
 		0ACBF6FA1EE357B00075A523 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0AD4E2891EDDD22400A92F65 /* ChineseZodiac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseZodiac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0AD4E28E1EDDD22400A92F65 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		0AD4E2911EDDD22400A92F65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0AD4E2941EDDD22400A92F65 /* ChineseZodiac.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChineseZodiac.xcdatamodel; sourceTree = "<group>"; };
 		0AD4E2961EDDD22400A92F65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 		0A69F46A1EE341F400A0176D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0AD4E28E1EDDD22400A92F65 /* StartView.swift */,
 				0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */,
 				0A69F46C1EE3426C00A0176D /* ZodiacSignView.swift */,
 				0A69F46F1EE3428F00A0176D /* ZodiacTableView.swift */,
@@ -219,7 +216,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD4E28F1EDDD22400A92F65 /* StartView.swift in Sources */,
 				0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */,
 				0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */,
 				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,

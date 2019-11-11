@@ -21,14 +21,15 @@ enum DateComponentSelectionMode: Int {
 }
 
 class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
-    //  https://www.timeanddate.com/calendar/about-chinese.html
-    
-    
+
     func updateLabel(_ label: UIButton, newValue: Int?, mode: DateComponentSelectionMode) {
         if let newValue = newValue {
-            if mode == .month {
+            switch mode {
+            case .month:
                 label.setTitle(newValue.toMonthName(), for: .normal)
-            } else {
+            case .day:
+                label.setTitle("\(newValue),", for: .normal)
+            case .year:
                 label.setTitle("\(newValue)", for: .normal)
             }
         } else {
