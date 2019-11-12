@@ -126,6 +126,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        nameField.resignFirstResponder()
         
     }
     
