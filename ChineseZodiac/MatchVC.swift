@@ -24,6 +24,7 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             return false
         }
     }
+    var displayingMessage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +87,8 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func displayMessage(_ msg: String) {
+        guard !displayingMessage else { return }
+        displayingMessage = true
         matchButtonImg.isHidden = true
         
         let attrMessage = NSMutableAttributedString(
@@ -105,6 +108,7 @@ class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
             self.matchButtonText.attributedText = nil
             self.matchButtonText.text = "Match"
             self.matchButtonImg.isHidden = false
+            self.displayingMessage = false
         }
     }
 }
