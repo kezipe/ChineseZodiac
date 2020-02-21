@@ -25,12 +25,13 @@ final class BirthdaySelectionView: UIViewController {
   private let DATE_SELECTOR_IDENTIFIER = "DateSelectorVC"
   private let ZODIAC_SIGN_IDENTIFIER = "ToZodiacSignView"
   private let DEFAULT_FONT_COLOR = UIColor.init(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
-  private let PICKERVIEW_TEXT_COLOR = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
-  private let PICKERVIEW_TEXT_FONT = "HelveticaNeue-Light"
+
   
+  private lazy var pickerViewDelegate = BirthdaySelectionViewPickerViewDelegate()
   var dateComponents = DateComponents()
   var dateSelector: DateSelectorVC!
   var personToEdit: Person?
+  
   
   @IBOutlet weak var monthLbl: UIButton!
   @IBOutlet weak var dayLbl: UIButton!
@@ -48,7 +49,10 @@ final class BirthdaySelectionView: UIViewController {
     super.viewDidLoad()
     dateSelector = storyboard?.instantiateViewController(withIdentifier: DATE_SELECTOR_IDENTIFIER) as? DateSelectorVC
     dateSelector.dateComponents = dateComponents
-    dateSelector.delegate = self
+    
+    pickerViewDelegate.parentController = self
+    dateSelector.delegate = pickerViewDelegate
+    
     loadData()
     
     self.hideKeyboardWhenTappedAround()
@@ -261,13 +265,8 @@ extension BirthdaySelectionView: UITextFieldDelegate {
   }
 }
 
-
-extension BirthdaySelectionView: PickerViewDelegate {
-  func pickerViewHeightForRows(_ pickerView: PickerView) -> CGFloat {
-    return 50.0
-  }
-  
-  func pickerView(_ pickerView: PickerView, didTapRow row: Int) {
+extension BirthdaySelectionView: DatePickable {
+  func didTapRow(at row: Int) {
     switch dateSelector.dateComponentsSelectionMode! {
     case .month:
       dateComponents.month = row + 1
@@ -282,15 +281,8 @@ extension BirthdaySelectionView: PickerViewDelegate {
     dateSelector.dateComponents = dateComponents
     dateSelector.dismiss(animated: true, completion: nil)
   }
-  
-  func pickerView(_ pickerView: PickerView, styleForLabel label: UILabel, highlighted: Bool) {
-    label.textAlignment = .center
-    label.textColor = PICKERVIEW_TEXT_COLOR
-    
-    if highlighted {
-      label.font = UIFont(name: PICKERVIEW_TEXT_FONT, size: 30)
-    } else {
-      label.font = UIFont(name: PICKERVIEW_TEXT_FONT, size: 20)
-    }
-  }
 }
+
+
+
+

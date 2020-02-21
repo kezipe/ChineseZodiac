@@ -19,3 +19,7 @@ protocol PersonDeleting: class {
 protocol PersonSaving: class {
   func savePerson(_ person: Person)
 }
+
+protocol DatePickable: class {
+  func didTapRow(at row: Int)
+}
