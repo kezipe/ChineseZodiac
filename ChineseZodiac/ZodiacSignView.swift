@@ -11,7 +11,6 @@ import UIKit
 class ZodiacSignView: UIViewController {
     
     var birthdate: Date?
-
     
     @IBOutlet weak var cDateLbl: UILabel!
     @IBOutlet weak var zodiacSignLbl: UILabel!

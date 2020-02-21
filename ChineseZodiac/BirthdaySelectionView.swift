@@ -22,14 +22,12 @@ enum DateComponentSelectionMode: Int {
 
 class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
   
-  
+  private let DATE_SELECTOR_IDENTIFIER = "DateSelectorVC"
+  private let defaultFontColor = UIColor.init(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
   
   var dateComponents = DateComponents()
-  let defaultFontColor = UIColor.init(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
-  
   var dateSelector: DateSelectorVC!
   var personToEdit: Person?
-  private let DATE_SELECTOR_IDENTIFIER = "DateSelectorVC"
   
   @IBOutlet weak var monthLbl: UIButton!
   @IBOutlet weak var dayLbl: UIButton!
@@ -90,7 +88,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     if keyboardIsGoingUp
     {
       self.view.transform = CGAffineTransform(translationX: 0, y: -movementDistance)
-    }
+    } 
     else
     {
       self.view.transform = .identity
