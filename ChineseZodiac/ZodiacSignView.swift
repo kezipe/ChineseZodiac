@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ZodiacSignView: UIViewController {
+final class ZodiacSignView: UIViewController {
     
     var birthdate: Date?
     

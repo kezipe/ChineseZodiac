@@ -20,10 +20,13 @@ enum DateComponentSelectionMode: Int {
   }
 }
 
-class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
+final class BirthdaySelectionView: UIViewController {
   
   private let DATE_SELECTOR_IDENTIFIER = "DateSelectorVC"
-  private let defaultFontColor = UIColor.init(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
+  private let ZODIAC_SIGN_IDENTIFIER = "ToZodiacSignView"
+  private let DEFAULT_FONT_COLOR = UIColor.init(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
+  private let PICKERVIEW_TEXT_COLOR = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
+  private let PICKERVIEW_TEXT_FONT = "HelveticaNeue-Light"
   
   var dateComponents = DateComponents()
   var dateSelector: DateSelectorVC!
@@ -135,7 +138,7 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
       }
     } else {
       label.setTitle(mode.convertToString(), for: .normal)
-      label.setTitleColor(defaultFontColor, for: .normal)
+      label.setTitleColor(DEFAULT_FONT_COLOR, for: .normal)
     }
   }
   
@@ -161,49 +164,6 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     doSegue()
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "ToZodiacSignView" {
-      if let destination = segue.destination as? ZodiacSignView {
-        if let date = sender as? Date {
-          destination.birthdate = date
-        }
-      }
-    }
-    nameField.resignFirstResponder()
-    
-  }
-  
-  func doSegue() {
-    if nameField.text == "" {
-      nameWarningLbl.isHidden = false
-      nameField.becomeFirstResponder()
-    } else {
-      var person: Person!
-      if personToEdit != nil {
-        person = personToEdit
-      } else {
-        person = Person(context: context)
-      }
-      dateComponents.calendar = Calendar.current
-      if let birthdate = dateComponents.date {
-        person.birthdate = birthdate
-        person.name = nameField.text
-        person.zodiac = Int16(birthdate.getZodiacRank())
-      }
-      ad.saveContext()
-      
-      performSegue(withIdentifier: "ToZodiacSignView", sender: dateComponents.date)
-    }
-  }
-  
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    if textField == nameField {
-      textField.resignFirstResponder()
-      return false
-    }
-    return true
-  }
-  
   @IBAction func nameFieldEditingChanged(_ sender: Any) {
     if nameField.text != "" {
       nameWarningLbl.isHidden = true
@@ -218,6 +178,84 @@ class BirthdaySelectionView: UIViewController, UITextFieldDelegate {
     }
   }
   
+
+  
+  func doSegue() {
+    if isNameFieldEmpty() {
+      askToFillName()
+    } else {
+      let personToBeSaved = prepareToSavePerson()
+      savePerson(personToBeSaved)
+      
+      performSegue(withIdentifier: ZODIAC_SIGN_IDENTIFIER, sender: dateComponents.date)
+    }
+  }
+  
+  func isNameFieldEmpty() -> Bool {
+    return nameField.text == ""
+  }
+  
+  func askToFillName() {
+    nameWarningLbl.isHidden = false
+    nameField.becomeFirstResponder()
+  }
+  
+  func prepareToSavePerson() -> Person {
+    var person: Person!
+    if personToEdit != nil {
+      person = personToEdit
+    } else {
+      person = Person()
+    }
+    dateComponents.calendar = Calendar.current
+    if let birthdate = dateComponents.date {
+      person.birthdate = birthdate
+      person.name = nameField.text
+      person.zodiac = Int16(birthdate.getZodiacRank())
+    }
+    return person
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard segue.identifier == ZODIAC_SIGN_IDENTIFIER else {
+      return
+    }
+    
+    guard let destination = segue.destination as? ZodiacSignView else {
+      return
+    }
+     
+    guard let date = sender as? Date else {
+      return
+    }
+    
+    destination.birthdate = date
+    nameField.resignFirstResponder()
+  }
+
+}
+
+extension BirthdaySelectionView: PersonSaving {
+  func savePerson(_ person: Person) {
+    if person.managedObjectContext == nil {
+      let personWithContext = Person(context: context)
+      personWithContext.birthdate = person.birthdate
+      personWithContext.created = person.created
+      personWithContext.name = person.name
+      personWithContext.zodiac = person.zodiac
+    }
+    ad.saveContext()
+  }
+}
+
+extension BirthdaySelectionView: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if textField == nameField {
+      textField.resignFirstResponder()
+      return false
+    }
+    return true
+  }
 }
 
 
@@ -244,12 +282,12 @@ extension BirthdaySelectionView: PickerViewDelegate {
   
   func pickerView(_ pickerView: PickerView, styleForLabel label: UILabel, highlighted: Bool) {
     label.textAlignment = .center
-    label.textColor = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
+    label.textColor = PICKERVIEW_TEXT_COLOR
     
     if highlighted {
-      label.font = UIFont(name: "HelveticaNeue-Light", size: 30)
+      label.font = UIFont(name: PICKERVIEW_TEXT_FONT, size: 30)
     } else {
-      label.font = UIFont(name: "HelveticaNeue-Light", size: 20)
+      label.font = UIFont(name: PICKERVIEW_TEXT_FONT, size: 20)
     }
   }
 }

@@ -15,6 +15,7 @@
 		0A10DA7C1F0C945C00ED645A /* DateSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */; };
 		0A1148BF23FF4CA70010C817 /* ZodiacTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */; };
 		0A1148C123FF530F0010C817 /* ZodiacTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */; };
+		0A1148C523FF8A370010C817 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148C423FF8A370010C817 /* Protocols.swift */; };
 		0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14631F1F0B55440043AA46 /* DetailsVC.swift */; };
 		0A1463221F0C4B770043AA46 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */; };
 		0A1463241F0C8A5F0043AA46 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1463231F0C8A5F0043AA46 /* PickerView.swift */; };
@@ -43,6 +44,7 @@
 		0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectorVC.swift; sourceTree = "<group>"; };
 		0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacTableViewDataSource.swift; sourceTree = "<group>"; };
 		0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacTableViewDelegate.swift; sourceTree = "<group>"; };
+		0A1148C423FF8A370010C817 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		0A14631F1F0B55440043AA46 /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		0A1463231F0C8A5F0043AA46 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		0A69F46A1EE341F400A0176D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0A1148C423FF8A370010C817 /* Protocols.swift */,
 				0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */,
 				0A69F46C1EE3426C00A0176D /* ZodiacSignView.swift */,
 				0A69F46F1EE3428F00A0176D /* ZodiacTableView.swift */,
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A1148C123FF530F0010C817 /* ZodiacTableViewDelegate.swift in Sources */,
+				0A1148C523FF8A370010C817 /* Protocols.swift in Sources */,
 				0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */,
 				0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */,
 				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,

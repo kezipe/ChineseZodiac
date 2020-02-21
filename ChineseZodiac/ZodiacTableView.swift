@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ZodiacTableView: UIViewController {
+final class ZodiacTableView: UIViewController {
   
   
   private lazy var delegate = ZodiacTableViewDelegate()
