@@ -27,7 +27,7 @@
 		0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A55C71EE3628B00BAA05B /* PersonCell.swift */; };
 		0A8D2AD61F118F63007B8D64 /* PersonColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD51F118F63007B8D64 /* PersonColCell.swift */; };
 		0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD71F119117007B8D64 /* MatchVC.swift */; };
-		0AB4729C236521A200495C17 /* PersonDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4729B236521A200495C17 /* PersonDao.swift */; };
+		0AB4729C236521A200495C17 /* PersonDataRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4729B236521A200495C17 /* PersonDataRetriever.swift */; };
 		0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */; };
 		0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACBF6FA1EE357B00075A523 /* Extensions.swift */; };
 		0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */; };
@@ -58,7 +58,7 @@
 		0A7A55C71EE3628B00BAA05B /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		0A8D2AD51F118F63007B8D64 /* PersonColCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonColCell.swift; sourceTree = "<group>"; };
 		0A8D2AD71F119117007B8D64 /* MatchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchVC.swift; sourceTree = "<group>"; };
-		0AB4729B236521A200495C17 /* PersonDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDao.swift; sourceTree = "<group>"; };
+		0AB4729B236521A200495C17 /* PersonDataRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDataRetriever.swift; sourceTree = "<group>"; };
 		0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		0ACBF6FA1EE357B00075A523 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0AD4E2891EDDD22400A92F65 /* ChineseZodiac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseZodiac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +120,7 @@
 				0A8D2AD71F119117007B8D64 /* MatchVC.swift */,
 				0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */,
 				0A0BA1221F1C0DE5005D4567 /* Helper.swift */,
-				0AB4729B236521A200495C17 /* PersonDao.swift */,
+				0AB4729B236521A200495C17 /* PersonDataRetriever.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -247,7 +247,7 @@
 				0A455BB724004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift in Sources */,
 				0A1148BF23FF4CA70010C817 /* ZodiacTableViewDataSource.swift in Sources */,
 				0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */,
-				0AB4729C236521A200495C17 /* PersonDao.swift in Sources */,
+				0AB4729C236521A200495C17 /* PersonDataRetriever.swift in Sources */,
 				0A8D2AD61F118F63007B8D64 /* PersonColCell.swift in Sources */,
 				0A1463241F0C8A5F0043AA46 /* PickerView.swift in Sources */,
 				0A69F46D1EE3426C00A0176D /* BirthdaySelectionView.swift in Sources */,

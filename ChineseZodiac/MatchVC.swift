@@ -34,7 +34,7 @@ final class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.global(qos: .background).async {
-            let persons = PersonDao.retrieveData(sortBy: .name).fetchedObjects!
+          let persons = PersonDataRetriever.shared.retrieveData(sortBy: .name)
             if persons != self.persons {
                 DispatchQueue.main.async {
                     self.persons = persons

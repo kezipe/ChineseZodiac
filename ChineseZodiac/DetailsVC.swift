@@ -9,16 +9,14 @@
 import UIKit
 
 final class DetailsVC: UIViewController {
-  
+
+  var person: Person?
   
   @IBOutlet weak var deleteButton: UIButton!
   @IBOutlet weak var cancelButton: UIBarButtonItem!
   
-  var person: Person?
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     updateInformation()
   }
   
@@ -35,19 +33,7 @@ final class DetailsVC: UIViewController {
   @IBAction func cancelButtonPressed(_ sender: Any) {
     navigationController?.popToRootViewController(animated: true)
   }
-  
-  override func setEditing(_ editing: Bool, animated: Bool) {
-    super.setEditing(editing, animated: animated)
-    if(self.isEditing) {
-      self.editButtonItem.title = "Done"
-      deleteButton.isHidden = false
-    } else {
-      self.editButtonItem.title = "Edit"
-      deleteButton.isHidden = true
-    }
-  }
-  
-  
+    
   @IBAction func EditButtonPressed(_ sender: Any) {
     performSegue(withIdentifier: "EditPerson", sender: self.person)
   }

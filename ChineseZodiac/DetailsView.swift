@@ -35,9 +35,7 @@ class DetailsView: UIView {
   
   func updateInformation(forPerson person: Person) {
     
-    if let name = person.name,
-      let birthday = person.birthdate {
-      
+    if let name = person.name, let birthday = person.birthdate {
       let zodiacSign = birthday.getZodiac()
       
       updateNameLabel(name)

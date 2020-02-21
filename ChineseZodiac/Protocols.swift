@@ -17,7 +17,7 @@ protocol PersonDeleting: class {
 }
 
 protocol PersonSaving: class {
-  func savePerson(_ person: Person)
+  func savePerson()
 }
 
 protocol DatePickable: class {

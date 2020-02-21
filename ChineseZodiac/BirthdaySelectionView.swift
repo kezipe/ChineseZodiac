@@ -135,7 +135,7 @@ final class BirthdaySelectionView: UIViewController {
     return 1 ..< 16 ~= name.count
   }
   
-  func updateNameLabelText(with name: String? = "Birthday:") {
+  func updateNameLabelText(with name: String? = nil) {
     if let name = name, shouldDisplayPersonsName(name) {
       nameLbl.text = "\(name)'s birthday:"
     } else {
@@ -194,8 +194,8 @@ final class BirthdaySelectionView: UIViewController {
     if isNameFieldEmpty() {
       askToFillName()
     } else {
-      let personToBeSaved = prepareToSavePerson()
-      savePerson(personToBeSaved)
+      prepareToSavePerson()
+      savePerson()
       
       performSegue(withIdentifier: ZODIAC_SIGN_IDENTIFIER, sender: dateComponents.date)
     }
@@ -210,12 +210,12 @@ final class BirthdaySelectionView: UIViewController {
     nameField.becomeFirstResponder()
   }
   
-  func prepareToSavePerson() -> Person {
+  func prepareToSavePerson() {
     var person: Person!
     if personToEdit != nil {
       person = personToEdit
     } else {
-      person = Person()
+      person = Person(context: context)
     }
     dateComponents.calendar = Calendar.current
     if let birthdate = dateComponents.date {
@@ -223,7 +223,6 @@ final class BirthdaySelectionView: UIViewController {
       person.name = nameField.text
       person.zodiac = Int16(birthdate.getZodiacRank())
     }
-    return person
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -246,14 +245,7 @@ final class BirthdaySelectionView: UIViewController {
 }
 
 extension BirthdaySelectionView: PersonSaving {
-  func savePerson(_ person: Person) {
-    if person.managedObjectContext == nil {
-      let personWithContext = Person(context: context)
-      personWithContext.birthdate = person.birthdate
-      personWithContext.created = person.created
-      personWithContext.name = person.name
-      personWithContext.zodiac = person.zodiac
-    }
+  func savePerson() {
     ad.saveContext()
   }
 }
