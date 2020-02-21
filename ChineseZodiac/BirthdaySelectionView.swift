@@ -100,27 +100,53 @@ final class BirthdaySelectionView: UIViewController {
 
   
   func loadData() {
-    if let person = personToEdit {
-      let df = DateFormatter()
-      let birthdate = person.birthdate! as Date
-      df.dateFormat = "yyyy"
-      dateComponents.year = Int(df.string(from: birthdate))!
-      df.dateFormat = "M"
-      dateComponents.month = Int(df.string(from: birthdate))!
-      df.dateFormat = "d"
-      dateComponents.day = Int(df.string(from: birthdate))!
-      nameField.text = person.name
+    if let person = personToEdit,
+      let personName = person.name,
+      let birthdate = person.birthdate {
       
-      if person.name == "" || person.name == nil {
-        nameLbl.text = "Tap to select a birthday:"
-      } else if (person.name?.count)! > 16 {
-        nameLbl.text = "Birthday:"
-      } else {
-        nameLbl.text = "\(person.name ?? "")'s birthday:"
-      }
-      dateSelector.dateComponents = dateComponents
+      prepareDateComponents(from: birthdate)
+      updateDateSelectorDateComponents()
+      updateNameTextField(with: personName)
+
+
+    } else {
+      updateNameLabelText()
     }
     
+    updateLabels()
+  }
+  
+  func prepareDateComponents(from date: Date) {
+    let df = DateFormatter()
+    df.dateFormat = "yyyy"
+    dateComponents.year = Int(df.string(from: date))!
+    df.dateFormat = "M"
+    dateComponents.month = Int(df.string(from: date))!
+    df.dateFormat = "d"
+    dateComponents.day = Int(df.string(from: date))!
+  }
+  
+  func updateDateSelectorDateComponents() {
+    dateSelector.dateComponents = dateComponents
+  }
+  
+  func updateNameTextField(with text: String) {
+    nameField.text = text
+  }
+  
+  func shouldDisplayPersonsName(_ name: String) -> Bool {
+    return 1 ..< 16 ~= name.count
+  }
+  
+  func updateNameLabelText(with name: String? = "Birthday:") {
+    if let name = name, shouldDisplayPersonsName(name) {
+      nameLbl.text = "\(name)'s birthday:"
+    } else {
+      nameLbl.text = "Birthday:"
+    }
+  }
+  
+  func updateLabels() {
     updateLabel(dayLbl, newValue: dateComponents.day, mode: .day)
     updateLabel(monthLbl, newValue: dateComponents.month, mode: .month)
     updateLabel(yearLbl, newValue: dateComponents.year, mode: .year)
@@ -164,18 +190,8 @@ final class BirthdaySelectionView: UIViewController {
     doSegue()
   }
   
-  @IBAction func nameFieldEditingChanged(_ sender: Any) {
-    if nameField.text != "" {
-      nameWarningLbl.isHidden = true
-      if (nameField.text?.count)! > 16 {
-        nameLbl.text = "Birthday:"
-      } else {
-        nameLbl.text = "\(nameField.text ?? "")'s birthday:"
-      }
-    } else {
-      nameWarningLbl.isHidden = false
-      nameLbl.text = ""
-    }
+  @IBAction func nameFieldEditingChanged(_ sender: UITextField) {
+    updateNameLabelText(with: sender.text)
   }
   
 
