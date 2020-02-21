@@ -73,13 +73,7 @@ final class BirthdaySelectionView: UIViewController {
     guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
     let keyboardScreenEndFrame = keyboardValue.cgRectValue
     let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-    let keyboardIsGoingUp: Bool
-    if notification.name == UIResponder.keyboardWillHideNotification {
-      keyboardIsGoingUp = false
-    } else {
-      keyboardIsGoingUp = true
-    }
-    
+    let isKeyboardGoingDown = notification.name == UIResponder.keyboardWillHideNotification
     let movementDistance: CGFloat
     
     if #available(iOS 11, *) {
@@ -88,13 +82,14 @@ final class BirthdaySelectionView: UIViewController {
       movementDistance = keyboardViewEndFrame.height
     }
     
-    if keyboardIsGoingUp
-    {
-      self.view.transform = CGAffineTransform(translationX: 0, y: -movementDistance)
-    } 
-    else
-    {
+    shiftView(down: isKeyboardGoingDown, distance: movementDistance)
+  }
+  
+  func shiftView(down: Bool, distance: CGFloat) {
+    if down {
       self.view.transform = .identity
+    } else {
+      self.view.transform = CGAffineTransform(translationX: 0, y: -distance)
     }
   }
 
@@ -107,8 +102,6 @@ final class BirthdaySelectionView: UIViewController {
       prepareDateComponents(from: birthdate)
       updateDateSelectorDateComponents()
       updateNameTextField(with: personName)
-
-
     } else {
       updateNameLabelText()
     }
@@ -173,7 +166,6 @@ final class BirthdaySelectionView: UIViewController {
     navigationController?.popToRootViewController(animated: true)
   }
   
-  
   @IBAction func checkZodiacPressed(_ sender: Any) {
     guard monthLbl.title(for: UIControl.State.normal) != "Month" else {
       monthLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
@@ -187,16 +179,14 @@ final class BirthdaySelectionView: UIViewController {
       yearLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
       return
     }
-    doSegue()
+    validateFormAndPerformSegue()
   }
   
   @IBAction func nameFieldEditingChanged(_ sender: UITextField) {
     updateNameLabelText(with: sender.text)
   }
   
-
-  
-  func doSegue() {
+  func validateFormAndPerformSegue() {
     if isNameFieldEmpty() {
       askToFillName()
     } else {
@@ -266,10 +256,7 @@ extension BirthdaySelectionView: PersonSaving {
 
 extension BirthdaySelectionView: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    if textField == nameField {
-      textField.resignFirstResponder()
-      return false
-    }
+    validateFormAndPerformSegue()
     return true
   }
 }
