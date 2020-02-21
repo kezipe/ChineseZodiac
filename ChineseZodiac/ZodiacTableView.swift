@@ -9,10 +9,10 @@
 import UIKit
 
 
-class ZodiacTableView: UIViewController, UITableViewDelegate {
+class ZodiacTableView: UIViewController {
   
   
-  
+  private lazy var delegate = ZodiacTableViewDelegate()
   private lazy var dataSource = ZodiacTableViewDataSource()
   
   @IBOutlet weak var tableView: UITableView!
@@ -20,89 +20,40 @@ class ZodiacTableView: UIViewController, UITableViewDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.delegate = self
+    tableView.delegate = delegate
+    delegate.parentController = self
     tableView.dataSource = dataSource
-    dataSource.retrieveData()
+    
+    #if DEBUG
+    dataSource.insertTestPerson(suffix: 0)
+    dataSource.insertTestPerson(suffix: 1)
+    dataSource.insertTestPerson(suffix: 2)
+    #endif
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    dataSource.retrieveData()
-    tableView.reloadData()
-  }
-  
-  
-  
-  @IBAction func segmentChange(_ sender: Any) {
-    dataSource.retrieveData()
-    tableView.reloadData()
-  }
-  
-  // MARK: Cell Management
   
 
   
-//  @available(iOS 11.0, *)
-//  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//    let deleteAction = self.contextualDeleteAction(forRowAtIndexPath: indexPath)
-//    let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
-//    return swipeConfig
-//  }
-//  // iOS 10 or lower
-//  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//
-//    let kCellActionWidth: CGFloat = 40.0
-//    let kCellHeight: CGFloat = 60
-//    let whitespace = " "
-//    let deleteAction = UITableViewRowAction(style: .default, title: whitespace) { (action, indexPath) in
-//      let person = self.persons[indexPath.row]
-//      context.delete(person)
-//      ad.saveContext()
-//
-//      do {
-//        self.persons = try context.fetch(Person.fetchRequest())
-//      } catch {
-//        print("Fetching Failed")
-//      }
-//      self.retrieveData()
-//      tableView.reloadData()
-//    }
-//
-//    // create a color from patter image and set the color as a background color of action
-//    let kActionImageSize: CGFloat = 34
-//    let view = UIView(frame: CGRect(x: 0, y: 0, width: kCellActionWidth, height: kCellHeight))
-//    view.backgroundColor = Helper.colorGreen
-//    let imageView = UIImageView(frame: CGRect(x: (kCellActionWidth - kActionImageSize) / 2,
-//                                              y: (kCellHeight - kActionImageSize) / 2,
-//                                              width: 34,
-//                                              height: 34))
-//    imageView.image = UIImage(named: "xSymbol")
-//    view.addSubview(imageView)
-//    let image = view.image()
-//
-//    deleteAction.backgroundColor = UIColor(patternImage: image)
-//
-//    return [deleteAction]
-//  }
+  override func viewWillAppear(_ animated: Bool) {
+    refreshData()
+  }
+  
+  func refreshData() {
+    let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)!
+    dataSource.retrieveData(sortBy: sortBy)
+    tableView.reloadData()
+  }
   
   
-  
-  
-  // MARK: Table View Stuff
-  
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    performSegue(withIdentifier: "showDetailsVC", sender: persons[indexPath.row])
-//  }
-//
-//  func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-//    let cell = tableView.cellForRow(at: indexPath)
-//    cell?.layer.cornerRadius = 8.0
-//  }
+  @IBAction func segmentChange(_ sender: Any) {
+    refreshData()
+  }
   
   // MARK: Prepare for segue and Popover
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showDetailsVC" {
       if let destination = segue.destination as? DetailsVC {
-        if let person = sender as? Person {
+        if let row = sender as? Int {
+          let person = dataSource.person(at: row)
           destination.person = person
         }
       }
@@ -111,5 +62,18 @@ class ZodiacTableView: UIViewController, UITableViewDelegate {
   
 }
 
+
+extension ZodiacTableView: PersonPresenting {
+  func didSelectPerson(at row: Int) {
+    performSegue(withIdentifier: "showDetailsVC", sender: row)
+  }
+}
+
+extension ZodiacTableView: PersonDeleting {
+  func deletePerson(at row: Int) {
+    dataSource.deletePerson(at: row)
+    tableView.reloadData()
+  }
+}
 
 

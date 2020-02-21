@@ -9,16 +9,36 @@
 import UIKit
 import CoreData
 
+
+
 class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   
-  var persons = [Person]()
+  private var persons = [Person]()
   var controller: NSFetchedResultsController<Person>!
   
-  func retrieveData() {
-//    let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)
-    let sortBy = PersonSort(rawValue: 0)
-    controller = PersonDao.retrieveData(sortBy: sortBy!)
+  #if DEBUG
+  func insertTestPerson(suffix: Int) {
+    let person = Person(context: context)
+    person.birthdate = Date()
+    person.name = "Test Person \(suffix)"
+    person.zodiac = Int16(person.birthdate!.getZodiacRank())
+  }
+  #endif
+  
+  func retrieveData(sortBy: PersonSort = .createdOn) {
+    controller = PersonDao.retrieveData(sortBy: sortBy)
     persons = controller.fetchedObjects!
+  }
+  
+  func person(at row: Int) -> Person {
+    return persons[row]
+  }
+  
+  func deletePerson(at row: Int) {
+    let personToDelete = person(at: row)
+    context.delete(personToDelete)
+    ad.saveContext()
+    retrieveData()
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,65 +68,8 @@ class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
     return 0
   }
   
-  // iOS 11+
-  @available(iOS 11.0, *)
-  func contextualDeleteAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-    
-    let person = self.persons[indexPath.row]
-    
-    let action = UIContextualAction(style: .destructive, title: " ") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-      context.delete(person)
-      ad.saveContext()
-      
-      do {
-        self.persons = try context.fetch(Person.fetchRequest())
-      } catch {
-        print("Fetching Failed")
-      }
-      self.retrieveData()
-//      self.tableView.reloadData()
-    }
-    action.image = #imageLiteral(resourceName: "xSymbolW")
-    action.backgroundColor = Helper.colorGreen
-    return action
-  }
+
 }
 
 
-extension ZodiacTableViewDataSource: NSFetchedResultsControllerDelegate {
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                  didChange anObject: Any,
-                  at indexPath: IndexPath?,
-                  for type: NSFetchedResultsChangeType,
-                  newIndexPath: IndexPath?) {
-    
-    switch type {
-    case.insert:
-      if let indexPath = newIndexPath {
-//        tableView.insertRows(at: [indexPath], with: .fade)
-      }
-      break
-    case.delete:
-      if let indexPath = indexPath {
-//        tableView.deleteRows(at: [indexPath], with: .fade)
-      }
-      break
-    case.update:
-      if let indexPath = indexPath {
-//        let cell = tableView.cellForRow(at: indexPath) as! PersonCell
-//        configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
-      }
-    case.move:
-      if let indexPath = indexPath {
-//        tableView.deleteRows(at: [indexPath], with: .fade)
-      }
-      if let indexPath = newIndexPath {
-//        tableView.insertRows(at: [indexPath], with: .fade)
-      }
-      break
-    @unknown default:
-      fatalError()
-    }
-    
-  }
-}
+
