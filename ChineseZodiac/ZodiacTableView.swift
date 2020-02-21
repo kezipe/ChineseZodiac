@@ -14,6 +14,7 @@ class ZodiacTableView: UIViewController {
   
   private lazy var delegate = ZodiacTableViewDelegate()
   private lazy var dataSource = ZodiacTableViewDataSource()
+  private let DETAILS_SEGUE_IDENTIFIER = "showDetailsVC"
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -31,8 +32,6 @@ class ZodiacTableView: UIViewController {
     #endif
   }
   
-
-  
   override func viewWillAppear(_ animated: Bool) {
     refreshData()
   }
@@ -43,32 +42,42 @@ class ZodiacTableView: UIViewController {
     tableView.reloadData()
   }
   
-  
   @IBAction func segmentChange(_ sender: Any) {
     refreshData()
   }
   
   // MARK: Prepare for segue and Popover
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "showDetailsVC" {
-      if let destination = segue.destination as? DetailsVC {
-        if let row = sender as? Int {
-          let person = dataSource.person(at: row)
-          destination.person = person
-        }
-      }
+    guard checkSegueIdentifier(segue: segue) else {
+      return
     }
+    guard let destination = segue.destination as? DetailsVC else {
+      return
+    }
+    
+    guard let row = sender as? Int else {
+      return
+    }
+    
+    let person = dataSource.person(at: row)
+    destination.person = person
+
+  }
+  
+  fileprivate func checkSegueIdentifier(segue: UIStoryboardSegue) -> Bool {
+    return segue.identifier == DETAILS_SEGUE_IDENTIFIER
   }
   
 }
 
-
+// MARK: Person Present
 extension ZodiacTableView: PersonPresenting {
   func didSelectPerson(at row: Int) {
-    performSegue(withIdentifier: "showDetailsVC", sender: row)
+    performSegue(withIdentifier: DETAILS_SEGUE_IDENTIFIER, sender: row)
   }
 }
 
+// MARK: Person Delete
 extension ZodiacTableView: PersonDeleting {
   func deletePerson(at row: Int) {
     dataSource.deletePerson(at: row)

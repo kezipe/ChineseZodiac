@@ -25,27 +25,10 @@ class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   }
   #endif
   
-  func retrieveData(sortBy: PersonSort = .createdOn) {
-    controller = PersonDao.retrieveData(sortBy: sortBy)
-    persons = controller.fetchedObjects!
-  }
-  
-  func person(at row: Int) -> Person {
-    return persons[row]
-  }
-  
-  func deletePerson(at row: Int) {
-    let personToDelete = person(at: row)
-    context.delete(personToDelete)
-    ad.saveContext()
-    retrieveData()
-  }
-  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTable", for: indexPath) as! PersonCell
     configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
     return cell
-    
   }
   
   func configureCell(cell: PersonCell, indexPath: NSIndexPath) {
@@ -68,6 +51,23 @@ class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
     return 0
   }
   
+  func retrieveData(sortBy: PersonSort = .createdOn) {
+    controller = PersonDao.retrieveData(sortBy: sortBy)
+    persons = controller.fetchedObjects!
+  }
+  
+  func person(at row: Int) -> Person {
+    return persons[row]
+  }
+  
+  func deletePerson(at row: Int) {
+    let personToDelete = person(at: row)
+    context.delete(personToDelete)
+    ad.saveContext()
+    retrieveData()
+  }
+  
+
 
 }
 
