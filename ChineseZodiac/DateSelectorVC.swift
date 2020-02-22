@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DateSelectorVC: UIViewController {
+final class DateSelectorVC: UIViewController {
     @IBOutlet weak var pickerView: PickerView!
 
     var delegate: PickerViewDelegate!

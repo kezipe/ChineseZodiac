@@ -11,7 +11,7 @@ import CoreData
 
 
 
-class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
+final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   
   private var persons = [Person]()
   var controller: NSFetchedResultsController<Person>!

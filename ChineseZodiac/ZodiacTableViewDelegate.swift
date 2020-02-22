@@ -8,15 +8,9 @@
 
 import UIKit
 
-protocol PersonPresenting: class {
-  func didSelectPerson(at row: Int)
-}
 
-protocol PersonDeleting: class {
-  func deletePerson(at row: Int)
-}
 
-class ZodiacTableViewDelegate: NSObject, UITableViewDelegate {
+final class ZodiacTableViewDelegate: NSObject, UITableViewDelegate {
   
   weak var parentController: (PersonPresenting & PersonDeleting)?
   

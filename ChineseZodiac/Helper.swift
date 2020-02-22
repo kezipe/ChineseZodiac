@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Helper {
+final class Helper {
     static let color = UIColor(red: 1.0, green: 1.0, blue: 122.0/255, alpha: 1.0) // light-light yellow
     static let color2 = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0) // dark orange
     static let color3 = UIColor(red: 216.0/255, green: 149.0/255, blue: 49.0/255, alpha: 1.0) // slightly darker orange

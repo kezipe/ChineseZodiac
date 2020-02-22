@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
