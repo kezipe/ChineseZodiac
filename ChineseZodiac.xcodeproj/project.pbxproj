@@ -85,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				0A0BA1251F1C118F005D4567 /* Match.swift */,
+				0AD4E2931EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -152,7 +153,6 @@
 				0AD4E2981EDDD22400A92F65 /* LaunchScreen.storyboard */,
 				0AD4E29B1EDDD22400A92F65 /* Info.plist */,
 				0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */,
-				0AD4E2931EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld */,
 			);
 			path = ChineseZodiac;
 			sourceTree = "<group>";
