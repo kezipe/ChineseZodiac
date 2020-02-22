@@ -14,7 +14,6 @@ import CoreData
 final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   
   private var persons = [Person]()
-  var controller: NSFetchedResultsController<Person>!
   
   #if DEBUG
   func insertTestPerson(suffix: Int) {
@@ -32,28 +31,23 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   }
   
   func configureCell(cell: PersonCell, indexPath: NSIndexPath) {
-    let person = controller.object(at: indexPath as IndexPath)
+    let person = persons[indexPath.row]
     cell.configureCell(person: person)
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let sections = controller.sections {
-      let sectionInfo = sections[section]
-      return sectionInfo.numberOfObjects
-    }
-    return 0
+    return persons.count
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    if let sections = controller.sections {
-      return sections.count
-    }
-    return 0
+    return 1
   }
   
   func retrieveData(sortBy: PersonSort = .createdOn) {
-    controller = PersonDao.retrieveData(sortBy: sortBy)
-    persons = controller.fetchedObjects!
+    guard let fetchedPersons = PersonDataRetriever.shared.retrieveData(sortBy: sortBy) else {
+      fatalError("Unable to fetch persons")
+    }
+    persons = fetchedPersons
   }
   
   func person(at row: Int) -> Person {

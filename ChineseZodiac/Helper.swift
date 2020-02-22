@@ -42,7 +42,20 @@ final class Helper {
     }
     
     static func getZodiac(fromIndex: Int) -> String {
-        let zodiac = [1:"Rat", 2:"Ox", 3:"Tiger", 4:"Rabbit", 5:"Dragon", 6:"Snake", 7:"Horse", 8:"Goat", 9:"Monkey", 10:"Rooster", 11:"Dog", 12:"Pig"]
+        let zodiac = [
+          1:"Rat",
+          2:"Ox",
+          3:"Tiger",
+          4:"Rabbit",
+          5:"Dragon",
+          6:"Snake",
+          7:"Horse",
+          8:"Goat",
+          9:"Monkey",
+          10:"Rooster",
+          11:"Dog",
+          12:"Pig"]
+      
         return zodiac[fromIndex]!
     }
 

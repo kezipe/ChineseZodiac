@@ -625,7 +625,7 @@
                         <viewControllerLayoutGuide type="top" id="VXx-Ge-TyS"/>
                         <viewControllerLayoutGuide type="bottom" id="1kh-me-xah"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="S3V-ZF-YAV">
+                    <view key="view" contentMode="scaleToFill" id="S3V-ZF-YAV" customClass="DetailsView" customModule="ChineseZodiac" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -965,21 +965,23 @@
                             <constraint firstItem="IGp-PH-LPS" firstAttribute="leading" secondItem="S3V-ZF-YAV" secondAttribute="leadingMargin" id="Mix-4E-OhY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IGp-PH-LPS" secondAttribute="trailing" id="eeX-kw-TDK"/>
                         </constraints>
+                        <connections>
+                            <outlet property="adYearLbl" destination="e7p-bI-kUZ" id="4fb-Sb-mky"/>
+                            <outlet property="birthdayLbl" destination="xlE-X2-cKy" id="gn3-6g-S8D"/>
+                            <outlet property="cBirthdayLbl" destination="qEW-yk-5MJ" id="VdP-er-G5a"/>
+                            <outlet property="compatibilityLbl" destination="8SG-zj-gZn" id="zNC-GN-reo"/>
+                            <outlet property="fixedElementLbl" destination="K44-SJ-OQp" id="TTh-ET-0jt"/>
+                            <outlet property="lunarMonthLbl" destination="xqa-n1-j67" id="DdN-XV-x8p"/>
+                            <outlet property="nameLbl" destination="dIg-jX-HgI" id="Eib-1F-3fB"/>
+                            <outlet property="seasonLbl" destination="ht8-e8-jcs" id="aSL-kn-Qtg"/>
+                            <outlet property="solarTermLbl" destination="NFh-Gd-y3f" id="mZc-1s-7gr"/>
+                            <outlet property="stemBranchLbl" destination="ccm-TO-xMr" id="Nav-zt-vP9"/>
+                            <outlet property="zodiacImg" destination="KYO-BN-BvN" id="Ja1-DI-Y5a"/>
+                            <outlet property="zodiacLbl" destination="tWf-tg-Zax" id="kyP-Wa-3eV"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="1Sa-3U-BbB"/>
                     <connections>
-                        <outlet property="adYearLbl" destination="e7p-bI-kUZ" id="k53-JV-VBS"/>
-                        <outlet property="birthdayLbl" destination="xlE-X2-cKy" id="7sM-ea-nwM"/>
-                        <outlet property="cBirthdayLbl" destination="qEW-yk-5MJ" id="dUW-fw-No2"/>
-                        <outlet property="compatibilityLbl" destination="8SG-zj-gZn" id="Ycw-2y-Yyh"/>
-                        <outlet property="fixedElementLbl" destination="K44-SJ-OQp" id="vxc-r5-BNa"/>
-                        <outlet property="lunarMonthLbl" destination="xqa-n1-j67" id="DRM-DD-ToL"/>
-                        <outlet property="nameLbl" destination="dIg-jX-HgI" id="HBN-cY-w0g"/>
-                        <outlet property="seasonLbl" destination="ht8-e8-jcs" id="v2N-XQ-dOR"/>
-                        <outlet property="solarTermLbl" destination="NFh-Gd-y3f" id="f7U-nl-I7b"/>
-                        <outlet property="stemBranchLbl" destination="ccm-TO-xMr" id="Km3-L9-qhH"/>
-                        <outlet property="zodiacImg" destination="KYO-BN-BvN" id="1N4-SA-WqW"/>
-                        <outlet property="zodiacLbl" destination="tWf-tg-Zax" id="ZF0-0F-J6p"/>
                         <segue destination="5U2-q2-2lP" kind="show" identifier="EditPerson" id="gHg-VV-9Mj"/>
                     </connections>
                 </viewController>
@@ -1548,6 +1550,6 @@
         <image name="rightSymbol" width="80" height="80"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iMb-S3-W40"/>
+        <segue reference="gHg-VV-9Mj"/>
     </inferredMetricsTieBreakers>
 </document>
