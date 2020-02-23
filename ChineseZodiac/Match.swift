@@ -64,9 +64,9 @@ class Match {
     
     
     for i in stride(from: 0, to: pairingPersons.count - 1, by: 2) {
-      if pairingPersons[i].zodiac == 13 {
+      if pairingPersons[i].zodiacSign == .alone {
         loner = pairingPersons[i + 1]
-      } else if pairingPersons[i + 1].zodiac == 13 {
+      } else if pairingPersons[i + 1].zodiacSign == .alone {
         loner = pairingPersons[i]
       } else {
         let person1Zodiac = pairingPersons[i].zodiacSign

@@ -8,22 +8,15 @@
 
 import UIKit
 
-
-
 class PersonColCell: UICollectionViewCell {
-    @IBOutlet weak var zodiacImg: UIImageView!
-    @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var checkMarkImg: UIImageView!
-    
-    var delegate: PersonColCellDelegate? = nil
-    var person: Person?
-
-    
-    func configureCell(person: Person) {
-        self.person = person
-        nameLbl.text = person.name
-        let birthday = person.birthdate! as Date
-        zodiacImg.image = UIImage(named: "\(birthday.getZodiac())_thumb")
-    }
-
+  @IBOutlet weak var zodiacImg: UIImageView!
+  @IBOutlet weak var nameLbl: UILabel!
+  @IBOutlet weak var checkMarkImg: UIImageView!  
+  
+  func configureCell(person: Person) {
+    nameLbl.text = person.name
+    let imageName = person.zodiacSign.name + "_thumb"
+    zodiacImg.image = UIImage(named: imageName)
+  }
+  
 }
