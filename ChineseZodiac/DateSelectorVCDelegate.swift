@@ -1,5 +1,5 @@
 //
-//  BirthdaySelectionViewPickerViewDelegate.swift
+//  DateSelectorVCDelegate.swift
 //  ChineseZodiac
 //
 //  Created by Kevin Peng on 2020-02-21.
@@ -8,28 +8,26 @@
 
 import UIKit
 
-class BirthdaySelectionViewPickerViewDelegate: PickerViewDelegate {
-  
-  private let PICKERVIEW_TEXT_COLOR = UIColor(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
-  private let PICKERVIEW_TEXT_FONT = "HelveticaNeue-Light"
+class DateSelectorVCDelegate: PickerViewDelegate {
   weak var parentController: DatePickable?
+  var dateComponentSelectionMode: DateComponentSelectionMode = .day
   
   func pickerViewHeightForRows(_ pickerView: PickerView) -> CGFloat {
     return 50.0
   }
   
   func pickerView(_ pickerView: PickerView, didTapRow row: Int) {
-    parentController?.didTapRow(at: row)
+    parentController?.selectRow(at: row, mode: dateComponentSelectionMode)
   }
-  
+
   func pickerView(_ pickerView: PickerView, styleForLabel label: UILabel, highlighted: Bool) {
     label.textAlignment = .center
-    label.textColor = PICKERVIEW_TEXT_COLOR
+    label.textColor = Helper.PICKERVIEW_TEXT_COLOR
     
     if highlighted {
-      label.font = UIFont(name: PICKERVIEW_TEXT_FONT, size: 30)
+      label.font = UIFont(name: Helper.PICKERVIEW_TEXT_FONT, size: 30)
     } else {
-      label.font = UIFont(name: PICKERVIEW_TEXT_FONT, size: 20)
+      label.font = UIFont(name: Helper.PICKERVIEW_TEXT_FONT, size: 20)
     }
   }
 }

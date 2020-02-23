@@ -13,6 +13,6 @@ extension Person {
     guard 1...12 ~= self.zodiac else {
       fatalError("Non-existent zodiac sign")
     }
-    return Zodiac(rawValue: Int(self.zodiac))!
+    return Zodiac(rawValue: Int(self.zodiac) - 1)!
   }
 }

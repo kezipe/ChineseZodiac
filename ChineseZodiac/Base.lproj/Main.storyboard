@@ -68,7 +68,7 @@
                                                                     <color key="titleColor" red="0.27198781529999999" green="0.44606001709999998" blue="0.54397563059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="dateComponentSelected:" destination="5U2-q2-2lP" eventType="touchUpInside" id="TM9-8F-hcu"/>
+                                                                    <action selector="selectMonth:" destination="5U2-q2-2lP" eventType="touchUpInside" id="pht-XY-BNi"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWD-NB-ogF">
@@ -78,7 +78,7 @@
                                                                     <color key="titleColor" red="0.27198781529999999" green="0.44606001709999998" blue="0.54397563059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="dateComponentSelected:" destination="5U2-q2-2lP" eventType="touchUpInside" id="IZI-xm-5db"/>
+                                                                    <action selector="selectDay:" destination="5U2-q2-2lP" eventType="touchUpInside" id="x8r-sO-cgF"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YhV-MG-EtY">
@@ -88,7 +88,7 @@
                                                                     <color key="titleColor" red="0.27198781529999999" green="0.44606001709999998" blue="0.54397563059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="dateComponentSelected:" destination="5U2-q2-2lP" eventType="touchUpInside" id="tmi-LO-VSb"/>
+                                                                    <action selector="selectYear:" destination="5U2-q2-2lP" eventType="touchUpInside" id="1Ft-Er-XMX"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>

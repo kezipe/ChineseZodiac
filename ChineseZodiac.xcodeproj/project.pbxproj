@@ -23,7 +23,8 @@
 		0A1AB26A240220BC002EAAF3 /* Person+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */; };
 		0A1AB26C2402269F002EAAF3 /* MatchVCDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB26B2402269F002EAAF3 /* MatchVCDataSource.swift */; };
 		0A1AB27024022CA3002EAAF3 /* MatchVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB26F24022CA3002EAAF3 /* MatchVCDelegate.swift */; };
-		0A455BB724004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A455BB624004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift */; };
+		0A1AB27224023BD8002EAAF3 /* DateSelectorVCDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB27124023BD8002EAAF3 /* DateSelectorVCDataSource.swift */; };
+		0A455BB724004DB3008D13AD /* DateSelectorVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A455BB624004DB3008D13AD /* DateSelectorVCDelegate.swift */; };
 		0A455BB924006A44008D13AD /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A455BB824006A44008D13AD /* DetailsView.swift */; };
 		0A69F46D1EE3426C00A0176D /* BirthdaySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */; };
 		0A69F46E1EE3426C00A0176D /* ZodiacSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46C1EE3426C00A0176D /* ZodiacSignView.swift */; };
@@ -58,7 +59,8 @@
 		0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+Extensions.swift"; sourceTree = "<group>"; };
 		0A1AB26B2402269F002EAAF3 /* MatchVCDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVCDataSource.swift; sourceTree = "<group>"; };
 		0A1AB26F24022CA3002EAAF3 /* MatchVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVCDelegate.swift; sourceTree = "<group>"; };
-		0A455BB624004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdaySelectionViewPickerViewDelegate.swift; sourceTree = "<group>"; };
+		0A1AB27124023BD8002EAAF3 /* DateSelectorVCDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectorVCDataSource.swift; sourceTree = "<group>"; };
+		0A455BB624004DB3008D13AD /* DateSelectorVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectorVCDelegate.swift; sourceTree = "<group>"; };
 		0A455BB824006A44008D13AD /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdaySelectionView.swift; sourceTree = "<group>"; };
 		0A69F46C1EE3426C00A0176D /* ZodiacSignView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZodiacSignView.swift; sourceTree = "<group>"; };
@@ -125,9 +127,10 @@
 				0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */,
 				0A14631F1F0B55440043AA46 /* DetailsVC.swift */,
 				0A455BB824006A44008D13AD /* DetailsView.swift */,
-				0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */,
 				0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */,
-				0A455BB624004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift */,
+				0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */,
+				0A1AB27124023BD8002EAAF3 /* DateSelectorVCDataSource.swift */,
+				0A455BB624004DB3008D13AD /* DateSelectorVCDelegate.swift */,
 				0A8D2AD71F119117007B8D64 /* MatchVC.swift */,
 				0A1AB26B2402269F002EAAF3 /* MatchVCDataSource.swift */,
 				0A1AB26F24022CA3002EAAF3 /* MatchVCDelegate.swift */,
@@ -249,6 +252,7 @@
 				0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */,
 				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,
 				0A0192D41F1E4B1C00172FE5 /* MatchResultLonerCell.swift in Sources */,
+				0A1AB27224023BD8002EAAF3 /* DateSelectorVCDataSource.swift in Sources */,
 				0A0BA1231F1C0DE5005D4567 /* Helper.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
 				0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */,
@@ -257,7 +261,7 @@
 				0A69F46E1EE3426C00A0176D /* ZodiacSignView.swift in Sources */,
 				0A455BB924006A44008D13AD /* DetailsView.swift in Sources */,
 				0A0BA11F1F1C0AEA005D4567 /* MatchResultVC.swift in Sources */,
-				0A455BB724004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift in Sources */,
+				0A455BB724004DB3008D13AD /* DateSelectorVCDelegate.swift in Sources */,
 				0A1148BF23FF4CA70010C817 /* ZodiacTableViewDataSource.swift in Sources */,
 				0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */,
 				0AB4729C236521A200495C17 /* PersonDataRetriever.swift in Sources */,

@@ -21,8 +21,9 @@ protocol PersonSaving: class {
 }
 
 protocol DatePickable: class {
-  func didTapRow(at row: Int)
+  func selectRow(at row: Int, mode: DateComponentSelectionMode)
 }
+
 
 protocol PersonColCellDelegate: class {
   func toggleSelectionOfButton(forCell: PersonColCell)
