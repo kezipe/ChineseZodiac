@@ -151,6 +151,21 @@ final class BirthdaySelectionView: UIViewController {
     }
   }
   
+  fileprivate func updateDayValue(to value: Int) {
+    dateComponents.day = value
+    updateLabel(dayLbl, newValue: value, mode: .day)
+  }
+  
+  fileprivate func updateMonthValue(to value: Int) {
+    dateComponents.month = value
+    updateLabel(monthLbl, newValue: value, mode: .month)
+  }
+  
+  fileprivate func updateYearValue(to value: Int) {
+    dateComponents.year = value
+    updateLabel(yearLbl, newValue: value, mode: .year)
+  }
+  
   func updateLabels() {
     updateLabel(dayLbl, newValue: dateComponents.day, mode: .day)
     updateLabel(monthLbl, newValue: dateComponents.month, mode: .month)
@@ -183,14 +198,20 @@ final class BirthdaySelectionView: UIViewController {
       monthLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
       return
     }
-    guard dayLbl.title(for: UIControl.State.normal) != "Day," else {
+    monthLbl.setTitleColor(DEFAULT_FONT_COLOR, for: UIControl.State.normal)
+    
+    guard dayLbl.title(for: UIControl.State.normal) != "Day" else {
       dayLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
       return
     }
+    dayLbl.setTitleColor(DEFAULT_FONT_COLOR, for: UIControl.State.normal)
+    
     guard yearLbl.title(for: UIControl.State.normal) != "Year" else {
       yearLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
       return
     }
+    yearLbl.setTitleColor(DEFAULT_FONT_COLOR, for: UIControl.State.normal)
+    
     validateFormAndPerformSegue()
   }
   
@@ -267,21 +288,33 @@ extension BirthdaySelectionView: UITextFieldDelegate {
 
 extension BirthdaySelectionView: DatePickable {
   
+
+  
   func selectRow(at row: Int, mode: DateComponentSelectionMode) {
     switch mode {
     case .month:
-      dateComponents.month = row + 1
-      updateLabel(monthLbl, newValue: dateComponents.month, mode: .month)
+      updateMonthValue(to: row + 1)
     case .day:
-      dateComponents.day = row + 1
-      updateLabel(dayLbl, newValue: dateComponents.day, mode: .day)
+      updateDayValue(to: row + 1)
     case .year:
-      dateComponents.year = row + 1
-      updateLabel(yearLbl, newValue: dateComponents.year, mode: .year)
+      updateYearValue(to: row + 1)
     }
+    
+    if let month = dateComponents.month, let day = dateComponents.day {
+      
+      let year = dateComponents.year ?? 2000
+      let numberOfDaysForGivenMonth = month.toNumDaysInMonth(year: year)
+      if numberOfDaysForGivenMonth < day {
+        updateDayValue(to: numberOfDaysForGivenMonth)
+      }
+      
+    }
+    
     dateSelector.dateComponents = dateComponents
     dateSelector.dismiss(animated: true, completion: nil)
   }
+  
+
 }
 
 

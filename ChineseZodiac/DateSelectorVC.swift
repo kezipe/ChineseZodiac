@@ -11,7 +11,11 @@ import UIKit
 final class DateSelectorVC: UIViewController {
   @IBOutlet weak var pickerView: PickerView!
   
-  var dateComponents: DateComponents!
+  var dateComponents: DateComponents! {
+    didSet {
+      dataSource.dateComponentsSelected = dateComponents
+    }
+  }
   weak var parentController: DatePickable?
   private var delegate = DateSelectorVCDelegate()
   private var dataSource = DateSelectorVCDataSource()
