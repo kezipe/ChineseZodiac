@@ -9,11 +9,13 @@
 import UIKit
 
 class MatchVCDataSource: NSObject, UICollectionViewDataSource {
-  
-  weak var parentController: PersonColCellDelegate?
 
   private var persons = [Person]()
   private let CELL_IDENTIFIER = "PersonColCell"
+  
+  func person(at row: Int) -> Person {
+    return persons[row]
+  }
   
   func fillData(_ persons: [Person]) {
     self.persons.append(contentsOf: persons)
@@ -25,12 +27,10 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {    
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER,
-                                                  for: indexPath) as? PersonColCell else {
+                                                        for: indexPath) as? PersonColCell else {
       fatalError("Cannot dequeue or cast UITableView as \"PersonColCell\"")
     }
-    
     cell.configureCell(person: persons[indexPath.row])
-    cell.delegate = parentController
     return cell
   }
 }

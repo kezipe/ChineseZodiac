@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   @IBOutlet weak var collectionView: UICollectionView!
   
   @IBOutlet weak var matchStackView: UIStackView!
@@ -16,6 +16,8 @@ final class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionVie
   @IBOutlet weak var matchButtonImg: UIImageView!
   
   private lazy var dataSource = MatchVCDataSource()
+  private lazy var delegate = MatchVCDelegate()
+  
   var persons: [Person]?
   var selectedPersons: Set<Person> = []
   var validSelection: Bool {
@@ -29,10 +31,11 @@ final class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionVie
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    collectionView.delegate = self
     
-    dataSource.parentController = self
     collectionView.dataSource = dataSource
+    
+    delegate.parentController = self
+    collectionView.delegate = delegate
   }
   
   func fetchNewData() {
@@ -112,21 +115,37 @@ final class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionVie
   }
 }
 
-extension MatchVC: PersonColCellDelegate {
+extension MatchVC: PersonSelecting {
   
-  func toggleSelectionOfButton(forCell: PersonColCell) {
-    if let person = forCell.person {
-      if selectedPersons.contains(person) {
-        selectedPersons.remove(person)
-        forCell.checkMarkImg.isHidden = true
+  func toggleSelection(forPersonAt item: Int) {
+    let personTapped = dataSource.person(at: item)
+    if selectedPersons.contains(personTapped) {
+      selectedPersons.remove(personTapped)
+      hideCheckMark(at: item)
+    } else {
+      if self.selectedPersons.count >= 10 {
+        displayMessage("You must choose 10 or less persons to match")
       } else {
-        if self.selectedPersons.count >= 10 {
-          displayMessage("You must choose 10 or less persons to match")
-        } else {
-          selectedPersons.insert(person)
-          forCell.checkMarkImg.isHidden = false
-        }
+        selectedPersons.insert(personTapped)
+        showCheckMark(at: item)
       }
     }
   }
+  
+  func cell(for item: Int) -> PersonColCell {
+    if let cell = collectionView.cellForItem(at: IndexPath(item: item, section: 0)) as? PersonColCell {
+      return cell
+    } else {
+      fatalError("Cannot fetch CollectionViewCell for item at \(item)")
+    }
+  }
+  
+  func showCheckMark(at item: Int) {
+    cell(for: item).checkMarkImg.isHidden = false
+  }
+  
+  func hideCheckMark(at item: Int) {
+    cell(for: item).checkMarkImg.isHidden = true
+  }
+  
 }

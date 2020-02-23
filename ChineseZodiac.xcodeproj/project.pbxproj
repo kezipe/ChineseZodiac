@@ -22,6 +22,7 @@
 		0A1AB26824022085002EAAF3 /* Zodiac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB26724022085002EAAF3 /* Zodiac.swift */; };
 		0A1AB26A240220BC002EAAF3 /* Person+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */; };
 		0A1AB26C2402269F002EAAF3 /* MatchVCDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB26B2402269F002EAAF3 /* MatchVCDataSource.swift */; };
+		0A1AB27024022CA3002EAAF3 /* MatchVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB26F24022CA3002EAAF3 /* MatchVCDelegate.swift */; };
 		0A455BB724004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A455BB624004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift */; };
 		0A455BB924006A44008D13AD /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A455BB824006A44008D13AD /* DetailsView.swift */; };
 		0A69F46D1EE3426C00A0176D /* BirthdaySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */; };
@@ -56,6 +57,7 @@
 		0A1AB26724022085002EAAF3 /* Zodiac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zodiac.swift; sourceTree = "<group>"; };
 		0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+Extensions.swift"; sourceTree = "<group>"; };
 		0A1AB26B2402269F002EAAF3 /* MatchVCDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVCDataSource.swift; sourceTree = "<group>"; };
+		0A1AB26F24022CA3002EAAF3 /* MatchVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVCDelegate.swift; sourceTree = "<group>"; };
 		0A455BB624004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdaySelectionViewPickerViewDelegate.swift; sourceTree = "<group>"; };
 		0A455BB824006A44008D13AD /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdaySelectionView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				0A455BB624004DB3008D13AD /* BirthdaySelectionViewPickerViewDelegate.swift */,
 				0A8D2AD71F119117007B8D64 /* MatchVC.swift */,
 				0A1AB26B2402269F002EAAF3 /* MatchVCDataSource.swift */,
+				0A1AB26F24022CA3002EAAF3 /* MatchVCDelegate.swift */,
 				0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */,
 				0A0BA1221F1C0DE5005D4567 /* Helper.swift */,
 				0AB4729B236521A200495C17 /* PersonDataRetriever.swift */,
@@ -264,6 +267,7 @@
 				0A1463221F0C4B770043AA46 /* UIViewControllerExtension.swift in Sources */,
 				0A1AB26824022085002EAAF3 /* Zodiac.swift in Sources */,
 				0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */,
+				0A1AB27024022CA3002EAAF3 /* MatchVCDelegate.swift in Sources */,
 				0A0BA1261F1C118F005D4567 /* Match.swift in Sources */,
 				0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */,
 				0A10DA7C1F0C945C00ED645A /* DateSelectorVC.swift in Sources */,
