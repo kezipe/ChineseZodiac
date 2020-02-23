@@ -8,9 +8,7 @@
 
 import UIKit
 
-protocol PersonColCellDelegate {
-    func toggleSelectionOfButton(forCell: PersonColCell)
-}
+
 
 class PersonColCell: UICollectionViewCell {
     @IBOutlet weak var zodiacImg: UIImageView!
