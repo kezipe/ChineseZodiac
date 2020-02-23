@@ -49,7 +49,7 @@ class DetailsView: UIView {
       updateSeasonLabel(birthday)
       updateSolarTermLabel(birthday)
       updateFixedTermLabel(birthday)
-      updateCompatibilityLabel(fromRank: person.zodiac)
+      updateCompatibilityLabel(from: person.zodiacSign)
     }
   }
   
@@ -103,10 +103,10 @@ class DetailsView: UIView {
     fixedElementLbl.text = birthday.getFixedElement()
   }
   
-  func updateCompatibilityLabel(fromRank zodiacRank: Int16) {
-    let bestMatches = Helper.findBestMatches(for: zodiacRank)
-    let bestMatchesStrings = bestMatches.map(Helper.getZodiac(fromIndex:))
-    compatibilityLbl.text = bestMatchesStrings.joined(separator: ", ")
+  func updateCompatibilityLabel(from zodiac: Zodiac) {
+    let bestMatches = zodiac.findBestMatchedZodiacs()
+    let bestMatchNames = bestMatches.map { $0.name }
+    compatibilityLbl.text = bestMatchNames.joined(separator: ", ")
   }
   
   
