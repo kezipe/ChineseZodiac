@@ -104,16 +104,9 @@ class DetailsView: UIView {
   }
   
   func updateCompatibilityLabel(fromRank zodiacRank: Int16) {
-    var compatibility = ""
-    for i in 1...12 {
-      let bestZodiacForSelf = Helper.match(person1: Int(zodiacRank), person2: i)
-      if bestZodiacForSelf == 6 {
-        compatibility += "\(Helper.getZodiac(fromIndex: i)), "
-      }
-    }
-    let last2Chars = compatibility.index(compatibility.endIndex, offsetBy: -2)
-    compatibility.removeSubrange(last2Chars..<compatibility.endIndex)
-    compatibilityLbl.text = compatibility
+    let bestMatches = Helper.findBestMatches(for: zodiacRank)
+    let bestMatchesStrings = bestMatches.map(Helper.getZodiac(fromIndex:))
+    compatibilityLbl.text = bestMatchesStrings.joined(separator: ", ")
   }
   
   
