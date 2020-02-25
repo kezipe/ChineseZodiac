@@ -15,12 +15,21 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   
   private var persons = [Person]()
   
+  var numberOfRows: Int {
+    persons.count
+  }
+  
   #if DEBUG
-  func insertTestPerson(suffix: Int) {
-    let person = Person(context: context)
-    person.birthdate = Date()
-    person.name = "Test Person \(suffix)"
-    person.zodiac = Int16(person.birthdate!.getZodiacRank())
+  func insertTestPerson(count: Int) {
+    for _ in 0 ..< count {
+      let person = Person(context: context)
+      let randomRange: ClosedRange<Double> = 0...Date().timeIntervalSince1970
+      person.birthdate = Date(timeIntervalSince1970: Double.random(in: randomRange))
+      person.name = "Test Person \(Int.random(in: 0...1000))"
+      person.zodiac = Int16(person.birthdate!.getZodiacRank())
+      persons.append(person)
+    }
+    ad.saveContext()
   }
   #endif
   
@@ -36,7 +45,7 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return persons.count
+    return numberOfRows
   }
   
   func numberOfSections(in tableView: UITableView) -> Int {

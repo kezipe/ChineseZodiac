@@ -24,12 +24,6 @@ final class ZodiacTableView: UIViewController {
     tableView.delegate = delegate
     delegate.parentController = self
     tableView.dataSource = dataSource
-    
-    #if DEBUG
-    dataSource.insertTestPerson(suffix: 0)
-    dataSource.insertTestPerson(suffix: 1)
-    dataSource.insertTestPerson(suffix: 2)
-    #endif
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +34,11 @@ final class ZodiacTableView: UIViewController {
     let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)!
     dataSource.retrieveData(sortBy: sortBy)
     tableView.reloadData()
+    #if DEBUG
+    if dataSource.numberOfRows < 11 {
+      dataSource.insertTestPerson(count: 11 - dataSource.numberOfRows)
+    }
+    #endif
   }
   
   @IBAction func segmentChange(_ sender: Any) {
