@@ -13,10 +13,12 @@ class PersonColCell: UICollectionViewCell {
   @IBOutlet weak var nameLbl: UILabel!
   @IBOutlet weak var checkMarkImg: UIImageView!  
   
-  func configureCell(person: Person) {
+  func configureCell(person: Person, isSelected: Bool) {
     nameLbl.text = person.name
     let imageName = person.zodiacSign.name + "_thumb"
     zodiacImg.image = UIImage(named: imageName)
+    
+    checkMarkImg.isHidden = !isSelected
   }
   
 }

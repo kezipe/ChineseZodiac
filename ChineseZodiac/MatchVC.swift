@@ -10,20 +10,20 @@ import UIKit
 
 final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   @IBOutlet weak var collectionView: UICollectionView!
-  
   @IBOutlet weak var matchStackView: UIStackView!
   @IBOutlet weak var matchButtonText: UILabel!
   @IBOutlet weak var matchButtonImg: UIImageView!
   
-  private lazy var dataSource = MatchVCDataSource()
-  private lazy var delegate = MatchVCDelegate()
   
-  private let ERROR_MESSAGE = "Please choose 10 or less persons to match"
+  fileprivate let ERROR_MESSAGE = "Please choose 10 or less persons to match"
+  fileprivate let ERROR_MESSAGE_FONT = UIFont(name: "Helvetica-Bold", size: 15.0)!
+  fileprivate lazy var dataSource = MatchVCDataSource()
+  fileprivate lazy var delegate = MatchVCDelegate()
+  fileprivate var displayingMessage = false
   
-  var persons: [Person] = []
-  var selectedPersons: Set<Person> = []
-
-  var displayingMessage = false
+  fileprivate var hasValidSelection: Bool {
+    dataSource.hasValidSelection()
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,46 +35,30 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    fetchNewData()
-  }
-  
-  func fetchNewData() {
     DispatchQueue.global(qos: .background).async {
-      if let persons = PersonDataRetriever.shared.retrieveData(sortBy: .name) {
-        guard persons != self.persons else {
-          return
-        }
-        self.dataSource.fillData(persons)
-        DispatchQueue.main.async {
-          self.persons = persons
-          self.collectionView.reloadData()
-        }
-      }
+      self.fetchNewData()
     }
   }
   
-  func validateSelection() -> Bool {
-    return selectedPersons.isEmpty && persons.count <= 10 || selectedPersons.count <= 10 && !selectedPersons.isEmpty
+  fileprivate func fetchNewData() {
+    dataSource.fetchData()
+    DispatchQueue.main.async {
+      self.collectionView.reloadData()
+    }
   }
-  
-  
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard segue.identifier == "MatchResultVCSegue" else {
       return
     }
-    guard let destination = segue.destination as? MatchResultVC else {
+    guard let destination = segue.destination as? PersonsReceivable else {
       return
     }
-    guard validateSelection() else {
+    guard hasValidSelection else {
       return
     }
     
-    if selectedPersons.isEmpty {
-      destination.persons = persons
-    } else {
-      destination.persons = Array(selectedPersons)
-    }
+    dataSource.send(to: destination)
   }
   
   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -82,7 +66,7 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
       return false
     }
     
-    guard validateSelection() else {
+    guard hasValidSelection else {
       displayMessage(ERROR_MESSAGE)
       return false
     }
@@ -90,68 +74,64 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     return true
   }
   
-  func displayMessage(_ msg: String) {
+  fileprivate func displayMessage(_ msg: String) {
     guard !displayingMessage else {
       return
     }
     
+    showErrorMessage(msg)
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+      self.hideErrorMessage()
+    }
+  }
+  
+  fileprivate func showErrorMessage(_ msg: String) {
     displayingMessage = true
     matchButtonImg.isHidden = true
     
     let attrMessage = NSMutableAttributedString(
-          string: msg,
-      attributes: [NSAttributedString.Key.font:UIFont(
-            name: "Helvetica-Bold",
-            size: 15.0)!])
+      string: msg,
+      attributes: [NSAttributedString.Key.font: ERROR_MESSAGE_FONT])
     
     attrMessage.addAttribute(NSAttributedString.Key.foregroundColor,
                              value: UIColor.white,
                              range: NSRange(location: 0, length: msg.count))
+    
     matchButtonText.attributedText = attrMessage
     matchStackView.bounds = matchStackView.bounds.offsetBy(dx: 0, dy: 5)
-    
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-      self.matchStackView.bounds = self.matchStackView.bounds.offsetBy(dx: 0, dy: -5)
-      self.matchButtonText.attributedText = nil
-      self.matchButtonText.text = "Match"
-      self.matchButtonImg.isHidden = false
-      self.displayingMessage = false
-    }
   }
+  
+  fileprivate func hideErrorMessage() {
+    self.matchStackView.bounds = self.matchStackView.bounds.offsetBy(dx: 0, dy: -5)
+    self.matchButtonText.attributedText = nil
+    self.matchButtonText.text = "Match"
+    self.matchButtonImg.isHidden = false
+    self.displayingMessage = false
+  }
+  
 }
 
 extension MatchVC: PersonSelecting {
   
   func toggleSelection(forPersonAt item: Int) {
-    let personTapped = dataSource.person(at: item)
-    if selectedPersons.contains(personTapped) {
-      selectedPersons.remove(personTapped)
-      hideCheckMark(at: item)
-    } else {
-      if self.selectedPersons.count >= 10 {
-        displayMessage("You must choose 10 or less persons to match")
-      } else {
-        selectedPersons.insert(personTapped)
-        showCheckMark(at: item)
-      }
+    trySelectingPerson(item)
+    reloadPerson(at: item)
+  }
+  
+  fileprivate func trySelectingPerson(_ item: Int) {
+    do {
+      try dataSource.tapPerson(at: item)
+    } catch MatchError.tooManySelected(let max) {
+      displayMessage("You must choose \(max) or less persons to match")
+    } catch {
+      print("Unexpected error: \(error).")
     }
   }
   
-  func cell(for item: Int) -> PersonColCell {
-    if let cell = collectionView.cellForItem(at: IndexPath(item: item, section: 0)) as? PersonColCell {
-      return cell
-    } else {
-      fatalError("Cannot fetch CollectionViewCell for item at \(item)")
-    }
-  }
-  
-  func showCheckMark(at item: Int) {
-    cell(for: item).checkMarkImg.isHidden = false
-  }
-  
-  func hideCheckMark(at item: Int) {
-    cell(for: item).checkMarkImg.isHidden = true
+  fileprivate func reloadPerson(at item: Int) {
+    let indexPathsToReload = [IndexPath(item: item, section: 0)]
+    collectionView.reloadItems(at: indexPathsToReload)
   }
   
 }

@@ -69,3 +69,9 @@ final class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
 }
+
+extension MatchResultVC: PersonsReceivable {
+  func receive(persons: [Person]) {
+    self.persons = persons
+  }
+}
