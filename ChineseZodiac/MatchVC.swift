@@ -27,9 +27,7 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     collectionView.dataSource = dataSource
-    
     delegate.parentController = self
     collectionView.delegate = delegate
   }
@@ -57,7 +55,6 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     guard hasValidSelection else {
       return
     }
-    
     dataSource.send(to: destination)
   }
   
@@ -65,12 +62,10 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     guard identifier == "MatchResultVCSegue" else {
       return false
     }
-    
     guard hasValidSelection else {
       displayMessage(ERROR_MESSAGE)
       return false
     }
-    
     return true
   }
   
@@ -86,28 +81,35 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     }
   }
   
-  fileprivate func showErrorMessage(_ msg: String) {
+  fileprivate func hideErrorMessage() {
+    if displayingMessage {
+      matchStackView.bounds = self.matchStackView.bounds.offsetBy(dx: 0, dy: -5)
+      matchButtonText.attributedText = nil
+      matchButtonText.text = "Match"
+      matchButtonImg.isHidden = false
+      displayingMessage = false
+    }
+  }
+  
+  fileprivate func showErrorMessage(_ message: String) {
     displayingMessage = true
     matchButtonImg.isHidden = true
     
-    let attrMessage = NSMutableAttributedString(
-      string: msg,
-      attributes: [NSAttributedString.Key.font: ERROR_MESSAGE_FONT])
-    
-    attrMessage.addAttribute(NSAttributedString.Key.foregroundColor,
-                             value: UIColor.white,
-                             range: NSRange(location: 0, length: msg.count))
+    let attrMessage = createErrorMessage(message)
     
     matchButtonText.attributedText = attrMessage
     matchStackView.bounds = matchStackView.bounds.offsetBy(dx: 0, dy: 5)
   }
   
-  fileprivate func hideErrorMessage() {
-    self.matchStackView.bounds = self.matchStackView.bounds.offsetBy(dx: 0, dy: -5)
-    self.matchButtonText.attributedText = nil
-    self.matchButtonText.text = "Match"
-    self.matchButtonImg.isHidden = false
-    self.displayingMessage = false
+  fileprivate func createErrorMessage(_ message: String) -> NSAttributedString {
+    let attrMessage = NSMutableAttributedString(
+      string: message,
+      attributes: [NSAttributedString.Key.font: ERROR_MESSAGE_FONT])
+    
+    attrMessage.addAttribute(NSAttributedString.Key.foregroundColor,
+                             value: UIColor.white,
+                             range: NSRange(location: 0, length: message.count))
+    return attrMessage
   }
   
 }
