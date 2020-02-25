@@ -21,7 +21,6 @@ final class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDat
         matchUp()
         tableView.delegate = self
         tableView.dataSource = self
-        // Do any additional setup after loading the view.
     }
     
     func matchUp() {
@@ -38,7 +37,6 @@ final class MatchResultVC: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let match = match else { return UITableViewCell() }
         
-//        print("Now configuring \(indexPath.row) and self.loner != nil is \(self.loner != nil) and indexPath.row == persons!.count / 2 + 1 is \(indexPath.row == persons!.count / 2)")
         if self.loner != nil && indexPath.row == persons!.count / 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MatchResultLonerCell") as! MatchResultLonerCell
             cell.configureCell(person: loner!)

@@ -10,7 +10,7 @@ import Foundation
 
 extension Person {
   var zodiacSign: Zodiac {
-    guard 1...12 ~= self.zodiac else {
+    guard 1...13 ~= self.zodiac else {
       fatalError("Non-existent zodiac sign")
     }
     return Zodiac(rawValue: Int(self.zodiac) - 1)!

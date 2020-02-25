@@ -13,7 +13,6 @@ class Match {
   
   var persons: [Person]?
   var personZodiacs: [Person]!
-  var matchResultsInteger: [[Person]]?
   var matches: [[Person]]?
   var loner: Person?
   
@@ -24,44 +23,54 @@ class Match {
   var average = [[Person]]()
   var poor = [[Person]]()
   
+  fileprivate func insertDummyPerson() {
+    let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context)
+    let p = Person.init(entity: entityDescription!, insertInto: nil)
+    p.zodiac = 13
+    p.name = ""
+    personZodiacs.append(p)
+  }
+  
   init(personsArray: [Person]) {
     self.persons = personsArray
     personZodiacs = personsArray
     
-    
     if personZodiacs.count % 2 != 0 {
-      let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context)
-      let p = Person.init(entity: entityDescription!, insertInto: nil)
-      p.zodiac = 12
-      p.name = ""
-      personZodiacs.append(p)
+      insertDummyPerson()
     }
     
+    let matchResultsInteger = pair(personZodiacs)
     
-    matchResultsInteger = pair(personZodiacs)
-    var matchScores = [Int]()
-    for i in 0..<matchResultsInteger!.count {
+    var bestMatch: (index: Int, score: Int)?
+    
+    
+    for i in 0..<matchResultsInteger.count {
       var tempScore = 0
-      for j in stride(from: 0, to: matchResultsInteger![0].count - 1, by: 2) {
-        let person1Zodiac = matchResultsInteger![i][j].zodiacSign
-        let person2Zodiac = matchResultsInteger![i][j + 1].zodiacSign
+      for j in stride(from: 0, to: matchResultsInteger[0].count - 1, by: 2) {
+        let person1Zodiac = matchResultsInteger[i][j].zodiacSign
+        let person2Zodiac = matchResultsInteger[i][j + 1].zodiacSign
         tempScore += Zodiac.match(person1Zodiac, with: person2Zodiac)
       }
-      matchScores.append(tempScore)
+      
+      if bestMatch == nil || bestMatch!.score < tempScore {
+        bestMatch = (index: i, score: tempScore)
+      }
     }
-    let bestResultIndex = matchScores.firstIndex(of: matchScores.max()!)!
-    let pairing = matchResultsInteger![bestResultIndex]
+    
+    guard let bestMatchIndex = bestMatch?.index else {
+      return
+    }
+    
+    let pairing = matchResultsInteger[bestMatchIndex]
     var pairingPersons = [Person]()
-    for i in 0..<pairing.count {
+    
+    for i in 0 ..< pairing.count {
       for person in personZodiacs {
         if person == pairing[i] {
           pairingPersons.append(person)
         }
       }
     }
-    
-    
-    
     
     for i in stride(from: 0, to: pairingPersons.count - 1, by: 2) {
       if pairingPersons[i].zodiacSign == .alone {
