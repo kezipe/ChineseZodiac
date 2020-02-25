@@ -25,13 +25,11 @@ final class BirthdaySelectionView: UIViewController {
   private let DATE_SELECTOR_IDENTIFIER = "DateSelectorVC"
   private let ZODIAC_SIGN_IDENTIFIER = "ToZodiacSignView"
   private let DEFAULT_FONT_COLOR = UIColor.init(red: 233.0/255, green: 160.0/255, blue: 52.0/255, alpha: 1.0)
-
   
-  private lazy var pickerViewDelegate = BirthdaySelectionViewPickerViewDelegate()
+  
   var dateComponents = DateComponents()
   var dateSelector: DateSelectorVC!
   var personToEdit: Person?
-  
   
   @IBOutlet weak var monthLbl: UIButton!
   @IBOutlet weak var dayLbl: UIButton!
@@ -40,18 +38,13 @@ final class BirthdaySelectionView: UIViewController {
   @IBOutlet weak var nameLbl: UILabel!
   @IBOutlet weak var nameField: UITextField!
   
-  @IBAction func dateComponentSelected(_ sender: UIButton) {
-    dateSelector.dateComponentsSelectionMode = DateComponentSelectionMode(rawValue: sender.tag)
-    present(dateSelector, animated: true, completion: nil)
-  }
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
     dateSelector = storyboard?.instantiateViewController(withIdentifier: DATE_SELECTOR_IDENTIFIER) as? DateSelectorVC
     dateSelector.dateComponents = dateComponents
-    
-    pickerViewDelegate.parentController = self
-    dateSelector.delegate = pickerViewDelegate
+    dateSelector.parentController = self
     
     loadData()
     
@@ -70,7 +63,7 @@ final class BirthdaySelectionView: UIViewController {
                                    selector: #selector(adjustForKeyboard),
                                    name: UIResponder.keyboardWillChangeFrameNotification,
                                    object: nil)
-
+    
   }
   
   @objc func adjustForKeyboard(notification: Notification) {
@@ -96,7 +89,26 @@ final class BirthdaySelectionView: UIViewController {
       self.view.transform = CGAffineTransform(translationX: 0, y: -distance)
     }
   }
-
+  
+  @IBAction func selectMonth(_ sender: Any) {
+    dateSelector.dateComponentsSelectionMode = .month
+    presentDateSelector()
+  }
+  
+  @IBAction func selectDay(_ sender: Any) {
+    dateSelector.dateComponentsSelectionMode = .day
+    presentDateSelector()
+  }
+  
+  @IBAction func selectYear(_ sender: Any) {
+    dateSelector.dateComponentsSelectionMode = .year
+    presentDateSelector()
+  }
+  
+  func presentDateSelector() {
+    present(dateSelector, animated: true)
+  }
+  
   
   func loadData() {
     if let person = personToEdit,
@@ -143,6 +155,21 @@ final class BirthdaySelectionView: UIViewController {
     }
   }
   
+  fileprivate func updateDayValue(to value: Int) {
+    dateComponents.day = value
+    updateLabel(dayLbl, newValue: value, mode: .day)
+  }
+  
+  fileprivate func updateMonthValue(to value: Int) {
+    dateComponents.month = value
+    updateLabel(monthLbl, newValue: value, mode: .month)
+  }
+  
+  fileprivate func updateYearValue(to value: Int) {
+    dateComponents.year = value
+    updateLabel(yearLbl, newValue: value, mode: .year)
+  }
+  
   func updateLabels() {
     updateLabel(dayLbl, newValue: dateComponents.day, mode: .day)
     updateLabel(monthLbl, newValue: dateComponents.month, mode: .month)
@@ -175,14 +202,20 @@ final class BirthdaySelectionView: UIViewController {
       monthLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
       return
     }
-    guard dayLbl.title(for: UIControl.State.normal) != "Day," else {
+    monthLbl.setTitleColor(DEFAULT_FONT_COLOR, for: UIControl.State.normal)
+    
+    guard dayLbl.title(for: UIControl.State.normal) != "Day" else {
       dayLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
       return
     }
+    dayLbl.setTitleColor(DEFAULT_FONT_COLOR, for: UIControl.State.normal)
+    
     guard yearLbl.title(for: UIControl.State.normal) != "Year" else {
       yearLbl.setTitleColor(UIColor.red, for: UIControl.State.normal)
       return
     }
+    yearLbl.setTitleColor(DEFAULT_FONT_COLOR, for: UIControl.State.normal)
+    
     validateFormAndPerformSegue()
   }
   
@@ -233,7 +266,7 @@ final class BirthdaySelectionView: UIViewController {
     guard let destination = segue.destination as? ZodiacSignView else {
       return
     }
-     
+    
     guard let date = sender as? Date else {
       return
     }
@@ -241,7 +274,7 @@ final class BirthdaySelectionView: UIViewController {
     destination.birthdate = date
     nameField.resignFirstResponder()
   }
-
+  
 }
 
 extension BirthdaySelectionView: PersonSaving {
@@ -258,21 +291,34 @@ extension BirthdaySelectionView: UITextFieldDelegate {
 }
 
 extension BirthdaySelectionView: DatePickable {
-  func didTapRow(at row: Int) {
-    switch dateSelector.dateComponentsSelectionMode! {
+  
+
+  
+  func selectRow(at row: Int, mode: DateComponentSelectionMode) {
+    switch mode {
     case .month:
-      dateComponents.month = row + 1
-      updateLabel(monthLbl, newValue: dateComponents.month, mode: .month)
+      updateMonthValue(to: row + 1)
     case .day:
-      dateComponents.day = row + 1
-      updateLabel(dayLbl, newValue: dateComponents.day, mode: .day)
+      updateDayValue(to: row + 1)
     case .year:
-      dateComponents.year = row + 1
-      updateLabel(yearLbl, newValue: dateComponents.year, mode: .year)
+      updateYearValue(to: row + 1)
     }
+    
+    if let month = dateComponents.month, let day = dateComponents.day {
+      
+      let year = dateComponents.year ?? 2000
+      let numberOfDaysForGivenMonth = month.toNumDaysInMonth(year: year)
+      if numberOfDaysForGivenMonth < day {
+        updateDayValue(to: numberOfDaysForGivenMonth)
+      }
+      
+    }
+    
     dateSelector.dateComponents = dateComponents
     dateSelector.dismiss(animated: true, completion: nil)
   }
+  
+
 }
 
 

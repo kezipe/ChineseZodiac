@@ -32,7 +32,7 @@ class Match {
     if personZodiacs.count % 2 != 0 {
       let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context)
       let p = Person.init(entity: entityDescription!, insertInto: nil)
-      p.zodiac = 13
+      p.zodiac = 12
       p.name = ""
       personZodiacs.append(p)
     }
@@ -43,7 +43,9 @@ class Match {
     for i in 0..<matchResultsInteger!.count {
       var tempScore = 0
       for j in stride(from: 0, to: matchResultsInteger![0].count - 1, by: 2) {
-        tempScore += Helper.match(person1: Int(matchResultsInteger![i][j].zodiac), person2: Int(matchResultsInteger![i][j + 1].zodiac))
+        let person1Zodiac = matchResultsInteger![i][j].zodiacSign
+        let person2Zodiac = matchResultsInteger![i][j + 1].zodiacSign
+        tempScore += Zodiac.match(person1Zodiac, with: person2Zodiac)
       }
       matchScores.append(tempScore)
     }
@@ -62,12 +64,14 @@ class Match {
     
     
     for i in stride(from: 0, to: pairingPersons.count - 1, by: 2) {
-      if pairingPersons[i].zodiac == 13 {
+      if pairingPersons[i].zodiacSign == .alone {
         loner = pairingPersons[i + 1]
-      } else if pairingPersons[i + 1].zodiac == 13 {
+      } else if pairingPersons[i + 1].zodiacSign == .alone {
         loner = pairingPersons[i]
       } else {
-        switch Helper.match(person1: Int(pairingPersons[i].zodiac), person2: Int(pairingPersons[i + 1].zodiac)) {
+        let person1Zodiac = pairingPersons[i].zodiacSign
+        let person2Zodiac = pairingPersons[i + 1].zodiacSign
+        switch Zodiac.match(person1Zodiac, with: person2Zodiac) {
         case 6:
           perfectMatches.append([pairingPersons[i], pairingPersons[i + 1]])
         case 5:

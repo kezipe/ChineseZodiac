@@ -8,126 +8,144 @@
 
 import UIKit
 
-final class MatchVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    @IBOutlet weak var collectionView: UICollectionView!
+final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
+  @IBOutlet weak var collectionView: UICollectionView!
+  
+  @IBOutlet weak var matchStackView: UIStackView!
+  @IBOutlet weak var matchButtonText: UILabel!
+  @IBOutlet weak var matchButtonImg: UIImageView!
+  
+  private lazy var dataSource = MatchVCDataSource()
+  private lazy var delegate = MatchVCDelegate()
+  
+  var persons: [Person]?
+  var selectedPersons: Set<Person> = []
+  var validSelection: Bool {
+    if let persons = persons {
+      return selectedPersons.isEmpty && persons.count <= 10 || selectedPersons.count <= 10 && !selectedPersons.isEmpty
+    } else {
+      return false
+    }
+  }
+  var displayingMessage = false
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    @IBOutlet weak var matchStackView: UIStackView!
-    @IBOutlet weak var matchButtonText: UILabel!
-    @IBOutlet weak var matchButtonImg: UIImageView!
+    collectionView.dataSource = dataSource
     
-    var persons: [Person]?
-    var selectedPersons: Set<Person> = []
-    var validSelection: Bool {
-        if let persons = persons {
-            return selectedPersons.isEmpty && persons.count <= 10 || selectedPersons.count <= 10 && !selectedPersons.isEmpty
-        } else {
-            return false
+    delegate.parentController = self
+    collectionView.delegate = delegate
+  }
+  
+  func fetchNewData() {
+    DispatchQueue.global(qos: .background).async {
+      if let persons = PersonDataRetriever.shared.retrieveData(sortBy: .name) {
+        guard persons != self.persons else {
+          return
         }
-    }
-    var displayingMessage = false
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.global(qos: .background).async {
-          let persons = PersonDataRetriever.shared.retrieveData(sortBy: .name)
-            if persons != self.persons {
-                DispatchQueue.main.async {
-                    self.persons = persons
-                    self.collectionView.reloadData()
-                }
-            }
+        self.dataSource.fillData(persons)
+        DispatchQueue.main.async {
+          self.persons = persons
+          self.collectionView.reloadData()
         }
+      }
+    }
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    fetchNewData()
+  }
+  
+  
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard segue.identifier == "MatchResultVCSegue" else {
+      return
+    }
+    guard let destination = segue.destination as? MatchResultVC else {
+      return
+    }
+    guard validSelection else {
+      return
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let persons = self.persons else { return UICollectionViewCell() }
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonColCell", for: indexPath) as! PersonColCell
-        cell.configureCell(person: persons[indexPath.row])
-        cell.delegate = self
-        return cell
+    if selectedPersons.isEmpty {
+      destination.persons = persons!
+    } else {
+      destination.persons = Array(selectedPersons)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let personsCount = persons?.count {
-            return personsCount
-        } else {
-            return 0
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MatchResultVCSegue" {
-            if let destination = segue.destination as? MatchResultVC {
-                if validSelection {
-                    if selectedPersons.isEmpty {
-                        destination.persons = persons!
-                    } else {
-                        destination.persons = Array(selectedPersons)
-                    }
-                }
-            }
-        }
-    }
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "MatchResultVCSegue" {
-            if !validSelection {
-                displayMessage("Please choose 10 or less persons to match")
-                return false
-            }
-            return true
-        }
+  }
+  
+  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    if identifier == "MatchResultVCSegue" {
+      if !validSelection {
+        displayMessage("Please choose 10 or less persons to match")
         return false
+      }
+      return true
     }
+    return false
+  }
+  
+  func displayMessage(_ msg: String) {
+    guard !displayingMessage else { return }
+    displayingMessage = true
+    matchButtonImg.isHidden = true
     
-    func displayMessage(_ msg: String) {
-        guard !displayingMessage else { return }
-        displayingMessage = true
-        matchButtonImg.isHidden = true
-        
-        let attrMessage = NSMutableAttributedString(
-            string: msg,
-            attributes: [NSAttributedString.Key.font:UIFont(
-                name: "Helvetica-Bold",
-                size: 15.0)!])
-        attrMessage.addAttribute(NSAttributedString.Key.foregroundColor,
-                                 value: UIColor.white,
-                                 range: NSRange(location: 0, length: msg.count))
-        matchButtonText.attributedText = attrMessage
-        matchStackView.bounds = matchStackView.bounds.offsetBy(dx: 0, dy: 5)
-
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.matchStackView.bounds = self.matchStackView.bounds.offsetBy(dx: 0, dy: -5)
-            self.matchButtonText.attributedText = nil
-            self.matchButtonText.text = "Match"
-            self.matchButtonImg.isHidden = false
-            self.displayingMessage = false
-        }
+    let attrMessage = NSMutableAttributedString(
+      string: msg,
+      attributes: [NSAttributedString.Key.font:UIFont(
+        name: "Helvetica-Bold",
+        size: 15.0)!])
+    attrMessage.addAttribute(NSAttributedString.Key.foregroundColor,
+                             value: UIColor.white,
+                             range: NSRange(location: 0, length: msg.count))
+    matchButtonText.attributedText = attrMessage
+    matchStackView.bounds = matchStackView.bounds.offsetBy(dx: 0, dy: 5)
+    
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+      self.matchStackView.bounds = self.matchStackView.bounds.offsetBy(dx: 0, dy: -5)
+      self.matchButtonText.attributedText = nil
+      self.matchButtonText.text = "Match"
+      self.matchButtonImg.isHidden = false
+      self.displayingMessage = false
     }
+  }
 }
 
-extension MatchVC: PersonColCellDelegate {
-    
-    func toggleSelectionOfButton(forCell: PersonColCell) {
-        if let person = forCell.person {
-            if selectedPersons.contains(person) {
-                selectedPersons.remove(person)
-                forCell.checkMarkImg.isHidden = true
-            } else {
-                if self.selectedPersons.count >= 10 {
-                    displayMessage("You must choose 10 or less persons to match")
-                } else {
-                    selectedPersons.insert(person)
-                    forCell.checkMarkImg.isHidden = false
-                }
-            }
-        }
+extension MatchVC: PersonSelecting {
+  
+  func toggleSelection(forPersonAt item: Int) {
+    let personTapped = dataSource.person(at: item)
+    if selectedPersons.contains(personTapped) {
+      selectedPersons.remove(personTapped)
+      hideCheckMark(at: item)
+    } else {
+      if self.selectedPersons.count >= 10 {
+        displayMessage("You must choose 10 or less persons to match")
+      } else {
+        selectedPersons.insert(personTapped)
+        showCheckMark(at: item)
+      }
     }
+  }
+  
+  func cell(for item: Int) -> PersonColCell {
+    if let cell = collectionView.cellForItem(at: IndexPath(item: item, section: 0)) as? PersonColCell {
+      return cell
+    } else {
+      fatalError("Cannot fetch CollectionViewCell for item at \(item)")
+    }
+  }
+  
+  func showCheckMark(at item: Int) {
+    cell(for: item).checkMarkImg.isHidden = false
+  }
+  
+  func hideCheckMark(at item: Int) {
+    cell(for: item).checkMarkImg.isHidden = true
+  }
+  
 }

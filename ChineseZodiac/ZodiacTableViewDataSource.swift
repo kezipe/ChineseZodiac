@@ -59,8 +59,8 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
     persons = fetchedPersons
   }
   
-  func person(at row: Int) -> Person {
-    return persons[row]
+  func person(at item: Int) -> Person {
+    return persons[item]
   }
   
   func deletePerson(at row: Int) {
