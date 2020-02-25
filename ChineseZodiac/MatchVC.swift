@@ -18,15 +18,11 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   private lazy var dataSource = MatchVCDataSource()
   private lazy var delegate = MatchVCDelegate()
   
-  var persons: [Person]?
+  private let ERROR_MESSAGE = "Please choose 10 or less persons to match"
+  
+  var persons: [Person] = []
   var selectedPersons: Set<Person> = []
-  var validSelection: Bool {
-    if let persons = persons {
-      return selectedPersons.isEmpty && persons.count <= 10 || selectedPersons.count <= 10 && !selectedPersons.isEmpty
-    } else {
-      return false
-    }
-  }
+
   var displayingMessage = false
   
   override func viewDidLoad() {
@@ -36,6 +32,10 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     
     delegate.parentController = self
     collectionView.delegate = delegate
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    fetchNewData()
   }
   
   func fetchNewData() {
@@ -53,8 +53,8 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     }
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    fetchNewData()
+  func validateSelection() -> Bool {
+    return selectedPersons.isEmpty && persons.count <= 10 || selectedPersons.count <= 10 && !selectedPersons.isEmpty
   }
   
   
@@ -66,38 +66,44 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     guard let destination = segue.destination as? MatchResultVC else {
       return
     }
-    guard validSelection else {
+    guard validateSelection() else {
       return
     }
     
     if selectedPersons.isEmpty {
-      destination.persons = persons!
+      destination.persons = persons
     } else {
       destination.persons = Array(selectedPersons)
     }
   }
   
   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-    if identifier == "MatchResultVCSegue" {
-      if !validSelection {
-        displayMessage("Please choose 10 or less persons to match")
-        return false
-      }
-      return true
+    guard identifier == "MatchResultVCSegue" else {
+      return false
     }
-    return false
+    
+    guard validateSelection() else {
+      displayMessage(ERROR_MESSAGE)
+      return false
+    }
+    
+    return true
   }
   
   func displayMessage(_ msg: String) {
-    guard !displayingMessage else { return }
+    guard !displayingMessage else {
+      return
+    }
+    
     displayingMessage = true
     matchButtonImg.isHidden = true
     
     let attrMessage = NSMutableAttributedString(
-      string: msg,
+          string: msg,
       attributes: [NSAttributedString.Key.font:UIFont(
-        name: "Helvetica-Bold",
-        size: 15.0)!])
+            name: "Helvetica-Bold",
+            size: 15.0)!])
+    
     attrMessage.addAttribute(NSAttributedString.Key.foregroundColor,
                              value: UIColor.white,
                              range: NSRange(location: 0, length: msg.count))
