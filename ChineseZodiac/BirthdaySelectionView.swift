@@ -92,18 +92,22 @@ final class BirthdaySelectionView: UIViewController {
   
   @IBAction func selectMonth(_ sender: Any) {
     dateSelector.dateComponentsSelectionMode = .month
-    present(dateSelector, animated: true)
+    presentDateSelector()
   }
   
   @IBAction func selectDay(_ sender: Any) {
     dateSelector.dateComponentsSelectionMode = .day
-    present(dateSelector, animated: true)
+    presentDateSelector()
   }
   
   @IBAction func selectYear(_ sender: Any) {
     dateSelector.dateComponentsSelectionMode = .year
+    presentDateSelector()
+  }
+  
+  func presentDateSelector() {
     present(dateSelector, animated: true)
-  } 
+  }
   
   
   func loadData() {
