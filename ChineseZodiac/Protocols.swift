@@ -39,3 +39,7 @@ protocol PersonsReceivable: class {
 protocol PersonsSendable: class {
   func send(to receiver: PersonsReceivable)
 }
+
+protocol DataRefreshing: class {
+  func refresh()
+}
