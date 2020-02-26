@@ -37,13 +37,13 @@ class DateSelectorVCDataSource: PickerViewDataSource {
   
   func calculateNumberOfDays() -> Int {
     if let months = dateComponentsSelected.month {
-      let yearCheck: Int!
+      let year: Int!
       if let years = dateComponentsSelected.year {
-        yearCheck = years
+        year = years
       } else {
-        yearCheck = 2000
+        year = 2000
       }
-      return months.toNumDaysInMonth(year: yearCheck)
+      return Date.numberOfDaysInMonth(months, in: year)
     } else {
       return 31
     }

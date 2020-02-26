@@ -53,6 +53,18 @@ enum Zodiac: Int {
       return ""
     }
   }
+
+  func findBestMatchedZodiacs() -> [Zodiac] {
+    var bestMatches = [Zodiac]()
+    for i in 0...12 {
+      let testZodiac = Zodiac(rawValue: i)!
+      let bestZodiac = Zodiac.match(self, with: testZodiac)
+      if bestZodiac == 6 {
+        bestMatches.append(testZodiac)
+      }
+    }
+    return bestMatches
+  }
   
   static func match(_ lhs: Zodiac, with rhs: Zodiac) -> Int {
     let match = [[2,6,2,6,6,3,1,4,5,1,5,5,0],
@@ -70,16 +82,5 @@ enum Zodiac: Int {
                  [0,0,0,0,0,0,0,0,0,0,0,0,0]]
     return match[lhs.rawValue][rhs.rawValue]
   }
-  
-  func findBestMatchedZodiacs() -> [Zodiac] {
-    var bestMatches = [Zodiac]()
-    for i in 0...12 {
-      let testZodiac = Zodiac(rawValue: i)!
-      let bestZodiac = Zodiac.match(self, with: testZodiac)
-      if bestZodiac == 6 {
-        bestMatches.append(testZodiac)
-      }
-    }
-    return bestMatches
-  }
+
 }

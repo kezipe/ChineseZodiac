@@ -15,7 +15,7 @@ class MatchResultLonerCell: UITableViewCell {
   
   func configureCell(person: Person) {
     let zodiacSign = person.zodiacSign
-    zodiacImg.image = UIImage(named: zodiacSign.name)
+    zodiacImg.image = UIImage(named: zodiacSign.name + "_thumb")
     nameLbl.text = person.name
   }
   

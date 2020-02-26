@@ -307,7 +307,7 @@ extension BirthdaySelectionView: DatePickable {
     if let month = dateComponents.month, let day = dateComponents.day {
       
       let year = dateComponents.year ?? 2000
-      let numberOfDaysForGivenMonth = month.toNumDaysInMonth(year: year)
+      let numberOfDaysForGivenMonth = Date.numberOfDaysInMonth(month, in: year)
       if numberOfDaysForGivenMonth < day {
         updateDayValue(to: numberOfDaysForGivenMonth)
       }

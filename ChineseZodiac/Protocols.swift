@@ -24,11 +24,22 @@ protocol DatePickable: class {
   func selectRow(at row: Int, mode: DateComponentSelectionMode)
 }
 
-
 protocol PersonColCellDelegate: class {
   func toggleSelectionOfButton(forCell: PersonColCell)
 }
 
 protocol PersonSelecting: class {
   func toggleSelection(forPersonAt item: Int)
+}
+
+protocol PersonsReceivable: class {
+  func receive(persons: [Person])
+}
+
+protocol PersonsSendable: class {
+  func send(to receiver: PersonsReceivable)
+}
+
+protocol DataRefreshing: class {
+  func refresh()
 }

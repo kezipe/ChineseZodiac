@@ -9,18 +9,19 @@
 import UIKit
 
 class PersonCell: UITableViewCell {
-    
-    @IBOutlet weak var personLbl: UILabel!
-    
-    @IBOutlet weak var zodiacLbl: UILabel!
-    
-    
-    @IBOutlet weak var zodiacImg: UIImageView!
-    
-    func configureCell(person: Person) {
-        personLbl.text = person.name
-        let zodiac = person.birthdate! as Date
-        zodiacLbl.text = zodiac.getZodiac()
-        zodiacImg.image = UIImage(named: "\(zodiac.getZodiac())_thumb")
-    }
+  
+  @IBOutlet weak var personLbl: UILabel!
+  
+  @IBOutlet weak var zodiacLbl: UILabel!
+  
+  
+  @IBOutlet weak var zodiacImg: UIImageView!
+  
+  func configureCell(person: Person) {
+    personLbl.text = person.name
+    let zodiac = person.birthdate! as Date
+    let zodiacSign = zodiac.getZodiac().name
+    zodiacLbl.text = zodiacSign
+    zodiacImg.image = UIImage(named: "\(zodiacSign)_thumb")
+  }
 }

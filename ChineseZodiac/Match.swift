@@ -13,7 +13,6 @@ class Match {
   
   var persons: [Person]?
   var personZodiacs: [Person]!
-  var matchResultsInteger: [[Person]]?
   var matches: [[Person]]?
   var loner: Person?
   
@@ -24,45 +23,64 @@ class Match {
   var average = [[Person]]()
   var poor = [[Person]]()
   
+  fileprivate func insertDummyPerson() {
+    let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context)
+    let p = Person.init(entity: entityDescription!, insertInto: nil)
+    p.zodiac = 13
+    p.name = ""
+    personZodiacs.append(p)
+  }
+  
+
+  
+
+  
   init(personsArray: [Person]) {
     self.persons = personsArray
     personZodiacs = personsArray
     
-    
     if personZodiacs.count % 2 != 0 {
-      let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context)
-      let p = Person.init(entity: entityDescription!, insertInto: nil)
-      p.zodiac = 12
-      p.name = ""
-      personZodiacs.append(p)
+      insertDummyPerson()
     }
     
+    let matchResultsInteger = pair(personZodiacs)
+
+    let bestMatch = findBestScenario(matchResultsInteger)
     
-    matchResultsInteger = pair(personZodiacs)
-    var matchScores = [Int]()
-    for i in 0..<matchResultsInteger!.count {
-      var tempScore = 0
-      for j in stride(from: 0, to: matchResultsInteger![0].count - 1, by: 2) {
-        let person1Zodiac = matchResultsInteger![i][j].zodiacSign
-        let person2Zodiac = matchResultsInteger![i][j + 1].zodiacSign
-        tempScore += Zodiac.match(person1Zodiac, with: person2Zodiac)
+    let bestMatchIndex = bestMatch.index
+    
+    let pairing = matchResultsInteger[bestMatchIndex]
+    
+    let pairingPersons = reorderPairingPersons(with: pairing)
+    
+    fillMatchBins(pairingPersons)
+    matches = perfectMatches + complimentary + goodFriend + gmoe + average + poor
+  }
+  
+  func pair(_ arr: [Person]) -> [[Person]] {
+    var bigA = [[Person]]()
+    if arr.count == 2 {
+      return [arr]
+    }
+    
+    var firstTwo = Array(arr[arr.startIndex...arr.startIndex + 1])
+    var rest = Array(arr[arr.startIndex + 2..<arr.endIndex])
+    var list:[[Person]]
+    for i in 0...rest.count {
+      list = pair(rest)
+      for j in list {
+        bigA.append(firstTwo + j)
       }
-      matchScores.append(tempScore)
+      
+      guard i < rest.count else { continue }
+      let tempFirst = firstTwo[firstTwo.endIndex - 1]
+      firstTwo[firstTwo.endIndex - 1] = rest[i]
+      rest[i] = tempFirst
     }
-    let bestResultIndex = matchScores.firstIndex(of: matchScores.max()!)!
-    let pairing = matchResultsInteger![bestResultIndex]
-    var pairingPersons = [Person]()
-    for i in 0..<pairing.count {
-      for person in personZodiacs {
-        if person == pairing[i] {
-          pairingPersons.append(person)
-        }
-      }
-    }
-    
-    
-    
-    
+    return bigA
+  }
+  
+  fileprivate func fillMatchBins(_ pairingPersons: [Person]) {
     for i in stride(from: 0, to: pairingPersons.count - 1, by: 2) {
       if pairingPersons[i].zodiacSign == .alone {
         loner = pairingPersons[i + 1]
@@ -89,31 +107,36 @@ class Match {
         }
       }
     }
-    matches = perfectMatches + complimentary + goodFriend + gmoe + average + poor
   }
   
-  
-  func pair(_ arr: [Person]) -> [[Person]] {
-    var bigA = [[Person]]()
-    if arr.count == 2 {
-      return [arr]
-    }
+  fileprivate func findBestScenario(_ matchResultsInteger: [[Person]]) -> (index: Int, score: Int) {
+    var bestMatch: (index: Int, score: Int)?
     
-    var firstTwo = Array(arr[arr.startIndex...arr.startIndex + 1])
-    var rest = Array(arr[arr.startIndex + 2..<arr.endIndex])
-    var list:[[Person]]
-    for i in 0...rest.count {
-      list = pair(rest)
-      for j in list {
-        bigA.append(firstTwo + j)
+    for i in 0..<matchResultsInteger.count {
+      var tempScore = 0
+      for j in stride(from: 0, to: matchResultsInteger[0].count - 1, by: 2) {
+        let person1Zodiac = matchResultsInteger[i][j].zodiacSign
+        let person2Zodiac = matchResultsInteger[i][j + 1].zodiacSign
+        tempScore += Zodiac.match(person1Zodiac, with: person2Zodiac)
       }
       
-      guard i < rest.count else { continue }
-      let tempFirst = firstTwo[firstTwo.endIndex - 1]
-      firstTwo[firstTwo.endIndex - 1] = rest[i]
-      rest[i] = tempFirst
+      if bestMatch == nil || bestMatch!.score < tempScore {
+        bestMatch = (index: i, score: tempScore)
+      }
     }
-    return bigA
+    return bestMatch!
+  }
+  
+  fileprivate func reorderPairingPersons(with pairing: [Person]) -> [Person] {
+    var pairingPersons = [Person]()
+    for i in 0 ..< pairing.count {
+      for person in personZodiacs {
+        if person == pairing[i] {
+          pairingPersons.append(person)
+        }
+      }
+    }
+    return pairingPersons
   }
   
   
