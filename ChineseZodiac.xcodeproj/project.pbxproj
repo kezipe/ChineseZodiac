@@ -139,13 +139,13 @@
 			children = (
 				0AD4E2901EDDD22400A92F65 /* Main.storyboard */,
 				0A1463231F0C8A5F0043AA46 /* PickerView.swift */,
-				0ACBF6FA1EE357B00075A523 /* Extensions.swift */,
 				0A7A55C71EE3628B00BAA05B /* PersonCell.swift */,
 				0A8D2AD51F118F63007B8D64 /* PersonColCell.swift */,
-				0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */,
-				0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */,
 				0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */,
 				0A0192D31F1E4B1C00172FE5 /* MatchResultLonerCell.swift */,
+				0ACBF6FA1EE357B00075A523 /* Extensions.swift */,
+				0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */,
+				0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
