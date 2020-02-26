@@ -27,10 +27,9 @@ class MatchResultCell: UITableViewCell {
     }
   }
   
-  func configureLonerCell(match: Match) {
+  fileprivate func configureLonerCell(match: Match) {
     let loner = match.loner!
-    person1Name.text = loner.name!
-    person1Zodiac.image = UIImage(named: loner.zodiacName)
+    configureLeftCell(person: loner)
     
     person2Name.text = ""
     person2Zodiac.image = nil
@@ -39,20 +38,37 @@ class MatchResultCell: UITableViewCell {
     matchScoreLbl.font = UIFont.systemFont(ofSize: 9)
   }
   
-  func configureNormalCell(match: Match) {
+  fileprivate func configureNormalCell(match: Match) {
     let person1 = match.firstPerson
     let person2 = match.secondPerson
     let compatibility = match.compatibility
-    person1Name.text = person1.name!
-    person1Zodiac.image = UIImage(named: person1.zodiacName)
-    person2Name.text = person2.name!
-    person2Zodiac.image = UIImage(named: person2.zodiacName)
     
+    configureLeftCell(person: person1)
+    configureRightCell(person: person2)
+    
+    configureCompatibility(compatibility, match)
+    
+    layer.cornerRadius = 8.0
+    
+  }
+  
+  fileprivate func configureLeftCell(person: Person) {
+    person1Name.text = person.name ?? ""
+    person1Zodiac.image = UIImage(named: person.zodiacName) ?? nil
+  }
+  
+  fileprivate func configureRightCell(person: Person) {
+    person2Name.text = person.name ?? ""
+    person2Zodiac.image = UIImage(named: person.zodiacName) ?? nil
+  }
+  
+  fileprivate func configureCompatibility(_ compatibility: Int, _ match: Match) {
     var matchScoreLblTextSize: CGFloat
     
     switch compatibility {
     case 6:
       matchScoreLblTextSize = 15.0
+      setFontColor()
     case 5:
       matchScoreLblTextSize = 9.0
     case 4, 3:
@@ -61,16 +77,12 @@ class MatchResultCell: UITableViewCell {
       matchScoreLblTextSize = 13.0
     }
     
-    let attrCompatibility = NSAttributedString(string: match.compatibilityName,
-                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: matchScoreLblTextSize)])
-    
-    matchScoreLbl.attributedText = attrCompatibility
-    
-    layer.cornerRadius = 8.0
-    
-    if compatibility == 6 {
-      matchScoreLbl.textColor = Helper.colorRed
-    }
+    matchScoreLbl.text = match.compatibilityName
+    matchScoreLbl.font = .systemFont(ofSize: matchScoreLblTextSize)
+  }
+  
+  fileprivate func setFontColor() {
+    matchScoreLbl.textColor = Helper.colorRed
   }
   
 }
