@@ -137,6 +137,7 @@
 		0A69F4691EE341E500A0176D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AD4E2901EDDD22400A92F65 /* Main.storyboard */,
 				0A1463231F0C8A5F0043AA46 /* PickerView.swift */,
 				0ACBF6FA1EE357B00075A523 /* Extensions.swift */,
 				0A7A55C71EE3628B00BAA05B /* PersonCell.swift */,
@@ -198,7 +199,6 @@
 				0A69F46A1EE341F400A0176D /* Controller */,
 				0A69F4691EE341E500A0176D /* View */,
 				0A0BA1271F1C1193005D4567 /* Model */,
-				0AD4E2901EDDD22400A92F65 /* Main.storyboard */,
 				0AD4E2961EDDD22400A92F65 /* Assets.xcassets */,
 				0AD4E2981EDDD22400A92F65 /* LaunchScreen.storyboard */,
 				0AD4E29B1EDDD22400A92F65 /* Info.plist */,
