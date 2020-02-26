@@ -14,14 +14,25 @@ class PersonCell: UITableViewCell {
   
   @IBOutlet weak var zodiacLbl: UILabel!
   
-  
   @IBOutlet weak var zodiacImg: UIImageView!
   
   func configureCell(person: Person) {
-    personLbl.text = person.name
-    let zodiac = person.birthdate! as Date
-    let zodiacSign = zodiac.getZodiac().name
-    zodiacLbl.text = zodiacSign
-    zodiacImg.image = UIImage(named: "\(zodiacSign)_thumb")
+    updatePersonLabel(person)
+    updateZodiacLabel(person)
+    updateZodiacImage(person)
   }
+  
+  fileprivate func updatePersonLabel(_ person: Person) {
+    personLbl.text = person.name
+  }
+  
+  fileprivate func updateZodiacLabel(_ person: Person) {
+    zodiacLbl.text = person.zodiacName
+  }
+  
+  fileprivate func updateZodiacImage(_ person: Person) {
+    zodiacImg.image = UIImage(named: "\(person.zodiacName)_thumb")
+  }
+  
+
 }

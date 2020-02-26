@@ -15,4 +15,12 @@ extension Person {
     }
     return Zodiac(rawValue: Int(self.zodiac) - 1)!
   }
+  
+  var zodiacName: String {
+    return self.zodiacSign.name
+  }
+  
+  var isPlaceholder: Bool {
+    return self.zodiacSign == .alone
+  }
 }

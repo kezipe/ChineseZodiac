@@ -19,22 +19,56 @@ class MatchResultCell: UITableViewCell {
   @IBOutlet weak var person2Zodiac: UIImageView!
   @IBOutlet weak var person2Name: UILabel!
   
-  private let match = [1:"Poor", 2:"Average", 3:"Good match or Enemy", 4:"Good friend", 5:"Complementary", 6: "Perfect Match"]
+  func configureCell(match: Match) {
+    if match.isAlone {
+      configureLonerCell(match: match)
+    } else {
+      configureNormalCell(match: match)
+    }
+  }
   
-  func configureCell(pair: [Person]) {
-    let p1Zodiac = pair[0].zodiacSign
-    let p2Zodiac = pair[1].zodiacSign
-    let score = Zodiac.match(p1Zodiac, with: p2Zodiac)
-    person1Zodiac.image = UIImage(named: p1Zodiac.name)
-    person1Name.text = pair[0].name
+  fileprivate func configureLonerCell(match: Match) {
+    let loner = match.loner!
+    configureLeftCell(person: loner)
     
-    let compatibility = match[score]
+    person2Name.text = ""
+    person2Zodiac.image = nil
     
+    matchScoreLbl.text = "Alone"
+    matchScoreLbl.font = UIFont.systemFont(ofSize: 9)
+  }
+  
+  fileprivate func configureNormalCell(match: Match) {
+    let person1 = match.firstPerson
+    let person2 = match.secondPerson
+    let compatibility = match.compatibility
+    
+    configureLeftCell(person: person1)
+    configureRightCell(person: person2)
+    
+    configureCompatibility(compatibility, match)
+    
+    layer.cornerRadius = 8.0
+    
+  }
+  
+  fileprivate func configureLeftCell(person: Person) {
+    person1Name.text = person.name ?? ""
+    person1Zodiac.image = UIImage(named: person.zodiacName) ?? nil
+  }
+  
+  fileprivate func configureRightCell(person: Person) {
+    person2Name.text = person.name ?? ""
+    person2Zodiac.image = UIImage(named: person.zodiacName) ?? nil
+  }
+  
+  fileprivate func configureCompatibility(_ compatibility: Int, _ match: Match) {
     var matchScoreLblTextSize: CGFloat
     
-    switch score {
+    switch compatibility {
     case 6:
       matchScoreLblTextSize = 15.0
+      setFontColor()
     case 5:
       matchScoreLblTextSize = 9.0
     case 4, 3:
@@ -43,23 +77,12 @@ class MatchResultCell: UITableViewCell {
       matchScoreLblTextSize = 13.0
     }
     
-    let attrCompatibility = NSAttributedString(string: compatibility!, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: matchScoreLblTextSize)])
-    
-    matchScoreLbl.attributedText = attrCompatibility
-    
-    person2Zodiac.image = UIImage(named: p2Zodiac.name)
-    person2Name.text = pair[1].name
-    
-    layer.cornerRadius = 8.0
-    
-    guard score == 6 else {
-      return
-    }
-    layer.borderWidth = 2.0
-    layer.borderColor = Helper.colorRed.cgColor
+    matchScoreLbl.text = match.compatibilityName
+    matchScoreLbl.font = .systemFont(ofSize: matchScoreLblTextSize)
+  }
+  
+  fileprivate func setFontColor() {
     matchScoreLbl.textColor = Helper.colorRed
-    
-    
   }
   
 }

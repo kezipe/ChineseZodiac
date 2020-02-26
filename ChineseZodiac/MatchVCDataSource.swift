@@ -65,7 +65,7 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {    
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER,
-                                                        for: indexPath) as? PersonColCell else {
+                                                        for: indexPath) as? PersonCollectionCell else {
       fatalError("Cannot dequeue or cast UITableView as \"PersonColCell\"")
     }
     let personAtIndexPath = person(at: indexPath.item)
