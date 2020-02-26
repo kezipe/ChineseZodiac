@@ -39,8 +39,8 @@ class DetailsView: UIView {
       let zodiacSign = birthday.getZodiac()
       
       updateNameLabel(name)
-      updateZodiacImage(zodiacSign)
-      updateZodiacLabel(zodiacSign)
+      updateZodiacImage(zodiacSign.name)
+      updateZodiacLabel(zodiacSign.name)
       updateBirthdayLabel(birthday)
       updateChineseBirthdayLabel(birthday)
       updateStemBranchLabel(birthday)
@@ -80,10 +80,10 @@ class DetailsView: UIView {
   }
   
   func updateAhYearLabel(_ birthday: Date) {
-    if birthday.getAhYear() > 1 {
-      adYearLbl.text = "\(birthday.getAhYear()) AH"
+    if birthday.getYellowEmperorYear() > 1 {
+      adYearLbl.text = "\(birthday.getYellowEmperorYear()) AH"
     } else {
-      adYearLbl.text = "\(birthday.getAhYear()) BH"
+      adYearLbl.text = "\(birthday.getYellowEmperorYear()) BH"
     }
   }
   

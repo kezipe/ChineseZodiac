@@ -291,12 +291,6 @@
                                                                 <color key="textColor" red="1" green="0.21176470589999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLI-Bb-pqU">
-                                                                <rect key="frame" x="0.0" y="351.66666666666663" width="180" height="0.0"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.023529411760000001" green="0.78823529410000004" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -429,7 +423,6 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="NXX-im-3RT"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="cDateLbl" destination="GLI-Bb-pqU" id="HMB-Wp-kYF"/>
                         <outlet property="zodiacImg" destination="dFk-JU-F01" id="Zpz-Cw-hNO"/>
                         <outlet property="zodiacSignLbl" destination="IuV-v5-lvo" id="BIO-xx-zuP"/>
                     </connections>
