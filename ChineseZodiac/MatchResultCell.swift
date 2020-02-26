@@ -19,20 +19,39 @@ class MatchResultCell: UITableViewCell {
   @IBOutlet weak var person2Zodiac: UIImageView!
   @IBOutlet weak var person2Name: UILabel!
   
-  private let match = [1:"Poor", 2:"Average", 3:"Good match or Enemy", 4:"Good friend", 5:"Complementary", 6: "Perfect Match"]
+  func configureCell(match: MatchStruct) {
+    if match.isAlone {
+      configureLonerCell(match: match)
+    } else {
+      configureNormalCell(match: match)
+    }
+  }
   
-  func configureCell(pair: [Person]) {
-    let p1Zodiac = pair[0].zodiacSign
-    let p2Zodiac = pair[1].zodiacSign
-    let score = Zodiac.match(p1Zodiac, with: p2Zodiac)
-    person1Zodiac.image = UIImage(named: p1Zodiac.name)
-    person1Name.text = pair[0].name
+  func configureLonerCell(match: MatchStruct) {
+    let loner = match.loner!
+    person1Name.text = loner.name!
+    person1Zodiac.image = UIImage(named: loner.zodiacName)
     
-    let compatibility = match[score]
+    person2Name.text = ""
+    person2Zodiac.image = nil
+    
+    matchScoreLbl.text = "Alone"
+    matchScoreLbl.font = UIFont.systemFont(ofSize: 9)
+  }
+  
+  func configureNormalCell(match: MatchStruct) {
+    let person1 = match.firstPerson
+    let person2 = match.secondPerson
+    let compatibility = match.compatibility
+    person1Name.text = person1.name!
+    person2Name.text = person2.name!
+    person1Zodiac.image = UIImage(named: person1.zodiacName)
+    person2Zodiac.image = UIImage(named: person2.zodiacName)
+    
     
     var matchScoreLblTextSize: CGFloat
     
-    switch score {
+    switch compatibility {
     case 6:
       matchScoreLblTextSize = 15.0
     case 5:
@@ -43,23 +62,18 @@ class MatchResultCell: UITableViewCell {
       matchScoreLblTextSize = 13.0
     }
     
-    let attrCompatibility = NSAttributedString(string: compatibility!, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: matchScoreLblTextSize)])
+    let attrCompatibility = NSAttributedString(string: match.compatibilityName,
+                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: matchScoreLblTextSize)])
     
     matchScoreLbl.attributedText = attrCompatibility
     
-    person2Zodiac.image = UIImage(named: p2Zodiac.name)
-    person2Name.text = pair[1].name
-    
     layer.cornerRadius = 8.0
     
-    guard score == 6 else {
-      return
+    if compatibility == 6 {
+      layer.borderWidth = 2.0
+      layer.borderColor = Helper.colorRed.cgColor
+      matchScoreLbl.textColor = Helper.colorRed
     }
-    layer.borderWidth = 2.0
-    layer.borderColor = Helper.colorRed.cgColor
-    matchScoreLbl.textColor = Helper.colorRed
-    
-    
   }
   
 }

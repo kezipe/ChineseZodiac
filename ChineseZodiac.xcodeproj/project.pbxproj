@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A0192D41F1E4B1C00172FE5 /* MatchResultLonerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0192D31F1E4B1C00172FE5 /* MatchResultLonerCell.swift */; };
 		0A0BA11F1F1C0AEA005D4567 /* MatchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */; };
 		0A0BA1211F1C0B3F005D4567 /* MatchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */; };
 		0A0BA1231F1C0DE5005D4567 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1221F1C0DE5005D4567 /* Helper.swift */; };
@@ -55,7 +54,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A0192D31F1E4B1C00172FE5 /* MatchResultLonerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResultLonerCell.swift; sourceTree = "<group>"; };
 		0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResultVC.swift; sourceTree = "<group>"; };
 		0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResultCell.swift; sourceTree = "<group>"; };
 		0A0BA1221F1C0DE5005D4567 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 				0A7A55C71EE3628B00BAA05B /* PersonCell.swift */,
 				0A8D2AD51F118F63007B8D64 /* PersonColCell.swift */,
 				0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */,
-				0A0192D31F1E4B1C00172FE5 /* MatchResultLonerCell.swift */,
 				0ACBF6FA1EE357B00075A523 /* Extensions.swift */,
 				0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */,
 				0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */,
@@ -326,7 +323,6 @@
 				0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */,
 				0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */,
 				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,
-				0A0192D41F1E4B1C00172FE5 /* MatchResultLonerCell.swift in Sources */,
 				0A1AB27224023BD8002EAAF3 /* DateSelectorVCDataSource.swift in Sources */,
 				0A0BA1231F1C0DE5005D4567 /* Helper.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
