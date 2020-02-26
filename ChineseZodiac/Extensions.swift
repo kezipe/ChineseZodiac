@@ -178,9 +178,9 @@ extension Date {
   }
   
   func getFixedElement() -> String {
-    let cMonth = self.getChineseCalendarMonth()
+    let chineseCalendarMonth = self.getChineseCalendarMonth()
     
-    switch cMonth {
+    switch chineseCalendarMonth {
     case 3, 6, 9, 12:
       return "Earth"
     case 1, 2:

@@ -25,7 +25,7 @@ protocol DatePickable: class {
 }
 
 protocol PersonColCellDelegate: class {
-  func toggleSelectionOfButton(forCell: PersonColCell)
+  func toggleSelectionOfButton(forCell: PersonCollectionCell)
 }
 
 protocol PersonSelecting: class {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonColCell: UICollectionViewCell {
+class PersonCollectionCell: UICollectionViewCell {
   @IBOutlet weak var zodiacImg: UIImageView!
   @IBOutlet weak var nameLbl: UILabel!
   @IBOutlet weak var checkMarkImg: UIImageView!  

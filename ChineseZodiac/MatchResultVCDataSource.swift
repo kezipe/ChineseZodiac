@@ -9,13 +9,13 @@
 import UIKit
 
 class MatchResultVCDataSource: NSObject, UITableViewDataSource {
-  fileprivate var matchResults = [MatchStruct]()
+  fileprivate var matchResults = [Match]()
   fileprivate var persons = [Person]()
   weak var parentController: DataRefreshing?
   
   func matchUp() {
     DispatchQueue.global(qos: .background).async {
-      let match = Match(personsArray: self.persons)
+      let match = Matcher(personsArray: self.persons)
       self.matchResults = match.matchUp().sorted()
       self.parentController?.refresh()
     }

@@ -19,7 +19,7 @@ class MatchResultCell: UITableViewCell {
   @IBOutlet weak var person2Zodiac: UIImageView!
   @IBOutlet weak var person2Name: UILabel!
   
-  func configureCell(match: MatchStruct) {
+  func configureCell(match: Match) {
     if match.isAlone {
       configureLonerCell(match: match)
     } else {
@@ -27,7 +27,7 @@ class MatchResultCell: UITableViewCell {
     }
   }
   
-  func configureLonerCell(match: MatchStruct) {
+  func configureLonerCell(match: Match) {
     let loner = match.loner!
     person1Name.text = loner.name!
     person1Zodiac.image = UIImage(named: loner.zodiacName)
@@ -39,15 +39,14 @@ class MatchResultCell: UITableViewCell {
     matchScoreLbl.font = UIFont.systemFont(ofSize: 9)
   }
   
-  func configureNormalCell(match: MatchStruct) {
+  func configureNormalCell(match: Match) {
     let person1 = match.firstPerson
     let person2 = match.secondPerson
     let compatibility = match.compatibility
     person1Name.text = person1.name!
-    person2Name.text = person2.name!
     person1Zodiac.image = UIImage(named: person1.zodiacName)
+    person2Name.text = person2.name!
     person2Zodiac.image = UIImage(named: person2.zodiacName)
-    
     
     var matchScoreLblTextSize: CGFloat
     
@@ -70,8 +69,6 @@ class MatchResultCell: UITableViewCell {
     layer.cornerRadius = 8.0
     
     if compatibility == 6 {
-      layer.borderWidth = 2.0
-      layer.borderColor = Helper.colorRed.cgColor
       matchScoreLbl.textColor = Helper.colorRed
     }
   }
