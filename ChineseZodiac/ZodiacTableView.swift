@@ -84,7 +84,6 @@ extension ZodiacTableView: PersonPresenting {
 extension ZodiacTableView: PersonDeleting {
   func deletePerson(at row: Int) {
     dataSource.deletePerson(at: row)
-    tableView.reloadData()
   }
 }
 
