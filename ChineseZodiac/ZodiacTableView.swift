@@ -39,8 +39,8 @@ final class ZodiacTableView: UIViewController {
     dataSource.retrieveData(sortBy: sortBy)
     tableView.reloadData()
     #if DEBUG
-    if dataSource.numberOfRows < 11 {
-      dataSource.insertTestPerson(count: 11 - dataSource.numberOfRows)
+    if dataSource.numberOfRows < 12 {
+      dataSource.reInsertTestPerson()
     }
     #endif
   }

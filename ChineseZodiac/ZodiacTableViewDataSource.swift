@@ -20,7 +20,23 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   }
   
   #if DEBUG
-  func insertTestPerson(count: Int) {
+  func reInsertTestPerson() {
+    for (index, person) in persons.enumerated().reversed() {
+      context.delete(person)
+      persons.remove(at: index)
+    }
+    for year in 2020 ..< 2032 {
+      let person = Person(context: context)
+      let birthday = Date(fromYear: year, month: 6, day: 22)
+      person.birthdate = birthday
+      person.zodiac = Int16(birthday.getZodiacRank())
+      person.name = "\(person.zodiacName)"
+      persons.append(person)
+    }
+    ad.saveContext()
+  }
+  
+  func insertRandomTestPersons(count: Int) {
     for _ in 0 ..< count {
       let person = Person(context: context)
       let randomRange: ClosedRange<Double> = 0...Date().timeIntervalSince1970
