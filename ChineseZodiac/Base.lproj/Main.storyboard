@@ -131,8 +131,8 @@
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.062745098040000002" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Z7t-Yr-VwM" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" constant="24" id="8jF-ga-hjM"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="centerX" secondItem="uPe-XF-rgX" secondAttribute="centerX" id="BJL-y9-x4S"/>
-                            <constraint firstItem="Z7t-Yr-VwM" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leadingMargin" constant="44" id="KxQ-cd-4He"/>
                             <constraint firstItem="Z7t-Yr-VwM" firstAttribute="top" secondItem="7p6-R2-JfQ" secondAttribute="bottom" constant="8" id="VV7-0T-jd0"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="top" secondItem="Z7t-Yr-VwM" secondAttribute="bottom" constant="8" id="hk2-Yz-vlD"/>
                             <constraint firstItem="VdF-sy-ISc" firstAttribute="top" secondItem="GMi-xo-4pl" secondAttribute="bottom" constant="8" id="jVn-XA-MHd"/>
