@@ -34,7 +34,7 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   #endif
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTable", for: indexPath) as! PersonCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "PersonCell", for: indexPath) as! PersonCell
     configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
     return cell
   }
@@ -69,8 +69,6 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
     ad.saveContext()
     retrieveData()
   }
-  
-
 
 }
 

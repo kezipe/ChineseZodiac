@@ -20,6 +20,7 @@ class PersonCell: UITableViewCell {
     updatePersonLabel(person)
     updateZodiacLabel(person)
     updateZodiacImage(person)
+    accessoryType = .disclosureIndicator
   }
   
   fileprivate func updatePersonLabel(_ person: Person) {

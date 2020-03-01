@@ -23,7 +23,11 @@ final class ZodiacTableView: UIViewController {
     super.viewDidLoad()
     tableView.delegate = delegate
     delegate.parentController = self
+    
+    let nib = UINib.init(nibName: "PersonCell", bundle: nil)
+    tableView.register(nib, forCellReuseIdentifier: "PersonCell")
     tableView.dataSource = dataSource
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {

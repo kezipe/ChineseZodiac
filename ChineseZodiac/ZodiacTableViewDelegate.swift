@@ -19,11 +19,6 @@ final class ZodiacTableViewDelegate: NSObject, UITableViewDelegate {
     
   }
 
-  func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-    let cell = tableView.cellForRow(at: indexPath)
-    cell?.layer.cornerRadius = 8.0
-  }
-
   @available(iOS 11.0, *)
   func tableView(_ tableView: UITableView,
                  trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
