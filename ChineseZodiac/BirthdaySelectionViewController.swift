@@ -101,6 +101,10 @@ final class BirthdaySelectionViewController: UIViewController {
         return
       }
       
+      if text.isEmpty {
+        return
+      }
+      
       self?.save(name: text)
       self?.navigationController?.popToRootViewController(animated: true)
     }
