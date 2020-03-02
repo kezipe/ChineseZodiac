@@ -22,7 +22,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lXK-av-aMh">
                                 <rect key="frame" x="16" y="118" width="343" height="581"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x43-k5-Glp">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Goat" translatesAutoresizingMaskIntoConstraints="NO" id="x43-k5-Glp">
                                         <rect key="frame" x="61" y="0.0" width="221" height="221"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="x43-k5-Glp" secondAttribute="height" multiplier="1:1" id="QFY-2m-zif"/>
@@ -36,8 +36,8 @@
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaD-bR-oFF">
                                         <rect key="frame" x="11.666666666666657" y="294.33333333333331" width="320" height="216"/>
-                                        <date key="date" timeIntervalSinceReferenceDate="-332884799.82392883">
-                                            <!--1990-06-15 04:00:00 +0000-->
+                                        <date key="date" timeIntervalSinceReferenceDate="-301348799.82392883">
+                                            <!--1991-06-15 04:00:00 +0000-->
                                         </date>
                                         <connections>
                                             <action selector="dateChanged:" destination="5U2-q2-2lP" eventType="valueChanged" id="7BQ-hy-NPK"/>
@@ -662,6 +662,7 @@
     </scenes>
     <resources>
         <image name="Dragon" width="182.66667175292969" height="177"/>
+        <image name="Goat" width="152.33332824707031" height="164.33332824707031"/>
         <image name="Tab Bar Icon 0 Wide" width="31" height="31"/>
         <image name="Tab Bar Icon 1 Wide" width="31" height="31"/>
         <image name="checkMark" width="22" height="22"/>
