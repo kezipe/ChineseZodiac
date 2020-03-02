@@ -9,11 +9,13 @@
 import UIKit
 
 final class DetailsVC: UIViewController {
-
+  
+  
   var person: Person?
   
   @IBOutlet weak var deleteButton: UIButton!
   @IBOutlet weak var cancelButton: UIBarButtonItem!
+
   
   override func viewDidLoad() {
     super.viewDidLoad()

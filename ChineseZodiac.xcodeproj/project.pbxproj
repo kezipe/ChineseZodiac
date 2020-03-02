@@ -11,6 +11,7 @@
 		0A0BA1211F1C0B3F005D4567 /* MatchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */; };
 		0A0BA1231F1C0DE5005D4567 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1221F1C0DE5005D4567 /* Helper.swift */; };
 		0A0BA1261F1C118F005D4567 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1251F1C118F005D4567 /* Matcher.swift */; };
+		0A1042D3240D5F1700F2A913 /* DetailsVCTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1042D2240D5F1700F2A913 /* DetailsVCTableViewDataSource.swift */; };
 		0A10DA7C1F0C945C00ED645A /* DateSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */; };
 		0A1148BF23FF4CA70010C817 /* ZodiacTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */; };
 		0A1148C123FF530F0010C817 /* ZodiacTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */; };
@@ -60,6 +61,7 @@
 		0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResultCell.swift; sourceTree = "<group>"; };
 		0A0BA1221F1C0DE5005D4567 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0A0BA1251F1C118F005D4567 /* Matcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
+		0A1042D2240D5F1700F2A913 /* DetailsVCTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVCTableViewDataSource.swift; sourceTree = "<group>"; };
 		0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectorVC.swift; sourceTree = "<group>"; };
 		0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacTableViewDataSource.swift; sourceTree = "<group>"; };
 		0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacTableViewDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */,
 				0A14631F1F0B55440043AA46 /* DetailsVC.swift */,
 				0A455BB824006A44008D13AD /* DetailsView.swift */,
+				0A1042D2240D5F1700F2A913 /* DetailsVCTableViewDataSource.swift */,
 				0A69F46B1EE3426C00A0176D /* BirthdaySelectionView.swift */,
 				0A10DA7B1F0C945C00ED645A /* DateSelectorVC.swift */,
 				0A1AB27124023BD8002EAAF3 /* DateSelectorVCDataSource.swift */,
@@ -343,6 +346,7 @@
 				0A1148BF23FF4CA70010C817 /* ZodiacTableViewDataSource.swift in Sources */,
 				0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */,
 				0AB4729C236521A200495C17 /* PersonDataRetriever.swift in Sources */,
+				0A1042D3240D5F1700F2A913 /* DetailsVCTableViewDataSource.swift in Sources */,
 				0A8D2AD61F118F63007B8D64 /* PersonCollectionCell.swift in Sources */,
 				0A5588072405E75400FD0885 /* MatchResultVCDataSource.swift in Sources */,
 				0A1463241F0C8A5F0043AA46 /* PickerView.swift in Sources */,
