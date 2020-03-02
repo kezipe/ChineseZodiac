@@ -44,7 +44,7 @@ final class DetailsVC: UIViewController {
     guard segue.identifier == "EditPerson" else {
       return
     }
-    guard let destination = segue.destination as? BirthdaySelectionView else {
+    guard let destination = segue.destination as? BirthdaySelectionViewController else {
       return
     }
     
