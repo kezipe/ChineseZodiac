@@ -2,7 +2,8 @@
 <playground version='6.0' target-platform='ios'>
     <pages>
         <page name='Stem-Branch'/>
-        <page name='Untitled Page'/>
         <page name='Medium Article'/>
+        <page name='Matching Algorithm'/>
+        <page name='Ready-to-Use Functions'/>
     </pages>
 </playground>
