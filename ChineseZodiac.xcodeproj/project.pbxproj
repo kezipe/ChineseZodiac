@@ -118,6 +118,7 @@
 				0A1AB26724022085002EAAF3 /* Zodiac.swift */,
 				0AD4E2931EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld */,
 				0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */,
+				0ACBF6FA1EE357B00075A523 /* Extensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -140,7 +141,6 @@
 				0A14CC81240B93AF003FA229 /* PersonCell.xib */,
 				0A8D2AD51F118F63007B8D64 /* PersonCollectionCell.swift */,
 				0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */,
-				0ACBF6FA1EE357B00075A523 /* Extensions.swift */,
 				0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */,
 				0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */,
 			);

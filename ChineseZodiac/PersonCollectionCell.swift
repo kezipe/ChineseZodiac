@@ -18,6 +18,7 @@ class PersonCollectionCell: UICollectionViewCell {
     let imageName = person.zodiacSign.name + "_thumb"
     zodiacImg.image = UIImage(named: imageName)
     
+    checkMarkImg.image = checkMarkImg.image?.withRenderingMode(.alwaysTemplate)
     checkMarkImg.isHidden = !isSelected
   }
   
