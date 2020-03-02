@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lXK-av-aMh">
-                                <rect key="frame" x="16" y="108" width="343" height="601"/>
+                                <rect key="frame" x="16" y="118" width="343" height="581"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x43-k5-Glp">
                                         <rect key="frame" x="61" y="0.0" width="221" height="221"/>
@@ -29,13 +29,13 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a birthday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Viz-8p-cOL">
-                                        <rect key="frame" x="61" y="254.33333333333334" width="221" height="20.333333333333343"/>
+                                        <rect key="frame" x="61" y="247.66666666666671" width="221" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaD-bR-oFF">
-                                        <rect key="frame" x="11.666666666666657" y="307.66666666666669" width="320" height="216.00000000000006"/>
+                                        <rect key="frame" x="11.666666666666657" y="294.33333333333331" width="320" height="216"/>
                                         <date key="date" timeIntervalSinceReferenceDate="-332884799.82392883">
                                             <!--1990-06-15 04:00:00 +0000-->
                                         </date>
@@ -44,7 +44,7 @@
                                         </connections>
                                     </datePicker>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLw-4M-aWQ">
-                                        <rect key="frame" x="11.666666666666657" y="557" width="320" height="44"/>
+                                        <rect key="frame" x="11.666666666666657" y="537" width="320" height="44"/>
                                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="gBA-A8-Ix1"/>
@@ -72,9 +72,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Tvf-rN-CUf" firstAttribute="top" secondItem="lXK-av-aMh" secondAttribute="bottom" constant="20" id="5ry-vR-yLl"/>
+                            <constraint firstItem="Tvf-rN-CUf" firstAttribute="top" secondItem="lXK-av-aMh" secondAttribute="bottom" constant="30" id="5ry-vR-yLl"/>
                             <constraint firstItem="lXK-av-aMh" firstAttribute="leading" secondItem="NZQ-HN-DIY" secondAttribute="leadingMargin" id="IJh-M0-htA"/>
-                            <constraint firstItem="lXK-av-aMh" firstAttribute="top" secondItem="24a-6s-p4z" secondAttribute="bottom" constant="20" id="Q63-Ab-MuW"/>
+                            <constraint firstItem="lXK-av-aMh" firstAttribute="top" secondItem="24a-6s-p4z" secondAttribute="bottom" constant="30" id="Q63-Ab-MuW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lXK-av-aMh" secondAttribute="trailing" id="qOe-fS-xsx"/>
                         </constraints>
                     </view>

@@ -54,7 +54,7 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   }
   
   func fetchData() {
-    if let persons = PersonDataRetriever.shared.retrieveData(sortBy: .name) {
+    if let persons = PersonDataManager.shared.retrieveData(sortBy: .name) {
       self.persons = persons
     }
   }

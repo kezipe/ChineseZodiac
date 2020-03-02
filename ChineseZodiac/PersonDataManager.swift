@@ -18,9 +18,9 @@ enum PersonSort: Int {
 
 
 
-final class PersonDataRetriever {
+final class PersonDataManager {
   
-  static let shared = PersonDataRetriever()
+  static let shared = PersonDataManager()
   let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
   var controller: NSFetchedResultsController<Person>!
   
@@ -64,7 +64,16 @@ final class PersonDataRetriever {
     }
   }
   
-  func save(_ person: Person) {
-    
+  func save(birthday: Date, name: String) {
+    let person = Person(context: context)
+    person.created = Date()
+    save(person: person, birthday: birthday, name: name)
+  }
+  
+  func save(person: Person, birthday: Date, name: String) {
+    person.birthdate = birthday
+    person.name = name
+    person.zodiac = Int16(birthday.getZodiacRank())
+    ad.saveContext()
   }
 }

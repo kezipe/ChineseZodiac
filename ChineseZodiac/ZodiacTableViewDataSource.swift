@@ -69,7 +69,7 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   }
   
   func retrieveData(sortBy: PersonSort = .createdOn) {
-    guard let fetchedPersons = PersonDataRetriever.shared.retrieveData(sortBy: sortBy) else {
+    guard let fetchedPersons = PersonDataManager.shared.retrieveData(sortBy: sortBy) else {
       fatalError("Unable to fetch persons")
     }
     persons = fetchedPersons
