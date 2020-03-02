@@ -22,6 +22,10 @@ final class MatchResultVC: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     dataSource.matchUp()
   }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    dataSource.stopMatchUp()
+  }
 
   @IBAction func backButtonPresed(_ sender: Any) {
     navigationController?.popViewController(animated: true)

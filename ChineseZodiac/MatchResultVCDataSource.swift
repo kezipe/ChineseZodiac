@@ -12,13 +12,24 @@ class MatchResultVCDataSource: NSObject, UITableViewDataSource {
   fileprivate var matchResults = [Match]()
   fileprivate var persons = [Person]()
   weak var parentController: DataRefreshing?
+  fileprivate var matchWorkItem: DispatchWorkItem?
   
   func matchUp() {
-    DispatchQueue.global(qos: .background).async {
-      let match = Matcher(personsArray: self.persons)
-      self.matchResults = match.matchUp().sorted()
-      self.parentController?.refresh()
+    guard matchWorkItem == nil || matchWorkItem!.isCancelled else {
+      return
     }
+    
+    matchWorkItem = DispatchWorkItem {
+        let match = Matcher(personsArray: self.persons)
+        self.matchResults = match.matchUp().sorted()
+        self.parentController?.refresh()
+    }
+    
+    DispatchQueue.global(qos: .userInitiated).async(execute: matchWorkItem!)
+  }
+  
+  func stopMatchUp() {
+    matchWorkItem?.cancel()
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

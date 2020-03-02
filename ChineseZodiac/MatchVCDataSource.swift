@@ -8,14 +8,9 @@
 
 import UIKit
 
-enum MatchError: Error {
-  case tooManySelected(max: Int)
-}
-
 class MatchVCDataSource: NSObject, UICollectionViewDataSource {
 
   private let CELL_IDENTIFIER = "PersonColCell"
-  private let MAX_MATCHABLE_PERSON_LIMIT = 10
   private var persons = [Person]()
   private var selectedPersons: Set<Person> = []
   
@@ -27,30 +22,18 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     return persons[item]
   }
   
-  func tapPerson(at item: Int) throws {
+  func tapPerson(at item: Int) {
     let tappedPerson = person(at: item)
     if selectedPersons.contains(tappedPerson) {
       selectedPersons.remove(tappedPerson)
-    } else if canSelectMorePersons() {
-      selectedPersons.insert(tappedPerson)      
     } else {
-      throw MatchError.tooManySelected(max: MAX_MATCHABLE_PERSON_LIMIT)
+      selectedPersons.insert(tappedPerson)      
     }
   }
   
   func isPersonSelected(at item: Int) -> Bool {
     let personToQuery = person(at: item)
     return selectedPersons.contains(personToQuery)
-  }
-  
-  func canSelectMorePersons() -> Bool {
-    return selectedPersons.count < MAX_MATCHABLE_PERSON_LIMIT
-  }
-  
-  func hasValidSelection() -> Bool {
-    let allowAllPersons = selectedPersons.isEmpty && numberOfItems <= MAX_MATCHABLE_PERSON_LIMIT
-    let allowSelectedPersons = !selectedPersons.isEmpty
-    return allowAllPersons || allowSelectedPersons
   }
   
   func fetchData() {
