@@ -391,6 +391,7 @@
                     <navigationItem key="navigationItem" title="Match" largeTitleDisplayMode="always" id="tHK-2m-w4X"/>
                     <connections>
                         <outlet property="collectionView" destination="cPx-3j-K55" id="oBW-r5-4TD"/>
+                        <outlet property="matchButton" destination="F1K-zD-Kep" id="Po9-Yz-eYj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEy-jT-had" userLabel="First Responder" sceneMemberID="firstResponder"/>

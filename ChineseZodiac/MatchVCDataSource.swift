@@ -10,6 +10,7 @@ import UIKit
 
 class MatchVCDataSource: NSObject, UICollectionViewDataSource {
 
+  let MAX_MATCHING_PEOPLE = 10
   private let CELL_IDENTIFIER = "PersonColCell"
   private var persons = [Person]()
   private var selectedPersons: Set<Person> = []
@@ -18,8 +19,20 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     return persons.count
   }
   
+  var numberOfSelectedItems: Int {
+    return selectedPersons.count
+  }
+  
   func person(at item: Int) -> Person {
     return persons[item]
+  }
+  
+  func isLimitReached() -> Bool {
+    return numberOfSelectedItems > MAX_MATCHING_PEOPLE
+  }
+  
+  func canMatchAll() -> Bool {
+    return numberOfSelectedItems == 0 && numberOfItems <= MAX_MATCHING_PEOPLE
   }
   
   func tapPerson(at item: Int) {

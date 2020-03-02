@@ -10,7 +10,7 @@ import UIKit
 
 final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   @IBOutlet weak var collectionView: UICollectionView!
-  @IBOutlet weak var matchButtonText: UILabel!
+  @IBOutlet weak var matchButton: UIButton!
   
   fileprivate lazy var dataSource = MatchVCDataSource()
   fileprivate lazy var delegate = MatchVCDelegate()
@@ -32,6 +32,7 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     dataSource.fetchData()
     DispatchQueue.main.async {
       self.collectionView.reloadData()
+      self.updateMatchButton()
     }
   }
   
@@ -52,6 +53,36 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     return true
   }
   
+  fileprivate func updateMatchButton() {
+    let personsSelected = dataSource.numberOfSelectedItems
+    let hasNooneSelected = personsSelected == 0
+    
+    if hasNooneSelected {
+      if dataSource.canMatchAll() {
+        matchButton.setTitle("Match All", for: .normal)
+        enableMatchButton()
+      } else {
+        disableMatchButton()
+      }
+    } else if dataSource.isLimitReached() {
+      disableMatchButton()
+    } else {
+      matchButton.setTitle("Match \(personsSelected)", for: .normal)
+      enableMatchButton()
+    }
+  }
+  
+  fileprivate func enableMatchButton() {
+    matchButton.isEnabled = true
+    matchButton.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+  }
+  
+  fileprivate func disableMatchButton() {
+    matchButton.setTitle("Please selected up to 10 people", for: .normal)
+    matchButton.isEnabled = false
+    matchButton.backgroundColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+  }
+  
 }
 
 extension MatchVC: PersonSelecting {
@@ -63,6 +94,7 @@ extension MatchVC: PersonSelecting {
   
   fileprivate func selectPerson(_ item: Int) {
     dataSource.tapPerson(at: item)
+    updateMatchButton()
   }
   
   fileprivate func reloadPerson(at item: Int) {
