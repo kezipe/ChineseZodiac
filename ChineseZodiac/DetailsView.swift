@@ -35,7 +35,10 @@ class DetailsView: UIView {
   }
   
   fileprivate func updateZodiacImage(_ zodiacSign: String) {
-    zodiacImg.image = UIImage(named: zodiacSign)
+    if let image = UIImage(named: zodiacSign) {
+      let tintableImage = image.withRenderingMode(.alwaysTemplate)
+      zodiacImg.image = tintableImage
+    }
   }
   
   fileprivate func updateNameLabel(_ name: String) {

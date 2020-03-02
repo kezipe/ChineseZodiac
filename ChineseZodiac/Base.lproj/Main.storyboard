@@ -522,6 +522,7 @@
                             </label>
                             <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" image="Dragon" translatesAutoresizingMaskIntoConstraints="NO" id="KYO-BN-BvN">
                                 <rect key="frame" x="20" y="261" width="374" height="374"/>
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="KYO-BN-BvN" secondAttribute="height" multiplier="1:1" id="deX-KO-hhN"/>
                                 </constraints>
