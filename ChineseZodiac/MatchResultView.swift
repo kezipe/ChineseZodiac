@@ -9,8 +9,8 @@
 import UIKit
 
 final class MatchResultView: UIView {
-  fileprivate let TABLEVIEW_HEIGHT: CGFloat = 500
-  fileprivate let TABLEVIEW_ROW_HEIGHT: CGFloat = 100
+  fileprivate let TABLEVIEW_HEIGHT: CGFloat = 600
+  fileprivate let TABLEVIEW_ROW_HEIGHT: CGFloat = 120
   fileprivate let CELL_IDENTIFIER = "MatchResultCell"
 
   fileprivate var tableView: UITableView = {

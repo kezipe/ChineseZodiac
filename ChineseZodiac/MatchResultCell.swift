@@ -60,7 +60,7 @@ final class MatchResultCell: UITableViewCell {
     
     addSubview(person1Zodiac)
     person1Zodiac.leftAnchor.constraint(equalTo: leftAnchor, constant: PADDING_HORIZONTAL).isActive = true
-    person1Zodiac.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -PADDING_VERTICAL).isActive = true
+    person1Zodiac.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
     person1Zodiac.widthAnchor.constraint(equalToConstant: IMAGE_SIZE).isActive = true
     person1Zodiac.heightAnchor.constraint(equalToConstant: IMAGE_SIZE).isActive = true
     
@@ -77,7 +77,7 @@ final class MatchResultCell: UITableViewCell {
     
     addSubview(person2Zodiac)
     person2Zodiac.rightAnchor.constraint(equalTo: rightAnchor, constant: -PADDING_HORIZONTAL).isActive = true
-    person2Zodiac.topAnchor.constraint(equalTo: topAnchor, constant: PADDING_VERTICAL).isActive = true
+    person2Zodiac.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
     person2Zodiac.widthAnchor.constraint(equalToConstant: IMAGE_SIZE).isActive = true
     person2Zodiac.heightAnchor.constraint(equalToConstant: IMAGE_SIZE).isActive = true
     

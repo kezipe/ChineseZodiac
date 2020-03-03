@@ -74,13 +74,17 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   
   fileprivate func enableMatchButton() {
     matchButton.isEnabled = true
-    matchButton.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+    UIView.animate(withDuration: 0.5) {
+      self.matchButton.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+    }
   }
   
   fileprivate func disableMatchButton() {
     matchButton.setTitle("Please select 2 to 10 people", for: .normal)
     matchButton.isEnabled = false
-    matchButton.backgroundColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+    UIView.animate(withDuration: 0.5) {
+      self.matchButton.backgroundColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+    }
   }
   
 }
