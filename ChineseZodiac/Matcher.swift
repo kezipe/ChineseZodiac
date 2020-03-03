@@ -103,7 +103,8 @@ class Matcher {
         let person1Zodiac = person1.zodiacSign
         let person2Zodiac = person2.zodiacSign
         let matchScore = Zodiac.match(person1Zodiac, with: person2Zodiac)
-        let match = Match(firstPerson: person1, secondPerson: person2, compatibility: matchScore)
+        let compatibility = Compatibility(rawValue: matchScore)!
+        let match = Match(firstPerson: person1, secondPerson: person2, compatibility: compatibility)
         
         tempScore += matchScore
         tempMatch.append(match)

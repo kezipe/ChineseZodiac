@@ -39,6 +39,7 @@ class MatchResultVCDataSource: NSObject, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return matchResults.count
   }
+
 }
 
 extension MatchResultVCDataSource: PersonsReceivable {

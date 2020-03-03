@@ -10,13 +10,17 @@ import UIKit
 
 final class MatchResultVC: UIViewController {
   
-  @IBOutlet weak var tableView: UITableView!
   fileprivate var dataSource: (MatchResultVCDataSource & PersonsReceivable) = MatchResultVCDataSource()
+  fileprivate var customView = MatchResultView()
+  
+  override func loadView() {
+    view = customView
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     dataSource.parentController = self
-    tableView.dataSource = dataSource
+    customView.setDataSource(dataSource)
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -42,7 +46,7 @@ extension MatchResultVC: PersonsReceivable {
 extension MatchResultVC: DataRefreshing {
   func refresh() {
     DispatchQueue.main.async {
-      self.tableView.reloadData()
+      self.customView.reloadData()
     }
   }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonCell: UITableViewCell {
+final class PersonCell: UITableViewCell {
   
   @IBOutlet weak var personLbl: UILabel!
   
