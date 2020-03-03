@@ -30,7 +30,12 @@ final class DetailsVC: UIViewController {
   @IBAction func deleteButtonPressed(_ sender: Any) {
     if let person = person {
       PersonDataManager.shared.delete(person: person)
+      navigateToParentController()
     }
+  }
+  
+  fileprivate func navigateToParentController() {
+    navigationController?.popViewController(animated: true)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
