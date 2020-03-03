@@ -21,7 +21,6 @@ final class MatchResultView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-
     setupUI()
   }
   
@@ -31,6 +30,11 @@ final class MatchResultView: UIView {
   }
   
   func setupUI() {
+    setupBackground()
+    setupTableView()
+  }
+  
+  fileprivate func setupBackground() {
     let background = UIView()
     if #available(iOS 13, *) {
       background.backgroundColor = .secondarySystemBackground
@@ -39,10 +43,32 @@ final class MatchResultView: UIView {
     }
     background.frame = UIScreen.main.bounds
     addSubview(background)
-    
+  }
+  
+  fileprivate func setupTableView() {
+    registerTableViewCell()
+    setupTableViewBackground()
+    setupTableViewRowHeight()
+    setupLayoutConstraints()
+  }
+  
+  fileprivate func registerTableViewCell() {
     tableView.register(MatchResultCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
+  }
+  
+  fileprivate func setupTableViewBackground() {
+    if #available(iOS 13, *) {
+      tableView.backgroundColor = .secondarySystemBackground
+    } else {
+      tableView.backgroundColor = .systemGray
+    }
+  }
+  
+  fileprivate func setupTableViewRowHeight() {
     tableView.rowHeight = TABLEVIEW_ROW_HEIGHT
-    
+  }
+  
+  fileprivate func setupLayoutConstraints() {
     addSubview(tableView)
     tableView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     tableView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -50,6 +76,8 @@ final class MatchResultView: UIView {
     tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
     tableView.heightAnchor.constraint(equalToConstant: TABLEVIEW_HEIGHT).isActive = true
   }
+  
+
   
   func setDataSource(_ dataSource: (MatchResultVCDataSource & PersonsReceivable)) {
     tableView.dataSource = dataSource

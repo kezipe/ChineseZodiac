@@ -8,16 +8,27 @@
 
 import UIKit
 
-final class PersonLabel: UILabel {
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    translatesAutoresizingMaskIntoConstraints = false
-    lineBreakMode = .byTruncatingMiddle
-    adjustsFontSizeToFitWidth = true
-    minimumScaleFactor = 0.75
+extension UILabel {
+  static var personLabel: UILabel {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.lineBreakMode = .byTruncatingMiddle
+    label.adjustsFontSizeToFitWidth = true
+    label.minimumScaleFactor = 0.75
+    return label
   }
-  
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
+}
+
+extension UIImageView {
+  static var zodiacImageView: UIImageView {
+    let imageView = UIImageView()
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.contentMode = .scaleAspectFit
+    if #available(iOS 13, *) {
+      imageView.tintColor = .label
+    } else {
+      imageView.tintColor = .black
+    }
+    return imageView
   }
 }

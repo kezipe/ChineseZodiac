@@ -13,14 +13,12 @@ import UIKit
 final class MatchResultCell: UITableViewCell {
   
   lazy var person1Zodiac: UIImageView = {
-    let imageView = UIImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.contentMode = .scaleAspectFit
+    let imageView = UIImageView.zodiacImageView
     return imageView
   }()
   
   lazy var person1Name: UILabel = {
-    let label = PersonLabel()
+    let label = UILabel.personLabel
     return label
   }()
   
@@ -33,14 +31,12 @@ final class MatchResultCell: UITableViewCell {
   }()
   
   lazy var person2Zodiac: UIImageView = {
-    let imageView = UIImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.contentMode = .scaleAspectFit
+    let imageView = UIImageView.zodiacImageView
     return imageView
   }()
   
   lazy var person2Name: UILabel = {
-    let label = PersonLabel()
+    let label = UILabel.personLabel
     label.textAlignment = .right
     return label
   }()
@@ -126,13 +122,17 @@ final class MatchResultCell: UITableViewCell {
   fileprivate func configureLeftCell(person: Person) {
     person1Name.text = person.name ?? ""
     let imageName = getImageName(person: person)
-    person1Zodiac.image = UIImage(named: imageName) ?? nil
+    if let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate) {
+      person1Zodiac.image = image
+    }
   }
   
   fileprivate func configureRightCell(person: Person) {
     person2Name.text = person.name ?? ""
     let imageName = getImageName(person: person)
-    person2Zodiac.image = UIImage(named: imageName) ?? nil
+    if let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate) {
+      person2Zodiac.image = image
+    }
   }
   
   fileprivate func getImageName(person: Person) -> String {

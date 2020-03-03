@@ -12,14 +12,26 @@ final class PersonCollectionCell: UICollectionViewCell {
   @IBOutlet weak var zodiacImg: UIImageView!
   @IBOutlet weak var nameLbl: UILabel!
   @IBOutlet weak var checkMarkImg: UIImageView!  
-  
+
   func configureCell(person: Person, isSelected: Bool) {
+    configureNameLabel(person)
+    configureImage(person)
+    configureCheckMark(isSelected)
+  }
+  
+  fileprivate func configureNameLabel(_ person: Person) {
     nameLbl.text = person.name
+  }
+  
+  fileprivate func configureImage(_ person: Person) {
     let imageName = person.zodiacSign.name + "_thumb"
-    zodiacImg.image = UIImage(named: imageName)
-    
+    if let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate) {
+      zodiacImg.image = image
+    }
+  }
+  
+  fileprivate func configureCheckMark(_ isSelected: Bool) {
     checkMarkImg.image = checkMarkImg.image?.withRenderingMode(.alwaysTemplate)
     checkMarkImg.isHidden = !isSelected
   }
-  
 }
