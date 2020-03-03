@@ -64,11 +64,11 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
       } else {
         disableMatchButton()
       }
-    } else if dataSource.isLimitReached() {
-      disableMatchButton()
-    } else {
+    } else if dataSource.isSelectionLegal() {
       matchButton.setTitle("Match \(personsSelected)", for: .normal)
       enableMatchButton()
+    } else {
+      disableMatchButton()
     }
   }
   
@@ -78,7 +78,7 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   }
   
   fileprivate func disableMatchButton() {
-    matchButton.setTitle("Please selected up to 10 people", for: .normal)
+    matchButton.setTitle("Please select 2 to 10 people", for: .normal)
     matchButton.isEnabled = false
     matchButton.backgroundColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
   }

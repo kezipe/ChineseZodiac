@@ -27,8 +27,8 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     return persons[item]
   }
   
-  func isLimitReached() -> Bool {
-    return numberOfSelectedItems > MAX_MATCHING_PEOPLE
+  func isSelectionLegal() -> Bool {
+    return numberOfSelectedItems <= MAX_MATCHING_PEOPLE && numberOfSelectedItems > 1
   }
   
   func canMatchAll() -> Bool {
