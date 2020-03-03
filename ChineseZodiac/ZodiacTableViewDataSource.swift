@@ -81,8 +81,7 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   
   func deletePerson(at row: Int) {
     let personToDelete = person(at: row)
-    context.delete(personToDelete)
-    ad.saveContext()
+    PersonDataManager.shared.delete(person: personToDelete)
     retrieveData()
   }
 

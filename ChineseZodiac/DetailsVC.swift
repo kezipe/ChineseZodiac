@@ -9,13 +9,8 @@
 import UIKit
 
 final class DetailsVC: UIViewController {
-  
-  
-  var person: Person?
-  
-  @IBOutlet weak var deleteButton: UIButton!
-  @IBOutlet weak var cancelButton: UIBarButtonItem!
 
+  var person: Person?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,12 +27,10 @@ final class DetailsVC: UIViewController {
     view.updateInformation(forPerson: person)
   }
   
-  @IBAction func cancelButtonPressed(_ sender: Any) {
-    navigationController?.popToRootViewController(animated: true)
-  }
-    
-  @IBAction func EditButtonPressed(_ sender: Any) {
-    performSegue(withIdentifier: "EditPerson", sender: self.person)
+  @IBAction func deleteButtonPressed(_ sender: Any) {
+    if let person = person {
+      PersonDataManager.shared.delete(person: person)
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

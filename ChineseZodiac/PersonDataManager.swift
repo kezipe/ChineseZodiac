@@ -76,4 +76,9 @@ final class PersonDataManager {
     person.zodiac = Int16(birthday.getZodiacRank())
     ad.saveContext()
   }
+  
+  func delete(person: Person) {
+    context.delete(person)
+    ad.saveContext()
+  }
 }
