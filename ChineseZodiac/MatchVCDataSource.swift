@@ -40,7 +40,7 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     if selectedPersons.contains(tappedPerson) {
       selectedPersons.remove(tappedPerson)
     } else {
-      selectedPersons.insert(tappedPerson)      
+      selectedPersons.insert(tappedPerson)
     }
   }
   

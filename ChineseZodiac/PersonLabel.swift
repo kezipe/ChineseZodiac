@@ -12,9 +12,9 @@ extension UILabel {
   static var personLabel: UILabel {
     let label = UILabel()
     if #available(iOS 13, *) {
-      label.textColor = .secondaryLabel
+      label.textColor = .label
     } else {
-      label.textColor = .gray
+      label.textColor = .black
     }
     
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +31,7 @@ extension UIImageView {
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.contentMode = .scaleAspectFit
     if #available(iOS 13, *) {
-      imageView.tintColor = .secondaryLabel
+      imageView.tintColor = .label
     } else {
       imageView.tintColor = .black
     }

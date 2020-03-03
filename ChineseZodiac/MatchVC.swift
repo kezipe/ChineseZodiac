@@ -87,6 +87,18 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     }
   }
   
+  fileprivate func highlightPerson(at item: Int) {
+    let indexPath = IndexPath(item: item, section: 0)
+    let cell = collectionView.cellForItem(at: indexPath) as! PersonCollectionCell
+    cell.highlightPerson()
+  }
+  
+  fileprivate func dehighlightPerson(at item: Int) {
+    let indexPath = IndexPath(item: item, section: 0)
+    let cell = collectionView.cellForItem(at: indexPath) as! PersonCollectionCell
+    cell.dehighlightPerson()
+  }
+
 }
 
 extension MatchVC: PersonSelecting {
@@ -95,6 +107,7 @@ extension MatchVC: PersonSelecting {
     selectPerson(item)
     reloadPerson(at: item)
   }
+  
   
   fileprivate func selectPerson(_ item: Int) {
     dataSource.tapPerson(at: item)

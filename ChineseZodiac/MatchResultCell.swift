@@ -112,6 +112,7 @@ final class MatchResultCell: UITableViewCell {
     configureLeftCell(person: person1)
     configureRightCell(person: person2)
     configureCompatibility(match)
+    configureImageFlip(match)
   }
   
   fileprivate func configureEmptyRightCell() {
@@ -143,6 +144,17 @@ final class MatchResultCell: UITableViewCell {
     setFontColor(for: match.compatibility)
     setFontSize(for: match.compatibility)
     setCompatibilityLabelText(match.compatibility.description)
+  }
+  
+  fileprivate func configureImageFlip(_ match: Match) {
+    switch match.compatibility {
+    case .poor:
+      flipRightImage()
+    case .average, .goodMatchOrEnemy:
+      break
+    default:
+      flipLeftImage()
+    }
   }
   
   fileprivate func setFontColor(for compatibility: Compatibility) {
@@ -197,5 +209,13 @@ final class MatchResultCell: UITableViewCell {
   
   fileprivate func setFontSize(_ size: CGFloat) {
     compatibilityLbl.font = UIFont(name: "Baskerville-Bold", size: size)
+  }
+  
+  func flipLeftImage() {
+    person1Zodiac.transform = CGAffineTransform(scaleX: -1, y: 1)
+  }
+  
+  func flipRightImage() {
+    person2Zodiac.transform = CGAffineTransform(scaleX: -1, y: 1)
   }
 }

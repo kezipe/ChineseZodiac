@@ -104,14 +104,14 @@
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Z7t-Yr-VwM">
                                 <rect key="frame" x="24" y="96" width="327" height="32"/>
-                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <segments>
                                     <segment title="Created"/>
                                     <segment title="Name"/>
                                     <segment title="Zodiac"/>
                                     <segment title="Birthday"/>
                                 </segments>
-                                <color key="tintColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
@@ -122,7 +122,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GMi-xo-4pl">
-                                <rect key="frame" x="-4" y="135" width="383" height="586"/>
+                                <rect key="frame" x="-4" y="131" width="383" height="590"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -135,7 +135,7 @@
                             <constraint firstItem="Z7t-Yr-VwM" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" constant="24" id="8jF-ga-hjM"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="centerX" secondItem="uPe-XF-rgX" secondAttribute="centerX" id="BJL-y9-x4S"/>
                             <constraint firstItem="Z7t-Yr-VwM" firstAttribute="top" secondItem="7p6-R2-JfQ" secondAttribute="bottom" constant="8" id="VV7-0T-jd0"/>
-                            <constraint firstItem="GMi-xo-4pl" firstAttribute="top" secondItem="Z7t-Yr-VwM" secondAttribute="bottom" constant="8" id="hk2-Yz-vlD"/>
+                            <constraint firstItem="GMi-xo-4pl" firstAttribute="top" secondItem="Z7t-Yr-VwM" secondAttribute="bottom" constant="4" id="hk2-Yz-vlD"/>
                             <constraint firstItem="VdF-sy-ISc" firstAttribute="top" secondItem="GMi-xo-4pl" secondAttribute="bottom" constant="8" id="jVn-XA-MHd"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="centerX" secondItem="Z7t-Yr-VwM" secondAttribute="centerX" id="wye-ug-1p1"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leadingMargin" constant="-20" id="zaZ-3W-m2v"/>
@@ -473,7 +473,7 @@
         <image name="checkMark" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gHg-VV-9Mj"/>
+        <segue reference="pzH-Bl-2s0"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

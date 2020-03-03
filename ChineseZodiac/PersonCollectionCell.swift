@@ -17,6 +17,7 @@ final class PersonCollectionCell: UICollectionViewCell {
     configureNameLabel(person)
     configureImage(person)
     configureCheckMark(isSelected)
+    configureHighlight(isSelected)
   }
   
   fileprivate func configureNameLabel(_ person: Person) {
@@ -27,6 +28,30 @@ final class PersonCollectionCell: UICollectionViewCell {
     let imageName = person.zodiacSign.name + "_thumb"
     if let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate) {
       zodiacImg.image = image
+    }
+  }
+  
+  fileprivate func configureHighlight(_ isSelected: Bool) {
+    if isSelected {
+      highlightPerson()
+    } else {
+      dehighlightPerson()
+    }
+  }
+  
+  func highlightPerson() {
+    if #available(iOS 13, *) {
+      zodiacImg.tintColor = .label
+    } else {
+      zodiacImg.tintColor = .black
+    }
+  }
+  
+  func dehighlightPerson() {
+    if #available(iOS 13, *) {
+      zodiacImg.tintColor = .secondaryLabel
+    } else {
+      zodiacImg.tintColor = .gray
     }
   }
   
