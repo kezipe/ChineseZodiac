@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0A0BA11F1F1C0AEA005D4567 /* MatchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */; };
 		0A0BA1211F1C0B3F005D4567 /* MatchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */; };
-		0A0BA1231F1C0DE5005D4567 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1221F1C0DE5005D4567 /* Helper.swift */; };
 		0A0BA1261F1C118F005D4567 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0BA1251F1C118F005D4567 /* Matcher.swift */; };
 		0A1042D3240D5F1700F2A913 /* DetailsVCTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1042D2240D5F1700F2A913 /* DetailsVCTableViewDataSource.swift */; };
 		0A1148BF23FF4CA70010C817 /* ZodiacTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */; };
@@ -56,7 +55,6 @@
 /* Begin PBXFileReference section */
 		0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResultVC.swift; sourceTree = "<group>"; };
 		0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResultCell.swift; sourceTree = "<group>"; };
-		0A0BA1221F1C0DE5005D4567 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0A0BA1251F1C118F005D4567 /* Matcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
 		0A1042D2240D5F1700F2A913 /* DetailsVCTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVCTableViewDataSource.swift; sourceTree = "<group>"; };
 		0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 				0A1AB26F24022CA3002EAAF3 /* MatchVCDelegate.swift */,
 				0A0BA11E1F1C0AEA005D4567 /* MatchResultVC.swift */,
 				0A5588062405E75400FD0885 /* MatchResultVCDataSource.swift */,
-				0A0BA1221F1C0DE5005D4567 /* Helper.swift */,
 				0AB4729B236521A200495C17 /* PersonDataManager.swift */,
 			);
 			name = Controller;
@@ -325,7 +322,6 @@
 				0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */,
 				0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */,
 				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,
-				0A0BA1231F1C0DE5005D4567 /* Helper.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
 				0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */,
 				0A1AB26A240220BC002EAAF3 /* Person+Extensions.swift in Sources */,

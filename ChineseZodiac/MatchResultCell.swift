@@ -52,7 +52,7 @@ final class MatchResultCell: UITableViewCell {
   }
   
   func setupUI() {
-    let IMAGE_SIZE: CGFloat = 50
+    let IMAGE_SIZE: CGFloat = 32
     let MATCH_LABEL_WIDTH: CGFloat = 200
     let PADDING_HORIZONTAL: CGFloat = 30
     let PADDING_VERTICAL: CGFloat = 10
@@ -170,19 +170,19 @@ final class MatchResultCell: UITableViewCell {
     let size: CGFloat
     switch compatibility {
     case .alone:
-      size = 11
-    case .poor:
-      size = 12
-    case .average:
       size = 13
-    case .goodMatchOrEnemy:
+    case .poor:
       size = 14
-    case .goodFriend:
+    case .average:
       size = 15
-    case .complementary:
+    case .goodMatchOrEnemy:
       size = 16
-    case .perfect:
+    case .goodFriend:
       size = 17
+    case .complementary:
+      size = 18
+    case .perfect:
+      size = 20
     }
     setFontSize(size)
   }

@@ -11,10 +11,16 @@ import UIKit
 extension UILabel {
   static var personLabel: UILabel {
     let label = UILabel()
+    if #available(iOS 13, *) {
+      label.textColor = .secondaryLabel
+    } else {
+      label.textColor = .gray
+    }
+    
     label.translatesAutoresizingMaskIntoConstraints = false
     label.lineBreakMode = .byTruncatingMiddle
     label.adjustsFontSizeToFitWidth = true
-    label.minimumScaleFactor = 0.75
+    label.minimumScaleFactor = 0.85
     return label
   }
 }
@@ -25,7 +31,7 @@ extension UIImageView {
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.contentMode = .scaleAspectFit
     if #available(iOS 13, *) {
-      imageView.tintColor = .label
+      imageView.tintColor = .secondaryLabel
     } else {
       imageView.tintColor = .black
     }
