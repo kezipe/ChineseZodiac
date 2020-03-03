@@ -53,6 +53,11 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     return true
   }
   
+  @IBAction func deselectAll(_ sender: Any) {
+    dataSource.deselectAll()
+    collectionView.reloadData()
+  }
+  
   fileprivate func updateMatchButton() {
     let personsSelected = dataSource.numberOfSelectedItems
     let hasNooneSelected = personsSelected == 0

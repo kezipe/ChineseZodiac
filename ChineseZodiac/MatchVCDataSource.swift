@@ -44,6 +44,10 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     }
   }
   
+  func deselectAll() {
+    selectedPersons.removeAll()
+  }
+  
   func isPersonSelected(at item: Int) -> Bool {
     let personToQuery = person(at: item)
     return selectedPersons.contains(personToQuery)

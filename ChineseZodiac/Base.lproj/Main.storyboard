@@ -103,7 +103,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Z7t-Yr-VwM">
-                                <rect key="frame" x="24" y="96" width="327" height="32"/>
+                                <rect key="frame" x="24" y="108" width="327" height="32"/>
                                 <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <segments>
                                     <segment title="Created"/>
@@ -122,7 +122,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GMi-xo-4pl">
-                                <rect key="frame" x="-4" y="131" width="383" height="590"/>
+                                <rect key="frame" x="-4" y="149" width="383" height="572"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -134,8 +134,8 @@
                         <constraints>
                             <constraint firstItem="Z7t-Yr-VwM" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leading" constant="24" id="8jF-ga-hjM"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="centerX" secondItem="uPe-XF-rgX" secondAttribute="centerX" id="BJL-y9-x4S"/>
-                            <constraint firstItem="Z7t-Yr-VwM" firstAttribute="top" secondItem="7p6-R2-JfQ" secondAttribute="bottom" constant="8" id="VV7-0T-jd0"/>
-                            <constraint firstItem="GMi-xo-4pl" firstAttribute="top" secondItem="Z7t-Yr-VwM" secondAttribute="bottom" constant="4" id="hk2-Yz-vlD"/>
+                            <constraint firstItem="Z7t-Yr-VwM" firstAttribute="top" secondItem="7p6-R2-JfQ" secondAttribute="bottom" constant="20" id="VV7-0T-jd0"/>
+                            <constraint firstItem="GMi-xo-4pl" firstAttribute="top" secondItem="Z7t-Yr-VwM" secondAttribute="bottom" constant="10" id="hk2-Yz-vlD"/>
                             <constraint firstItem="VdF-sy-ISc" firstAttribute="top" secondItem="GMi-xo-4pl" secondAttribute="bottom" constant="8" id="jVn-XA-MHd"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="centerX" secondItem="Z7t-Yr-VwM" secondAttribute="centerX" id="wye-ug-1p1"/>
                             <constraint firstItem="GMi-xo-4pl" firstAttribute="leading" secondItem="uPe-XF-rgX" secondAttribute="leadingMargin" constant="-20" id="zaZ-3W-m2v"/>
@@ -356,7 +356,13 @@
                             <constraint firstAttribute="trailing" secondItem="0hY-Kq-mMA" secondAttribute="trailing" constant="20" id="f7R-wd-fbq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Match" largeTitleDisplayMode="always" id="tHK-2m-w4X"/>
+                    <navigationItem key="navigationItem" title="Match" largeTitleDisplayMode="always" id="tHK-2m-w4X">
+                        <barButtonItem key="rightBarButtonItem" title="Deselect All" id="9l7-Za-MtV">
+                            <connections>
+                                <action selector="deselectAll:" destination="BAa-Rx-O3S" id="DkR-eB-Fon"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="cPx-3j-K55" id="oBW-r5-4TD"/>
                         <outlet property="matchButton" destination="F1K-zD-Kep" id="Po9-Yz-eYj"/>
