@@ -56,6 +56,7 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   @IBAction func deselectAll(_ sender: Any) {
     dataSource.deselectAll()
     collectionView.reloadData()
+    updateMatchButton()
   }
   
   fileprivate func updateMatchButton() {

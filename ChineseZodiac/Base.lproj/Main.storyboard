@@ -22,21 +22,21 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lXK-av-aMh">
                                 <rect key="frame" x="16" y="118" width="343" height="581"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Goat" translatesAutoresizingMaskIntoConstraints="NO" id="x43-k5-Glp">
-                                        <rect key="frame" x="61" y="0.0" width="221" height="221"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" image="Goat" translatesAutoresizingMaskIntoConstraints="NO" id="x43-k5-Glp">
+                                        <rect key="frame" x="85.333333333333329" y="0.0" width="172.33333333333337" height="172.66666666666666"/>
                                         <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="x43-k5-Glp" secondAttribute="height" multiplier="1:1" id="QFY-2m-zif"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a birthday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Viz-8p-cOL">
-                                        <rect key="frame" x="61" y="247.66666666666671" width="221" height="20.333333333333343"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" text="Select a birthday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Viz-8p-cOL">
+                                        <rect key="frame" x="85.333333333333329" y="215.33333333333331" width="172.33333333333337" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaD-bR-oFF">
-                                        <rect key="frame" x="11.666666666666657" y="294.33333333333331" width="320" height="216"/>
+                                        <rect key="frame" x="11.666666666666657" y="278.33333333333331" width="320" height="216"/>
                                         <date key="date" timeIntervalSinceReferenceDate="-301348799.82392883">
                                             <!--1991-06-15 04:00:00 +0000-->
                                         </date>
@@ -66,16 +66,16 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="FLw-4M-aWQ" firstAttribute="width" secondItem="aaD-bR-oFF" secondAttribute="width" id="4AU-RY-3Lh"/>
-                                    <constraint firstItem="x43-k5-Glp" firstAttribute="width" secondItem="lXK-av-aMh" secondAttribute="width" multiplier="0.618" constant="9.186666666666639" id="4We-By-HoN"/>
+                                    <constraint firstItem="x43-k5-Glp" firstAttribute="width" secondItem="lXK-av-aMh" secondAttribute="width" multiplier="0.5" constant="1" id="4We-By-HoN"/>
                                     <constraint firstItem="Viz-8p-cOL" firstAttribute="width" secondItem="x43-k5-Glp" secondAttribute="width" id="E78-0G-gxg"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Tvf-rN-CUf" firstAttribute="top" secondItem="lXK-av-aMh" secondAttribute="bottom" constant="30" id="5ry-vR-yLl"/>
+                            <constraint firstItem="Tvf-rN-CUf" firstAttribute="top" relation="lessThanOrEqual" secondItem="lXK-av-aMh" secondAttribute="bottom" constant="30" id="5ry-vR-yLl"/>
                             <constraint firstItem="lXK-av-aMh" firstAttribute="leading" secondItem="NZQ-HN-DIY" secondAttribute="leadingMargin" id="IJh-M0-htA"/>
-                            <constraint firstItem="lXK-av-aMh" firstAttribute="top" secondItem="24a-6s-p4z" secondAttribute="bottom" constant="30" id="Q63-Ab-MuW"/>
+                            <constraint firstItem="lXK-av-aMh" firstAttribute="top" relation="lessThanOrEqual" secondItem="24a-6s-p4z" secondAttribute="bottom" constant="30" id="Q63-Ab-MuW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lXK-av-aMh" secondAttribute="trailing" id="qOe-fS-xsx"/>
                         </constraints>
                     </view>
