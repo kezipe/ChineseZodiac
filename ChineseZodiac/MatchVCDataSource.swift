@@ -8,14 +8,10 @@
 
 import UIKit
 
-enum MatchError: Error {
-  case tooManySelected(max: Int)
-}
-
 class MatchVCDataSource: NSObject, UICollectionViewDataSource {
 
+  let MAX_MATCHING_PEOPLE = 10
   private let CELL_IDENTIFIER = "PersonColCell"
-  private let MAX_MATCHABLE_PERSON_LIMIT = 10
   private var persons = [Person]()
   private var selectedPersons: Set<Person> = []
   
@@ -23,18 +19,28 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     return persons.count
   }
   
+  var numberOfSelectedItems: Int {
+    return selectedPersons.count
+  }
+  
   func person(at item: Int) -> Person {
     return persons[item]
   }
   
-  func tapPerson(at item: Int) throws {
+  func isLimitReached() -> Bool {
+    return numberOfSelectedItems > MAX_MATCHING_PEOPLE
+  }
+  
+  func canMatchAll() -> Bool {
+    return numberOfSelectedItems == 0 && numberOfItems <= MAX_MATCHING_PEOPLE
+  }
+  
+  func tapPerson(at item: Int) {
     let tappedPerson = person(at: item)
     if selectedPersons.contains(tappedPerson) {
       selectedPersons.remove(tappedPerson)
-    } else if canSelectMorePersons() {
-      selectedPersons.insert(tappedPerson)      
     } else {
-      throw MatchError.tooManySelected(max: MAX_MATCHABLE_PERSON_LIMIT)
+      selectedPersons.insert(tappedPerson)      
     }
   }
   
@@ -43,18 +49,8 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     return selectedPersons.contains(personToQuery)
   }
   
-  func canSelectMorePersons() -> Bool {
-    return selectedPersons.count < MAX_MATCHABLE_PERSON_LIMIT
-  }
-  
-  func hasValidSelection() -> Bool {
-    let allowAllPersons = selectedPersons.isEmpty && numberOfItems <= MAX_MATCHABLE_PERSON_LIMIT
-    let allowSelectedPersons = !selectedPersons.isEmpty
-    return allowAllPersons || allowSelectedPersons
-  }
-  
   func fetchData() {
-    if let persons = PersonDataRetriever.shared.retrieveData(sortBy: .name) {
+    if let persons = PersonDataManager.shared.retrieveData(sortBy: .name) {
       self.persons = persons
     }
   }

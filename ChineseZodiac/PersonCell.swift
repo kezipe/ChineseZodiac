@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonCell: UITableViewCell {
+final class PersonCell: UITableViewCell {
   
   @IBOutlet weak var personLbl: UILabel!
   
@@ -20,6 +20,7 @@ class PersonCell: UITableViewCell {
     updatePersonLabel(person)
     updateZodiacLabel(person)
     updateZodiacImage(person)
+    accessoryType = .disclosureIndicator
   }
   
   fileprivate func updatePersonLabel(_ person: Person) {
@@ -31,7 +32,15 @@ class PersonCell: UITableViewCell {
   }
   
   fileprivate func updateZodiacImage(_ person: Person) {
-    zodiacImg.image = UIImage(named: "\(person.zodiacName)_thumb")
+    if let image = UIImage(named: "\(person.zodiacName)_thumb") {
+      let tintableImage = image.withRenderingMode(.alwaysTemplate)
+      if #available(iOS 13, *) {
+        zodiacImg.tintColor = .label
+      } else {
+        zodiacImg.tintColor = .black
+      }
+      zodiacImg.image = tintableImage
+    }
   }
   
 

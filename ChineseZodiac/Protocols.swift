@@ -16,14 +16,6 @@ protocol PersonDeleting: class {
   func deletePerson(at row: Int)
 }
 
-protocol PersonSaving: class {
-  func savePerson()
-}
-
-protocol DatePickable: class {
-  func selectRow(at row: Int, mode: DateComponentSelectionMode)
-}
-
 protocol PersonColCellDelegate: class {
   func toggleSelectionOfButton(forCell: PersonCollectionCell)
 }

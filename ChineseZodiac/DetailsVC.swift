@@ -9,11 +9,13 @@
 import UIKit
 
 final class DetailsVC: UIViewController {
-
+  
+  
   var person: Person?
   
   @IBOutlet weak var deleteButton: UIButton!
   @IBOutlet weak var cancelButton: UIBarButtonItem!
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -42,7 +44,7 @@ final class DetailsVC: UIViewController {
     guard segue.identifier == "EditPerson" else {
       return
     }
-    guard let destination = segue.destination as? BirthdaySelectionView else {
+    guard let destination = segue.destination as? BirthdaySelectionViewController else {
       return
     }
     

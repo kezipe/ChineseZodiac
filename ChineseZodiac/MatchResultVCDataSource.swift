@@ -11,14 +11,21 @@ import UIKit
 class MatchResultVCDataSource: NSObject, UITableViewDataSource {
   fileprivate var matchResults = [Match]()
   fileprivate var persons = [Person]()
+  fileprivate var matcher: Matcher?
   weak var parentController: DataRefreshing?
   
   func matchUp() {
     DispatchQueue.global(qos: .background).async {
-      let match = Matcher(personsArray: self.persons)
-      self.matchResults = match.matchUp().sorted()
+      self.matcher = Matcher(personsArray: self.persons)
+      if let matches = self.matcher?.findBestMatches() {
+        self.matchResults = matches.sorted()
+      }
       self.parentController?.refresh()
     }
+  }
+  
+  func stopMatchUp() {
+    matcher?.stopMatchUp()
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,6 +39,7 @@ class MatchResultVCDataSource: NSObject, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return matchResults.count
   }
+
 }
 
 extension MatchResultVCDataSource: PersonsReceivable {

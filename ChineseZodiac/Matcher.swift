@@ -9,11 +9,13 @@
 import Foundation
 import CoreData
 
-
+enum MatchError: Error {
+  case matchDiscountinued
+}
 
 class Matcher {
   var personsArray: [Person]
-
+  var shouldMatchContinue = false
   
   fileprivate func insertDummyPerson() {
     let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context)
@@ -31,12 +33,28 @@ class Matcher {
     }
   }
   
-  func matchUp() -> [Match] {
-    let pairedPersons = pair(personsArray)
-    return findBestScenario(pairedPersons)
+  func stopMatchUp() {
+    shouldMatchContinue = false
   }
   
-  fileprivate func pair(_ arr: [Person]) -> [[Person]] {
+  func findBestMatches() -> [Match] {
+    shouldMatchContinue = true
+    do {
+      let pairedPersons = try pair(personsArray)
+      let bestScenario = try findBestScenario(pairedPersons)
+      return bestScenario
+    } catch MatchError.matchDiscountinued {
+      print("Match cancelled")
+      return []
+    } catch {
+      fatalError("Unknown error: \(error.localizedDescription)")
+    }
+  }
+  
+  fileprivate func pair(_ arr: [Person]) throws -> [[Person]] {
+    guard shouldMatchContinue else {
+      throw MatchError.matchDiscountinued
+    }
     var bigA = [[Person]]()
     if arr.count == 2 {
       return [arr]
@@ -46,7 +64,15 @@ class Matcher {
     var rest = Array(arr[(arr.startIndex + 2)...])
     var list: [[Person]]
     for i in 0...rest.count {
-      list = pair(rest)
+      
+      do {
+        list = try pair(rest)
+      } catch MatchError.matchDiscountinued {
+        throw MatchError.matchDiscountinued
+      } catch {
+        fatalError("Unknown error: \(error.localizedDescription)")
+      }
+      
       for j in list {
         bigA.append(firstTwo + j)
       }
@@ -59,7 +85,7 @@ class Matcher {
     return bigA
   }
   
-  fileprivate func findBestScenario(_ pairedPersons: [[Person]]) -> [Match] {
+  fileprivate func findBestScenario(_ pairedPersons: [[Person]]) throws -> [Match] {
     var bestMatchScore = 0
     var bestMatch = [Match]()
     
@@ -68,14 +94,17 @@ class Matcher {
       var tempMatch = [Match]()
       
       for j in stride(from: 0, to: pairedPersons[0].count - 1, by: 2) {
+        guard shouldMatchContinue else {
+          throw MatchError.matchDiscountinued
+        }
         let person1 = pairedPersons[i][j]
         let person2 = pairedPersons[i][j + 1]
         
         let person1Zodiac = person1.zodiacSign
         let person2Zodiac = person2.zodiacSign
-        
         let matchScore = Zodiac.match(person1Zodiac, with: person2Zodiac)
-        let match = Match(firstPerson: person1, secondPerson: person2, compatibility: matchScore)
+        let compatibility = Compatibility(rawValue: matchScore)!
+        let match = Match(firstPerson: person1, secondPerson: person2, compatibility: compatibility)
         
         tempScore += matchScore
         tempMatch.append(match)

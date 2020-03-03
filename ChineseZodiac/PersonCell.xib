@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="PersonCell" customModule="ChineseZodiac" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kevin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="etO-Tk-92g">
+                    <rect key="frame" x="68" y="11.999999999999998" width="246" height="20.333333333333329"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kEc-LY-Zqt">
+                    <rect key="frame" x="28" y="6" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="Kci-nP-LVy"/>
+                        <constraint firstAttribute="height" constant="32" id="wry-GP-n09"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rooster" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxG-lW-PTL">
+                    <rect key="frame" x="324" y="14" width="47" height="16"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="kEc-LY-Zqt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="8" id="8NQ-Fl-cTb"/>
+                <constraint firstItem="kEc-LY-Zqt" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9D5-PJ-mSX"/>
+                <constraint firstItem="etO-Tk-92g" firstAttribute="trailing" secondItem="ZxG-lW-PTL" secondAttribute="leading" constant="-10" id="AyC-uf-gci"/>
+                <constraint firstItem="etO-Tk-92g" firstAttribute="leading" secondItem="kEc-LY-Zqt" secondAttribute="trailing" constant="8" id="fja-Ze-KUr"/>
+                <constraint firstItem="kEc-LY-Zqt" firstAttribute="centerY" secondItem="etO-Tk-92g" secondAttribute="centerY" id="gUo-4r-tod"/>
+                <constraint firstItem="etO-Tk-92g" firstAttribute="centerY" secondItem="ZxG-lW-PTL" secondAttribute="centerY" id="qAs-Yd-Egz"/>
+                <constraint firstAttribute="trailing" secondItem="ZxG-lW-PTL" secondAttribute="leading" constant="90" id="vxV-Ju-UX0"/>
+            </constraints>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="personLbl" destination="etO-Tk-92g" id="tsI-oi-Der"/>
+                <outlet property="zodiacImg" destination="kEc-LY-Zqt" id="3a1-d2-UtZ"/>
+                <outlet property="zodiacLbl" destination="ZxG-lW-PTL" id="rgh-d6-f9b"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="425.54347826086962"/>
+        </view>
+    </objects>
+</document>

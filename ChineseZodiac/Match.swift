@@ -8,10 +8,43 @@
 
 import Foundation
 
+enum Compatibility: Int, Comparable, CustomStringConvertible {
+  case alone
+  case poor
+  case average
+  case goodMatchOrEnemy
+  case goodFriend
+  case complementary
+  case perfect
+  
+  var description: String {
+    switch self {
+    case .alone:
+      return "Alone"
+    case .poor:
+      return "Poor"
+    case .average:
+      return "Average"
+    case .goodMatchOrEnemy:
+      return "Good Match or Enemy"
+    case .goodFriend:
+      return "Good Friend"
+    case .complementary:
+      return "Complementary"
+    case .perfect:
+      return "Perfect Match"
+    }
+  }
+  
+  static func < (lhs: Compatibility, rhs: Compatibility) -> Bool {
+    return lhs.rawValue < rhs.rawValue
+  }
+}
+
 struct Match: Comparable {
   var firstPerson: Person
   var secondPerson: Person
-  var compatibility: Int
+  var compatibility: Compatibility
   
   var isAlone: Bool {
     firstPerson.isPlaceholder || secondPerson.isPlaceholder
@@ -27,18 +60,6 @@ struct Match: Comparable {
     } else {
       return firstPerson
     }
-  }
-  
-  var compatibilityName: String {
-    let compatibilityName = [
-      1:"Poor",
-      2:"Average",
-      3:"Good match or Enemy",
-      4:"Good friend",
-      5:"Complementary",
-      6: "Perfect Match"
-    ]
-    return compatibilityName[compatibility, default: ""]
   }
   
   static func <(lhs: Match, rhs: Match) -> Bool {

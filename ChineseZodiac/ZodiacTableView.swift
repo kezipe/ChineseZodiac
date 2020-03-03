@@ -23,7 +23,11 @@ final class ZodiacTableView: UIViewController {
     super.viewDidLoad()
     tableView.delegate = delegate
     delegate.parentController = self
+    
+    let nib = UINib.init(nibName: "PersonCell", bundle: nil)
+    tableView.register(nib, forCellReuseIdentifier: "PersonCell")
     tableView.dataSource = dataSource
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -35,8 +39,8 @@ final class ZodiacTableView: UIViewController {
     dataSource.retrieveData(sortBy: sortBy)
     tableView.reloadData()
     #if DEBUG
-    if dataSource.numberOfRows < 11 {
-      dataSource.insertTestPerson(count: 11 - dataSource.numberOfRows)
+    if dataSource.numberOfRows < 12 {
+      dataSource.reInsertTestPerson()
     }
     #endif
   }
@@ -80,7 +84,6 @@ extension ZodiacTableView: PersonPresenting {
 extension ZodiacTableView: PersonDeleting {
   func deletePerson(at row: Int) {
     dataSource.deletePerson(at: row)
-    tableView.reloadData()
   }
 }
 
