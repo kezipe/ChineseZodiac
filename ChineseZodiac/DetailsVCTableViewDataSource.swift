@@ -35,13 +35,13 @@ class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
   }
   
   fileprivate func configureText(for cell: UITableViewCell, at row: Int) {
-    let section = getSection(at: row)
+    let section = getRow(at: row)
     let cellTextLabelText = section.rawValue
     cell.textLabel?.text = cellTextLabelText
   }
   
   fileprivate func configureDetailText(for cell: UITableViewCell, at row: Int) {
-    let section = getSection(at: row)
+    let section = getRow(at: row)
     guard let birthday = person?.birthdate else {
       return
     }
@@ -72,7 +72,7 @@ class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
     }
   }
   
-  fileprivate func getSection(at row: Int) -> DetailsVCTableViewRows {
+  fileprivate func getRow(at row: Int) -> DetailsVCTableViewRows {
     let allCases = DetailsVCTableViewRows.allCases
     let section = allCases[row]
     return section

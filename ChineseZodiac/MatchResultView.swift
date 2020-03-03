@@ -12,7 +12,7 @@ final class MatchResultView: UIView {
   fileprivate let TABLEVIEW_HEIGHT: CGFloat = 500
   fileprivate let TABLEVIEW_ROW_HEIGHT: CGFloat = 100
   fileprivate let CELL_IDENTIFIER = "MatchResultCell"
-  
+
   fileprivate var tableView: UITableView = {
     let tableView = UITableView()
     tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ final class MatchResultView: UIView {
   fileprivate func setupBackground() {
     let background = UIView()
     if #available(iOS 13, *) {
-      background.backgroundColor = .secondarySystemBackground
+      background.backgroundColor = .systemBackground
     } else {
       background.backgroundColor = .systemGray
     }

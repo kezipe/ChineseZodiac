@@ -19,6 +19,7 @@ final class BirthdaySelectionViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    updateImage()
   }
   
   @IBAction func dateChanged(_ sender: Any) {
@@ -29,7 +30,7 @@ final class BirthdaySelectionViewController: UIViewController {
   
   fileprivate func updateImage() {
     let zodiacName = getZodiacName()
-    if let image = UIImage(named: zodiacName) {
+    if let image = UIImage(named: zodiacName)?.withRenderingMode(.alwaysTemplate) {
       zodiacImage.image = image
     }
   }
@@ -70,7 +71,7 @@ final class BirthdaySelectionViewController: UIViewController {
   }
   
   fileprivate func getMessageUI() -> UIAlertController {
-    let title = "Save"
+    let title = "Save to List"
     let dateSelected = datePicker.date
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MMMM d, yyyy"
