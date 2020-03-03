@@ -37,11 +37,11 @@ final class ZodiacTableView: UIViewController {
   func refreshData() {
     let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)!
     dataSource.retrieveData(sortBy: sortBy)
-    tableView.reloadData()
     #if DEBUG
     if dataSource.numberOfRows < 12 {
       dataSource.reInsertTestPerson()
     }
+    tableView.reloadData()
     #endif
   }
   
