@@ -21,8 +21,8 @@ enum PersonSort: Int {
 final class PersonDataManager: NSObject {
   
   static let shared = PersonDataManager()
-  let fetchRequest: NSFetchRequest<Person> = Person.createFetchRequest()
-  var controller: NSFetchedResultsController<Person>!
+  fileprivate let fetchRequest: NSFetchRequest<Person> = Person.createFetchRequest()
+  fileprivate var controller: NSFetchedResultsController<Person>!
   
   var sort: PersonSort = .createdOn {
     didSet {
@@ -39,7 +39,7 @@ final class PersonDataManager: NSObject {
     controller.sections![0].objects! as! [Person]
   }
   
-  private override init() {
+  fileprivate override init() {
     super.init()
     fetchRequest.sortDescriptors = getSortDescriptors(for: sort)
     controller = NSFetchedResultsController(fetchRequest: fetchRequest,
@@ -49,7 +49,7 @@ final class PersonDataManager: NSObject {
     attempFetch()
   }
   
-  func getSortDescriptors(for sortType: PersonSort) -> [NSSortDescriptor] {
+  fileprivate func getSortDescriptors(for sortType: PersonSort) -> [NSSortDescriptor] {
     switch sortType {
     case .createdOn:
       return [NSSortDescriptor(key: "created", ascending: false)]
