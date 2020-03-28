@@ -17,6 +17,9 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    let dataManager = PersonDataManager.shared
+    dataManager.sort = .name
+    dataSource.dataManager = dataManager
     collectionView.dataSource = dataSource
     delegate.parentController = self
     collectionView.delegate = delegate
@@ -29,7 +32,6 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   }
   
   fileprivate func fetchNewData() {
-    dataSource.fetchData()
     DispatchQueue.main.async {
       self.collectionView.reloadData()
       self.updateMatchButton()

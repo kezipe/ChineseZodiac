@@ -26,27 +26,15 @@ final class ZodiacTableView: UIViewController {
     
     let nib = UINib.init(nibName: "PersonCell", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: "PersonCell")
+    let dataManager = PersonDataManager.shared
+    dataSource.dataManager = dataManager
     tableView.dataSource = dataSource
-    
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    refreshData()
-  }
-  
-  func refreshData() {
-    let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)!
-    dataSource.retrieveData(sortBy: sortBy)
-    #if DEBUG
-    if dataSource.numberOfRows < 12 {
-      dataSource.reInsertTestPerson()
-    }
-    tableView.reloadData()
-    #endif
   }
   
   @IBAction func segmentChange(_ sender: Any) {
-    refreshData()
+    let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)!
+    dataSource.sort = sortBy
+    tableView.reloadData()
   }
   
   // MARK: Prepare for segue and Popover

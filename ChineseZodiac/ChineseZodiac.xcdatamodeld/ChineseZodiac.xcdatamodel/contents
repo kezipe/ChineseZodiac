@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Person" representedClassName="Person" syncable="YES" codeGenerationType="class">
+    <entity name="Person" representedClassName="Person" syncable="YES">
         <attribute name="birthdate" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="zodiac" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="zodiac" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
         <element name="Person" positionX="-54" positionY="-9" width="128" height="103"/>

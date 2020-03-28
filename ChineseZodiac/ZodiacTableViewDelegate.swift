@@ -46,7 +46,6 @@ final class ZodiacTableViewDelegate: NSObject, UITableViewDelegate {
 
     let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] (action, indexPath) in
       self?.parentController?.deletePerson(at: indexPath.row)
-      tableView.deleteRows(at: [indexPath], with: .left)
     }
     return [deleteAction]
   }

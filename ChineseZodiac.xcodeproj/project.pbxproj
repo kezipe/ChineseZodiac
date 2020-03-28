@@ -25,6 +25,8 @@
 		0A455BB924006A44008D13AD /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A455BB824006A44008D13AD /* DetailsView.swift */; };
 		0A5588072405E75400FD0885 /* MatchResultVCDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5588062405E75400FD0885 /* MatchResultVCDataSource.swift */; };
 		0A55880F2405F41900FD0885 /* ChineseZodiacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55880E2405F41900FD0885 /* ChineseZodiacTests.swift */; };
+		0A60D841242EE8E500F34F05 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D83F242EE8E500F34F05 /* Person+CoreDataClass.swift */; };
+		0A60D842242EE8E500F34F05 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D840242EE8E500F34F05 /* Person+CoreDataProperties.swift */; };
 		0A69F46D1EE3426C00A0176D /* BirthdaySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46B1EE3426C00A0176D /* BirthdaySelectionViewController.swift */; };
 		0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46F1EE3428F00A0176D /* ZodiacTableView.swift */; };
 		0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A55C71EE3628B00BAA05B /* PersonCell.swift */; };
@@ -73,6 +75,8 @@
 		0A55880C2405F41900FD0885 /* ChineseZodiacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChineseZodiacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A55880E2405F41900FD0885 /* ChineseZodiacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseZodiacTests.swift; sourceTree = "<group>"; };
 		0A5588102405F41900FD0885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A60D83F242EE8E500F34F05 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		0A60D840242EE8E500F34F05 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		0A69F46B1EE3426C00A0176D /* BirthdaySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdaySelectionViewController.swift; sourceTree = "<group>"; };
 		0A69F46F1EE3428F00A0176D /* ZodiacTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZodiacTableView.swift; sourceTree = "<group>"; };
 		0A7A55C71EE3628B00BAA05B /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
@@ -113,11 +117,13 @@
 		0A0BA1271F1C1193005D4567 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0A60D83F242EE8E500F34F05 /* Person+CoreDataClass.swift */,
+				0A60D840242EE8E500F34F05 /* Person+CoreDataProperties.swift */,
+				0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */,
 				0A3B09F72406D31B00B53C0C /* Match.swift */,
 				0A0BA1251F1C118F005D4567 /* Matcher.swift */,
 				0A1AB26724022085002EAAF3 /* Zodiac.swift */,
 				0AD4E2931EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld */,
-				0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */,
 				0ACBF6FA1EE357B00075A523 /* Extensions.swift */,
 			);
 			name = Model;
@@ -340,7 +346,9 @@
 				0A1463221F0C4B770043AA46 /* UIViewControllerExtension.swift in Sources */,
 				0A1AB26824022085002EAAF3 /* Zodiac.swift in Sources */,
 				0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */,
+				0A60D841242EE8E500F34F05 /* Person+CoreDataClass.swift in Sources */,
 				0A1AB27024022CA3002EAAF3 /* MatchVCDelegate.swift in Sources */,
+				0A60D842242EE8E500F34F05 /* Person+CoreDataProperties.swift in Sources */,
 				0A0BA1261F1C118F005D4567 /* Matcher.swift in Sources */,
 				0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */,
 				0A1AB26C2402269F002EAAF3 /* MatchVCDataSource.swift in Sources */,

@@ -113,7 +113,7 @@ final class BirthdaySelectionViewController: UIViewController {
   
   fileprivate func save(name: String) {
     let birthday = datePicker.date
-    PersonDataManager.shared.save(birthday: birthday, name: name)
+    PersonDataManager.shared.create(name: name, birthday: birthday)
   }
 }
 

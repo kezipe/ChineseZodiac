@@ -23,15 +23,12 @@ class DetailsView: UIView {
   }
   
   func updateInformation(forPerson person: Person) {
+    let zodiacSign = person.birthdate.getZodiac()
     
-    if let name = person.name, let birthday = person.birthdate {
-      let zodiacSign = birthday.getZodiac()
-      
-      updateNameLabel(name)
-      updateZodiacImage(zodiacSign.name)
-      dataSource.person = person
-      tableView.dataSource = dataSource
-    }
+    updateNameLabel(person.name)
+    updateZodiacImage(zodiacSign.name)
+    dataSource.person = person
+    tableView.dataSource = dataSource
   }
   
   fileprivate func updateZodiacImage(_ zodiacSign: String) {

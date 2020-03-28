@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol PersonPresenting: class {
   func didSelectPerson(at row: Int)
@@ -15,6 +16,17 @@ protocol PersonPresenting: class {
 protocol PersonDeleting: class {
   func deletePerson(at row: Int)
 }
+
+
+protocol PersonDataManaging {
+  var sort: PersonSort { get set }
+  var numberOfObjects: Int { get }
+  var allPeople: [Person] { get }
+  func delete(_ person: Person)
+  func create(name: String, birthday: Date)
+  func fetch(at indexPath: IndexPath) -> Person
+}
+
 
 protocol PersonColCellDelegate: class {
   func toggleSelectionOfButton(forCell: PersonCollectionCell)
