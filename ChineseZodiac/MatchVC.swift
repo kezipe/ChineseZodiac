@@ -17,8 +17,8 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     let dataManager = PersonDataManager.shared
-    dataManager.sort = .name
     dataSource.dataManager = dataManager
     collectionView.dataSource = dataSource
     delegate.parentController = self
@@ -26,16 +26,9 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   }
   
   override func viewDidAppear(_ animated: Bool) {
-    DispatchQueue.global(qos: .background).async {
-      self.fetchNewData()
-    }
-  }
-  
-  fileprivate func fetchNewData() {
-    DispatchQueue.main.async {
-      self.collectionView.reloadData()
-      self.updateMatchButton()
-    }
+    self.collectionView.reloadData()
+    self.updateMatchButton()
+    self.updateDeselectAllButton()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,6 +52,7 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     dataSource.deselectAll()
     collectionView.reloadData()
     updateMatchButton()
+    updateDeselectAllButton()
   }
   
   fileprivate func updateMatchButton() {
@@ -79,6 +73,26 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
       disableMatchButton()
     }
   }
+  
+  fileprivate func updateDeselectAllButton() {
+    let personsSelected = dataSource.numberOfSelectedItems
+    let hasNooneSelected = personsSelected == 0
+    
+    if hasNooneSelected {
+      disableDeselectButton()
+    } else {
+      enableDeselectButton()
+    }
+  }
+  
+  fileprivate func disableDeselectButton() {
+    navigationItem.rightBarButtonItem?.isEnabled = false
+  }
+  
+  fileprivate func enableDeselectButton() {
+    navigationItem.rightBarButtonItem?.isEnabled = true
+  }
+  
   
   fileprivate func enableMatchButton() {
     matchButton.isEnabled = true
@@ -120,6 +134,7 @@ extension MatchVC: PersonSelecting {
   fileprivate func selectPerson(_ item: Int) {
     dataSource.tapPerson(at: item)
     updateMatchButton()
+    updateDeselectAllButton()
   }
   
   fileprivate func reloadPerson(at item: Int) {

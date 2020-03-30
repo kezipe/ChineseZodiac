@@ -13,8 +13,9 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   let MAX_MATCHING_PEOPLE = 10
   private let CELL_IDENTIFIER = "PersonColCell"
   private var selectedPersons: Set<Person> = []
+  
   var dataManager: PersonDataManaging!
-  var sort: PersonSort = .createdOn {
+  var sort: PersonSort = .name {
     didSet {
       dataManager.sort = sort
     }

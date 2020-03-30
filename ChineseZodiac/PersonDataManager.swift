@@ -23,6 +23,11 @@ final class PersonDataManager: NSObject {
   static let shared = PersonDataManager()
   fileprivate let fetchRequest: NSFetchRequest<Person> = Person.createFetchRequest()
   fileprivate var controller: NSFetchedResultsController<Person>!
+  weak var delegate: NSFetchedResultsControllerDelegate! {
+    didSet {
+      controller.delegate = delegate
+    }
+  }
   
   var sort: PersonSort = .createdOn {
     didSet {

@@ -27,7 +27,9 @@ final class ZodiacTableView: UIViewController {
     let nib = UINib.init(nibName: "PersonCell", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: "PersonCell")
     let dataManager = PersonDataManager.shared
+    dataManager.delegate = dataSource
     dataSource.dataManager = dataManager
+    dataSource.parentController = self
     tableView.dataSource = dataSource
   }
   
@@ -76,3 +78,18 @@ extension ZodiacTableView: PersonDeleting {
 }
 
 
+extension ZodiacTableView: PersonDataUpdating {
+  func delete(at indexPath: IndexPath) {
+    tableView.beginUpdates()
+    tableView.deleteRows(at: [indexPath], with: .automatic)
+    tableView.endUpdates()
+  }
+  
+  func insert(at indexPath: IndexPath) {
+    tableView.beginUpdates()
+    tableView.insertRows(at: [indexPath], with: .automatic)
+    tableView.endUpdates()
+  }
+  
+  
+}

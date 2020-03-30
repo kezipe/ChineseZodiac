@@ -27,6 +27,11 @@ protocol PersonDataManaging {
   func fetch(at indexPath: IndexPath) -> Person
 }
 
+protocol PersonDataUpdating: class {
+  func delete(at indexPath: IndexPath)
+  func insert(at indexPath: IndexPath)
+}
+
 
 protocol PersonColCellDelegate: class {
   func toggleSelectionOfButton(forCell: PersonCollectionCell)
