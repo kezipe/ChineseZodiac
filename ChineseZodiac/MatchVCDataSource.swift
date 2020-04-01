@@ -12,19 +12,25 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
 
   let MAX_MATCHING_PEOPLE = 10
   private let CELL_IDENTIFIER = "PersonColCell"
-  private var persons = [Person]()
   private var selectedPersons: Set<Person> = []
   
-  var numberOfItems: Int {
-    return persons.count
+  var dataManager: PersonDataManaging!
+  var sort: PersonSort = .name {
+    didSet {
+      dataManager.sort = sort
+    }
   }
   
   var numberOfSelectedItems: Int {
     return selectedPersons.count
   }
   
+  var numberOfItems: Int {
+    dataManager.numberOfObjects
+  }
+  
   func person(at item: Int) -> Person {
-    return persons[item]
+    dataManager.fetch(at: IndexPath(item: item, section: 0))
   }
   
   func isSelectionLegal() -> Bool {
@@ -53,14 +59,8 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     return selectedPersons.contains(personToQuery)
   }
   
-  func fetchData() {
-    if let persons = PersonDataManager.shared.retrieveData(sortBy: .name) {
-      self.persons = persons
-    }
-  }
-  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return persons.count
+    return numberOfItems
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {    
@@ -78,7 +78,7 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
 extension MatchVCDataSource: PersonsSendable {
   func send(to receiver: PersonsReceivable) {
     if selectedPersons.isEmpty {
-      receiver.receive(persons: self.persons)
+      receiver.receive(persons: dataManager.allPeople)
     } else {
       let personArray = Array(selectedPersons)
       receiver.receive(persons: personArray)

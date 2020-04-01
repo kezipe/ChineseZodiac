@@ -26,27 +26,17 @@ final class ZodiacTableView: UIViewController {
     
     let nib = UINib.init(nibName: "PersonCell", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: "PersonCell")
+    let dataManager = PersonDataManager.shared
+    dataManager.delegate = dataSource
+    dataSource.dataManager = dataManager
+    dataSource.parentController = self
     tableView.dataSource = dataSource
-    
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    refreshData()
-  }
-  
-  func refreshData() {
-    let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)!
-    dataSource.retrieveData(sortBy: sortBy)
-    #if DEBUG
-    if dataSource.numberOfRows < 12 {
-      dataSource.reInsertTestPerson()
-    }
-    tableView.reloadData()
-    #endif
   }
   
   @IBAction func segmentChange(_ sender: Any) {
-    refreshData()
+    let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)!
+    dataSource.sort = sortBy
+    tableView.reloadData()
   }
   
   // MARK: Prepare for segue and Popover
@@ -88,3 +78,18 @@ extension ZodiacTableView: PersonDeleting {
 }
 
 
+extension ZodiacTableView: PersonDataUpdating {
+  func delete(at indexPath: IndexPath) {
+    tableView.beginUpdates()
+    tableView.deleteRows(at: [indexPath], with: .automatic)
+    tableView.endUpdates()
+  }
+  
+  func insert(at indexPath: IndexPath) {
+    tableView.beginUpdates()
+    tableView.insertRows(at: [indexPath], with: .automatic)
+    tableView.endUpdates()
+  }
+  
+  
+}

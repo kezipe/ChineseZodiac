@@ -21,22 +21,39 @@ enum PersonSort: Int {
 final class PersonDataManager {
   
   static let shared = PersonDataManager()
-  let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
-  var controller: NSFetchedResultsController<Person>!
+  fileprivate let fetchRequest: NSFetchRequest<Person> = Person.createFetchRequest()
+  fileprivate var controller: NSFetchedResultsController<Person>!
+  weak var delegate: NSFetchedResultsControllerDelegate! {
+    didSet {
+      controller.delegate = delegate
+    }
+  }
   
-  private init() {
-    setSortingMethod()
+  var sort: PersonSort = .createdOn {
+    didSet {
+      fetchRequest.sortDescriptors = getSortDescriptors(for: sort)
+      attempFetch()
+    }
+  }
+  
+  var numberOfObjects: Int {
+    controller.sections![0].numberOfObjects
+  }
+  
+  var allPeople: [Person] {
+    controller.sections![0].objects! as! [Person]
+  }
+  
+  init() {
+    fetchRequest.sortDescriptors = getSortDescriptors(for: sort)
     controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                managedObjectContext: context,
                                sectionNameKeyPath: nil,
                                cacheName: nil)
+    attempFetch()
   }
   
-  func setSortingMethod(sortBy sortMethod: PersonSort = .createdOn) {
-    fetchRequest.sortDescriptors = getSortDescriptors(for: sortMethod)
-  }
-  
-  func getSortDescriptors(for sortType: PersonSort) -> [NSSortDescriptor] {
+  fileprivate func getSortDescriptors(for sortType: PersonSort) -> [NSSortDescriptor] {
     switch sortType {
     case .createdOn:
       return [NSSortDescriptor(key: "created", ascending: false)]
@@ -49,36 +66,34 @@ final class PersonDataManager {
     }
   }
   
-  func retrieveData(sortBy sortMethod: PersonSort) -> [Person]? {
-    setSortingMethod(sortBy: sortMethod)
-    attempFetch(controller)
-    
-    return controller.fetchedObjects
-  }
-  
-  fileprivate func attempFetch(_ controller: NSFetchedResultsController<Person>) {
+  fileprivate func attempFetch() {
     do {
       try controller.performFetch()
     } catch {
       fatalError(error.localizedDescription)
     }
-  }
-  
-  func save(birthday: Date, name: String) {
+  }  
+
+}
+
+extension PersonDataManager: PersonDataManaging {
+  func create(name: String, birthday: Date) {
     let person = Person(context: context)
     person.created = Date()
-    save(person: person, birthday: birthday, name: name)
-  }
-  
-  func save(person: Person, birthday: Date, name: String) {
     person.birthdate = birthday
     person.name = name
     person.zodiac = Int16(birthday.getZodiacRank())
     ad.saveContext()
+    attempFetch()
   }
   
-  func delete(person: Person) {
+  func delete(_ person: Person) {
     context.delete(person)
     ad.saveContext()
+    attempFetch()
+  }
+  
+  func fetch(at indexPath: IndexPath) -> Person {
+    controller.object(at: indexPath)
   }
 }

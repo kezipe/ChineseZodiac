@@ -121,7 +121,7 @@ final class MatchResultCell: UITableViewCell {
   }
   
   fileprivate func configureLeftCell(person: Person) {
-    person1Name.text = person.name ?? ""
+    person1Name.text = person.name
     let imageName = getImageName(person: person)
     if let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate) {
       person1Zodiac.image = image
@@ -129,7 +129,7 @@ final class MatchResultCell: UITableViewCell {
   }
   
   fileprivate func configureRightCell(person: Person) {
-    person2Name.text = person.name ?? ""
+    person2Name.text = person.name
     let imageName = getImageName(person: person)
     if let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate) {
       person2Zodiac.image = image

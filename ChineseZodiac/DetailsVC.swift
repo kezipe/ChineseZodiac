@@ -29,7 +29,7 @@ final class DetailsVC: UIViewController {
   
   @IBAction func deleteButtonPressed(_ sender: Any) {
     if let person = person {
-      PersonDataManager.shared.delete(person: person)
+      PersonDataManager.shared.delete(person)
       navigateToParentController()
     }
   }

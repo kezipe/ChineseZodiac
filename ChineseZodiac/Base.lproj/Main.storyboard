@@ -170,7 +170,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Christopher Colombus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="3" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dIg-jX-HgI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Christopher Colombus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIg-jX-HgI">
                                 <rect key="frame" x="20" y="96" width="335" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="nXD-sj-Qnr"/>
@@ -237,7 +237,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="1Sa-3U-BbB">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="trash" id="XOY-hr-1VP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="XOY-hr-1VP">
                             <connections>
                                 <action selector="deleteButtonPressed:" destination="uPM-9U-Kbk" id="P3T-jl-KHz"/>
                             </connections>
@@ -292,7 +292,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.84999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="4Tj-Aw-wxp">
-                                                            <rect key="frame" x="5" y="42" width="80" height="46"/>
+                                                            <rect key="frame" x="0.0" y="42" width="90" height="46"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -309,13 +309,12 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstItem="4Tj-Aw-wxp" firstAttribute="centerX" secondItem="HBb-Av-fLh" secondAttribute="centerX" id="0sF-J3-iiA"/>
-                                                    <constraint firstAttribute="trailing" secondItem="4Tj-Aw-wxp" secondAttribute="trailing" constant="5" id="6iu-id-8i2"/>
                                                     <constraint firstItem="BHZ-JP-YAF" firstAttribute="top" secondItem="HBb-Av-fLh" secondAttribute="top" constant="8" id="7HY-Dp-jEp"/>
                                                     <constraint firstAttribute="bottom" secondItem="4Tj-Aw-wxp" secondAttribute="bottom" constant="2" id="Crf-ji-D6k"/>
                                                     <constraint firstAttribute="trailing" secondItem="Huv-uG-LPX" secondAttribute="trailing" id="IZu-X1-f3M"/>
                                                     <constraint firstItem="BHZ-JP-YAF" firstAttribute="centerX" secondItem="HBb-Av-fLh" secondAttribute="centerX" id="NTT-ES-DYE"/>
                                                     <constraint firstItem="4Tj-Aw-wxp" firstAttribute="top" secondItem="BHZ-JP-YAF" secondAttribute="bottom" constant="2" id="c6V-Wd-pSy"/>
-                                                    <constraint firstItem="4Tj-Aw-wxp" firstAttribute="leading" secondItem="HBb-Av-fLh" secondAttribute="leading" constant="5" id="iEt-Fc-YTr"/>
+                                                    <constraint firstItem="4Tj-Aw-wxp" firstAttribute="leading" secondItem="HBb-Av-fLh" secondAttribute="leading" id="iEt-Fc-YTr"/>
                                                     <constraint firstItem="Huv-uG-LPX" firstAttribute="top" secondItem="HBb-Av-fLh" secondAttribute="top" id="z6E-yS-hja"/>
                                                 </constraints>
                                                 <size key="customSize" width="90" height="90"/>
