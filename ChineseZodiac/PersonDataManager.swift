@@ -18,7 +18,7 @@ enum PersonSort: Int {
 
 
 
-final class PersonDataManager: NSObject {
+final class PersonDataManager {
   
   static let shared = PersonDataManager()
   fileprivate let fetchRequest: NSFetchRequest<Person> = Person.createFetchRequest()
@@ -44,8 +44,7 @@ final class PersonDataManager: NSObject {
     controller.sections![0].objects! as! [Person]
   }
   
-  fileprivate override init() {
-    super.init()
+  init() {
     fetchRequest.sortDescriptors = getSortDescriptors(for: sort)
     controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                managedObjectContext: context,
