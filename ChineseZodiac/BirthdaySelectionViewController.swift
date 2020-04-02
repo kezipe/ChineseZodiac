@@ -76,7 +76,7 @@ final class BirthdaySelectionViewController: UIViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MMMM d, yyyy"
     let dateString = dateFormatter.string(from: dateSelected)
-    let message = "Are you sure your birthday is \(dateString)"
+    let message = "Save the birthday as \(dateString)?"
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     let yesAction = UIAlertAction(title: "Yes", style: .default, handler: handleDefaultBirthdaySelected)
     let noAction = UIAlertAction(title: "No", style: .cancel)
