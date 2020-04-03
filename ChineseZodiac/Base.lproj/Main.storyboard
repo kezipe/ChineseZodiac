@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -74,6 +75,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Tvf-rN-CUf" firstAttribute="top" relation="lessThanOrEqual" secondItem="lXK-av-aMh" secondAttribute="bottom" constant="30" id="5ry-vR-yLl"/>
+                            <constraint firstItem="lXK-av-aMh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="24a-6s-p4z" secondAttribute="bottom" constant="8" id="Dx0-Jf-foN"/>
                             <constraint firstItem="lXK-av-aMh" firstAttribute="leading" secondItem="NZQ-HN-DIY" secondAttribute="leadingMargin" id="IJh-M0-htA"/>
                             <constraint firstItem="lXK-av-aMh" firstAttribute="top" relation="lessThanOrEqual" secondItem="24a-6s-p4z" secondAttribute="bottom" constant="30" id="Q63-Ab-MuW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lXK-av-aMh" secondAttribute="trailing" id="qOe-fS-xsx"/>
@@ -267,7 +269,7 @@
                                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PersonColCell" id="HBb-Av-fLh" customClass="PersonCollectionCell" customModule="ChineseZodiac" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7VV-4K-Ivk">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
@@ -293,18 +295,18 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                </view>
+                                                    <constraints>
+                                                        <constraint firstItem="4Tj-Aw-wxp" firstAttribute="centerX" secondItem="7VV-4K-Ivk" secondAttribute="centerX" id="0sF-J3-iiA"/>
+                                                        <constraint firstItem="BHZ-JP-YAF" firstAttribute="top" secondItem="7VV-4K-Ivk" secondAttribute="top" constant="8" id="7HY-Dp-jEp"/>
+                                                        <constraint firstAttribute="bottom" secondItem="4Tj-Aw-wxp" secondAttribute="bottom" constant="2" id="Crf-ji-D6k"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Huv-uG-LPX" secondAttribute="trailing" id="IZu-X1-f3M"/>
+                                                        <constraint firstItem="BHZ-JP-YAF" firstAttribute="centerX" secondItem="7VV-4K-Ivk" secondAttribute="centerX" id="NTT-ES-DYE"/>
+                                                        <constraint firstItem="4Tj-Aw-wxp" firstAttribute="top" secondItem="BHZ-JP-YAF" secondAttribute="bottom" constant="2" id="c6V-Wd-pSy"/>
+                                                        <constraint firstItem="4Tj-Aw-wxp" firstAttribute="leading" secondItem="7VV-4K-Ivk" secondAttribute="leading" id="iEt-Fc-YTr"/>
+                                                        <constraint firstItem="Huv-uG-LPX" firstAttribute="top" secondItem="7VV-4K-Ivk" secondAttribute="top" id="z6E-yS-hja"/>
+                                                    </constraints>
+                                                </collectionViewCellContentView>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstItem="4Tj-Aw-wxp" firstAttribute="centerX" secondItem="HBb-Av-fLh" secondAttribute="centerX" id="0sF-J3-iiA"/>
-                                                    <constraint firstItem="BHZ-JP-YAF" firstAttribute="top" secondItem="HBb-Av-fLh" secondAttribute="top" constant="8" id="7HY-Dp-jEp"/>
-                                                    <constraint firstAttribute="bottom" secondItem="4Tj-Aw-wxp" secondAttribute="bottom" constant="2" id="Crf-ji-D6k"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Huv-uG-LPX" secondAttribute="trailing" id="IZu-X1-f3M"/>
-                                                    <constraint firstItem="BHZ-JP-YAF" firstAttribute="centerX" secondItem="HBb-Av-fLh" secondAttribute="centerX" id="NTT-ES-DYE"/>
-                                                    <constraint firstItem="4Tj-Aw-wxp" firstAttribute="top" secondItem="BHZ-JP-YAF" secondAttribute="bottom" constant="2" id="c6V-Wd-pSy"/>
-                                                    <constraint firstItem="4Tj-Aw-wxp" firstAttribute="leading" secondItem="HBb-Av-fLh" secondAttribute="leading" id="iEt-Fc-YTr"/>
-                                                    <constraint firstItem="Huv-uG-LPX" firstAttribute="top" secondItem="HBb-Av-fLh" secondAttribute="top" id="z6E-yS-hja"/>
-                                                </constraints>
                                                 <size key="customSize" width="90" height="90"/>
                                                 <connections>
                                                     <outlet property="checkMarkImg" destination="Huv-uG-LPX" id="ajx-Wy-ye0"/>
