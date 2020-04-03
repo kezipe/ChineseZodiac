@@ -9,7 +9,6 @@
 import UIKit
 
 final class MatchResultView: UIView {
-  fileprivate let TABLEVIEW_HEIGHT: CGFloat = 600
   fileprivate let TABLEVIEW_ROW_HEIGHT: CGFloat = 120
   fileprivate let CELL_IDENTIFIER = "MatchResultCell"
 
@@ -70,11 +69,10 @@ final class MatchResultView: UIView {
   
   fileprivate func setupLayoutConstraints() {
     addSubview(tableView)
-    tableView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    tableView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+    tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
     tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-    tableView.heightAnchor.constraint(equalToConstant: TABLEVIEW_HEIGHT).isActive = true
   }
   
 
