@@ -22,11 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func applicationWillTerminate(_ application: UIApplication) {
     self.saveContext()
-    #if DEBUG
-    if let dataManager = dataManager as? PersonDataManager {
-      dataManager.deleteAllData()
-    }
-    #endif
   }
   
   // MARK: - Core Data stack

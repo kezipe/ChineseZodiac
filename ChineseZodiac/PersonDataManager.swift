@@ -53,6 +53,7 @@ final class PersonDataManager {
     attempFetch()
     
     #if DEBUG
+    deleteAllData()
     insertTestData()
     #endif
   }
@@ -97,7 +98,7 @@ final class PersonDataManager {
     }
   }
   
-  func deleteAllData() {
+  fileprivate func deleteAllData() {
     for p in allPeople {
       delete(p)
     }
