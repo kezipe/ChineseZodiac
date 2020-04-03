@@ -51,6 +51,10 @@ final class PersonDataManager {
                                sectionNameKeyPath: nil,
                                cacheName: nil)
     attempFetch()
+    
+    #if DEBUG
+    insertTestData()
+    #endif
   }
   
   fileprivate func getSortDescriptors(for sortType: PersonSort) -> [NSSortDescriptor] {
@@ -72,7 +76,33 @@ final class PersonDataManager {
     } catch {
       fatalError(error.localizedDescription)
     }
-  }  
+  }
+  
+  #if DEBUG
+  fileprivate func insertTestData() {
+    let names = ["Alice", "Bob", "Chris", "Doug", "Erin", "Frank"]
+    let birthdays = [
+      "2000-06-22",
+      "1998-06-22",
+      "1990-06-22",
+      "2001-06-22",
+      "1995-06-22",
+      "2020-06-22"
+    ]
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    for i in (0 ..< names.count).reversed() {
+      let birthday = dateFormatter.date(from: birthdays[i])!
+      create(name: names[i], birthday: birthday)
+    }
+  }
+  
+  func deleteAllData() {
+    for p in allPeople {
+      delete(p)
+    }
+  }
+  #endif
 
 }
 
