@@ -34,6 +34,7 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   
   func configureCell(cell: PersonCell, indexPath: IndexPath) {
     let person = dataManager.fetch(at: indexPath)
+    cell.selectionStyle = .none
     cell.configureCell(person: person)
   }
   

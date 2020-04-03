@@ -24,6 +24,7 @@ final class DetailsVC: UIViewController {
     guard let view = view as? DetailsView else {
       return
     }
+    navigationItem.title = person.name
     view.updateInformation(forPerson: person)
   }
   

@@ -170,11 +170,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Christopher Colombus" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIg-jX-HgI">
-                                <rect key="frame" x="20" y="96" width="335" height="33.666666666666657"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" image="Dragon" translatesAutoresizingMaskIntoConstraints="NO" id="KYO-BN-BvN">
                                 <rect key="frame" x="20" y="238.66666666666663" width="335" height="335"/>
                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -183,7 +178,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t2I-cG-iwn">
-                                <rect key="frame" x="0.0" y="137.66666666666669" width="375" height="583.33333333333326"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailsVCTableViewCell" textLabel="Tq1-x5-0z1" detailTextLabel="pjk-Ek-n8Y" style="IBUITableViewCellStyleValue1" id="Re5-4b-fIk">
@@ -216,19 +211,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="dIg-jX-HgI" firstAttribute="top" secondItem="VXx-Ge-TyS" secondAttribute="bottom" constant="8" id="6gk-Zw-Ku5"/>
-                            <constraint firstItem="t2I-cG-iwn" firstAttribute="top" secondItem="dIg-jX-HgI" secondAttribute="bottom" constant="8" id="7ob-Ko-YPm"/>
                             <constraint firstAttribute="trailing" secondItem="KYO-BN-BvN" secondAttribute="trailing" constant="20" symbolic="YES" id="9V8-nu-dNx"/>
                             <constraint firstItem="t2I-cG-iwn" firstAttribute="centerX" secondItem="S3V-ZF-YAV" secondAttribute="centerX" id="C8z-Ic-uBG"/>
                             <constraint firstItem="KYO-BN-BvN" firstAttribute="leading" secondItem="S3V-ZF-YAV" secondAttribute="leading" constant="20" symbolic="YES" id="NFw-9b-BpR"/>
-                            <constraint firstItem="dIg-jX-HgI" firstAttribute="leading" secondItem="S3V-ZF-YAV" secondAttribute="leading" constant="20" symbolic="YES" id="SsI-UT-52L"/>
-                            <constraint firstAttribute="trailing" secondItem="dIg-jX-HgI" secondAttribute="trailing" constant="20" symbolic="YES" id="ZA0-Al-SLH"/>
-                            <constraint firstItem="1kh-me-xah" firstAttribute="top" secondItem="t2I-cG-iwn" secondAttribute="bottom" constant="8" symbolic="YES" id="ieb-3j-bhi"/>
+                            <constraint firstItem="1kh-me-xah" firstAttribute="top" secondItem="t2I-cG-iwn" secondAttribute="bottom" id="ieb-3j-bhi"/>
+                            <constraint firstItem="t2I-cG-iwn" firstAttribute="leading" secondItem="S3V-ZF-YAV" secondAttribute="leading" id="p8q-th-Yg0"/>
                             <constraint firstItem="KYO-BN-BvN" firstAttribute="centerY" secondItem="S3V-ZF-YAV" secondAttribute="centerY" id="uXP-DC-Jwv"/>
-                            <constraint firstItem="t2I-cG-iwn" firstAttribute="leading" secondItem="S3V-ZF-YAV" secondAttribute="leading" id="vWu-HM-KDc"/>
+                            <constraint firstItem="t2I-cG-iwn" firstAttribute="top" secondItem="VXx-Ge-TyS" secondAttribute="bottom" id="yda-Du-Qrl"/>
                         </constraints>
                         <connections>
-                            <outlet property="nameLbl" destination="dIg-jX-HgI" id="Eib-1F-3fB"/>
                             <outlet property="tableView" destination="t2I-cG-iwn" id="ms1-ky-O5C"/>
                             <outlet property="zodiacImg" destination="KYO-BN-BvN" id="Ja1-DI-Y5a"/>
                         </connections>
