@@ -11,11 +11,11 @@ import UIKit
 class DetailsView: UIView {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var zodiacImg: UIImageView!
-  @IBOutlet weak var nameLbl: UILabel!
   fileprivate var dataSource = DetailsVCTableViewDataSource()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    tableView.showsVerticalScrollIndicator = false
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -25,7 +25,6 @@ class DetailsView: UIView {
   func updateInformation(forPerson person: Person) {
     let zodiacSign = person.birthdate.getZodiac()
     
-    updateNameLabel(person.name)
     updateZodiacImage(zodiacSign.name)
     dataSource.person = person
     tableView.dataSource = dataSource
@@ -37,9 +36,4 @@ class DetailsView: UIView {
       zodiacImg.image = tintableImage
     }
   }
-  
-  fileprivate func updateNameLabel(_ name: String) {
-    nameLbl.text = name
-  }
-  
 }

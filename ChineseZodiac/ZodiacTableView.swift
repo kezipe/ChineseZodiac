@@ -23,6 +23,7 @@ final class ZodiacTableView: UIViewController {
     super.viewDidLoad()
     tableView.delegate = delegate
     delegate.parentController = self
+    setupLargeTitle()
     
     let nib = UINib.init(nibName: "PersonCell", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: "PersonCell")
@@ -31,6 +32,12 @@ final class ZodiacTableView: UIViewController {
     dataSource.dataManager = dataManager
     dataSource.parentController = self
     tableView.dataSource = dataSource
+  }
+  
+  fileprivate func setupLargeTitle() {
+    if #available(iOS 11, *) {
+      navigationController?.navigationBar.prefersLargeTitles = true
+    }
   }
   
   @IBAction func segmentChange(_ sender: Any) {
