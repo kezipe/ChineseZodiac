@@ -19,8 +19,11 @@ final class BirthdaySelectionViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    hideLargeTitle()
     updateImage()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    hideLargeTitle()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
