@@ -40,13 +40,13 @@ class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
       if #available(iOS 13, *) {
         background = UIColor.secondarySystemBackground
       } else {
-        background = .lightGray
+        background = .secondarySystemBackgroundColor
       }
     } else {
       if #available(iOS 13, *) {
         background = UIColor.tertiarySystemBackground
       } else {
-        background = nil
+        background = .white
       }
     }
     cell.backgroundColor = background?.withAlphaComponent(0.5)
