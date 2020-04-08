@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MatchVCDataSource: NSObject, UICollectionViewDataSource {
 
@@ -38,7 +39,7 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   }
   
   func canMatchAll() -> Bool {
-    return numberOfSelectedItems == 0 && numberOfItems <= MAX_MATCHING_PEOPLE
+    return numberOfSelectedItems == 0 && numberOfItems <= MAX_MATCHING_PEOPLE && numberOfItems >= 2
   }
   
   func tapPerson(at item: Int) {
@@ -82,6 +83,19 @@ extension MatchVCDataSource: PersonsSendable {
     } else {
       let personArray = Array(selectedPersons)
       receiver.receive(persons: personArray)
+    }
+  }
+}
+
+extension MatchVCDataSource: NSFetchedResultsControllerDelegate {
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    switch type {
+    case .delete:
+      if let person = anObject as? Person {
+        selectedPersons.remove(person)
+      }
+    default:
+      break
     }
   }
 }

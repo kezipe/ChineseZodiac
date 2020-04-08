@@ -330,9 +330,6 @@
                                                 <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="bcz-he-C1J" kind="show" identifier="MatchResultVCSegue" id="vcN-nl-iid"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -360,25 +357,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEy-jT-had" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8147.826086956522" y="1291.7410714285713"/>
-        </scene>
-        <!--MatchResultVC-->
-        <scene sceneID="Tuc-8d-S8g">
-            <objects>
-                <viewController storyboardIdentifier="MatchResultVC" id="bcz-he-C1J" userLabel="MatchResultVC" customClass="MatchResultVC" customModule="ChineseZodiac" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XOz-7n-F8Y"/>
-                        <viewControllerLayoutGuide type="bottom" id="dxc-Lm-9pT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="p1V-wL-YTz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="7TU-15-1WJ"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f9o-0O-W47" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="9237.6000000000004" y="1291.6256157635469"/>
         </scene>
         <!--List-->
         <scene sceneID="jSS-Be-OdB">
