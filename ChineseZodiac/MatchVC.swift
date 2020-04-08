@@ -28,7 +28,6 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     setupButtonAction()
     let dataManager = PersonDataManager.shared
     dataSource.dataManager = dataManager
-    dataManager.delegate = dataSource
     collectionView.dataSource = dataSource
     delegate.parentController = self
     collectionView.delegate = delegate

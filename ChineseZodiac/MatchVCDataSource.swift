@@ -7,13 +7,17 @@
 //
 
 import UIKit
-import CoreData
 
 class MatchVCDataSource: NSObject, UICollectionViewDataSource {
 
   let MAX_MATCHING_PEOPLE = 10
   private let CELL_IDENTIFIER = "PersonColCell"
   private var selectedPersons: Set<Person> = []
+  
+  override init() {
+    super.init()
+    addObservers()
+  }
   
   var dataManager: PersonDataManaging!
   var sort: PersonSort = .name {
@@ -74,6 +78,22 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     cell.configureCell(person: personAtIndexPath, isSelected: isSelected)
     return cell
   }
+  
+  func addObservers() {
+    NotificationCenter.default.addObserver(self, selector: #selector(didChangePerson), name: .CZPersonDidChange, object: nil)
+  }
+  
+  @objc func didChangePerson(note: Notification) {
+    guard let userInfo = note.userInfo else {
+      return
+    }
+    
+    if let person = userInfo["person"] as? Person,
+      let action = userInfo["action"] as? String,
+    action == "delete" {
+      selectedPersons.remove(person)
+    }
+  }
 }
 
 extension MatchVCDataSource: PersonsSendable {
@@ -87,15 +107,3 @@ extension MatchVCDataSource: PersonsSendable {
   }
 }
 
-extension MatchVCDataSource: NSFetchedResultsControllerDelegate {
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-    switch type {
-    case .delete:
-      if let person = anObject as? Person {
-        selectedPersons.remove(person)
-      }
-    default:
-      break
-    }
-  }
-}

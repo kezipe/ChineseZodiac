@@ -28,7 +28,6 @@ final class ZodiacTableView: UIViewController {
     let nib = UINib.init(nibName: "PersonCell", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: "PersonCell")
     let dataManager = PersonDataManager.shared
-    dataManager.delegate = dataSource
     dataSource.dataManager = dataManager
     dataSource.parentController = self
     tableView.dataSource = dataSource
@@ -97,6 +96,4 @@ extension ZodiacTableView: PersonDataUpdating {
     tableView.insertRows(at: [indexPath], with: .automatic)
     tableView.endUpdates()
   }
-  
-  
 }
