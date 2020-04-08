@@ -20,6 +20,7 @@ enum PersonSort: Int {
 
 final class PersonDataManager: NSObject {
   
+  fileprivate let IS_SECOND_RUN_KEY = "IS_SECOND_RUN"
   static let shared = PersonDataManager()
   fileprivate let fetchRequest: NSFetchRequest<Person> = Person.createFetchRequest()
   fileprivate var controller: NSFetchedResultsController<Person>!
@@ -51,8 +52,23 @@ final class PersonDataManager: NSObject {
     
     #if DEBUG
     deleteAllData()
-    insertTestData()
+    insertSampleData()
+    #else
+    if isFirstRun == false {
+      insertSampleData()
+      saveFirstRun()
+    }
     #endif
+  }
+  
+  fileprivate var isFirstRun: Bool {
+    let defaults = UserDefaults.standard
+    return defaults.bool(forKey: IS_SECOND_RUN_KEY)
+  }
+  
+  fileprivate func saveFirstRun() {
+    let defaults = UserDefaults.standard
+    defaults.set(true, forKey: IS_SECOND_RUN_KEY)
   }
   
   fileprivate func getSortDescriptors(for sortType: PersonSort) -> [NSSortDescriptor] {
@@ -76,8 +92,7 @@ final class PersonDataManager: NSObject {
     }
   }
   
-  #if DEBUG
-  fileprivate func insertTestData() {
+  fileprivate func insertSampleData() {
     let names = ["Alice", "Bob", "Chris", "Doug", "Erin", "Frank"]
     let birthdays = [
       "2000-06-22",
@@ -95,6 +110,7 @@ final class PersonDataManager: NSObject {
     }
   }
   
+  #if DEBUG
   fileprivate func deleteAllData() {
     for p in allPeople {
       delete(p)
