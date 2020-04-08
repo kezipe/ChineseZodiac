@@ -10,24 +10,19 @@ import Foundation
 import CoreData
 
 enum PersonSort: Int {
-  case createdOn
   case name
   case zodiac
   case birthday
+  case createdOn
 }
 
 
 
-final class PersonDataManager {
+final class PersonDataManager: NSObject {
   
   static let shared = PersonDataManager()
   fileprivate let fetchRequest: NSFetchRequest<Person> = Person.createFetchRequest()
   fileprivate var controller: NSFetchedResultsController<Person>!
-  weak var delegate: NSFetchedResultsControllerDelegate! {
-    didSet {
-      controller.delegate = delegate
-    }
-  }
   
   var sort: PersonSort = .createdOn {
     didSet {
@@ -44,12 +39,14 @@ final class PersonDataManager {
     controller.sections![0].objects! as! [Person]
   }
   
-  init() {
+  override init() {
+    super.init()
     fetchRequest.sortDescriptors = getSortDescriptors(for: sort)
     controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                managedObjectContext: context,
                                sectionNameKeyPath: nil,
                                cacheName: nil)
+    controller.delegate = self
     attempFetch()
     
     #if DEBUG
@@ -126,5 +123,29 @@ extension PersonDataManager: PersonDataManaging {
   
   func fetch(at indexPath: IndexPath) -> Person {
     controller.object(at: indexPath)
+  }
+}
+
+extension Notification.Name {
+  static let CZPersonDidChange = Notification.Name("CZPersonDidChangeNotification")
+}
+
+extension PersonDataManager: NSFetchedResultsControllerDelegate {
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    let personAffected = anObject as! Person
+    var userInfo: [AnyHashable: Any] = [
+      "person": personAffected
+    ]
+    switch type {
+    case .delete:
+      userInfo["action"] = "delete"
+      userInfo["indexPath"] = indexPath!
+    case .insert:
+      userInfo["action"] = "insert"
+      userInfo["indexPath"] = newIndexPath!
+    default:
+      return
+    }
+    NotificationCenter.default.post(name: .CZPersonDidChange, object: nil, userInfo: userInfo)
   }
 }

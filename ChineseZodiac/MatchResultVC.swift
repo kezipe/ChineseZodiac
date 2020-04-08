@@ -21,6 +21,7 @@ final class MatchResultVC: UIViewController {
     super.viewDidLoad()
     dataSource.parentController = self
     customView.setDataSource(dataSource)
+    title = "Match Results"
   }
   
   override func viewDidAppear(_ animated: Bool) {

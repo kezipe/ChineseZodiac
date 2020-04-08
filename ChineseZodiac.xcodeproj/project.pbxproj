@@ -15,7 +15,7 @@
 		0A1148C123FF530F0010C817 /* ZodiacTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */; };
 		0A1148C523FF8A370010C817 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148C423FF8A370010C817 /* Protocols.swift */; };
 		0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14631F1F0B55440043AA46 /* DetailsVC.swift */; };
-		0A1463221F0C4B770043AA46 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */; };
+		0A1463221F0C4B770043AA46 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1463211F0C4B770043AA46 /* UIViewController+Extension.swift */; };
 		0A14CC82240B93AF003FA229 /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A14CC81240B93AF003FA229 /* PersonCell.xib */; };
 		0A1AB26824022085002EAAF3 /* Zodiac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB26724022085002EAAF3 /* Zodiac.swift */; };
 		0A1AB26A240220BC002EAAF3 /* Person+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */; };
@@ -33,6 +33,7 @@
 		0A8D2AD61F118F63007B8D64 /* PersonCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD51F118F63007B8D64 /* PersonCollectionCell.swift */; };
 		0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD71F119117007B8D64 /* MatchVC.swift */; };
 		0AB4729C236521A200495C17 /* PersonDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4729B236521A200495C17 /* PersonDataManager.swift */; };
+		0AB68B65243E3B0D00C0DDDC /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB68B64243E3B0D00C0DDDC /* UIColor+Extension.swift */; };
 		0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */; };
 		0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACBF6FA1EE357B00075A523 /* Extensions.swift */; };
 		0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */; };
@@ -63,7 +64,7 @@
 		0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacTableViewDelegate.swift; sourceTree = "<group>"; };
 		0A1148C423FF8A370010C817 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		0A14631F1F0B55440043AA46 /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
-		0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		0A1463211F0C4B770043AA46 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		0A14CC81240B93AF003FA229 /* PersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
 		0A1AB26724022085002EAAF3 /* Zodiac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zodiac.swift; sourceTree = "<group>"; };
 		0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+Extensions.swift"; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		0A8D2AD51F118F63007B8D64 /* PersonCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCollectionCell.swift; sourceTree = "<group>"; };
 		0A8D2AD71F119117007B8D64 /* MatchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchVC.swift; sourceTree = "<group>"; };
 		0AB4729B236521A200495C17 /* PersonDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDataManager.swift; sourceTree = "<group>"; };
+		0AB68B64243E3B0D00C0DDDC /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		0ACBF6FA1EE357B00075A523 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0AD4E2891EDDD22400A92F65 /* ChineseZodiac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseZodiac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,8 +150,9 @@
 				0A0BA1201F1C0B3F005D4567 /* MatchResultCell.swift */,
 				0AFA44B9240E054400126213 /* PersonLabel.swift */,
 				0AFA44B3240DD7A400126213 /* MatchResultView.swift */,
-				0A1463211F0C4B770043AA46 /* UIViewControllerExtension.swift */,
+				0A1463211F0C4B770043AA46 /* UIViewController+Extension.swift */,
 				0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */,
+				0AB68B64243E3B0D00C0DDDC /* UIColor+Extension.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
 				0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */,
+				0AB68B65243E3B0D00C0DDDC /* UIColor+Extension.swift in Sources */,
 				0A1AB26A240220BC002EAAF3 /* Person+Extensions.swift in Sources */,
 				0A0BA1211F1C0B3F005D4567 /* MatchResultCell.swift in Sources */,
 				0A455BB924006A44008D13AD /* DetailsView.swift in Sources */,
@@ -343,7 +347,7 @@
 				0A5588072405E75400FD0885 /* MatchResultVCDataSource.swift in Sources */,
 				0A69F46D1EE3426C00A0176D /* BirthdaySelectionViewController.swift in Sources */,
 				0A3B09F82406D31B00B53C0C /* Match.swift in Sources */,
-				0A1463221F0C4B770043AA46 /* UIViewControllerExtension.swift in Sources */,
+				0A1463221F0C4B770043AA46 /* UIViewController+Extension.swift in Sources */,
 				0A1AB26824022085002EAAF3 /* Zodiac.swift in Sources */,
 				0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */,
 				0A60D841242EE8E500F34F05 /* Person+CoreDataClass.swift in Sources */,

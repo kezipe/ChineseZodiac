@@ -14,6 +14,11 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   private let CELL_IDENTIFIER = "PersonColCell"
   private var selectedPersons: Set<Person> = []
   
+  override init() {
+    super.init()
+    addObservers()
+  }
+  
   var dataManager: PersonDataManaging!
   var sort: PersonSort = .name {
     didSet {
@@ -38,7 +43,7 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   }
   
   func canMatchAll() -> Bool {
-    return numberOfSelectedItems == 0 && numberOfItems <= MAX_MATCHING_PEOPLE
+    return numberOfSelectedItems == 0 && numberOfItems <= MAX_MATCHING_PEOPLE && numberOfItems >= 2
   }
   
   func tapPerson(at item: Int) {
@@ -73,6 +78,22 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     cell.configureCell(person: personAtIndexPath, isSelected: isSelected)
     return cell
   }
+  
+  func addObservers() {
+    NotificationCenter.default.addObserver(self, selector: #selector(didChangePerson), name: .CZPersonDidChange, object: nil)
+  }
+  
+  @objc func didChangePerson(note: Notification) {
+    guard let userInfo = note.userInfo else {
+      return
+    }
+    
+    if let person = userInfo["person"] as? Person,
+      let action = userInfo["action"] as? String,
+    action == "delete" {
+      selectedPersons.remove(person)
+    }
+  }
 }
 
 extension MatchVCDataSource: PersonsSendable {
@@ -85,3 +106,4 @@ extension MatchVCDataSource: PersonsSendable {
     }
   }
 }
+

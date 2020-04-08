@@ -7,14 +7,18 @@
 //
 
 import UIKit
-import CoreData
-
+import NotificationCenter
 
 
 final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
   
   var dataManager: PersonDataManaging!
   weak var parentController: PersonDataUpdating?
+  
+  override init() {
+    super.init()
+    addObservers()
+  }
   
   var sort: PersonSort = .createdOn {
     didSet {
@@ -64,18 +68,24 @@ final class ZodiacTableViewDataSource: NSObject, UITableViewDataSource {
       deletePerson(at: indexPath)
     }
   }
-
-}
-
-extension ZodiacTableViewDataSource: NSFetchedResultsControllerDelegate {
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-    switch type {
-    case .delete:
-      parentController?.delete(at: indexPath!)
-    case .insert:
-      parentController?.insert(at: newIndexPath!)
-    default:
-      break
+  
+  func addObservers() {
+    NotificationCenter.default.addObserver(self, selector: #selector(didChangePerson), name: .CZPersonDidChange, object: nil)
+  }
+  
+  @objc func didChangePerson(note: Notification) {
+    guard let userInfo = note.userInfo else {
+      return
+    }
+    
+    if let action = userInfo["action"] as? String,
+      action == "delete",
+      let indexPathAffected = userInfo["indexPath"] as? IndexPath {
+      parentController?.delete(at: indexPathAffected)
+    } else if let action = userInfo["action"] as? String,
+      action == "insert",
+      let indexPathAffected = userInfo["indexPath"] as? IndexPath {
+      parentController?.insert(at: indexPathAffected)
     }
   }
 }
