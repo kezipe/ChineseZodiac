@@ -20,28 +20,7 @@ final class BirthdaySelectionViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     updateImage()
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    hideLargeTitle()
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    showLargeTitle()
-  }
-  
-  fileprivate func hideLargeTitle() {
-    setLargeTitle(show: false)
-  }
-  
-  fileprivate func showLargeTitle() {
-    setLargeTitle(show: true)
-  }
-  
-  fileprivate func setLargeTitle(show: Bool) {
-    if #available(iOS 11.0, *) {
-      navigationController?.navigationBar.prefersLargeTitles = show
-    }
+    disableLargeTitle()
   }
   
   @IBAction func dateChanged(_ sender: Any) {

@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 enum PersonSort: Int {
-  case createdOn
   case name
   case zodiac
   case birthday
+  case createdOn
 }
 
 

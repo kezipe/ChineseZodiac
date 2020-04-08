@@ -25,8 +25,8 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    enableLargeTitleForNavigationController()
     setupButtonAction()
-    setupTitle()
     let dataManager = PersonDataManager.shared
     dataSource.dataManager = dataManager
     collectionView.dataSource = dataSource
@@ -42,12 +42,6 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   
   private func setupButtonAction() {
     matchButton.addTarget(self, action: #selector(matchButtonPressed), for: .touchUpInside)
-  }
-  
-  private func setupTitle() {
-    if #available(iOS 11, *) {
-      navigationController?.navigationBar.prefersLargeTitles = true
-    }
   }
   
   @objc func matchButtonPressed() {
