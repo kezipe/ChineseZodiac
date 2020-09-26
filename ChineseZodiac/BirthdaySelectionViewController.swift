@@ -20,7 +20,6 @@ final class BirthdaySelectionViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     updateImage()
-    disableLargeTitle()
   }
   
   @IBAction func dateChanged(_ sender: Any) {

@@ -13,7 +13,49 @@ final class ZodiacTableView: UIViewController {
   // MARK: Private Types
   // MARK: API Variables
   // MARK: Private Variables
+  private lazy var delegate = ZodiacTableViewDelegate()
+  private lazy var dataSource = ZodiacTableViewDataSource()
+  private let DETAILS_SEGUE_IDENTIFIER = "showDetailsVC"
+  
+  private lazy var tableView: UITableView = {
+    let tv = UITableView()
+    tv.translatesAutoresizingMaskIntoConstraints = false
+    let nib = UINib.init(nibName: "PersonCell", bundle: nil)
+    tv.register(nib, forCellReuseIdentifier: "PersonCell")
+    tv.delegate = delegate
+    tv.dataSource = dataSource
+    tv.rowHeight = 60
+    return tv
+  }()
+  
+  private lazy var segmentedControl: UISegmentedControl = {
+    let sc = ZodiacSegmentedControl()
+    sc.addTarget(self, action: #selector(segmentChange), for: .valueChanged)
+    return sc
+  }()
+  
   // MARK: API Functions
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupUI()
+    setupTableView()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard checkSegueIdentifier(segue: segue) else {
+      return
+    }
+    guard let destination = segue.destination as? DetailsVC else {
+      return
+    }
+    
+    guard let row = sender as? Int else {
+      return
+    }
+    let person = dataSource.person(at: row)
+    destination.person = person
+  }
+  
   // MARK: Private Functions
   private func setupUI() {
     view.addSubview(segmentedControl)
@@ -89,71 +131,34 @@ final class ZodiacTableView: UIViewController {
     
     
   }
-  // MARK: Initializers
-  
-  private lazy var delegate = ZodiacTableViewDelegate()
-  private lazy var dataSource = ZodiacTableViewDataSource()
-  private let DETAILS_SEGUE_IDENTIFIER = "showDetailsVC"
-  
-  private lazy var tableView: UITableView = {
-    let tv = UITableView()
-    tv.translatesAutoresizingMaskIntoConstraints = false
-    tv.delegate = delegate
-    tv.dataSource = dataSource
-    tv.rowHeight = 60
-    return tv
-  }()
-  
-  private lazy var segmentedControl: UISegmentedControl = {
-    let sc = ZodiacSegmentedControl()
-    sc.addTarget(self, action: #selector(segmentChange), for: .valueChanged)
-    return sc
-  }()
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setupUI()
-    enableLargeTitleForNavigationController()
-    tableView.delegate = delegate
+
+  private func setupTableViewDelegate() {
     delegate.parentController = self
-    let nib = UINib.init(nibName: "PersonCell", bundle: nil)
-    tableView.register(nib, forCellReuseIdentifier: "PersonCell")
+  }
+  
+  private func setupTableViewDataSource() {
     let dataManager = PersonDataManager.shared
     dataSource.dataManager = dataManager
     dataSource.parentController = self
-    tableView.dataSource = dataSource
+  }
+  
+  private func setupTableView() {
+    setupTableViewDelegate()
+    setupTableViewDataSource()
   }
   
   @objc
-  func segmentChange(_ sender: Any) {
+  private func segmentChange(_ sender: Any) {
     let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)!
     dataSource.sort = sortBy
     tableView.reloadData()
   }
   
-  // MARK: Prepare for segue and Popover
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard checkSegueIdentifier(segue: segue) else {
-      return
-    }
-    guard let destination = segue.destination as? DetailsVC else {
-      return
-    }
-    
-    guard let row = sender as? Int else {
-      return
-    }
-    
-    
-    let person = dataSource.person(at: row)
-    destination.person = person
-
-  }
-  
-  fileprivate func checkSegueIdentifier(segue: UIStoryboardSegue) -> Bool {
+  private func checkSegueIdentifier(segue: UIStoryboardSegue) -> Bool {
     return segue.identifier == DETAILS_SEGUE_IDENTIFIER
   }
   
+  // MARK: Initializers
 }
 
 // MARK: Person Present
@@ -169,7 +174,6 @@ extension ZodiacTableView: PersonDeleting {
     dataSource.deletePerson(at: row)
   }
 }
-
 
 extension ZodiacTableView: PersonDataUpdating {
   func delete(at indexPath: IndexPath) {
