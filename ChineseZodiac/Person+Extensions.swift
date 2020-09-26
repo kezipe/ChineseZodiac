@@ -13,11 +13,11 @@ extension Person {
     guard 1...13 ~= self.zodiac else {
       fatalError("Non-existent zodiac sign")
     }
-    return Zodiac(rawValue: Int(self.zodiac) - 1)!
+    return Zodiac(rank: Int(self.zodiac) - 1)!
   }
   
   var zodiacName: String {
-    return self.zodiacSign.name
+    return self.zodiacSign.rawValue.capitalized
   }
   
   var isPlaceholder: Bool {

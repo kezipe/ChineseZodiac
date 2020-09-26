@@ -25,7 +25,6 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     
   override func viewDidLoad() {
     super.viewDidLoad()
-    enableLargeTitleForNavigationController()
     setupButtonAction()
     let dataManager = PersonDataManager.shared
     dataSource.dataManager = dataManager

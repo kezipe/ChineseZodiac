@@ -14,6 +14,8 @@
 		0A1148BF23FF4CA70010C817 /* ZodiacTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */; };
 		0A1148C123FF530F0010C817 /* ZodiacTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */; };
 		0A1148C523FF8A370010C817 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1148C423FF8A370010C817 /* Protocols.swift */; };
+		0A1426E4251FB2E100192455 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1426E2251FB2E100192455 /* Person+CoreDataProperties.swift */; };
+		0A1426E5251FB2E100192455 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1426E3251FB2E100192455 /* Person+CoreDataClass.swift */; };
 		0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14631F1F0B55440043AA46 /* DetailsVC.swift */; };
 		0A1463221F0C4B770043AA46 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1463211F0C4B770043AA46 /* UIViewController+Extension.swift */; };
 		0A14CC82240B93AF003FA229 /* PersonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A14CC81240B93AF003FA229 /* PersonCell.xib */; };
@@ -25,11 +27,10 @@
 		0A455BB924006A44008D13AD /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A455BB824006A44008D13AD /* DetailsView.swift */; };
 		0A5588072405E75400FD0885 /* MatchResultVCDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5588062405E75400FD0885 /* MatchResultVCDataSource.swift */; };
 		0A55880F2405F41900FD0885 /* ChineseZodiacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55880E2405F41900FD0885 /* ChineseZodiacTests.swift */; };
-		0A60D841242EE8E500F34F05 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D83F242EE8E500F34F05 /* Person+CoreDataClass.swift */; };
-		0A60D842242EE8E500F34F05 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A60D840242EE8E500F34F05 /* Person+CoreDataProperties.swift */; };
 		0A69F46D1EE3426C00A0176D /* BirthdaySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46B1EE3426C00A0176D /* BirthdaySelectionViewController.swift */; };
-		0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46F1EE3428F00A0176D /* ZodiacTableView.swift */; };
+		0A69F4701EE3428F00A0176D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46F1EE3428F00A0176D /* MainViewController.swift */; };
 		0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A55C71EE3628B00BAA05B /* PersonCell.swift */; };
+		0A88F383251ED0D000735D5C /* ZodiacSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A88F382251ED0D000735D5C /* ZodiacSegmentedControl.swift */; };
 		0A8D2AD61F118F63007B8D64 /* PersonCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD51F118F63007B8D64 /* PersonCollectionCell.swift */; };
 		0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD71F119117007B8D64 /* MatchVC.swift */; };
 		0AB4729C236521A200495C17 /* PersonDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4729B236521A200495C17 /* PersonDataManager.swift */; };
@@ -63,6 +64,8 @@
 		0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacTableViewDataSource.swift; sourceTree = "<group>"; };
 		0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacTableViewDelegate.swift; sourceTree = "<group>"; };
 		0A1148C423FF8A370010C817 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		0A1426E2251FB2E100192455 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0A1426E3251FB2E100192455 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0A14631F1F0B55440043AA46 /* DetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		0A1463211F0C4B770043AA46 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		0A14CC81240B93AF003FA229 /* PersonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonCell.xib; sourceTree = "<group>"; };
@@ -76,11 +79,10 @@
 		0A55880C2405F41900FD0885 /* ChineseZodiacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChineseZodiacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A55880E2405F41900FD0885 /* ChineseZodiacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseZodiacTests.swift; sourceTree = "<group>"; };
 		0A5588102405F41900FD0885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A60D83F242EE8E500F34F05 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		0A60D840242EE8E500F34F05 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		0A69F46B1EE3426C00A0176D /* BirthdaySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdaySelectionViewController.swift; sourceTree = "<group>"; };
-		0A69F46F1EE3428F00A0176D /* ZodiacTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZodiacTableView.swift; sourceTree = "<group>"; };
+		0A69F46F1EE3428F00A0176D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0A7A55C71EE3628B00BAA05B /* PersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		0A88F382251ED0D000735D5C /* ZodiacSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacSegmentedControl.swift; sourceTree = "<group>"; };
 		0A8D2AD51F118F63007B8D64 /* PersonCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCollectionCell.swift; sourceTree = "<group>"; };
 		0A8D2AD71F119117007B8D64 /* MatchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchVC.swift; sourceTree = "<group>"; };
 		0AB4729B236521A200495C17 /* PersonDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDataManager.swift; sourceTree = "<group>"; };
@@ -119,8 +121,8 @@
 		0A0BA1271F1C1193005D4567 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0A60D83F242EE8E500F34F05 /* Person+CoreDataClass.swift */,
-				0A60D840242EE8E500F34F05 /* Person+CoreDataProperties.swift */,
+				0A1426E3251FB2E100192455 /* Person+CoreDataClass.swift */,
+				0A1426E2251FB2E100192455 /* Person+CoreDataProperties.swift */,
 				0A1AB269240220BC002EAAF3 /* Person+Extensions.swift */,
 				0A3B09F72406D31B00B53C0C /* Match.swift */,
 				0A0BA1251F1C118F005D4567 /* Matcher.swift */,
@@ -161,7 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				0A1148C423FF8A370010C817 /* Protocols.swift */,
-				0A69F46F1EE3428F00A0176D /* ZodiacTableView.swift */,
+				0A69F46F1EE3428F00A0176D /* MainViewController.swift */,
+				0A88F382251ED0D000735D5C /* ZodiacSegmentedControl.swift */,
 				0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */,
 				0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */,
 				0A14631F1F0B55440043AA46 /* DetailsVC.swift */,
@@ -255,7 +258,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Monorail Apps";
 				TargetAttributes = {
 					0A55880B2405F41900FD0885 = {
@@ -329,16 +332,19 @@
 				0A1148C123FF530F0010C817 /* ZodiacTableViewDelegate.swift in Sources */,
 				0A1148C523FF8A370010C817 /* Protocols.swift in Sources */,
 				0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */,
-				0A69F4701EE3428F00A0176D /* ZodiacTableView.swift in Sources */,
+				0A69F4701EE3428F00A0176D /* MainViewController.swift in Sources */,
 				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
 				0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */,
 				0AB68B65243E3B0D00C0DDDC /* UIColor+Extension.swift in Sources */,
 				0A1AB26A240220BC002EAAF3 /* Person+Extensions.swift in Sources */,
+				0A1426E4251FB2E100192455 /* Person+CoreDataProperties.swift in Sources */,
 				0A0BA1211F1C0B3F005D4567 /* MatchResultCell.swift in Sources */,
 				0A455BB924006A44008D13AD /* DetailsView.swift in Sources */,
 				0A0BA11F1F1C0AEA005D4567 /* MatchResultVC.swift in Sources */,
 				0A1148BF23FF4CA70010C817 /* ZodiacTableViewDataSource.swift in Sources */,
+				0A88F383251ED0D000735D5C /* ZodiacSegmentedControl.swift in Sources */,
+				0A1426E5251FB2E100192455 /* Person+CoreDataClass.swift in Sources */,
 				0AFA44BA240E054400126213 /* PersonLabel.swift in Sources */,
 				0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */,
 				0AB4729C236521A200495C17 /* PersonDataManager.swift in Sources */,
@@ -350,9 +356,7 @@
 				0A1463221F0C4B770043AA46 /* UIViewController+Extension.swift in Sources */,
 				0A1AB26824022085002EAAF3 /* Zodiac.swift in Sources */,
 				0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */,
-				0A60D841242EE8E500F34F05 /* Person+CoreDataClass.swift in Sources */,
 				0A1AB27024022CA3002EAAF3 /* MatchVCDelegate.swift in Sources */,
-				0A60D842242EE8E500F34F05 /* Person+CoreDataProperties.swift in Sources */,
 				0A0BA1261F1C118F005D4567 /* Matcher.swift in Sources */,
 				0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */,
 				0A1AB26C2402269F002EAAF3 /* MatchVCDataSource.swift in Sources */,
@@ -459,6 +463,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -483,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -518,6 +523,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -536,7 +542,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -549,12 +555,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 3WM87N8XYQ;
 				INFOPLIST_FILE = ChineseZodiac/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MonorailApps.ChineseZodiac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -567,12 +573,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 3WM87N8XYQ;
 				INFOPLIST_FILE = ChineseZodiac/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MonorailApps.ChineseZodiac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

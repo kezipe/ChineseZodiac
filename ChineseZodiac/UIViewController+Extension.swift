@@ -21,16 +21,4 @@ extension UIViewController {
   @objc func dismissKeyboard() {
     view.endEditing(true)
   }
-  
-  func enableLargeTitleForNavigationController() {
-    if #available(iOS 11, *) {
-      navigationController?.navigationBar.prefersLargeTitles = true
-    }
-  }
-  
-  func disableLargeTitle() {
-    if #available(iOS 11.0, *) {
-      navigationItem.largeTitleDisplayMode = .never
-    }
-  }
 }

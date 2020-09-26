@@ -25,7 +25,7 @@ class DetailsView: UIView {
   func updateInformation(forPerson person: Person) {
     let zodiacSign = person.birthdate.getZodiac()
     
-    updateZodiacImage(zodiacSign.name)
+    updateZodiacImage(zodiacSign.rawValue.capitalized)
     dataSource.person = person
     tableView.dataSource = dataSource
   }
