@@ -9,7 +9,7 @@
 import UIKit
 
 
-final class ZodiacTableView: UIViewController {
+final class MainViewController: UIViewController {
   // MARK: Private Types
   // MARK: API Variables
   // MARK: Private Variables
@@ -128,8 +128,6 @@ final class ZodiacTableView: UIViewController {
         ]
       )
     }
-    
-    
   }
 
   private func setupTableViewDelegate() {
@@ -162,20 +160,20 @@ final class ZodiacTableView: UIViewController {
 }
 
 // MARK: Person Present
-extension ZodiacTableView: PersonPresenting {
+extension MainViewController: PersonPresenting {
   func didSelectPerson(at row: Int) {
     performSegue(withIdentifier: DETAILS_SEGUE_IDENTIFIER, sender: row)
   }
 }
 
 // MARK: Person Delete
-extension ZodiacTableView: PersonDeleting {
+extension MainViewController: PersonDeleting {
   func deletePerson(at row: Int) {
     dataSource.deletePerson(at: row)
   }
 }
 
-extension ZodiacTableView: PersonDataUpdating {
+extension MainViewController: PersonDataUpdating {
   func delete(at indexPath: IndexPath) {
     tableView.beginUpdates()
     tableView.deleteRows(at: [indexPath], with: .automatic)
