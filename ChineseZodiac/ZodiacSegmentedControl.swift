@@ -23,5 +23,6 @@ final class ZodiacSegmentedControl: UISegmentedControl {
     let selection = Selection.allCases.map(\.rawValue.capitalized)
     self.init(items: selection)
     translatesAutoresizingMaskIntoConstraints = false
+    selectedSegmentIndex = 0
   }
 }
