@@ -41,7 +41,7 @@ final class BirthdaySelectionViewController: UIViewController {
   
   fileprivate func getZodiacName() -> String {
     let date = datePicker.date
-    return date.getZodiac().name
+    return date.getZodiac().rawValue.capitalized
   }
 
   @IBAction func saveButtonPressed(_ sender: Any) {

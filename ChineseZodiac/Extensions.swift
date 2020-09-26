@@ -63,7 +63,7 @@ extension Date {
   
   func getZodiac() -> Zodiac {
     let rank = getZodiacRank()
-    return Zodiac(rawValue: rank - 1)!
+    return Zodiac(rank: rank - 1)!
   }
   
   func getStemBranch() -> String {
