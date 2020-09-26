@@ -20,7 +20,7 @@ enum PersonSort: Int {
 
 final class PersonDataManager: NSObject {
   
-  fileprivate let IS_SECOND_RUN_KEY = "IS_SECOND_RUN"
+  fileprivate let isSubsequentLaunch = "isSubsequentLaunch"
   static let shared = PersonDataManager()
   fileprivate let fetchRequest: NSFetchRequest<Person> = Person.createFetchRequest()
   fileprivate var controller: NSFetchedResultsController<Person>!
@@ -43,10 +43,12 @@ final class PersonDataManager: NSObject {
   override init() {
     super.init()
     fetchRequest.sortDescriptors = getSortDescriptors(for: sort)
-    controller = NSFetchedResultsController(fetchRequest: fetchRequest,
-                               managedObjectContext: context,
-                               sectionNameKeyPath: nil,
-                               cacheName: nil)
+    controller = NSFetchedResultsController(
+      fetchRequest: fetchRequest,
+      managedObjectContext: context,
+      sectionNameKeyPath: nil,
+      cacheName: nil
+    )
     controller.delegate = self
     attempFetch()
     
@@ -63,12 +65,12 @@ final class PersonDataManager: NSObject {
   
   fileprivate var isFirstRun: Bool {
     let defaults = UserDefaults.standard
-    return defaults.bool(forKey: IS_SECOND_RUN_KEY)
+    return defaults.bool(forKey: isSubsequentLaunch)
   }
   
   fileprivate func saveFirstRun() {
     let defaults = UserDefaults.standard
-    defaults.set(true, forKey: IS_SECOND_RUN_KEY)
+    defaults.set(true, forKey: isSubsequentLaunch)
   }
   
   fileprivate func getSortDescriptors(for sortType: PersonSort) -> [NSSortDescriptor] {
