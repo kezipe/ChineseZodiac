@@ -16,11 +16,17 @@ final class ZodiacTableView: UIViewController {
   private lazy var dataSource = ZodiacTableViewDataSource()
   private let DETAILS_SEGUE_IDENTIFIER = "showDetailsVC"
   
-  @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var segmentedControl: UISegmentedControl!
+  private lazy var tableView: UITableView = {
+    let tv = UITableView()
+    tv.translatesAutoresizingMaskIntoConstraints = false
+    return tv
+  }()
+  
+  private lazy var segmentedControl = ZodiacSegmentedControl()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     enableLargeTitleForNavigationController()
     tableView.delegate = delegate
     delegate.parentController = self
