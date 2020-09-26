@@ -100,6 +100,7 @@ final class ZodiacTableView: UIViewController {
     tv.translatesAutoresizingMaskIntoConstraints = false
     tv.delegate = delegate
     tv.dataSource = dataSource
+    tv.rowHeight = 60
     return tv
   }()
   
