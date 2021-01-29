@@ -37,6 +37,7 @@ final class MainViewController: UIViewController {
   // MARK: API Functions
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupNavigationBar()
     setupUI()
     setupTableView()
   }
@@ -117,6 +118,15 @@ final class MainViewController: UIViewController {
     }
   }
 
+  private func setupNavigationBar() {
+    let addButton = UIBarButtonItem(
+      barButtonSystemItem: .add,
+      target: self,
+      action: #selector(didTapAddPerson)
+    )
+    navigationItem.rightBarButtonItem = addButton
+  }
+
   private func configureViewBackgroundColor() {
     if #available(iOS 13, *) {
       view.backgroundColor = .systemBackground
@@ -153,6 +163,11 @@ final class MainViewController: UIViewController {
     let sortBy = PersonSort(rawValue: segmentedControl.selectedSegmentIndex)!
     dataSource.sort = sortBy
     tableView.reloadData()
+  }
+
+  @objc
+  private func didTapAddPerson() {
+    print("Adding person")
   }
   
   // MARK: Initializers
