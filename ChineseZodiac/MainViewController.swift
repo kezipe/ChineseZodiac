@@ -40,7 +40,7 @@ final class MainViewController: UIViewController {
     setupUI()
     setupTableView()
   }
-  
+
   // MARK: Private Functions
   private func setupUI() {
     configureViewBackgroundColor()
@@ -60,7 +60,7 @@ final class MainViewController: UIViewController {
             multiplier: multiplier
           ),
           view.trailingAnchor.constraint(
-            equalToSystemSpacingAfter: segmentedControl.trailingAnchor, 
+            equalToSystemSpacingAfter: segmentedControl.trailingAnchor,
             multiplier: multiplier
           ),
           tableView.topAnchor.constraint(
@@ -71,12 +71,12 @@ final class MainViewController: UIViewController {
             equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor,
             multiplier: multiplier
           ),
-          tableView.trailingAnchor.constraint(
-            equalToSystemSpacingAfter: view.safeAreaLayoutGuide.trailingAnchor,
+          view.safeAreaLayoutGuide.trailingAnchor.constraint(
+            equalToSystemSpacingAfter: tableView.trailingAnchor,
             multiplier: multiplier
           ),
           view.safeAreaLayoutGuide.bottomAnchor.constraint(
-            equalToSystemSpacingBelow: tableView.bottomAnchor, 
+            equalToSystemSpacingBelow: tableView.bottomAnchor,
             multiplier: multiplier
           )
         ]
@@ -85,7 +85,7 @@ final class MainViewController: UIViewController {
       NSLayoutConstraint.activate(
         [
           segmentedControl.topAnchor.constraint(
-            equalTo: view.topAnchor, 
+            equalTo: view.topAnchor,
             constant: 8 * multiplier
           ),
           segmentedControl.leadingAnchor.constraint(
@@ -93,7 +93,7 @@ final class MainViewController: UIViewController {
             constant: 8 * multiplier
           ),
           segmentedControl.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor, 
+            equalTo: view.trailingAnchor,
             constant: -8 * multiplier
           ),
           tableView.topAnchor.constraint(
@@ -109,7 +109,7 @@ final class MainViewController: UIViewController {
             constant: -8 * multiplier
           ),
           view.bottomAnchor.constraint(
-            equalTo: tableView.bottomAnchor, 
+            equalTo: tableView.bottomAnchor,
             constant: 8 * multiplier
           )
         ]

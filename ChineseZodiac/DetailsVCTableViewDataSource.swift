@@ -23,11 +23,14 @@ enum DetailsVCTableViewRows: String, CaseIterable {
 class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
   
   var person: Person?
-  
-  fileprivate let CELL_IDENTIFIER = "DetailsVCTableViewCell"
-  
+
+  let cellIdentifier = "DetailsTableRowID"
+
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexPath)
+    let cell = tableView.dequeueReusableCell(
+        withIdentifier: cellIdentifier,
+        for: indexPath
+    )
     configureText(for: cell, at: indexPath.row)
     configureDetailText(for: cell, at: indexPath.row)
     configureCellBackground(for: cell, at: indexPath.row)

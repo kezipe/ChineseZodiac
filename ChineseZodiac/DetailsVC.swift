@@ -11,10 +11,73 @@ import UIKit
 final class DetailsVC: UIViewController {
 
   var person: Person?
-  
+
+  private lazy var tableViewDataSource = DetailsVCTableViewDataSource()
+
+  private lazy var tableView: UITableView = {
+    let tv = UITableView()
+    tv.translatesAutoresizingMaskIntoConstraints = false
+    tv.dataSource = tableViewDataSource
+    tv.register(
+        UITableViewCell.self,
+        forCellReuseIdentifier: tableViewDataSource.cellIdentifier
+    )
+    return tv
+  }()
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupUI()
     updateInformation()
+  }
+
+  private func setupUI() {
+    view.backgroundColor = .white
+    view.addSubview(tableView)
+    let multiplier: CGFloat = 1
+    if #available(iOS 11.0, *) {
+      NSLayoutConstraint.activate(
+        [
+          tableView.topAnchor.constraint(
+            equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor,
+            multiplier: multiplier
+          ),
+          tableView.leadingAnchor.constraint(
+            equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor,
+            multiplier: multiplier
+          ),
+          view.safeAreaLayoutGuide.trailingAnchor.constraint(
+            equalToSystemSpacingAfter: tableView.trailingAnchor,
+            multiplier: multiplier
+          ),
+          view.safeAreaLayoutGuide.bottomAnchor.constraint(
+            equalToSystemSpacingBelow: tableView.bottomAnchor,
+            multiplier: multiplier
+          )
+        ]
+      )
+    } else {
+      NSLayoutConstraint.activate(
+        [
+          tableView.topAnchor.constraint(
+            equalTo: view.topAnchor,
+            constant: 8 * multiplier
+          ),
+          tableView.leadingAnchor.constraint(
+            equalTo: view.leadingAnchor,
+            constant: 8 * multiplier
+          ),
+          view.trailingAnchor.constraint(
+            equalTo: tableView.trailingAnchor,
+            constant: 8 * multiplier
+          ),
+          view.bottomAnchor.constraint(
+            equalTo: tableView.bottomAnchor,
+            constant: 8 * multiplier
+          )
+        ]
+      )
+    }
   }
   
   fileprivate func updateInformation() {
@@ -38,22 +101,4 @@ final class DetailsVC: UIViewController {
   fileprivate func navigateToParentController() {
     navigationController?.popViewController(animated: true)
   }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard segue.identifier == "EditPerson" else {
-      return
-    }
-    guard let destination = segue.destination as? BirthdaySelectionViewController else {
-      return
-    }
-    
-    guard let person = sender as? Person else {
-      return
-    }
-    
-    destination.personToEdit = person
-    
-  }
-  
-  
 }
