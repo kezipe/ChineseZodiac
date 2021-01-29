@@ -10,19 +10,97 @@ import UIKit
 
 final class BirthdaySelectionViewController: UIViewController {
 
-  @IBOutlet weak var zodiacImage: UIImageView!
-  @IBOutlet weak var zodiacLabel: UILabel!
-  @IBOutlet weak var datePicker: UIDatePicker!
+  lazy var zodiacImage: UIImageView = {
+    let iv = UIImageView()
+    iv.translatesAutoresizingMaskIntoConstraints = false
+    iv.contentMode = .scaleAspectFit
+    return iv
+  }()
+
+  lazy var zodiacLabel: UILabel = {
+    let label = UILabel()
+    if #available(iOS 13, *) {
+      label.textColor = .label
+    } else {
+      label.textColor = .black
+    }
+    label.textAlignment = .center
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+
+  lazy var datePicker: UIDatePicker = {
+    let datePicker = UIDatePicker()
+    datePicker.translatesAutoresizingMaskIntoConstraints = false
+    datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
+    return datePicker
+  }()
+
   fileprivate var isZodiacChosen = false
   
   var personToEdit: Person?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    configureViewBackgroundColor()
+    setupUI()
+    updateLabel()
     updateImage()
   }
+
+  private func setupUI() {
+    view.addSubview(zodiacImage)
+    view.addSubview(zodiacLabel)
+    view.addSubview(datePicker)
+    let multiplier: CGFloat = 1.0
+    if #available(iOS 11, *) {
+      NSLayoutConstraint.activate(
+        [
+          zodiacImage.topAnchor.constraint(
+            equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor,
+            multiplier: multiplier
+          ),
+          zodiacImage.leadingAnchor.constraint(
+              equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor,
+              multiplier: multiplier
+          ),
+          view.safeAreaLayoutGuide.trailingAnchor.constraint(
+              equalToSystemSpacingAfter: zodiacImage.trailingAnchor,
+              multiplier: multiplier
+          ),
+          zodiacLabel.topAnchor.constraint(
+            equalToSystemSpacingBelow: zodiacImage.bottomAnchor,
+            multiplier: multiplier
+          ),
+          zodiacLabel.centerXAnchor.constraint(
+              equalTo: zodiacImage.centerXAnchor
+          ),
+          datePicker.topAnchor.constraint(
+            equalToSystemSpacingBelow: zodiacLabel.bottomAnchor,
+            multiplier: multiplier
+          ),
+          datePicker.centerXAnchor.constraint(
+              equalTo: zodiacLabel.centerXAnchor
+          ),
+          view.safeAreaLayoutGuide.bottomAnchor.constraint(
+              equalToSystemSpacingBelow: datePicker.bottomAnchor,
+              multiplier: 1
+          )
+        ]
+      )
+    }
+  }
+
+  private func configureViewBackgroundColor() {
+    if #available(iOS 13, *) {
+      view.backgroundColor = .systemBackground
+    } else {
+      view.backgroundColor = .white
+    }
+  }
   
-  @IBAction func dateChanged(_ sender: Any) {
+  @objc
+  func dateChanged(_ sender: Any) {
     isZodiacChosen = true
     updateImage()
     updateLabel()

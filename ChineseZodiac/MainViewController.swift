@@ -167,7 +167,8 @@ final class MainViewController: UIViewController {
 
   @objc
   private func didTapAddPerson() {
-    print("Adding person")
+    let destination = BirthdaySelectionViewController()
+    navigationController?.pushViewController(destination, animated: true)
   }
   
   // MARK: Initializers
