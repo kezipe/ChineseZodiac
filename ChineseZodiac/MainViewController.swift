@@ -41,21 +41,6 @@ final class MainViewController: UIViewController {
     setupTableView()
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard checkSegueIdentifier(segue: segue) else {
-      return
-    }
-    guard let destination = segue.destination as? DetailsVC else {
-      return
-    }
-    
-    guard let row = sender as? Int else {
-      return
-    }
-    let person = dataSource.person(at: row)
-    destination.person = person
-  }
-  
   // MARK: Private Functions
   private func setupUI() {
     configureViewBackgroundColor()
@@ -170,17 +155,16 @@ final class MainViewController: UIViewController {
     tableView.reloadData()
   }
   
-  private func checkSegueIdentifier(segue: UIStoryboardSegue) -> Bool {
-    return segue.identifier == DETAILS_SEGUE_IDENTIFIER
-  }
-  
   // MARK: Initializers
 }
 
 // MARK: Person Present
 extension MainViewController: PersonPresenting {
   func didSelectPerson(at row: Int) {
-    performSegue(withIdentifier: DETAILS_SEGUE_IDENTIFIER, sender: row)
+    let person = dataSource.person(at: row)
+    let destination = DetailsVC()
+    destination.person = person
+    navigationController?.pushViewController(destination, animated: true)
   }
 }
 
