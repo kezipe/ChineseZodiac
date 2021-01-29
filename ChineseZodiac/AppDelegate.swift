@@ -13,10 +13,27 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
-  var dataManager: PersonDataManaging?
+  var dataManager = PersonDataManager.shared
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    dataManager = PersonDataManager.shared
+    window = UIWindow(frame: UIScreen.main.bounds)
+
+    let tabBarController = UITabBarController()
+
+    let zodiacTableViewController = MainViewController()
+    let zodiacNavigation = UINavigationController(
+        rootViewController: zodiacTableViewController
+    )
+
+    let matchCollectionViewController = MatchVC()
+    let matchNavigation = UINavigationController(
+        rootViewController: matchCollectionViewController
+    )
+
+    tabBarController.viewControllers = [zodiacNavigation, matchNavigation]
+    window?.rootViewController = tabBarController
+    window?.makeKeyAndVisible()
+
     return true
   }
   
