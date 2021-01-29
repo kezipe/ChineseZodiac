@@ -18,11 +18,10 @@ class Matcher {
   var shouldMatchContinue = false
   
   fileprivate func insertDummyPerson() {
-    let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context)
-    let p = Person.init(entity: entityDescription!, insertInto: nil)
-    p.zodiac = 13
-    p.name = ""
-    personsArray.append(p)
+    let newPerson = Person(context: PersistentController.shared.context)
+    newPerson.zodiac = 13
+    newPerson.name = ""
+    personsArray.append(newPerson)
   }
   
   init(personsArray: [Person]) {

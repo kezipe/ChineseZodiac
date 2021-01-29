@@ -45,7 +45,7 @@ final class PersonDataManager: NSObject {
     fetchRequest.sortDescriptors = getSortDescriptors(for: sort)
     controller = NSFetchedResultsController(
       fetchRequest: fetchRequest,
-      managedObjectContext: context,
+      managedObjectContext: PersistentController.shared.context,
       sectionNameKeyPath: nil,
       cacheName: nil
     )
@@ -124,18 +124,18 @@ final class PersonDataManager: NSObject {
 
 extension PersonDataManager: PersonDataManaging {
   func create(name: String, birthday: Date) {
-    let person = Person(context: context)
+    let person = Person(context: PersistentController.shared.context)
     person.created = Date()
     person.birthdate = birthday
     person.name = name
     person.zodiac = Int16(birthday.getZodiacRank())
-    ad.saveContext()
+    PersistentController.shared.saveContext()
     attempFetch()
   }
   
   func delete(_ person: Person) {
-    context.delete(person)
-    ad.saveContext()
+    PersistentController.shared.context.delete(person)
+    PersistentController.shared.saveContext()
     attempFetch()
   }
   

@@ -33,6 +33,7 @@
 		0A88F383251ED0D000735D5C /* ZodiacSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A88F382251ED0D000735D5C /* ZodiacSegmentedControl.swift */; };
 		0A8D2AD61F118F63007B8D64 /* PersonCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD51F118F63007B8D64 /* PersonCollectionCell.swift */; };
 		0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD71F119117007B8D64 /* MatchVC.swift */; };
+		0A95338425C3A83500F98F06 /* PersistentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95338325C3A83500F98F06 /* PersistentController.swift */; };
 		0AB4729C236521A200495C17 /* PersonDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4729B236521A200495C17 /* PersonDataManager.swift */; };
 		0AB68B65243E3B0D00C0DDDC /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB68B64243E3B0D00C0DDDC /* UIColor+Extension.swift */; };
 		0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */; };
@@ -85,6 +86,7 @@
 		0A88F382251ED0D000735D5C /* ZodiacSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZodiacSegmentedControl.swift; sourceTree = "<group>"; };
 		0A8D2AD51F118F63007B8D64 /* PersonCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCollectionCell.swift; sourceTree = "<group>"; };
 		0A8D2AD71F119117007B8D64 /* MatchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchVC.swift; sourceTree = "<group>"; };
+		0A95338325C3A83500F98F06 /* PersistentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentController.swift; sourceTree = "<group>"; };
 		0AB4729B236521A200495C17 /* PersonDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDataManager.swift; sourceTree = "<group>"; };
 		0AB68B64243E3B0D00C0DDDC /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				0AD4E2981EDDD22400A92F65 /* LaunchScreen.storyboard */,
 				0AD4E29B1EDDD22400A92F65 /* Info.plist */,
 				0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */,
+				0A95338325C3A83500F98F06 /* PersistentController.swift */,
 			);
 			path = ChineseZodiac;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				0A1463221F0C4B770043AA46 /* UIViewController+Extension.swift in Sources */,
 				0A1AB26824022085002EAAF3 /* Zodiac.swift in Sources */,
 				0A1463201F0B55440043AA46 /* DetailsVC.swift in Sources */,
+				0A95338425C3A83500F98F06 /* PersistentController.swift in Sources */,
 				0A1AB27024022CA3002EAAF3 /* MatchVCDelegate.swift in Sources */,
 				0A0BA1261F1C118F005D4567 /* Matcher.swift in Sources */,
 				0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */,
