@@ -58,6 +58,8 @@ final class MainViewController: UIViewController {
   
   // MARK: Private Functions
   private func setupUI() {
+    configureViewBackgroundColor()
+    configureNavigationTitle()
     view.addSubview(segmentedControl)
     view.addSubview(tableView)
     let multiplier: CGFloat = 1
@@ -129,6 +131,22 @@ final class MainViewController: UIViewController {
       )
     }
   }
+
+  private func configureViewBackgroundColor() {
+    if #available(iOS 13, *) {
+      view.backgroundColor = .systemBackground
+    } else {
+      view.backgroundColor = .white
+    }
+  }
+
+  private func configureNavigationTitle() {
+    navigationItem.title = "Chinese Zodiac"
+    if #available(iOS 11, *) {
+      navigationController?.navigationBar.prefersLargeTitles = true
+    }
+  }
+
 
   private func setupTableViewDelegate() {
     delegate.parentController = self
