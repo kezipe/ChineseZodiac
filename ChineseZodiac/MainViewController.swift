@@ -20,8 +20,7 @@ final class MainViewController: UIViewController {
   private lazy var tableView: UITableView = {
     let tv = UITableView()
     tv.translatesAutoresizingMaskIntoConstraints = false
-    let nib = UINib.init(nibName: "PersonCell", bundle: nil)
-    tv.register(nib, forCellReuseIdentifier: "PersonCell")
+    tv.register(PersonCell.self, forCellReuseIdentifier: "PersonCell")
     tv.delegate = delegate
     tv.dataSource = dataSource
     tv.rowHeight = 60
