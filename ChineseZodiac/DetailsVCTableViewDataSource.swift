@@ -26,44 +26,36 @@ class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
 
   let cellIdentifier = "DetailsTableRowID"
 
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(
+    _ tableView: UITableView, cellForRowAt indexPath: IndexPath
+  ) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(
         withIdentifier: cellIdentifier,
         for: indexPath
     )
-    configureText(for: cell, at: indexPath.row)
-    configureDetailText(for: cell, at: indexPath.row)
+    configureText(for: cell, at: indexPath.section)
     configureCellBackground(for: cell, at: indexPath.row)
     return cell
   }
   
   fileprivate func configureCellBackground(for cell: UITableViewCell, at row: Int) {
-    let background: UIColor?
-    if row % 2 == 0 {
-      if #available(iOS 13, *) {
-        background = UIColor.secondarySystemBackground
-      } else {
-        background = .secondarySystemBackgroundColor
-      }
+    let background: UIColor
+    if #available(iOS 13, *) {
+      background = .secondarySystemGroupedBackground
     } else {
-      if #available(iOS 13, *) {
-        background = UIColor.tertiarySystemBackground
-      } else {
-        background = .white
-      }
+      background = .white
     }
-    cell.backgroundColor = background?.withAlphaComponent(0.5)
+    cell.backgroundColor = background
   }
-  
-  fileprivate func configureText(for cell: UITableViewCell, at row: Int) {
-    let section = getRow(at: row)
-    let cellTextLabelText = section.rawValue
+
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    let section = getRow(at: section)
+    return section.rawValue
+  }
+
+  fileprivate func configureText(for cell: UITableViewCell, at section: Int) {
+    let section = getRow(at: section)
     cell.selectionStyle = .none
-    cell.textLabel?.text = cellTextLabelText
-  }
-  
-  fileprivate func configureDetailText(for cell: UITableViewCell, at row: Int) {
-    let section = getRow(at: row)
     guard let birthday = person?.birthdate else {
       return
     }
@@ -71,28 +63,28 @@ class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
     guard let zodiacName = person?.zodiacName else {
       return
     }
-    
+
     switch section {
     case .chineseBirthday:
-      cell.detailTextLabel?.numberOfLines = 0
-      cell.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
-      cell.detailTextLabel?.text = updateChineseBirthday(birthday)
+      cell.textLabel?.numberOfLines = 0
+      cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .subheadline)
+      cell.textLabel?.text = updateChineseBirthday(birthday)
     case .chineseYear:
-      cell.detailTextLabel?.text = updateAhYear(birthday)
+      cell.textLabel?.text = updateAhYear(birthday)
     case .birthday:
-      cell.detailTextLabel?.text = updateBirthday(birthday)
+      cell.textLabel?.text = updateBirthday(birthday)
     case .zodiacSign:
-      cell.detailTextLabel?.text = updateZodiac(zodiacName)
+      cell.textLabel?.text = updateZodiac(zodiacName)
     case .solarTerm:
-      cell.detailTextLabel?.text = updateSolarTerm(birthday)
+      cell.textLabel?.text = updateSolarTerm(birthday)
     case .stemBranch:
-      cell.detailTextLabel?.text = updateStemBranch(birthday)
+      cell.textLabel?.text = updateStemBranch(birthday)
     case .season:
-      cell.detailTextLabel?.text = updateSeason(birthday)
+      cell.textLabel?.text = updateSeason(birthday)
     case .lunarMonth:
-      cell.detailTextLabel?.text = updateLunarMonth(birthday)
+      cell.textLabel?.text = updateLunarMonth(birthday)
     case .fixedElement:
-      cell.detailTextLabel?.text = updateFixedTerm(birthday)
+      cell.textLabel?.text = updateFixedTerm(birthday)
     }
   }
   
@@ -103,6 +95,10 @@ class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 1
+  }
+
+  func numberOfSections(in tableView: UITableView) -> Int {
     return DetailsVCTableViewRows.allCases.count
   }
   

@@ -177,8 +177,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: PersonPresenting {
   func didSelectPerson(at row: Int) {
     let person = dataSource.person(at: row)
-    let destination = DetailsVC()
-    destination.person = person
+    let destination = DetailsVC(person: person)
     navigationController?.pushViewController(destination, animated: true)
   }
 }

@@ -9,32 +9,62 @@
 import UIKit
 
 final class DetailsVC: UIViewController {
-
-  var person: Person?
-
-  private lazy var tableViewDataSource = DetailsVCTableViewDataSource()
-
+  
+  let person: Person
+  
+  init(person: Person) {
+    self.person = person
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  private init() {
+    fatalError()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  private lazy var tableViewDataSource: DetailsVCTableViewDataSource = {
+    let dataSource = DetailsVCTableViewDataSource()
+    dataSource.person = person
+    return dataSource
+  }()
+  
   private lazy var tableView: UITableView = {
-    let tv = UITableView()
+    let tv: UITableView
+    if #available(iOS 13, *) {
+      tv = UITableView(frame: .zero, style: .insetGrouped)
+    } else {
+      tv = UITableView()
+    }
     tv.translatesAutoresizingMaskIntoConstraints = false
     tv.dataSource = tableViewDataSource
     tv.register(
-        UITableViewCell.self,
-        forCellReuseIdentifier: tableViewDataSource.cellIdentifier
+      UITableViewCell.self,
+      forCellReuseIdentifier: tableViewDataSource.cellIdentifier
     )
     return tv
   }()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
     updateInformation()
   }
-
+  
+  fileprivate func configureBackground() {
+    if #available(iOS 13, *) {
+      view.backgroundColor = .systemBackground
+    } else {
+      view.backgroundColor = .white
+    }
+  }
+  
   private func setupUI() {
-    view.backgroundColor = .white
+    configureBackground()
     view.addSubview(tableView)
-    let multiplier: CGFloat = 1
+    let multiplier: CGFloat = 0
     if #available(iOS 11.0, *) {
       NSLayoutConstraint.activate(
         [
@@ -81,9 +111,6 @@ final class DetailsVC: UIViewController {
   }
   
   fileprivate func updateInformation() {
-    guard let person = person else {
-      return
-    }
     guard let view = view as? DetailsView else {
       return
     }
@@ -92,10 +119,8 @@ final class DetailsVC: UIViewController {
   }
   
   @IBAction func deleteButtonPressed(_ sender: Any) {
-    if let person = person {
-      PersonDataManager.shared.delete(person)
-      navigateToParentController()
-    }
+    PersonDataManager.shared.delete(person)
+    navigateToParentController()
   }
   
   fileprivate func navigateToParentController() {
