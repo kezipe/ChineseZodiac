@@ -58,6 +58,7 @@ final class MatchVC: UIViewController {
     setupUI()
     configureBackgroundColor()
     setupButtonAction()
+    configureNavigationItems()
     let dataManager = PersonDataManager.shared
     dataSource.dataManager = dataManager
     collectionView.dataSource = dataSource
@@ -148,7 +149,19 @@ final class MatchVC: UIViewController {
   }
   
   private func setupButtonAction() {
-    matchButton.addTarget(self, action: #selector(matchButtonPressed), for: .touchUpInside)
+    matchButton.addTarget(
+        self,
+        action: #selector(matchButtonPressed),
+        for: .touchUpInside
+    )
+  }
+
+  private func configureNavigationItems() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+        title: "Deselect All",
+        style: .plain,
+        target:self, action: #selector(deselectAll)
+    )
   }
   
   @objc func matchButtonPressed() {
@@ -174,7 +187,8 @@ final class MatchVC: UIViewController {
     navigationController?.pushViewController(resultsVC, animated: true)
   }
   
-  @IBAction func deselectAll(_ sender: Any) {
+  @objc
+  func deselectAll(_ sender: Any) {
     dataSource.deselectAll()
     collectionView.reloadData()
     updateMatchButton()
