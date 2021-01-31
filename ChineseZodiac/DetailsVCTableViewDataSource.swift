@@ -22,7 +22,12 @@ enum DetailsVCTableViewRows: String, CaseIterable {
 
 class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
   
-  var person: Person?
+  let person: Person
+
+  init(person: Person) {
+    self.person = person
+    super.init()
+  }
 
   let cellIdentifier = "DetailsTableRowID"
 
@@ -56,13 +61,8 @@ class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
   fileprivate func configureText(for cell: UITableViewCell, at section: Int) {
     let section = getRow(at: section)
     cell.selectionStyle = .none
-    guard let birthday = person?.birthdate else {
-      return
-    }
-    
-    guard let zodiacName = person?.zodiacName else {
-      return
-    }
+    let birthday = person.birthdate
+    let zodiacName = person.zodiacName
 
     switch section {
     case .chineseBirthday:

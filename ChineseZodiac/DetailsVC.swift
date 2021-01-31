@@ -26,8 +26,7 @@ final class DetailsVC: UIViewController {
   }
   
   private lazy var tableViewDataSource: DetailsVCTableViewDataSource = {
-    let dataSource = DetailsVCTableViewDataSource()
-    dataSource.person = person
+    let dataSource = DetailsVCTableViewDataSource(person: person)
     return dataSource
   }()
   
@@ -111,11 +110,7 @@ final class DetailsVC: UIViewController {
   }
   
   fileprivate func updateInformation() {
-    guard let view = view as? DetailsView else {
-      return
-    }
     navigationItem.title = person.name
-    view.updateInformation(forPerson: person)
   }
   
   @IBAction func deleteButtonPressed(_ sender: Any) {

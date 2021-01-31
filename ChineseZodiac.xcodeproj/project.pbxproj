@@ -23,7 +23,6 @@
 		0A1AB26C2402269F002EAAF3 /* MatchVCDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB26B2402269F002EAAF3 /* MatchVCDataSource.swift */; };
 		0A1AB27024022CA3002EAAF3 /* MatchVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AB26F24022CA3002EAAF3 /* MatchVCDelegate.swift */; };
 		0A3B09F82406D31B00B53C0C /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B09F72406D31B00B53C0C /* Match.swift */; };
-		0A455BB924006A44008D13AD /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A455BB824006A44008D13AD /* DetailsView.swift */; };
 		0A5588072405E75400FD0885 /* MatchResultVCDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5588062405E75400FD0885 /* MatchResultVCDataSource.swift */; };
 		0A55880F2405F41900FD0885 /* ChineseZodiacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55880E2405F41900FD0885 /* ChineseZodiacTests.swift */; };
 		0A69F46D1EE3426C00A0176D /* BirthdaySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A69F46B1EE3426C00A0176D /* BirthdaySelectionViewController.swift */; };
@@ -73,7 +72,6 @@
 		0A1AB26B2402269F002EAAF3 /* MatchVCDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVCDataSource.swift; sourceTree = "<group>"; };
 		0A1AB26F24022CA3002EAAF3 /* MatchVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVCDelegate.swift; sourceTree = "<group>"; };
 		0A3B09F72406D31B00B53C0C /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
-		0A455BB824006A44008D13AD /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		0A5588062405E75400FD0885 /* MatchResultVCDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResultVCDataSource.swift; sourceTree = "<group>"; };
 		0A55880C2405F41900FD0885 /* ChineseZodiacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChineseZodiacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A55880E2405F41900FD0885 /* ChineseZodiacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseZodiacTests.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				0A1148BE23FF4CA70010C817 /* ZodiacTableViewDataSource.swift */,
 				0A1148C023FF530F0010C817 /* ZodiacTableViewDelegate.swift */,
 				0A14631F1F0B55440043AA46 /* DetailsVC.swift */,
-				0A455BB824006A44008D13AD /* DetailsView.swift */,
 				0A1042D2240D5F1700F2A913 /* DetailsVCTableViewDataSource.swift */,
 				0A69F46B1EE3426C00A0176D /* BirthdaySelectionViewController.swift */,
 				0A8D2AD71F119117007B8D64 /* MatchVC.swift */,
@@ -339,7 +336,6 @@
 				0A1AB26A240220BC002EAAF3 /* Person+Extensions.swift in Sources */,
 				0A1426E4251FB2E100192455 /* Person+CoreDataProperties.swift in Sources */,
 				0A0BA1211F1C0B3F005D4567 /* MatchResultCell.swift in Sources */,
-				0A455BB924006A44008D13AD /* DetailsView.swift in Sources */,
 				0A0BA11F1F1C0AEA005D4567 /* MatchResultVC.swift in Sources */,
 				0A1148BF23FF4CA70010C817 /* ZodiacTableViewDataSource.swift in Sources */,
 				0A88F383251ED0D000735D5C /* ZodiacSegmentedControl.swift in Sources */,
