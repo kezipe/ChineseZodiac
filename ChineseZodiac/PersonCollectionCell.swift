@@ -9,9 +9,64 @@
 import UIKit
 
 final class PersonCollectionCell: UICollectionViewCell {
-  @IBOutlet weak var zodiacImg: UIImageView!
-  @IBOutlet weak var nameLbl: UILabel!
-  @IBOutlet weak var checkMarkImg: UIImageView!  
+  private lazy var zodiacImage: UIImageView = {
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleAspectFit
+    NSLayoutConstraint.activate(
+      [
+        imageView.widthAnchor.constraint(equalToConstant: 32),
+        imageView.heightAnchor.constraint(equalToConstant: 32)
+      ]
+    )
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
+  }()
+
+  private lazy var nameLabel: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+
+  private lazy var checkMark: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = UIImage(named: "checkMark")
+    imageView.contentMode = .scaleAspectFit
+    NSLayoutConstraint.activate(
+      [
+        imageView.widthAnchor.constraint(equalToConstant: 24),
+        imageView.heightAnchor.constraint(equalToConstant: 24)
+      ]
+    )
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
+  }()
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupUI()
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  private func setupUI() {
+    addSubview(zodiacImage)
+    addSubview(nameLabel)
+    addSubview(checkMark)
+    let multiplier: CGFloat = 1.0
+    NSLayoutConstraint.activate(
+      [
+        zodiacImage.topAnchor.constraint(equalTo: topAnchor),
+        zodiacImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+        nameLabel.topAnchor.constraint(equalTo: zodiacImage.bottomAnchor, constant: 8 * multiplier),
+        nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+        checkMark.centerYAnchor.constraint(equalTo: zodiacImage.topAnchor),
+        checkMark.centerXAnchor.constraint(equalTo: zodiacImage.trailingAnchor)
+      ]
+    )
+  }
 
   func configureCell(person: Person, isSelected: Bool) {
     configureNameLabel(person)
@@ -21,13 +76,13 @@ final class PersonCollectionCell: UICollectionViewCell {
   }
   
   fileprivate func configureNameLabel(_ person: Person) {
-    nameLbl.text = person.name
+    nameLabel.text = person.name
   }
   
   fileprivate func configureImage(_ person: Person) {
     let imageName = person.zodiacSign.rawValue.capitalized + "_thumb"
     if let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate) {
-      zodiacImg.image = image
+      zodiacImage.image = image
     }
   }
   
@@ -41,22 +96,22 @@ final class PersonCollectionCell: UICollectionViewCell {
   
   func highlightPerson() {
     if #available(iOS 13, *) {
-      zodiacImg.tintColor = .label
+      zodiacImage.tintColor = .label
     } else {
-      zodiacImg.tintColor = .black
+      zodiacImage.tintColor = .black
     }
   }
   
   func dehighlightPerson() {
     if #available(iOS 13, *) {
-      zodiacImg.tintColor = .secondaryLabel
+      zodiacImage.tintColor = .secondaryLabel
     } else {
-      zodiacImg.tintColor = .gray
+      zodiacImage.tintColor = .gray
     }
   }
   
   fileprivate func configureCheckMark(_ isSelected: Bool) {
-    checkMarkImg.image = checkMarkImg.image?.withRenderingMode(.alwaysTemplate)
-    checkMarkImg.isHidden = !isSelected
+    checkMark.image = checkMark.image?.withRenderingMode(.alwaysTemplate)
+    checkMark.isHidden = !isSelected
   }
 }

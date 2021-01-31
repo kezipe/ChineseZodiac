@@ -15,13 +15,24 @@ enum MatchButtonState: String {
   case matchSelected
 }
 
-final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
+final class MatchVC: UIViewController {
   private lazy var collectionView: UICollectionView = {
     let collectionViewLayout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView(
       frame: .zero,
       collectionViewLayout: collectionViewLayout
     )
+    if #available(iOS 13, *) {
+      collectionView.backgroundColor = .systemBackground
+    } else {
+      collectionView.backgroundColor = .white
+    }
+    collectionView.register(
+        PersonCollectionCell.self,
+        forCellWithReuseIdentifier: "PersonCollectionCell"
+    )
+    collectionView.delegate = delegate
+    collectionView.dataSource = dataSource
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     return collectionView
   }()
@@ -45,6 +56,7 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
+    configureBackgroundColor()
     setupButtonAction()
     let dataManager = PersonDataManager.shared
     dataSource.dataManager = dataManager
@@ -89,7 +101,7 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
             multiplier: 1
           ),
           view.safeAreaLayoutGuide.trailingAnchor.constraint(
-            equalToSystemSpacingAfter: matchButton.leadingAnchor,
+            equalToSystemSpacingAfter: matchButton.trailingAnchor,
             multiplier: 1
           ),
           view.safeAreaLayoutGuide.bottomAnchor.constraint(
@@ -124,6 +136,14 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
           )
         ]
       )
+    }
+  }
+
+  private func configureBackgroundColor() {
+    if #available(iOS 13, *) {
+      view.backgroundColor = .systemBackground
+    } else {
+      view.backgroundColor = .white
     }
   }
   
@@ -213,14 +233,22 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   fileprivate func enableMatchButton() {
     matchButton.isEnabled = true
     UIView.animate(withDuration: 0.5) {
-      self.matchButton.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+      if #available(iOS 11.0, *) {
+        self.matchButton.backgroundColor = UIColor(named: "AccentColor")
+      } else {
+        self.matchButton.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+      }
     }
   }
   
   fileprivate func disableMatchButton() {
     matchButton.isEnabled = false
     UIView.animate(withDuration: 0.5) {
-      self.matchButton.backgroundColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+      if #available(iOS 11.0, *) {
+        self.matchButton.backgroundColor = UIColor(named: "ChineseZodiacDisabled")
+      } else {
+        self.matchButton.backgroundColor = UIColor.gray
+      }
     }
   }
   
@@ -235,7 +263,6 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     let cell = collectionView.cellForItem(at: indexPath) as! PersonCollectionCell
     cell.dehighlightPerson()
   }
-
 }
 
 extension MatchVC: PersonSelecting {

@@ -21,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     dataManager = PersonDataManager.shared
     window = UIWindow(frame: UIScreen.main.bounds)
+    if #available(iOS 11.0, *) {
+      window?.tintColor = UIColor(named: "AccentColor")
+    } else {
+      window?.tintColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+    }
 
     let tabBarController = UITabBarController()
 

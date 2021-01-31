@@ -67,10 +67,12 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return numberOfItems
   }
-  
+
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {    
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER,
-                                                        for: indexPath) as? PersonCollectionCell else {
+    guard let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: "PersonCollectionCell",
+      for: indexPath
+    ) as? PersonCollectionCell else {
       fatalError("Cannot dequeue or cast UITableView as \"PersonColCell\"")
     }
     let personAtIndexPath = person(at: indexPath.item)
@@ -89,8 +91,8 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     }
     
     if let person = userInfo["person"] as? Person,
-      let action = userInfo["action"] as? String,
-    action == "delete" {
+       let action = userInfo["action"] as? String,
+       action == "delete" {
       selectedPersons.remove(person)
     }
   }

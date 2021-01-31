@@ -33,8 +33,6 @@
 		0A8D2AD81F119117007B8D64 /* MatchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D2AD71F119117007B8D64 /* MatchVC.swift */; };
 		0A95338425C3A83500F98F06 /* PersistentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A95338325C3A83500F98F06 /* PersistentController.swift */; };
 		0AB4729C236521A200495C17 /* PersonDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4729B236521A200495C17 /* PersonDataManager.swift */; };
-		0AB68B65243E3B0D00C0DDDC /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB68B64243E3B0D00C0DDDC /* UIColor+Extension.swift */; };
-		0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */; };
 		0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACBF6FA1EE357B00075A523 /* Extensions.swift */; };
 		0AD4E28D1EDDD22400A92F65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */; };
 		0AD4E2921EDDD22400A92F65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AD4E2901EDDD22400A92F65 /* Main.storyboard */; };
@@ -84,8 +82,6 @@
 		0A8D2AD71F119117007B8D64 /* MatchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchVC.swift; sourceTree = "<group>"; };
 		0A95338325C3A83500F98F06 /* PersistentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentController.swift; sourceTree = "<group>"; };
 		0AB4729B236521A200495C17 /* PersonDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDataManager.swift; sourceTree = "<group>"; };
-		0AB68B64243E3B0D00C0DDDC /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		0ACBF6FA1EE357B00075A523 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0AD4E2891EDDD22400A92F65 /* ChineseZodiac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseZodiac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,8 +146,6 @@
 				0AFA44B9240E054400126213 /* PersonLabel.swift */,
 				0AFA44B3240DD7A400126213 /* MatchResultView.swift */,
 				0A1463211F0C4B770043AA46 /* UIViewController+Extension.swift */,
-				0ABCD1141F0EE62E009EC483 /* UIViewExtension.swift */,
-				0AB68B64243E3B0D00C0DDDC /* UIColor+Extension.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -329,10 +323,8 @@
 				0A1148C523FF8A370010C817 /* Protocols.swift in Sources */,
 				0ACBF6FB1EE357B00075A523 /* Extensions.swift in Sources */,
 				0A69F4701EE3428F00A0176D /* MainViewController.swift in Sources */,
-				0ABCD1151F0EE62E009EC483 /* UIViewExtension.swift in Sources */,
 				0AD4E2951EDDD22400A92F65 /* ChineseZodiac.xcdatamodeld in Sources */,
 				0A7A55C81EE3628B00BAA05B /* PersonCell.swift in Sources */,
-				0AB68B65243E3B0D00C0DDDC /* UIColor+Extension.swift in Sources */,
 				0A1AB26A240220BC002EAAF3 /* Person+Extensions.swift in Sources */,
 				0A1426E4251FB2E100192455 /* Person+CoreDataProperties.swift in Sources */,
 				0A0BA1211F1C0B3F005D4567 /* MatchResultCell.swift in Sources */,
