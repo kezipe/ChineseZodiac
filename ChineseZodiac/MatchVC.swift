@@ -16,15 +16,35 @@ enum MatchButtonState: String {
 }
 
 final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
-  @IBOutlet weak var collectionView: UICollectionView!
-  @IBOutlet weak var matchButton: UIButton!
-  
+  private lazy var collectionView: UICollectionView = {
+    let collectionViewLayout = UICollectionViewFlowLayout()
+    let collectionView = UICollectionView(
+      frame: .zero,
+      collectionViewLayout: collectionViewLayout
+    )
+    collectionView.translatesAutoresizingMaskIntoConstraints = false
+    return collectionView
+  }()
+
+  private lazy var matchButton: UIButton = {
+    let button = UIButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.titleLabel?.text = "Match"
+    NSLayoutConstraint.activate(
+      [
+        button.heightAnchor.constraint(equalToConstant: 44)
+      ]
+    )
+    return button
+  }()
+
   fileprivate lazy var dataSource = MatchVCDataSource()
   fileprivate lazy var delegate = MatchVCDelegate()
   private var matchButtonState = MatchButtonState.matchAll
-    
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupUI()
     setupButtonAction()
     let dataManager = PersonDataManager.shared
     dataSource.dataManager = dataManager
@@ -37,6 +57,74 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     self.collectionView.reloadData()
     self.updateMatchButton()
     self.updateDeselectAllButton()
+  }
+
+  private func setupUI() {
+    view.addSubview(collectionView)
+    view.addSubview(matchButton)
+    let multiplier: CGFloat = 1.0
+    NSLayoutConstraint.activate(
+      [
+        matchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+      ]
+    )
+    if #available(iOS 11, *) {
+      NSLayoutConstraint.activate(
+        [
+          collectionView.topAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.topAnchor
+          ),
+          collectionView.leadingAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.leadingAnchor
+          ),
+          view.safeAreaLayoutGuide.trailingAnchor.constraint(
+            equalTo: collectionView.trailingAnchor
+          ),
+          matchButton.topAnchor.constraint(
+            equalToSystemSpacingBelow: collectionView.bottomAnchor,
+            multiplier: 1
+          ),
+          matchButton.leadingAnchor.constraint(
+            equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor,
+            multiplier: 1
+          ),
+          view.safeAreaLayoutGuide.trailingAnchor.constraint(
+            equalToSystemSpacingAfter: matchButton.leadingAnchor,
+            multiplier: 1
+          ),
+          view.safeAreaLayoutGuide.bottomAnchor.constraint(
+            equalToSystemSpacingBelow: matchButton.bottomAnchor,
+            multiplier: 1
+          )
+        ]
+      )
+    } else {
+      NSLayoutConstraint.activate(
+        [
+          collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+          collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+          view.trailingAnchor.constraint(
+            equalTo: collectionView.trailingAnchor
+          ),
+          matchButton.topAnchor.constraint(
+            equalTo: collectionView.bottomAnchor,
+            constant: 8 * multiplier
+          ),
+          matchButton.leadingAnchor.constraint(
+            equalTo: view.leadingAnchor,
+            constant: 8 * multiplier
+          ),
+          view.trailingAnchor.constraint(
+            equalTo: matchButton.trailingAnchor,
+            constant: 8 * multiplier
+          ),
+          view.bottomAnchor.constraint(
+            equalTo: matchButton.bottomAnchor,
+            constant: 8 * multiplier
+          )
+        ]
+      )
+    }
   }
   
   private func setupButtonAction() {
