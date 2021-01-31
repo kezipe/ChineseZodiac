@@ -28,11 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let zodiacNavigation = UINavigationController(
         rootViewController: zodiacTableViewController
     )
+    let tabBarItemImageList = UIImage(named: "Tab Bar Icon 0 Wide")
+    zodiacNavigation.tabBarItem = .init(title: "List", image: tabBarItemImageList, tag: 0)
 
     let matchCollectionViewController = MatchVC()
     let matchNavigation = UINavigationController(
         rootViewController: matchCollectionViewController
     )
+    let tabBarItemImageMatch = UIImage(named: "Tab Bar Icon 1 Wide")
+    matchNavigation.tabBarItem = .init(title: "Match", image: tabBarItemImageMatch, tag: 0)
 
     tabBarController.viewControllers = [zodiacNavigation, matchNavigation]
     window?.rootViewController = tabBarController
