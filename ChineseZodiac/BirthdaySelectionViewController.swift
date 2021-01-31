@@ -14,6 +14,7 @@ final class BirthdaySelectionViewController: UIViewController {
     let iv = UIImageView()
     iv.translatesAutoresizingMaskIntoConstraints = false
     iv.contentMode = .scaleAspectFit
+    iv.heightAnchor.constraint(equalToConstant: 60).isActive = true
     return iv
   }()
 
@@ -29,14 +30,50 @@ final class BirthdaySelectionViewController: UIViewController {
     return label
   }()
 
+  lazy var selectBirthdayLabel: UILabel = {
+    let label = UILabel()
+    if #available(iOS 13, *) {
+      label.textColor = .label
+    } else {
+      label.textColor = .black
+    }
+    label.text = "Select a birthday"
+    label.textAlignment = .center
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+
   lazy var datePicker: UIDatePicker = {
     let datePicker = UIDatePicker()
     if #available(iOS 13.4, *) {
       datePicker.preferredDatePickerStyle = .wheels
     }
+    datePicker.datePickerMode = .date
     datePicker.translatesAutoresizingMaskIntoConstraints = false
-    datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
+    datePicker.heightAnchor.constraint(
+        greaterThanOrEqualToConstant: 120
+    ).isActive = true
+    datePicker.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+    datePicker.addTarget(
+        self,
+        action: #selector(dateChanged),
+        for: .valueChanged
+    )
     return datePicker
+  }()
+
+  lazy var saveToListButton: UIButton = {
+    let button = UIButton()
+    button.setTitle("Save to List", for: .normal)
+    button.backgroundColor = .accentColor
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.addTarget(self, action: #selector(saveZodiac), for: .touchUpInside)
+    NSLayoutConstraint.activate(
+      [
+        button.heightAnchor.constraint(equalToConstant: 44)
+      ]
+    )
+    return button
   }()
 
   fileprivate var isZodiacChosen = false
@@ -55,38 +92,61 @@ final class BirthdaySelectionViewController: UIViewController {
     view.addSubview(zodiacImage)
     view.addSubview(zodiacLabel)
     view.addSubview(datePicker)
+    view.addSubview(selectBirthdayLabel)
+    view.addSubview(saveToListButton)
     let multiplier: CGFloat = 1.0
+    NSLayoutConstraint.activate(
+      [
+        selectBirthdayLabel.centerXAnchor.constraint(equalTo: zodiacImage.centerXAnchor)
+      ]
+    )
     if #available(iOS 11, *) {
       NSLayoutConstraint.activate(
         [
           zodiacImage.topAnchor.constraint(
             equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor,
-            multiplier: multiplier
+            multiplier: multiplier * 4
           ),
           zodiacImage.leadingAnchor.constraint(
               equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor,
-              multiplier: multiplier
+              multiplier: multiplier * 4
           ),
           view.safeAreaLayoutGuide.trailingAnchor.constraint(
               equalToSystemSpacingAfter: zodiacImage.trailingAnchor,
-              multiplier: multiplier
+              multiplier: multiplier * 4
           ),
           zodiacLabel.topAnchor.constraint(
             equalToSystemSpacingBelow: zodiacImage.bottomAnchor,
-            multiplier: multiplier
+            multiplier: multiplier * 2
           ),
           zodiacLabel.centerXAnchor.constraint(
               equalTo: zodiacImage.centerXAnchor
           ),
+          selectBirthdayLabel.topAnchor.constraint(
+              equalToSystemSpacingBelow: zodiacLabel.bottomAnchor,
+              multiplier: multiplier * 2
+          ),
           datePicker.topAnchor.constraint(
-            equalToSystemSpacingBelow: zodiacLabel.bottomAnchor,
+            equalToSystemSpacingBelow: selectBirthdayLabel.bottomAnchor,
             multiplier: multiplier
           ),
           datePicker.centerXAnchor.constraint(
               equalTo: zodiacLabel.centerXAnchor
           ),
+          saveToListButton.topAnchor.constraint(
+            equalToSystemSpacingBelow: datePicker.bottomAnchor,
+            multiplier: multiplier
+          ),
+          saveToListButton.leadingAnchor.constraint(
+              equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor,
+              multiplier: multiplier
+          ),
+          view.safeAreaLayoutGuide.trailingAnchor.constraint(
+              equalToSystemSpacingAfter: saveToListButton.trailingAnchor,
+              multiplier: multiplier
+          ),
           view.safeAreaLayoutGuide.bottomAnchor.constraint(
-              equalToSystemSpacingBelow: datePicker.bottomAnchor,
+              equalToSystemSpacingBelow: saveToListButton.bottomAnchor,
               multiplier: 1
           )
         ]
@@ -129,6 +189,7 @@ final class BirthdaySelectionViewController: UIViewController {
     saveZodiac()
   }
   
+  @objc
   fileprivate func saveZodiac() {
     let alertController: UIAlertController
     if isZodiacChosen {

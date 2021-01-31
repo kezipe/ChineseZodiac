@@ -247,11 +247,7 @@ final class MatchVC: UIViewController {
   fileprivate func enableMatchButton() {
     matchButton.isEnabled = true
     UIView.animate(withDuration: 0.5) {
-      if #available(iOS 11.0, *) {
-        self.matchButton.backgroundColor = UIColor(named: "AccentColor")
-      } else {
-        self.matchButton.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
-      }
+      self.matchButton.backgroundColor = .accentColor
     }
   }
   
