@@ -31,6 +31,9 @@ final class BirthdaySelectionViewController: UIViewController {
 
   lazy var datePicker: UIDatePicker = {
     let datePicker = UIDatePicker()
+    if #available(iOS 13.4, *) {
+      datePicker.preferredDatePickerStyle = .wheels
+    }
     datePicker.translatesAutoresizingMaskIntoConstraints = false
     datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     return datePicker
