@@ -46,6 +46,11 @@ final class MatchVC: UIViewController {
         button.heightAnchor.constraint(equalToConstant: 44)
       ]
     )
+    button.addTarget(
+        self,
+        action: #selector(matchButtonPressed),
+        for: .touchUpInside
+    )
     return button
   }()
 
@@ -57,7 +62,6 @@ final class MatchVC: UIViewController {
     super.viewDidLoad()
     setupUI()
     configureBackgroundColor()
-    setupButtonAction()
     configureNavigationItems()
     let dataManager = PersonDataManager.shared
     dataSource.dataManager = dataManager
@@ -146,14 +150,6 @@ final class MatchVC: UIViewController {
     } else {
       view.backgroundColor = .white
     }
-  }
-  
-  private func setupButtonAction() {
-    matchButton.addTarget(
-        self,
-        action: #selector(matchButtonPressed),
-        for: .touchUpInside
-    )
   }
 
   private func configureNavigationItems() {

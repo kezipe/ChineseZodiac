@@ -31,11 +31,6 @@ final class MatchResultVC: UIViewController {
   override func viewWillDisappear(_ animated: Bool) {
     dataSource.stopMatchUp()
   }
-
-  @IBAction func backButtonPresed(_ sender: Any) {
-    navigationController?.popViewController(animated: true)
-  }
-  
 }
 
 extension MatchResultVC: PersonsReceivable {
