@@ -35,6 +35,16 @@ class Matcher {
   func stopMatchUp() {
     shouldMatchContinue = false
   }
+
+  func removeDummyPerson() {
+    let dummyPerson = personsArray.first {
+      $0.zodiac == 13
+    }
+    if let dummyPerson = dummyPerson {
+      let context = PersistentController.shared.context
+      context.delete(dummyPerson)
+    }
+  }
   
   func findBestMatches() -> [Match] {
     shouldMatchContinue = true

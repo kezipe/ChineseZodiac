@@ -9,6 +9,12 @@
 import UIKit
 
 class MatchVCDelegate: NSObject, UICollectionViewDelegateFlowLayout {
+  private let sectionInsets = UIEdgeInsets(
+      top: 20,
+      left: 20,
+      bottom: 20,
+      right: 20
+  )
   weak var parentController: PersonSelecting?
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -21,6 +27,14 @@ class MatchVCDelegate: NSObject, UICollectionViewDelegateFlowLayout {
     insetForSectionAt
       section: Int
   ) -> UIEdgeInsets {
-    .init(top: 8, left: 8, bottom: 8, right: 8)
+    sectionInsets
+  }
+
+  func collectionView(
+      _ collectionView: UICollectionView,
+      layout collectionViewLayout: UICollectionViewLayout,
+      sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
+    .init(width: 55, height: 99)
   }
 }

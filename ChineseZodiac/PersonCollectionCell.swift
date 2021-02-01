@@ -12,12 +12,6 @@ final class PersonCollectionCell: UICollectionViewCell {
   private lazy var zodiacImage: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = .scaleAspectFit
-    NSLayoutConstraint.activate(
-      [
-        imageView.widthAnchor.constraint(equalToConstant: 32),
-        imageView.heightAnchor.constraint(equalToConstant: 32)
-      ]
-    )
     imageView.translatesAutoresizingMaskIntoConstraints = false
     return imageView
   }()
@@ -32,26 +26,20 @@ final class PersonCollectionCell: UICollectionViewCell {
     let imageView = UIImageView()
     imageView.image = UIImage(named: "checkMark")
     imageView.contentMode = .scaleAspectFit
-    NSLayoutConstraint.activate(
-      [
-        imageView.widthAnchor.constraint(equalToConstant: 24),
-        imageView.heightAnchor.constraint(equalToConstant: 24)
-      ]
-    )
     imageView.translatesAutoresizingMaskIntoConstraints = false
     return imageView
   }()
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupUI()
+    setupUI(frame: frame)
   }
 
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  private func setupUI() {
+  private func setupUI(frame: CGRect) {
     addSubview(zodiacImage)
     addSubview(nameLabel)
     addSubview(checkMark)
@@ -60,10 +48,14 @@ final class PersonCollectionCell: UICollectionViewCell {
       [
         zodiacImage.topAnchor.constraint(equalTo: topAnchor),
         zodiacImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+        zodiacImage.widthAnchor.constraint(equalToConstant: frame.width),
+        zodiacImage.heightAnchor.constraint(equalToConstant: frame.width),
         nameLabel.topAnchor.constraint(equalTo: zodiacImage.bottomAnchor, constant: 8 * multiplier),
         nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
         checkMark.centerYAnchor.constraint(equalTo: zodiacImage.topAnchor),
-        checkMark.centerXAnchor.constraint(equalTo: zodiacImage.trailingAnchor)
+        checkMark.centerXAnchor.constraint(equalTo: zodiacImage.trailingAnchor),
+        checkMark.widthAnchor.constraint(equalToConstant: frame.width / 8),
+        checkMark.heightAnchor.constraint(equalToConstant: frame.width / 8),
       ]
     )
   }
