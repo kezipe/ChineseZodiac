@@ -30,6 +30,7 @@ final class MatchResultVC: UIViewController {
   
   override func viewWillDisappear(_ animated: Bool) {
     dataSource.stopMatchUp()
+    dataSource.removeDummyPerson()
   }
 }
 

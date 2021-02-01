@@ -27,6 +27,10 @@ class MatchResultVCDataSource: NSObject, UITableViewDataSource {
   func stopMatchUp() {
     matcher?.stopMatchUp()
   }
+
+  func removeDummyPerson() {
+    matcher?.removeDummyPerson()
+  }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let match = matchResults[indexPath.row]
