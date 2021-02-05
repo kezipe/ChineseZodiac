@@ -184,8 +184,11 @@ final class MatchVC: UIViewController {
   
   @objc
   func deselectAll(_ sender: Any) {
+    let itemsToUpdate = dataSource.indicesOfSelectedPeople.map {
+      IndexPath(item: $0, section: 0)
+    }
     dataSource.deselectAll()
-    collectionView.reloadData()
+    collectionView.reloadItems(at: itemsToUpdate)
     updateMatchButton()
     updateDeselectAllButton()
   }

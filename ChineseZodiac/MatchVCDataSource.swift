@@ -37,6 +37,12 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   func person(at item: Int) -> Person {
     dataManager.fetch(at: IndexPath(item: item, section: 0))
   }
+
+  var indicesOfSelectedPeople: [Int] {
+    selectedPersons.compactMap(
+      dataManager.allPeople.firstIndex(of:)
+    )
+  }
   
   func isSelectionLegal() -> Bool {
     return numberOfSelectedItems <= MAX_MATCHING_PEOPLE && numberOfSelectedItems > 1
@@ -54,11 +60,11 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
       selectedPersons.insert(tappedPerson)
     }
   }
-  
+
   func deselectAll() {
     selectedPersons.removeAll()
   }
-  
+
   func isPersonSelected(at item: Int) -> Bool {
     let personToQuery = person(at: item)
     return selectedPersons.contains(personToQuery)
