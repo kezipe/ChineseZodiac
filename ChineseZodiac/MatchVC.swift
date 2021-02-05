@@ -172,9 +172,8 @@ final class MatchVC: UIViewController {
   }
   
   fileprivate func createNewPerson() {
-    let BIRTHDAY_SELECTION_VIEW = "BirthdaySelectionView"
-    let birthdaySelectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: BIRTHDAY_SELECTION_VIEW)
-    navigationController?.pushViewController(birthdaySelectionViewController, animated: true)
+    let birthdaySelectionVC = BirthdaySelectionViewController()
+    navigationController?.pushViewController(birthdaySelectionVC, animated: true)
   }
   
   fileprivate func match() {

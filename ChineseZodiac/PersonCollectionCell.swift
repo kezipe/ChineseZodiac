@@ -24,7 +24,11 @@ final class PersonCollectionCell: UICollectionViewCell {
 
   private lazy var checkMark: UIImageView = {
     let imageView = UIImageView()
-    imageView.image = UIImage(named: "checkMark")
+    if #available(iOS 13, *) {
+      imageView.image = UIImage(systemName: "checkmark.circle.fill")
+    } else {
+      imageView.image = UIImage(named: "checkMark")
+    }
     imageView.contentMode = .scaleAspectFit
     imageView.translatesAutoresizingMaskIntoConstraints = false
     return imageView
@@ -54,8 +58,8 @@ final class PersonCollectionCell: UICollectionViewCell {
         nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
         checkMark.centerYAnchor.constraint(equalTo: zodiacImage.topAnchor),
         checkMark.centerXAnchor.constraint(equalTo: zodiacImage.trailingAnchor),
-        checkMark.widthAnchor.constraint(equalToConstant: frame.width / 8),
-        checkMark.heightAnchor.constraint(equalToConstant: frame.width / 8),
+        checkMark.widthAnchor.constraint(equalToConstant: 18),
+        checkMark.heightAnchor.constraint(equalToConstant: 18)
       ]
     )
   }
