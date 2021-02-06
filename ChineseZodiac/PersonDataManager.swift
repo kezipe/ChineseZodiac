@@ -156,7 +156,10 @@ extension PersonDataManager: NSFetchedResultsControllerDelegate {
     for type: NSFetchedResultsChangeType,
     newIndexPath: IndexPath?
   ) {
-    let personAffected = anObject as! Person
+    guard let personAffected = anObject as? Person,
+          personAffected.zodiacSign != .alone else {
+        return
+    }
     var userInfo: [AnyHashable: Any] = [
       "person": personAffected
     ]
