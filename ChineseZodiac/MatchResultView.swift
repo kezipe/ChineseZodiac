@@ -15,6 +15,7 @@ final class MatchResultView: UIView {
   fileprivate var tableView: UITableView = {
     let tableView = UITableView()
     tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.allowsSelection = false
     return tableView
   }()
   
