@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 enum MatchError: Error {
-  case matchDiscountinued
+  case matchDiscontinued
 }
 
 class Matcher {
@@ -52,7 +52,7 @@ class Matcher {
       let pairedPersons = try pair(personsArray)
       let bestScenario = try findBestScenario(pairedPersons)
       return bestScenario
-    } catch MatchError.matchDiscountinued {
+    } catch MatchError.matchDiscontinued {
       print("Match cancelled")
       return []
     } catch {
@@ -62,7 +62,7 @@ class Matcher {
   
   fileprivate func pair(_ arr: [Person]) throws -> [[Person]] {
     guard shouldMatchContinue else {
-      throw MatchError.matchDiscountinued
+      throw MatchError.matchDiscontinued
     }
     var bigA = [[Person]]()
     if arr.count == 2 {
@@ -76,8 +76,8 @@ class Matcher {
       
       do {
         list = try pair(rest)
-      } catch MatchError.matchDiscountinued {
-        throw MatchError.matchDiscountinued
+      } catch MatchError.matchDiscontinued {
+        throw MatchError.matchDiscontinued
       } catch {
         fatalError("Unknown error: \(error.localizedDescription)")
       }
@@ -104,7 +104,7 @@ class Matcher {
       
       for j in stride(from: 0, to: pairedPersons[0].count - 1, by: 2) {
         guard shouldMatchContinue else {
-          throw MatchError.matchDiscountinued
+          throw MatchError.matchDiscontinued
         }
         let person1 = pairedPersons[i][j]
         let person2 = pairedPersons[i][j + 1]
