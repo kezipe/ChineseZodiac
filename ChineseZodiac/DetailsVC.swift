@@ -59,9 +59,18 @@ final class DetailsVC: UIViewController {
       view.backgroundColor = .white
     }
   }
+
+  fileprivate func configureNavigationItems() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+      barButtonSystemItem: .trash,
+      target: self,
+      action: #selector(deleteButtonPressed(_:))
+    )
+  }
   
   private func setupUI() {
     configureBackground()
+    configureNavigationItems()
     view.addSubview(tableView)
     let multiplier: CGFloat = 0
     if #available(iOS 11.0, *) {
@@ -113,7 +122,7 @@ final class DetailsVC: UIViewController {
     navigationItem.title = person.name
   }
   
-  @IBAction func deleteButtonPressed(_ sender: Any) {
+  @objc func deleteButtonPressed(_ sender: Any) {
     PersonDataManager.shared.delete(person)
     navigateToParentController()
   }
