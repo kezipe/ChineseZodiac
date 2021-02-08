@@ -8,14 +8,13 @@
 
 import UIKit
 
-
 final class MainViewController: UIViewController {
   // MARK: Private Types
   // MARK: API Variables
   // MARK: Private Variables
   private lazy var delegate = ZodiacTableViewDelegate()
   private lazy var dataSource = ZodiacTableViewDataSource()
-  private let DETAILS_SEGUE_IDENTIFIER = "showDetailsVC"
+  private var pendingOperations: [IndexPath: BlockOperation] = [:]
   
   private lazy var tableView: UITableView = {
     let tv = UITableView()
@@ -39,6 +38,13 @@ final class MainViewController: UIViewController {
     setupNavigationBar()
     setupUI()
     setupTableView()
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    pendingOperations.forEach {
+      $0.value.start()
+    }
   }
 
   // MARK: Private Functions
@@ -191,14 +197,40 @@ extension MainViewController: PersonDeleting {
 
 extension MainViewController: PersonDataUpdating {
   func delete(at indexPath: IndexPath) {
-    tableView.beginUpdates()
-    tableView.deleteRows(at: [indexPath], with: .automatic)
-    tableView.endUpdates()
+    let deleteOperation = {
+      DispatchQueue.main.async { [weak self] in
+        self?.tableView.beginUpdates()
+        self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+        self?.tableView.endUpdates()
+      }
+    }
+    let deleteBlockOperation = BlockOperation(block: deleteOperation)
+    deleteBlockOperation.completionBlock = {
+      self.pendingOperations.removeValue(forKey: indexPath)
+    }
+    if let window = tableView.window, window.isKeyWindow {
+      deleteBlockOperation.start()
+    } else {
+      pendingOperations[indexPath] = deleteBlockOperation
+    }
   }
   
   func insert(at indexPath: IndexPath) {
-    tableView.beginUpdates()
-    tableView.insertRows(at: [indexPath], with: .automatic)
-    tableView.endUpdates()
+    let insertOperation = {
+      DispatchQueue.main.async { [weak self] in
+        self?.tableView.beginUpdates()
+        self?.tableView.insertRows(at: [indexPath], with: .automatic)
+        self?.tableView.endUpdates()
+      }
+    }
+    let insertBlockOperation = BlockOperation(block: insertOperation)
+    insertBlockOperation.completionBlock = {
+      self.pendingOperations.removeValue(forKey: indexPath)
+    }
+    if let window = tableView.window, window.isKeyWindow {
+      insertBlockOperation.start()
+    } else {
+      pendingOperations[indexPath] = insertBlockOperation
+    }
   }
 }
