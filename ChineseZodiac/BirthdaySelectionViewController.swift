@@ -216,6 +216,7 @@ final class BirthdaySelectionViewController: UIViewController {
     let title = "Save to List"
     let dateSelected = datePicker.date
     let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US")
     dateFormatter.dateFormat = "MMMM d, yyyy"
     let dateString = dateFormatter.string(from: dateSelected)
     let message = "Save the birthday as \(dateString)?"

@@ -105,6 +105,7 @@ final class PersonDataManager: NSObject {
       "2020-06-22"
     ]
     let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US")
     dateFormatter.dateFormat = "yyyy-MM-dd"
     for i in (0 ..< names.count).reversed() {
       let birthday = dateFormatter.date(from: birthdays[i])!

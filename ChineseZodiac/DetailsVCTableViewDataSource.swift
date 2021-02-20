@@ -108,6 +108,7 @@ class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
   
   fileprivate func updateBirthday(_ birthday: Date) -> String {
     let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US")
     dateFormatter.dateFormat = "MMM d, yyyy"
     return dateFormatter.string(from: birthday)
   }
