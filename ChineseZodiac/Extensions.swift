@@ -209,7 +209,7 @@ extension Date {
 extension Int {
   func toMonthName() -> String {
     let df = DateFormatter()
-    dateFormatter.locale = Locale(identifier: "en_US")
+    df.locale = Locale(identifier: "en_US")
     df.dateFormat = "MM"
     return df.monthSymbols[self - 1]
   }

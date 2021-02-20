@@ -66,7 +66,7 @@ class ChineseZodiacTests: XCTestCase {
     XCTAssertEqual(result, expected)
   }
 
-  func _testGetChineseADYear() {
+  func testGetChineseADYear() {
     let dateComponentsToMatch = DateComponents(hour: 0)
     let startingDate = Date(fromYear: 0, month: 1, day: 1)
     let stopDate = Date(fromYear: 2100, month: 1, day: 1)
@@ -86,7 +86,7 @@ class ChineseZodiacTests: XCTestCase {
     }
   }
 
-  func _testExtremelyEarlyYears() {
+  func testExtremelyEarlyYears() {
     let extremelyEarlyYears = [
       Date(fromYear: 0, month: 1, day: 1),
       Date(fromYear: 1, month: 1, day: 1),
