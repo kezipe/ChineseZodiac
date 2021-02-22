@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CoreGraphics
 
 protocol PersonPresenting: class {
   func didSelectPerson(at row: Int)

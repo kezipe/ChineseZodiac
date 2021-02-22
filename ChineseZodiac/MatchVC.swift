@@ -15,17 +15,54 @@ enum MatchButtonState: String {
   case matchSelected
 }
 
-final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
-  @IBOutlet weak var collectionView: UICollectionView!
-  @IBOutlet weak var matchButton: UIButton!
-  
+final class MatchVC: UIViewController {
+  private lazy var collectionView: UICollectionView = {
+    let collectionViewLayout = UICollectionViewFlowLayout()
+    let collectionView = UICollectionView(
+      frame: .zero,
+      collectionViewLayout: collectionViewLayout
+    )
+    if #available(iOS 13, *) {
+      collectionView.backgroundColor = .systemBackground
+    } else {
+      collectionView.backgroundColor = .white
+    }
+    collectionView.register(
+        PersonCollectionCell.self,
+        forCellWithReuseIdentifier: "PersonCollectionCell"
+    )
+    collectionView.delegate = delegate
+    collectionView.dataSource = dataSource
+    collectionView.translatesAutoresizingMaskIntoConstraints = false
+    return collectionView
+  }()
+
+  private lazy var matchButton: UIButton = {
+    let button = UIButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.titleLabel?.text = "Match"
+    NSLayoutConstraint.activate(
+      [
+        button.heightAnchor.constraint(equalToConstant: 44)
+      ]
+    )
+    button.addTarget(
+        self,
+        action: #selector(matchButtonPressed),
+        for: .touchUpInside
+    )
+    return button
+  }()
+
   fileprivate lazy var dataSource = MatchVCDataSource()
   fileprivate lazy var delegate = MatchVCDelegate()
   private var matchButtonState = MatchButtonState.matchAll
-    
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupButtonAction()
+    setupUI()
+    configureBackgroundColor()
+    configureNavigationItems()
     let dataManager = PersonDataManager.shared
     dataSource.dataManager = dataManager
     collectionView.dataSource = dataSource
@@ -38,9 +75,89 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     self.updateMatchButton()
     self.updateDeselectAllButton()
   }
-  
-  private func setupButtonAction() {
-    matchButton.addTarget(self, action: #selector(matchButtonPressed), for: .touchUpInside)
+
+  private func setupUI() {
+    view.addSubview(collectionView)
+    view.addSubview(matchButton)
+    let multiplier: CGFloat = 1.0
+    NSLayoutConstraint.activate(
+      [
+        matchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+      ]
+    )
+    if #available(iOS 11, *) {
+      NSLayoutConstraint.activate(
+        [
+          collectionView.topAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.topAnchor
+          ),
+          collectionView.leadingAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.leadingAnchor
+          ),
+          view.safeAreaLayoutGuide.trailingAnchor.constraint(
+            equalTo: collectionView.trailingAnchor
+          ),
+          matchButton.topAnchor.constraint(
+            equalToSystemSpacingBelow: collectionView.bottomAnchor,
+            multiplier: 1
+          ),
+          matchButton.leadingAnchor.constraint(
+            equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor,
+            multiplier: 1
+          ),
+          view.safeAreaLayoutGuide.trailingAnchor.constraint(
+            equalToSystemSpacingAfter: matchButton.trailingAnchor,
+            multiplier: 1
+          ),
+          view.safeAreaLayoutGuide.bottomAnchor.constraint(
+            equalToSystemSpacingBelow: matchButton.bottomAnchor,
+            multiplier: 1
+          )
+        ]
+      )
+    } else {
+      NSLayoutConstraint.activate(
+        [
+          collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+          collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+          view.trailingAnchor.constraint(
+            equalTo: collectionView.trailingAnchor
+          ),
+          matchButton.topAnchor.constraint(
+            equalTo: collectionView.bottomAnchor,
+            constant: 8 * multiplier
+          ),
+          matchButton.leadingAnchor.constraint(
+            equalTo: view.leadingAnchor,
+            constant: 8 * multiplier
+          ),
+          view.trailingAnchor.constraint(
+            equalTo: matchButton.trailingAnchor,
+            constant: 8 * multiplier
+          ),
+          view.bottomAnchor.constraint(
+            equalTo: matchButton.bottomAnchor,
+            constant: 8 * multiplier
+          )
+        ]
+      )
+    }
+  }
+
+  private func configureBackgroundColor() {
+    if #available(iOS 13, *) {
+      view.backgroundColor = .systemBackground
+    } else {
+      view.backgroundColor = .white
+    }
+  }
+
+  private func configureNavigationItems() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+        title: "Deselect All",
+        style: .plain,
+        target:self, action: #selector(deselectAll)
+    )
   }
   
   @objc func matchButtonPressed() {
@@ -55,9 +172,8 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   }
   
   fileprivate func createNewPerson() {
-    let BIRTHDAY_SELECTION_VIEW = "BirthdaySelectionView"
-    let birthdaySelectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: BIRTHDAY_SELECTION_VIEW)
-    navigationController?.pushViewController(birthdaySelectionViewController, animated: true)
+    let birthdaySelectionVC = BirthdaySelectionViewController()
+    navigationController?.pushViewController(birthdaySelectionVC, animated: true)
   }
   
   fileprivate func match() {
@@ -66,9 +182,13 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     navigationController?.pushViewController(resultsVC, animated: true)
   }
   
-  @IBAction func deselectAll(_ sender: Any) {
+  @objc
+  func deselectAll(_ sender: Any) {
+    let itemsToUpdate = dataSource.indicesOfSelectedPeople.map {
+      IndexPath(item: $0, section: 0)
+    }
     dataSource.deselectAll()
-    collectionView.reloadData()
+    collectionView.reloadItems(at: itemsToUpdate)
     updateMatchButton()
     updateDeselectAllButton()
   }
@@ -125,14 +245,18 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
   fileprivate func enableMatchButton() {
     matchButton.isEnabled = true
     UIView.animate(withDuration: 0.5) {
-      self.matchButton.backgroundColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+      self.matchButton.backgroundColor = .accentColor
     }
   }
   
   fileprivate func disableMatchButton() {
     matchButton.isEnabled = false
     UIView.animate(withDuration: 0.5) {
-      self.matchButton.backgroundColor = #colorLiteral(red: 0.5568627451, green: 0.5568627451, blue: 0.5764705882, alpha: 1)
+      if #available(iOS 11.0, *) {
+        self.matchButton.backgroundColor = UIColor(named: "ChineseZodiacDisabled")
+      } else {
+        self.matchButton.backgroundColor = UIColor.gray
+      }
     }
   }
   
@@ -147,7 +271,6 @@ final class MatchVC: UIViewController, UICollectionViewDelegateFlowLayout {
     let cell = collectionView.cellForItem(at: indexPath) as! PersonCollectionCell
     cell.dehighlightPerson()
   }
-
 }
 
 extension MatchVC: PersonSelecting {

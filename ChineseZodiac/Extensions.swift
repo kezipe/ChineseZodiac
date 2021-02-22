@@ -22,6 +22,7 @@ extension Date {
   func convertToChineseDate() -> String {
     let chineseCalendar = Calendar(identifier: .chinese)
     let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US")
     formatter.calendar = chineseCalendar
     formatter.dateStyle = .long
     let chineseDate = formatter.string(from: self)
@@ -78,7 +79,7 @@ extension Date {
   
   func getChineseADYear() -> Int {
     let formattedDate = self.convertToChineseDate()
-    
+
     let comma = formattedDate.firstIndex(of: ",")!
     let startIndex = formattedDate.index(comma, offsetBy: 2)
     let endIndex = formattedDate.firstIndex(of: "(")!
@@ -208,6 +209,7 @@ extension Date {
 extension Int {
   func toMonthName() -> String {
     let df = DateFormatter()
+    df.locale = Locale(identifier: "en_US")
     df.dateFormat = "MM"
     return df.monthSymbols[self - 1]
   }

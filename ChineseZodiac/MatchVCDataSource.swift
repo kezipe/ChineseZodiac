@@ -37,6 +37,12 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   func person(at item: Int) -> Person {
     dataManager.fetch(at: IndexPath(item: item, section: 0))
   }
+
+  var indicesOfSelectedPeople: [Int] {
+    selectedPersons.compactMap(
+      dataManager.allPeople.firstIndex(of:)
+    )
+  }
   
   func isSelectionLegal() -> Bool {
     return numberOfSelectedItems <= MAX_MATCHING_PEOPLE && numberOfSelectedItems > 1
@@ -54,11 +60,11 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
       selectedPersons.insert(tappedPerson)
     }
   }
-  
+
   func deselectAll() {
     selectedPersons.removeAll()
   }
-  
+
   func isPersonSelected(at item: Int) -> Bool {
     let personToQuery = person(at: item)
     return selectedPersons.contains(personToQuery)
@@ -67,10 +73,12 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return numberOfItems
   }
-  
+
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {    
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER,
-                                                        for: indexPath) as? PersonCollectionCell else {
+    guard let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: "PersonCollectionCell",
+      for: indexPath
+    ) as? PersonCollectionCell else {
       fatalError("Cannot dequeue or cast UITableView as \"PersonColCell\"")
     }
     let personAtIndexPath = person(at: indexPath.item)
@@ -89,8 +97,8 @@ class MatchVCDataSource: NSObject, UICollectionViewDataSource {
     }
     
     if let person = userInfo["person"] as? Person,
-      let action = userInfo["action"] as? String,
-    action == "delete" {
+       let action = userInfo["action"] as? String,
+       action == "delete" {
       selectedPersons.remove(person)
     }
   }

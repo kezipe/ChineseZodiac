@@ -45,7 +45,7 @@ final class PersonDataManager: NSObject {
     fetchRequest.sortDescriptors = getSortDescriptors(for: sort)
     controller = NSFetchedResultsController(
       fetchRequest: fetchRequest,
-      managedObjectContext: context,
+      managedObjectContext: PersistentController.shared.context,
       sectionNameKeyPath: nil,
       cacheName: nil
     )
@@ -105,6 +105,7 @@ final class PersonDataManager: NSObject {
       "2020-06-22"
     ]
     let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US")
     dateFormatter.dateFormat = "yyyy-MM-dd"
     for i in (0 ..< names.count).reversed() {
       let birthday = dateFormatter.date(from: birthdays[i])!
@@ -124,18 +125,18 @@ final class PersonDataManager: NSObject {
 
 extension PersonDataManager: PersonDataManaging {
   func create(name: String, birthday: Date) {
-    let person = Person(context: context)
+    let person = Person(context: PersistentController.shared.context)
     person.created = Date()
     person.birthdate = birthday
     person.name = name
     person.zodiac = Int16(birthday.getZodiacRank())
-    ad.saveContext()
+    PersistentController.shared.saveContext()
     attempFetch()
   }
   
   func delete(_ person: Person) {
-    context.delete(person)
-    ad.saveContext()
+    PersistentController.shared.context.delete(person)
+    PersistentController.shared.saveContext()
     attempFetch()
   }
   
@@ -149,8 +150,17 @@ extension Notification.Name {
 }
 
 extension PersonDataManager: NSFetchedResultsControllerDelegate {
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-    let personAffected = anObject as! Person
+  func controller(
+    _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+    didChange anObject: Any,
+    at indexPath: IndexPath?,
+    for type: NSFetchedResultsChangeType,
+    newIndexPath: IndexPath?
+  ) {
+    guard let personAffected = anObject as? Person,
+          personAffected.zodiacSign != .alone else {
+        return
+    }
     var userInfo: [AnyHashable: Any] = [
       "person": personAffected
     ]

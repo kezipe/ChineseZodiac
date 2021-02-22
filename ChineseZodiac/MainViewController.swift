@@ -8,20 +8,18 @@
 
 import UIKit
 
-
 final class MainViewController: UIViewController {
   // MARK: Private Types
   // MARK: API Variables
   // MARK: Private Variables
   private lazy var delegate = ZodiacTableViewDelegate()
   private lazy var dataSource = ZodiacTableViewDataSource()
-  private let DETAILS_SEGUE_IDENTIFIER = "showDetailsVC"
+  private var pendingOperations: [IndexPath: BlockOperation] = [:]
   
   private lazy var tableView: UITableView = {
     let tv = UITableView()
     tv.translatesAutoresizingMaskIntoConstraints = false
-    let nib = UINib.init(nibName: "PersonCell", bundle: nil)
-    tv.register(nib, forCellReuseIdentifier: "PersonCell")
+    tv.register(PersonCell.self, forCellReuseIdentifier: "PersonCell")
     tv.delegate = delegate
     tv.dataSource = dataSource
     tv.rowHeight = 60
@@ -37,27 +35,22 @@ final class MainViewController: UIViewController {
   // MARK: API Functions
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupNavigationBar()
     setupUI()
     setupTableView()
   }
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard checkSegueIdentifier(segue: segue) else {
-      return
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    pendingOperations.forEach {
+      $0.value.start()
     }
-    guard let destination = segue.destination as? DetailsVC else {
-      return
-    }
-    
-    guard let row = sender as? Int else {
-      return
-    }
-    let person = dataSource.person(at: row)
-    destination.person = person
   }
-  
+
   // MARK: Private Functions
   private func setupUI() {
+    configureViewBackgroundColor()
+    configureNavigationTitle()
     view.addSubview(segmentedControl)
     view.addSubview(tableView)
     let multiplier: CGFloat = 1
@@ -73,7 +66,7 @@ final class MainViewController: UIViewController {
             multiplier: multiplier
           ),
           view.trailingAnchor.constraint(
-            equalToSystemSpacingAfter: segmentedControl.trailingAnchor, 
+            equalToSystemSpacingAfter: segmentedControl.trailingAnchor,
             multiplier: multiplier
           ),
           tableView.topAnchor.constraint(
@@ -84,12 +77,12 @@ final class MainViewController: UIViewController {
             equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor,
             multiplier: multiplier
           ),
-          tableView.trailingAnchor.constraint(
-            equalToSystemSpacingAfter: view.safeAreaLayoutGuide.trailingAnchor,
+          view.safeAreaLayoutGuide.trailingAnchor.constraint(
+            equalToSystemSpacingAfter: tableView.trailingAnchor,
             multiplier: multiplier
           ),
           view.safeAreaLayoutGuide.bottomAnchor.constraint(
-            equalToSystemSpacingBelow: tableView.bottomAnchor, 
+            equalToSystemSpacingBelow: tableView.bottomAnchor,
             multiplier: multiplier
           )
         ]
@@ -98,7 +91,7 @@ final class MainViewController: UIViewController {
       NSLayoutConstraint.activate(
         [
           segmentedControl.topAnchor.constraint(
-            equalTo: view.topAnchor, 
+            equalTo: view.topAnchor,
             constant: 8 * multiplier
           ),
           segmentedControl.leadingAnchor.constraint(
@@ -106,7 +99,7 @@ final class MainViewController: UIViewController {
             constant: 8 * multiplier
           ),
           segmentedControl.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor, 
+            equalTo: view.trailingAnchor,
             constant: -8 * multiplier
           ),
           tableView.topAnchor.constraint(
@@ -122,13 +115,38 @@ final class MainViewController: UIViewController {
             constant: -8 * multiplier
           ),
           view.bottomAnchor.constraint(
-            equalTo: tableView.bottomAnchor, 
+            equalTo: tableView.bottomAnchor,
             constant: 8 * multiplier
           )
         ]
       )
     }
   }
+
+  private func setupNavigationBar() {
+    let addButton = UIBarButtonItem(
+      barButtonSystemItem: .add,
+      target: self,
+      action: #selector(didTapAddPerson)
+    )
+    navigationItem.rightBarButtonItem = addButton
+  }
+
+  private func configureViewBackgroundColor() {
+    if #available(iOS 13, *) {
+      view.backgroundColor = .systemBackground
+    } else {
+      view.backgroundColor = .white
+    }
+  }
+
+  private func configureNavigationTitle() {
+    navigationItem.title = "Chinese Zodiac"
+    if #available(iOS 11, *) {
+      navigationController?.navigationBar.prefersLargeTitles = true
+    }
+  }
+
 
   private func setupTableViewDelegate() {
     delegate.parentController = self
@@ -151,9 +169,11 @@ final class MainViewController: UIViewController {
     dataSource.sort = sortBy
     tableView.reloadData()
   }
-  
-  private func checkSegueIdentifier(segue: UIStoryboardSegue) -> Bool {
-    return segue.identifier == DETAILS_SEGUE_IDENTIFIER
+
+  @objc
+  private func didTapAddPerson() {
+    let destination = BirthdaySelectionViewController()
+    navigationController?.pushViewController(destination, animated: true)
   }
   
   // MARK: Initializers
@@ -162,7 +182,9 @@ final class MainViewController: UIViewController {
 // MARK: Person Present
 extension MainViewController: PersonPresenting {
   func didSelectPerson(at row: Int) {
-    performSegue(withIdentifier: DETAILS_SEGUE_IDENTIFIER, sender: row)
+    let person = dataSource.person(at: row)
+    let destination = DetailsVC(person: person)
+    navigationController?.pushViewController(destination, animated: true)
   }
 }
 
@@ -175,14 +197,40 @@ extension MainViewController: PersonDeleting {
 
 extension MainViewController: PersonDataUpdating {
   func delete(at indexPath: IndexPath) {
-    tableView.beginUpdates()
-    tableView.deleteRows(at: [indexPath], with: .automatic)
-    tableView.endUpdates()
+    let deleteOperation = {
+      DispatchQueue.main.async { [weak self] in
+        self?.tableView.beginUpdates()
+        self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+        self?.tableView.endUpdates()
+      }
+    }
+    let deleteBlockOperation = BlockOperation(block: deleteOperation)
+    deleteBlockOperation.completionBlock = {
+      self.pendingOperations.removeValue(forKey: indexPath)
+    }
+    if let window = tableView.window, window.isKeyWindow {
+      deleteBlockOperation.start()
+    } else {
+      pendingOperations[indexPath] = deleteBlockOperation
+    }
   }
   
   func insert(at indexPath: IndexPath) {
-    tableView.beginUpdates()
-    tableView.insertRows(at: [indexPath], with: .automatic)
-    tableView.endUpdates()
+    let insertOperation = {
+      DispatchQueue.main.async { [weak self] in
+        self?.tableView.beginUpdates()
+        self?.tableView.insertRows(at: [indexPath], with: .automatic)
+        self?.tableView.endUpdates()
+      }
+    }
+    let insertBlockOperation = BlockOperation(block: insertOperation)
+    insertBlockOperation.completionBlock = {
+      self.pendingOperations.removeValue(forKey: indexPath)
+    }
+    if let window = tableView.window, window.isKeyWindow {
+      insertBlockOperation.start()
+    } else {
+      pendingOperations[indexPath] = insertBlockOperation
+    }
   }
 }
