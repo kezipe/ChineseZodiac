@@ -6,8 +6,9 @@
 //  Copyright © 2019 Monorail Apps. All rights reserved.
 //
 
-import Foundation
 import CoreData
+import Foundation
+import Zodiacs
 
 enum PersonSort: Int {
   case name
@@ -28,9 +29,12 @@ final class PersonDataManager: NSObject {
   var sort: PersonSort = .createdOn {
     didSet {
       fetchRequest.sortDescriptors = getSortDescriptors(for: sort)
+      zodiacSortCache.removeAll(keepingCapacity: true)
       attempFetch()
     }
   }
+
+  private var zodiacSortCache: [Person] = []
   
   var numberOfObjects: Int {
     controller.sections![0].numberOfObjects
@@ -75,12 +79,10 @@ final class PersonDataManager: NSObject {
   
   fileprivate func getSortDescriptors(for sortType: PersonSort) -> [NSSortDescriptor] {
     switch sortType {
-    case .createdOn:
+    case .createdOn, .zodiac:
       return [NSSortDescriptor(key: "created", ascending: false)]
     case .name:
       return [NSSortDescriptor(key: "name", ascending: true)]
-    case .zodiac:
-      return [NSSortDescriptor(key: "zodiac", ascending: true)]
     case .birthday:
       return [NSSortDescriptor(key: "birthdate", ascending: false)]
     }
@@ -140,7 +142,23 @@ extension PersonDataManager: PersonDataManaging {
   }
   
   func fetch(at indexPath: IndexPath) -> Person {
-    controller.object(at: indexPath)
+    if sort == .zodiac {
+      if zodiacSortCache.isEmpty {
+        let allObjects = controller.fetchedObjects?.sorted {
+          guard let first = $0.zodiacSign, let second = $1.zodiacSign else {
+            return false
+          }
+          return first < second
+        }
+        if let sorted = allObjects {
+          self.zodiacSortCache = sorted
+          return sorted[indexPath.row]
+        }
+      } else {
+        return zodiacSortCache[indexPath.row]
+      }
+    }
+    return controller.object(at: indexPath)
   }
 }
 
