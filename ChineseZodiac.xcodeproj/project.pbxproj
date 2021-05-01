@@ -83,6 +83,7 @@
 		0A92C0B225C761CE0071431D /* UIColor+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
 		0A95338325C3A83500F98F06 /* PersistentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentController.swift; sourceTree = "<group>"; };
 		0AB4729B236521A200495C17 /* PersonDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDataManager.swift; sourceTree = "<group>"; };
+		0ABEE08426254EAA0033DBD2 /* Zodiacs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Zodiacs; path = ChineseZodiac/Zodiacs; sourceTree = "<group>"; };
 		0ACBF6FA1EE357B00075A523 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0AD4E2891EDDD22400A92F65 /* ChineseZodiac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseZodiac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD4E28C1EDDD22400A92F65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 		0AD4E2801EDDD22400A92F65 = {
 			isa = PBXGroup;
 			children = (
+				0ABEE08426254EAA0033DBD2 /* Zodiacs */,
 				0AD4E28B1EDDD22400A92F65 /* ChineseZodiac */,
 				0A55880D2405F41900FD0885 /* ChineseZodiacTests */,
 				0AD4E28A1EDDD22400A92F65 /* Products */,
