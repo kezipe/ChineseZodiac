@@ -76,8 +76,10 @@ final class PersonCollectionCell: UICollectionViewCell {
   }
   
   fileprivate func configureImage(_ person: Person) {
-    let imageName = person.zodiacSign.rawValue.capitalized + "_thumb"
-    if let image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate) {
+    guard let imageName = person.zodiacName else {
+        return
+    }
+    if let image = UIImage(named: imageName + "_thumb")?.withRenderingMode(.alwaysTemplate) {
       zodiacImage.image = image
     }
   }

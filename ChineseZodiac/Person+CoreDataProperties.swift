@@ -20,6 +20,5 @@ extension Person {
     @NSManaged public var birthdate: Date
     @NSManaged public var created: Date
     @NSManaged public var name: String
-    @NSManaged public var zodiac: Int16
 
 }

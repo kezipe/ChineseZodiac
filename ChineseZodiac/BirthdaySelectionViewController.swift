@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Zodiacs
 
 final class BirthdaySelectionViewController: UIViewController {
 
@@ -181,8 +182,7 @@ final class BirthdaySelectionViewController: UIViewController {
   }
   
   fileprivate func getZodiacName() -> String {
-    let date = datePicker.date
-    return date.getZodiac().rawValue.capitalized
+    ChineseZodiac(date: datePicker.date)?.description ?? ""
   }
 
   @IBAction func saveButtonPressed(_ sender: Any) {

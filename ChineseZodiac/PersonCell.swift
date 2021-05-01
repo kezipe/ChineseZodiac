@@ -118,7 +118,7 @@ final class PersonCell: UITableViewCell {
   }
 
   fileprivate func updateZodiacImage(_ person: Person) {
-    if let image = UIImage(named: "\(person.zodiacName)_thumb") {
+    if let image = UIImage(named: "\(person.zodiacName!)_thumb") {
       let tintableImage = image.withRenderingMode(.alwaysTemplate)
       if #available(iOS 13, *) {
         zodiacImageView.tintColor = .label

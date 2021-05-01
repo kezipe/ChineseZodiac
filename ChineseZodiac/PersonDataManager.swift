@@ -129,7 +129,6 @@ extension PersonDataManager: PersonDataManaging {
     person.created = Date()
     person.birthdate = birthday
     person.name = name
-    person.zodiac = Int16(birthday.getZodiacRank())
     PersistentController.shared.saveContext()
     attempFetch()
   }
@@ -157,8 +156,7 @@ extension PersonDataManager: NSFetchedResultsControllerDelegate {
     for type: NSFetchedResultsChangeType,
     newIndexPath: IndexPath?
   ) {
-    guard let personAffected = anObject as? Person,
-          personAffected.zodiacSign != .alone else {
+    guard let personAffected = anObject as? Person else {
         return
     }
     var userInfo: [AnyHashable: Any] = [

@@ -62,11 +62,6 @@ extension Date {
     return index + 1
   }
   
-  func getZodiac() -> Zodiac {
-    let rank = getZodiacRank()
-    return Zodiac(rank: rank - 1)!
-  }
-  
   func getStemBranch() -> String {
     let chineseDate = self.convertToChineseDate()
     let leftBracketIndex = chineseDate.firstIndex(of: "(")!

@@ -74,7 +74,7 @@ class DetailsVCTableViewDataSource: NSObject, UITableViewDataSource {
     case .birthday:
       cell.textLabel?.text = updateBirthday(birthday)
     case .zodiacSign:
-      cell.textLabel?.text = updateZodiac(zodiacName)
+      cell.textLabel?.text = updateZodiac(zodiacName!)
     case .solarTerm:
       cell.textLabel?.text = updateSolarTerm(birthday)
     case .stemBranch:

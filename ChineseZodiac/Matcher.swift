@@ -19,7 +19,7 @@ class Matcher {
   
   fileprivate func insertDummyPerson() {
     let newPerson = Person(context: PersistentController.shared.context)
-    newPerson.zodiac = 13
+    newPerson.birthdate = .distantPast
     newPerson.name = ""
     personsArray.append(newPerson)
   }
@@ -38,7 +38,7 @@ class Matcher {
 
   func removeDummyPerson() {
     let dummyPerson = personsArray.first {
-      $0.zodiac == 13
+      $0.birthdate == .distantPast
     }
     if let dummyPerson = dummyPerson {
       let context = PersistentController.shared.context
@@ -111,7 +111,7 @@ class Matcher {
         
         let person1Zodiac = person1.zodiacSign
         let person2Zodiac = person2.zodiacSign
-        let matchScore = Zodiac.match(person1Zodiac, with: person2Zodiac)
+        let matchScore = 0
         let compatibility = Compatibility(rawValue: matchScore)!
         let match = Match(firstPerson: person1, secondPerson: person2, compatibility: compatibility)
         

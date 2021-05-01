@@ -7,20 +7,18 @@
 //
 
 import Foundation
+import Zodiacs
 
 extension Person {
-  var zodiacSign: Zodiac {
-    guard 1...13 ~= self.zodiac else {
-      fatalError("Non-existent zodiac sign")
-    }
-    return Zodiac(rank: Int(self.zodiac) - 1)!
+  var zodiacSign: ChineseZodiac? {
+    ChineseZodiac(date: self.birthdate)
   }
   
-  var zodiacName: String {
-    return self.zodiacSign.rawValue.capitalized
+  var zodiacName: String? {
+    zodiacSign?.description.capitalized
   }
-  
+
   var isPlaceholder: Bool {
-    return self.zodiacSign == .alone
+    birthdate == .distantPast
   }
 }

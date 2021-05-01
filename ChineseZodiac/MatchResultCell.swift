@@ -137,7 +137,7 @@ final class MatchResultCell: UITableViewCell {
   }
   
   fileprivate func getImageName(person: Person) -> String {
-    return person.zodiacName + "_thumb"
+    return person.zodiacName! + "_thumb"
   }
   
   fileprivate func configureCompatibility(_ match: Match) {
