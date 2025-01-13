@@ -70,7 +70,7 @@ final class MatchVC: UIViewController {
         collectionView.delegate = delegate
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.collectionView.reloadData()
         self.updateMatchButton()
         self.updateDeselectAllButton()
@@ -153,7 +153,7 @@ final class MatchVC: UIViewController {
     }
 
     private func configureNavigationItems() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
             title: "Deselect All",
             style: .plain,
             target: self, action: #selector(deselectAll)
@@ -234,11 +234,11 @@ final class MatchVC: UIViewController {
     }
 
     fileprivate func disableDeselectButton() {
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = false
     }
 
     fileprivate func enableDeselectButton() {
-        navigationItem.rightBarButtonItem?.isEnabled = true
+        navigationItem.leftBarButtonItem?.isEnabled = true
     }
 
     fileprivate func enableMatchButton() {
