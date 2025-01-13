@@ -9,20 +9,20 @@
 import UIKit
 
 final class ZodiacSegmentedControl: UISegmentedControl {
-  // MARK: Private Types
-  private enum Selection: String, CaseIterable {
-    case name, zodiac, birthday, created
-  }
-  // MARK: API Variables
-  // MARK: Private Variables
-  // MARK: API Functions
-  // MARK: Private Functions
-  
-  // MARK: Initializers
-  convenience init() {
-    let selection = Selection.allCases.map(\.rawValue.capitalized)
-    self.init(items: selection)
-    translatesAutoresizingMaskIntoConstraints = false
-    selectedSegmentIndex = 0
-  }
+    // MARK: Private Types
+    private enum Selection: String, CaseIterable {
+        case name, zodiac, birthday, created
+    }
+    // MARK: API Variables
+    // MARK: Private Variables
+    // MARK: API Functions
+    // MARK: Private Functions
+
+    // MARK: Initializers
+    convenience init() {
+        let selection = Selection.allCases.map(\.rawValue.capitalized)
+        self.init(items: selection)
+        translatesAutoresizingMaskIntoConstraints = false
+        selectedSegmentIndex = 0
+    }
 }

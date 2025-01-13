@@ -8,13 +8,11 @@
 
 import UIKit
 
-
-
 final class ZodiacTableViewDelegate: NSObject, UITableViewDelegate {
-  
-  weak var parentController: (PersonPresenting & PersonDeleting)?
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    parentController?.didSelectPerson(at: indexPath.row)
-  }
+
+    weak var parentController: (PersonPresenting & PersonDeleting)?
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        parentController?.didSelectPerson(at: indexPath.row)
+    }
 }
