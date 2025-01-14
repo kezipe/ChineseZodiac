@@ -7,7 +7,7 @@ ChineseZodiac is an iOS app created that allows users to input a birthday and fi
 To run the ChineseZodiac app, you will need to have Xcode 12 or later installed on your Mac. Once you have Xcode installed, you can clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/aoenth/ChineseZodiac.git
+git clone https://github.com/trufflethumb/ChineseZodiac.git
 ```
 
 Then, open the `ChineseZodiac.xcodeproj` file in Xcode and run the app on a simulator or a physical device.
